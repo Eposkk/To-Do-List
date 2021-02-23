@@ -4,7 +4,6 @@ import myapp.repo.MyEntityRepo;
 import myapp.data.MyEntity;
 
 import java.awt.GridLayout;
-import javax.swing.*;
 
 /**
  * Main window for my application!
