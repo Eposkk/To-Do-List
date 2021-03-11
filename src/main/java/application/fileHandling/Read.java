@@ -1,6 +1,7 @@
 package application.fileHandling;
 
 import application.event.Category;
+import application.event.MainEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
