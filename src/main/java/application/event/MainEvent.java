@@ -33,6 +33,10 @@ public class MainEvent extends Event {
         return HasUnderEvent;
     }
 
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public HashMap<Integer, SecondaryEvent> getSecondaryEvents() {
         return secondaryEvents;
     }

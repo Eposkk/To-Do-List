@@ -18,8 +18,8 @@ public class MainRegister {
         categories = new HashMap<Integer, Category>();
         events = new ArrayList<Event>();
     }
-    public Category getCategory(int key){
-
+    public Category getCategory(int Id){
+        return categories.get(Id);
     }
     public Event getEvent(String eventName){
 
@@ -27,14 +27,20 @@ public class MainRegister {
     public boolean addEvent(MainEvent newMainEvent){
 
     }
-    public boolean setCategoryColor(int Id, Color color){
-
+    public void setCategoryColor(int Id, Color color){
+        categories.get(Id).setColor(color);
     }
     public boolean removeEvent(MainEvent mainEvent){
 
     }
-    public boolean setEventCategory(MainEvent mainEvent, int newCategory){
-
+    public boolean setEventCategory(int eventId, int newCategoryId){
+        for(MainEvent event: events){
+            if(eventId == event.getID()){
+                event.setCategoryId(newCategoryId);
+                return true;
+            }
+        }
+        return false;
     }
     public boolean removeCategory(int Id){
 
@@ -45,11 +51,19 @@ public class MainRegister {
     private void sortByCategory(int Id){
 
     }
-    public ArrayList<Event> getAllEventsFromCategory(int Id){
-
+    public ArrayList<MainEvent> getAllEventsFromCategory(int Id){
+        ArrayList<MainEvent> eventsByCategory = new ArrayList<>();
+        for(MainEvent event: events){
+            if(event.getCategoryId() == Id){
+                eventsByCategory.add(event);
+            }
+        }
+        return eventsByCategory;
     }
-    public ArrayList<Event> getAllEvents(){
-
+    public ArrayList<MainEvent> getAllEvents(){
+        ArrayList<MainEvent> allMainEvents = new ArrayList<MainEvent>();
+        allMainEvents.addAll(events);
+        return allMainEvents;
     }
 
     @Override
