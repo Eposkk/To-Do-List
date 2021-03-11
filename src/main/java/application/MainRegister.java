@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//TODO add javadoc
+
 public class MainRegister {
     private HashMap<Integer, Category> categories;
     private ArrayList<MainEvent> events;
@@ -91,12 +93,14 @@ public class MainRegister {
     //TODO toString()
 
     public void Save(){
-
+        //TODO add code
     }
     public HashMap<Integer, Category> readCategory(){
-
+        //TODO add code
+        return null;
     }
     public ArrayList<Event> readEvent(){
-
+        //TODO add code
+        return null;
     }
 }
