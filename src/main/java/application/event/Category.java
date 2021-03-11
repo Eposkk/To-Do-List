@@ -1,9 +1,10 @@
 package application.event;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Category {
+public class Category implements Serializable {
     private final int ID;
     private Color color;
     private String name;
