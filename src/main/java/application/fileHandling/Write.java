@@ -1,15 +1,19 @@
 package application.fileHandling;
 
+import application.event.MainEvent;
+import application.event.Category;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Write {
     private HashMap<Integer,Category> categories;
     private ArrayList<MainEvent> events;
 
-    public Write(HashMap<Int,Category> categories,ArrayList<MainEvent> events){
+    public Write(HashMap<Integer,Category> categories,ArrayList<MainEvent> events){
         this.categories=categories;
         this.events=events;
     }
