@@ -25,11 +25,11 @@ public class MainEvent extends Event {
         return categoryId;
     }
 
-    public boolean isHasCategory() {
+    public boolean hasCategory() {
         return hasCategory;
     }
 
-    public boolean isHasUnderEvent() {
+    public boolean hasUnderEvent() {
         return HasUnderEvent;
     }
 

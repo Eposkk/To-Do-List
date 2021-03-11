@@ -12,26 +12,41 @@ import java.util.HashMap;
 
 public class MainRegister {
     private HashMap<Integer, Category> categories;
-    private ArrayList<Event> events;
+    private ArrayList<MainEvent> events;
 
     public MainRegister(){
-        categories = new HashMap<Integer, Category>();
-        events = new ArrayList<Event>();
+        categories = new HashMap<>();
+        events = new ArrayList<>();
     }
     public Category getCategory(int Id){
         return categories.get(Id);
     }
-    public Event getEvent(String eventName){
-
+    public Event getEvent(int Id) {
+        for (MainEvent event : events) {
+            if (event.getID() == Id) {
+                return event;
+            }
+        }
+        return null;
     }
     public boolean addEvent(MainEvent newMainEvent){
-
+        if(events.contains(newMainEvent)){
+            return false;
+        }else{
+            events.add(newMainEvent);
+            return true;
+        }
     }
     public void setCategoryColor(int Id, Color color){
         categories.get(Id).setColor(color);
     }
-    public boolean removeEvent(MainEvent mainEvent){
-
+    public boolean removeEvent(int mainEventId){
+        for(MainEvent event : events){
+            if(event.getID() == mainEventId){
+                return events.remove(event);
+            }
+        }
+        return false;
     }
     public boolean setEventCategory(int eventId, int newCategoryId){
         for(MainEvent event: events){
@@ -43,8 +58,15 @@ public class MainRegister {
         return false;
     }
     public boolean removeCategory(int Id){
-
+        if(categories.containsKey(Id)){
+            categories.remove(Id);
+            return true;
+        }else{
+            return false;
+        }
     }
+
+    //TODO sortering
     private void sortByPriority(){
 
     }
@@ -66,10 +88,8 @@ public class MainRegister {
         return allMainEvents;
     }
 
-    @Override
-    public String toString() {
+    //TODO toString()
 
-    }
     public void Save(){
 
     }
