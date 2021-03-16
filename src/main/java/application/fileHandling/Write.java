@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Write {
-    private HashMap<Integer,Category> categories;
-    private ArrayList<MainEvent> events;
+    private final HashMap<Integer,Category> categories;
+    private final ArrayList<MainEvent> events;
 
     public Write(HashMap<Integer,Category> categories,ArrayList<MainEvent> events){
         this.categories=categories;
