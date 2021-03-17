@@ -3,6 +3,7 @@ package application;
 import application.event.Event;
 import application.event.Category;
 import application.event.MainEvent;
+import com.sun.tools.javac.Main;
 
 import javax.xml.catalog.Catalog;
 import java.awt.*;
@@ -16,6 +17,8 @@ import java.util.HashMap;
 public class MainRegister {
     private HashMap<Integer, Category> categories;
     private ArrayList<MainEvent> events;
+    private int eventIdCount=0;
+    private int categoryIdCount=0;
 
     public MainRegister(){
         categories = new HashMap<>();
@@ -24,6 +27,7 @@ public class MainRegister {
     public Category getCategory(int Id){
         return categories.get(Id);
     }
+
     public Event getEvent(int Id) {
         for (MainEvent event : events) {
             if (event.getID() == Id) {
@@ -32,17 +36,39 @@ public class MainRegister {
         }
         return null;
     }
-    public boolean addEvent(MainEvent newMainEvent){
-        if(events.contains(newMainEvent)){
+
+    public boolean addMainEvent(LocalDate date, String name, String description, int priority, int categoryId){
+        MainEvent e;
+        if(categoryId == -1){
+            e = new MainEvent(eventIdCount, date, name, description, priority);
+        }else{
+            e = new MainEvent(eventIdCount, date, name, description, priority, categoryId);
+        }
+
+        if(events.contains(e)){
             return false;
         }else{
-            events.add(newMainEvent);
+            events.add(e);
+            eventIdCount+=1;
             return true;
         }
     }
+
+    public boolean addCategory(String name, Color color){
+        if (categories.containsValue(new Category(0, color, name))) {
+            return false;
+        }else{
+            categories.put(categoryIdCount, new Category(categoryIdCount, color, name));
+            categoryIdCount+=1;
+            return true;
+        }
+
+    }
+
     public void setCategoryColor(int Id, Color color){
         categories.get(Id).setColor(color);
     }
+
     public boolean removeEvent(int mainEventId){
         for(MainEvent event : events){
             if(event.getID() == mainEventId){
@@ -51,6 +77,7 @@ public class MainRegister {
         }
         return false;
     }
+
     public boolean setEventCategory(int eventId, int newCategoryId){
         for(MainEvent event: events){
             if(eventId == event.getID()){
@@ -60,6 +87,7 @@ public class MainRegister {
         }
         return false;
     }
+
     public boolean removeCategory(int Id){
         if(categories.containsKey(Id)){
             categories.remove(Id);
@@ -69,21 +97,24 @@ public class MainRegister {
         }
     }
 
-    private void sortByPriority(){
+    public void sortByPriority(){
         events.sort(Comparator.comparingInt(Event::getPriority));
     }
-    private void sortByCategory(int Id){
+
+    public void sortByCategory(){
         events.sort(Comparator.comparingInt(MainEvent::getCategoryId));
     }
-    public ArrayList<MainEvent> getAllEventsFromCategory(int Id){
+
+    public ArrayList<MainEvent> getAllEventsFromCategory(int CategoryId){
         ArrayList<MainEvent> eventsByCategory = new ArrayList<>();
         for(MainEvent event: events){
-            if(event.getCategoryId() == Id){
+            if(event.getCategoryId() == CategoryId){
                 eventsByCategory.add(event);
             }
         }
         return eventsByCategory;
     }
+
     public ArrayList<MainEvent> getAllEvents(){
         ArrayList<MainEvent> allMainEvents = new ArrayList<MainEvent>();
         allMainEvents.addAll(events);
@@ -102,5 +133,15 @@ public class MainRegister {
     public ArrayList<Event> readEvent(){
         //TODO add code
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "MainRegister{" +
+                "categories=" + categories +
+                ", events=" + events +
+                ", eventIdCount=" + eventIdCount +
+                ", categoryIdCount=" + categoryIdCount +
+                '}';
     }
 }
