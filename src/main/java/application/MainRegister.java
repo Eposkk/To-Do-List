@@ -8,6 +8,7 @@ import javax.xml.catalog.Catalog;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 //TODO add javadoc
@@ -68,12 +69,11 @@ public class MainRegister {
         }
     }
 
-    //TODO sortering
     private void sortByPriority(){
-
+        events.sort(Comparator.comparingInt(Event::getPriority));
     }
     private void sortByCategory(int Id){
-
+        events.sort(Comparator.comparingInt(MainEvent::getCategoryId));
     }
     public ArrayList<MainEvent> getAllEventsFromCategory(int Id){
         ArrayList<MainEvent> eventsByCategory = new ArrayList<>();
