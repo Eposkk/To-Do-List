@@ -9,15 +9,25 @@ import java.util.Objects;
  */
 public abstract class Task {
     private final int ID;
-    private LocalDate date;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String name;
     private String description;
     private int priority;
     private boolean done;
 
-    public Task(int ID, LocalDate date, String name, String description, int priority) {
+    public Task(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
         this.ID = ID;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+        done = false;
+    }
+
+    public Task(int ID, String name, String description, int priority) {
+        this.ID = ID;
         this.name = name;
         this.description = description;
         //TODO add priority check
@@ -25,12 +35,26 @@ public abstract class Task {
         done = false;
     }
 
+    public Task(int ID, LocalDate endDate, String name, String description, int priority) {
+        this.ID = ID;
+        this.endDate = endDate;
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+        done = false;
+    }
+
+
     public int getID(){
         return ID;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate(){
+        return endDate;
     }
 
     public String getName() {
@@ -45,8 +69,12 @@ public abstract class Task {
         return priority;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public void setName(String name) {
@@ -77,21 +105,22 @@ public abstract class Task {
         return ID == task.ID &&
                 priority == task.priority &&
                 done == task.done &&
-                Objects.equals(date, task.date) &&
+                Objects.equals(startDate, task.startDate) &&
                 Objects.equals(name, task.name) &&
                 Objects.equals(description, task.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, date, name, description, priority, done);
+        return Objects.hash(ID, startDate, name, description, priority, done);
     }
 
     @Override
     public String toString() {
         return "Task{" +
                 "ID=" + ID +
-                ", date=" + date +
+                ", start date=" + startDate +
+                ", end date=" + endDate +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
