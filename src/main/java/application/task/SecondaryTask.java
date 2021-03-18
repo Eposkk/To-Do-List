@@ -8,7 +8,15 @@ import java.time.LocalDate;
  */
 public class SecondaryTask extends Task {
 
-    public SecondaryTask(int ID, LocalDate date, String name, String description, int priority) {
-        super(ID, date, name, description, priority);
+    public SecondaryTask(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
+        super(ID, startDate, endDate, name, description, priority);
+    }
+
+    public SecondaryTask(int ID, String name, String description, int priority) {
+        super(ID, name, description, priority);
+    }
+
+    public SecondaryTask(int ID, LocalDate endDate, String name, String description, int priority) {
+        super(ID, endDate, name, description, priority);
     }
 }
