@@ -1,11 +1,9 @@
 package application;
 
-import application.event.Event;
-import application.event.Category;
-import application.event.MainEvent;
-import com.sun.tools.javac.Main;
+import application.task.MainTask;
+import application.task.Task;
+import application.task.Category;
 
-import javax.xml.catalog.Catalog;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,20 +14,20 @@ import java.util.HashMap;
 
 public class MainRegister {
     private HashMap<Integer, Category> categories;
-    private ArrayList<MainEvent> events;
+    private ArrayList<MainTask> tasks;
     private int eventIdCount=0;
     private int categoryIdCount=0;
 
     public MainRegister(){
         categories = new HashMap<>();
-        events = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
     public Category getCategory(int Id){
         return categories.get(Id);
     }
 
-    public Event getEvent(int Id) {
-        for (MainEvent event : events) {
+    public Task getEvent(int Id) {
+        for (MainTask event : tasks) {
             if (event.getID() == Id) {
                 return event;
             }
@@ -38,17 +36,17 @@ public class MainRegister {
     }
 
     public boolean addMainEvent(LocalDate date, String name, String description, int priority, int categoryId){
-        MainEvent e;
+        MainTask e;
         if(categoryId == -1){
-            e = new MainEvent(eventIdCount, date, name, description, priority);
+            e = new MainTask(eventIdCount, date, name, description, priority);
         }else{
-            e = new MainEvent(eventIdCount, date, name, description, priority, categoryId);
+            e = new MainTask(eventIdCount, date, name, description, priority, categoryId);
         }
 
-        if(events.contains(e)){
+        if(tasks.contains(e)){
             return false;
         }else{
-            events.add(e);
+            tasks.add(e);
             eventIdCount+=1;
             return true;
         }
@@ -70,16 +68,16 @@ public class MainRegister {
     }
 
     public boolean removeEvent(int mainEventId){
-        for(MainEvent event : events){
+        for(MainTask event : tasks){
             if(event.getID() == mainEventId){
-                return events.remove(event);
+                return tasks.remove(event);
             }
         }
         return false;
     }
 
     public boolean setEventCategory(int eventId, int newCategoryId){
-        for(MainEvent event: events){
+        for(MainTask event: tasks){
             if(eventId == event.getID()){
                 event.setCategoryId(newCategoryId);
                 return true;
@@ -98,16 +96,16 @@ public class MainRegister {
     }
 
     public void sortByPriority(){
-        events.sort(Comparator.comparingInt(Event::getPriority));
+        tasks.sort(Comparator.comparingInt(Task::getPriority));
     }
 
     public void sortByCategory(){
-        events.sort(Comparator.comparingInt(MainEvent::getCategoryId));
+        tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
-    public ArrayList<MainEvent> getAllEventsFromCategory(int CategoryId){
-        ArrayList<MainEvent> eventsByCategory = new ArrayList<>();
-        for(MainEvent event: events){
+    public ArrayList<MainTask> getAllEventsFromCategory(int CategoryId){
+        ArrayList<MainTask> eventsByCategory = new ArrayList<>();
+        for(MainTask event: tasks){
             if(event.getCategoryId() == CategoryId){
                 eventsByCategory.add(event);
             }
@@ -115,9 +113,9 @@ public class MainRegister {
         return eventsByCategory;
     }
 
-    public ArrayList<MainEvent> getAllEvents(){
-        ArrayList<MainEvent> allMainEvents = new ArrayList<MainEvent>();
-        allMainEvents.addAll(events);
+    public ArrayList<MainTask> getAllEvents(){
+        ArrayList<MainTask> allMainEvents = new ArrayList<MainTask>();
+        allMainEvents.addAll(tasks);
         return allMainEvents;
     }
 
@@ -130,7 +128,7 @@ public class MainRegister {
         //TODO add code
         return null;
     }
-    public ArrayList<Event> readEvent(){
+    public ArrayList<Task> readEvent(){
         //TODO add code
         return null;
     }
@@ -139,7 +137,7 @@ public class MainRegister {
     public String toString() {
         return "MainRegister{" +
                 "categories=" + categories +
-                ", events=" + events +
+                ", events=" + tasks +
                 ", eventIdCount=" + eventIdCount +
                 ", categoryIdCount=" + categoryIdCount +
                 '}';

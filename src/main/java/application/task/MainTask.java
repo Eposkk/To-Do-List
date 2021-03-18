@@ -1,22 +1,22 @@
-package application.event;
+package application.task;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 
-public class MainEvent extends Event {
+public class MainTask extends Task {
     private boolean hasCategory;
     private int categoryId;
     private boolean HasUnderEvent;
-    private HashMap<Integer, SecondaryEvent> secondaryEvents;
+    private HashMap<Integer, SecondaryTask> secondaryEvents;
     private long serialVersionUID;
 
-    public MainEvent(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
+    public MainTask(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
         super(ID, date, name, description, priority);
         this.categoryId = categoryId;
         this.hasCategory = true;
     }
 
-    public MainEvent(int ID, LocalDate date, String name, String description, int priority) {
+    public MainTask(int ID, LocalDate date, String name, String description, int priority) {
         super(ID, date, name, description, priority);
         this.hasCategory = false;
     }
@@ -37,7 +37,7 @@ public class MainEvent extends Event {
         this.categoryId = categoryId;
     }
 
-    public HashMap<Integer, SecondaryEvent> getSecondaryEvents() {
+    public HashMap<Integer, SecondaryTask> getSecondaryEvents() {
         return secondaryEvents;
     }
 

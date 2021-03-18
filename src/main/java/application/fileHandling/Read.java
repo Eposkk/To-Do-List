@@ -1,7 +1,7 @@
 package application.fileHandling;
 
-import application.event.Category;
-import application.event.MainEvent;
+import application.task.Category;
+import application.task.MainTask;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,12 +36,12 @@ public class Read {
         return categories;
     }
 
-    public ArrayList<MainEvent> readEvents(){
-        ArrayList<MainEvent> events=null;
+    public ArrayList<MainTask> readEvents(){
+        ArrayList<MainTask> events=null;
         try{
             FileInputStream fileInputStream = new FileInputStream("data/events.ser");
             ObjectInputStream in= new ObjectInputStream(fileInputStream);
-            events=(ArrayList<MainEvent>) in.readObject();
+            events=(ArrayList<MainTask>) in.readObject();
             fileInputStream.close();
             in.close();
 

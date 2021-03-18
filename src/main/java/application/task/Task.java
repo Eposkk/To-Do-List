@@ -1,9 +1,9 @@
-package application.event;
+package application.task;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Event {
+public abstract class Task {
     private final int ID;
     private LocalDate date;
     private String name;
@@ -11,7 +11,7 @@ public abstract class Event {
     private int priority;
     private boolean done;
 
-    public Event(int ID, LocalDate date, String name, String description, int priority) {
+    public Task(int ID, LocalDate date, String name, String description, int priority) {
         this.ID = ID;
         this.date = date;
         this.name = name;
@@ -64,13 +64,13 @@ public abstract class Event {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return ID == event.ID &&
-                priority == event.priority &&
-                done == event.done &&
-                Objects.equals(date, event.date) &&
-                Objects.equals(name, event.name) &&
-                Objects.equals(description, event.description);
+        Task task = (Task) o;
+        return ID == task.ID &&
+                priority == task.priority &&
+                done == task.done &&
+                Objects.equals(date, task.date) &&
+                Objects.equals(name, task.name) &&
+                Objects.equals(description, task.description);
     }
 
     @Override
