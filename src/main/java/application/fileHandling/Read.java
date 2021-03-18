@@ -20,36 +20,55 @@ public class Read {
 
     public HashMap<Integer, Category> readCategory(){
         HashMap<Integer, Category> categories=null;
+        FileInputStream fileInputStream = null;
+        ObjectInputStream in = null;
         try{
-            FileInputStream fileInputStream = new FileInputStream("data/categories.ser");
-            ObjectInputStream in= new ObjectInputStream(fileInputStream);
+            fileInputStream = new FileInputStream("data/categories.ser");
+            in = new ObjectInputStream(fileInputStream);
             categories=(HashMap<Integer, Category>) in.readObject();
-            fileInputStream.close();
-            in.close();
-
-        }catch (IOException e){
+        }
+        catch (IOException e){
             System.out.println(e.getMessage());
         }
         catch (ClassNotFoundException c){
             System.out.println(c.getMessage());
+        }
+        finally { //The files will close even tough an exception will be caught when reading from category files.
+            try{
+                fileInputStream.close();
+                in.close();
+            }
+            catch (IOException i){
+                System.out.println(i.getMessage());
+            }
         }
         return categories;
     }
 
     public ArrayList<MainTask> readTasks(){
-        ArrayList<MainTask> tasks=null;
+        ArrayList<MainTask> tasks = null;
+        FileInputStream fileInputStream = null;
+        ObjectInputStream in = null;
         try{
-            FileInputStream fileInputStream = new FileInputStream("data/tasks.ser");
-            ObjectInputStream in= new ObjectInputStream(fileInputStream);
+            fileInputStream = new FileInputStream("data/tasks.ser");
+            in= new ObjectInputStream(fileInputStream);
             tasks=(ArrayList<MainTask>) in.readObject();
-            fileInputStream.close();
-            in.close();
+
 
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
         catch (ClassNotFoundException c){
             System.out.println(c.getMessage());
+        }
+        finally { //The files will close even tough an exception will be caught when reading from task files.
+            try{
+                fileInputStream.close();
+                in.close();
+            }
+            catch (IOException i){
+                System.out.println(i.getMessage());
+            }
         }
         return tasks;
     }

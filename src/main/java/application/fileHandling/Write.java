@@ -19,27 +19,45 @@ public class Write {
     }
 
     public void writeCategories(){
+        FileOutputStream fileOutCategories = null;
+        ObjectOutputStream out = null;
         try{
-            FileOutputStream fileOutCategories= new FileOutputStream("data/categories.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOutCategories);
+            fileOutCategories = new FileOutputStream("data/categories.ser");
+            out = new ObjectOutputStream(fileOutCategories);
             out.writeObject(categories);
-            out.close();
-            fileOutCategories.close();
         }catch (IOException i){
             System.out.println(i.getMessage());
         }
-
+        finally { //The files will close even tough an exception will be caught when writing to task files.
+            try{
+                out.close();
+                fileOutCategories.close();
+            }
+            catch (IOException i){
+                System.out.println(i.getMessage());
+            }
+        }
     }
 
     public void writeTasks(){
+        FileOutputStream fileOutTasks = null;
+        ObjectOutputStream out = null;
         try{
-            FileOutputStream fileOutTasks= new FileOutputStream("data/tasks.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOutTasks);
+            fileOutTasks = new FileOutputStream("data/tasks.ser");
+            out = new ObjectOutputStream(fileOutTasks);
             out.writeObject(tasks);
-            out.close();
-            fileOutTasks.close();
         }catch (IOException i){
             System.out.println(i.getMessage());
+        }
+        finally { //The files will close even tough an exception will be caught when writing to task files.
+            try{
+                out.close();
+                fileOutTasks.close();
+            }
+            catch (IOException i){
+                System.out.println(i.getMessage());
+
+            }
         }
 
     }
