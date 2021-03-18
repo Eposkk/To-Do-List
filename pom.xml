@@ -4,11 +4,13 @@
     <groupId>org.ntnu.team1</groupId>
     <artifactId>to-do-list</artifactId>
     <version>1.0</version>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>13</javafx.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -37,9 +39,9 @@
                 <version>0.0.3</version>
                 <configuration>
                     <release>${maven.compiler.release}</release>
-                    <jlinkImageName>hellofx</jlinkImageName>
+                    <jlinkImageName>App</jlinkImageName>
                     <launcher>launcher</launcher>
-                    <mainClass>hellofx/org.openjfx.App</mainClass>
+                    <mainClass>application.MainTest</mainClass>
                 </configuration>
             </plugin>
         </plugins>
