@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class MainRegister {
     private HashMap<Integer, Category> categories;
     private ArrayList<MainTask> tasks;
-    private int eventIdCount=0;
+    private int taskIdCount=0;
     private int categoryIdCount=0;
 
     public MainRegister(){
@@ -26,28 +26,28 @@ public class MainRegister {
         return categories.get(Id);
     }
 
-    public Task getEvent(int Id) {
-        for (MainTask event : tasks) {
-            if (event.getID() == Id) {
-                return event;
+    public Task getTask(int Id) {
+        for (MainTask task : tasks) {
+            if (task.getID() == Id) {
+                return task;
             }
         }
         return null;
     }
 
-    public boolean addMainEvent(LocalDate date, String name, String description, int priority, int categoryId){
+    public boolean addMainTask(LocalDate date, String name, String description, int priority, int categoryId){
         MainTask e;
         if(categoryId == -1){
-            e = new MainTask(eventIdCount, date, name, description, priority);
+            e = new MainTask(taskIdCount, date, name, description, priority);
         }else{
-            e = new MainTask(eventIdCount, date, name, description, priority, categoryId);
+            e = new MainTask(taskIdCount, date, name, description, priority, categoryId);
         }
 
         if(tasks.contains(e)){
             return false;
         }else{
             tasks.add(e);
-            eventIdCount+=1;
+            taskIdCount+=1;
             return true;
         }
     }
@@ -67,19 +67,19 @@ public class MainRegister {
         categories.get(Id).setColor(color);
     }
 
-    public boolean removeEvent(int mainEventId){
-        for(MainTask event : tasks){
-            if(event.getID() == mainEventId){
-                return tasks.remove(event);
+    public boolean removeTask(int mainTaskId){
+        for(MainTask task : tasks){
+            if(task.getID() == mainTaskId){
+                return tasks.remove(task);
             }
         }
         return false;
     }
 
-    public boolean setEventCategory(int eventId, int newCategoryId){
-        for(MainTask event: tasks){
-            if(eventId == event.getID()){
-                event.setCategoryId(newCategoryId);
+    public boolean setTaskCategory(int taskId, int newCategoryId){
+        for(MainTask task: tasks){
+            if(taskId == task.getID()){
+                task.setCategoryId(newCategoryId);
                 return true;
             }
         }
@@ -103,20 +103,20 @@ public class MainRegister {
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
-    public ArrayList<MainTask> getAllEventsFromCategory(int CategoryId){
-        ArrayList<MainTask> eventsByCategory = new ArrayList<>();
-        for(MainTask event: tasks){
-            if(event.getCategoryId() == CategoryId){
-                eventsByCategory.add(event);
+    public ArrayList<MainTask> getAllTaskFromCategory(int CategoryId){
+        ArrayList<MainTask> tasksByCategory = new ArrayList<>();
+        for(MainTask task: tasks){
+            if(task.getCategoryId() == CategoryId){
+                tasksByCategory.add(task);
             }
         }
-        return eventsByCategory;
+        return tasksByCategory;
     }
 
-    public ArrayList<MainTask> getAllEvents(){
-        ArrayList<MainTask> allMainEvents = new ArrayList<MainTask>();
-        allMainEvents.addAll(tasks);
-        return allMainEvents;
+    public ArrayList<MainTask> getAllTask(){
+        ArrayList<MainTask> allMainTasks = new ArrayList<MainTask>();
+        allMainTasks.addAll(tasks);
+        return allMainTasks;
     }
 
     //TODO toString()
@@ -128,7 +128,7 @@ public class MainRegister {
         //TODO add code
         return null;
     }
-    public ArrayList<Task> readEvent(){
+    public ArrayList<Task> readTask(){
         //TODO add code
         return null;
     }
@@ -137,8 +137,8 @@ public class MainRegister {
     public String toString() {
         return "MainRegister{" +
                 "categories=" + categories +
-                ", events=" + tasks +
-                ", eventIdCount=" + eventIdCount +
+                ", tasks=" + tasks +
+                ", taskIdCount=" + taskIdCount +
                 ", categoryIdCount=" + categoryIdCount +
                 '}';
     }
