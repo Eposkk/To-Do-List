@@ -115,16 +115,13 @@ public class MainRegister {
      * @return Returns true if task was removed, returns false if it failed
      */
 
-    public void removeTask(int mainTaskId)throws RemoveException {
+    public void removeMainTask(int mainTaskId)throws RemoveException {
 
         boolean removed = false;
-        for(MainTask task : tasks){
-            if(task.getID() == mainTaskId){
-                tasks.remove(task);
-                removed =  true;
-            }
-        }
-        if(!removed){
+
+        if(tasks.remove(getTask(mainTaskId))){
+            removed = true;
+        }else{
             throw new RemoveException("Task with id" + mainTaskId + " doesn not exist in the register");
         }
 

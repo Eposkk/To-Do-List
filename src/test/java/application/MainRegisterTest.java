@@ -75,8 +75,10 @@ class MainRegisterTest {
                 }
                 assertNotNull(register.getTask(1));
 
+                System.out.println(register.getAllTask());
+
                 try{
-                    register.removeTask(1);
+                    register.removeMainTask(1);
                 }catch (RemoveException e){
                     assertNull(e);
                 }
@@ -87,7 +89,7 @@ class MainRegisterTest {
             void removeMainTaskNegative()  {
                 MainRegister register = new MainRegister();
 
-                assertThrows(RemoveException.class, () -> register.removeTask(1));
+                assertThrows(RemoveException.class, () -> register.removeMainTask(1));
             }
         }
     }
