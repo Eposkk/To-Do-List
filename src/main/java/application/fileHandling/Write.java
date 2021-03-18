@@ -11,11 +11,11 @@ import java.util.HashMap;
 
 public class Write {
     private final HashMap<Integer,Category> categories;
-    private final ArrayList<MainTask> events;
+    private final ArrayList<MainTask> tasks;
 
-    public Write(HashMap<Integer,Category> categories,ArrayList<MainTask> events){
+    public Write(HashMap<Integer,Category> categories,ArrayList<MainTask> tasks){
         this.categories=categories;
-        this.events=events;
+        this.tasks = tasks;
     }
 
     public void writeCategories(){
@@ -31,13 +31,13 @@ public class Write {
 
     }
 
-    public void writeEvents(){
+    public void writeTasks(){
         try{
-            FileOutputStream fileOutEvents= new FileOutputStream("data/events.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOutEvents);
-            out.writeObject(events);
+            FileOutputStream fileOutTasks= new FileOutputStream("data/tasks.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOutTasks);
+            out.writeObject(tasks);
             out.close();
-            fileOutEvents.close();
+            fileOutTasks.close();
         }catch (IOException i){
             System.out.println(i.getMessage());
         }

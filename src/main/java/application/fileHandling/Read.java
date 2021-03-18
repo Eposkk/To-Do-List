@@ -36,12 +36,12 @@ public class Read {
         return categories;
     }
 
-    public ArrayList<MainTask> readEvents(){
-        ArrayList<MainTask> events=null;
+    public ArrayList<MainTask> readTasks(){
+        ArrayList<MainTask> tasks=null;
         try{
-            FileInputStream fileInputStream = new FileInputStream("data/events.ser");
+            FileInputStream fileInputStream = new FileInputStream("data/tasks.ser");
             ObjectInputStream in= new ObjectInputStream(fileInputStream);
-            events=(ArrayList<MainTask>) in.readObject();
+            tasks=(ArrayList<MainTask>) in.readObject();
             fileInputStream.close();
             in.close();
 
@@ -51,6 +51,6 @@ public class Read {
         catch (ClassNotFoundException c){
             System.out.println(c.getMessage());
         }
-        return events;
+        return tasks;
     }
 }

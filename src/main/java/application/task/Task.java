@@ -80,7 +80,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "Task{" +
                 "ID=" + ID +
                 ", date=" + date +
                 ", name='" + name + '\'' +
