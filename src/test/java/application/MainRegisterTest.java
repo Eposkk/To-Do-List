@@ -2,6 +2,7 @@ package application;
 
 import application.task.Category;
 import application.task.MainTask;
+import com.sun.tools.javac.Main;
 import jdk.jfr.Name;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,6 @@ class MainRegisterTest {
         }
     }
 
-
     @Nested
     class removeTask{
 
@@ -52,7 +52,7 @@ class MainRegisterTest {
                 String name = "task " + i;
                 String description = "Lorem Ipsum";
                 Random random = new Random();
-                register.addMainTask(new MainTask(register.getTaskIdCount(),date, date, name, description, random.nextInt(3), random.nextInt(3)));
+                register.addMainTask(date, date, name, description, random.nextInt(3), random.nextInt(3));
             }
             assertNotNull(register.getTask(1));
 

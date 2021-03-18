@@ -3,6 +3,7 @@ package application;
 import application.task.MainTask;
 import application.task.Task;
 import application.task.Category;
+import com.sun.tools.javac.Main;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -33,10 +34,6 @@ public class MainRegister {
         tasks = new ArrayList<>();
     }
 
-    public int getTaskIdCount() {
-        return taskIdCount;
-    }
-
     /**
      * Returns a category according to the id
      * @param Id id of the category
@@ -62,7 +59,8 @@ public class MainRegister {
     }
 
 
-    public boolean addMainTask(MainTask t){
+    public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId){
+        MainTask t = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
         if(tasks.contains(t)){
             return false;
         }else{
@@ -87,7 +85,6 @@ public class MainRegister {
             categoryIdCount+=1;
             return true;
         }
-
     }
 
     public HashMap<Integer, Category> getCategories() {
