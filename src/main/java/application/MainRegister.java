@@ -86,7 +86,7 @@ public class MainRegister {
         if(name.equals(null)){
             throw new NullPointerException("Name cannot be null");
         }
-        if (categories.containsValue(new Category(0, color, name))) {
+        if (categories.containsValue(new Category(-1,color, name))) {
             return false;
         }else{
             categories.put(categoryIdCount, new Category(categoryIdCount, color, name));
