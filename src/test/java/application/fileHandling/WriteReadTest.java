@@ -25,8 +25,8 @@ class WriteReadTest {
 
     private ArrayList<MainTask> addTaskData(){
         ArrayList<MainTask> test=new ArrayList<>();
-        MainTask task1= new MainTask(1, LocalDate.now(),"Grave","Grave i hagen",2,1);
-        MainTask task2= new MainTask(2, LocalDate.now(),"ikk","Ikke Grave i hagen",2,2);
+        MainTask task1= new MainTask(1, LocalDate.now(),LocalDate.now(), "Grave","Grave i hagen",2,1);
+        MainTask task2= new MainTask(2, LocalDate.now(),LocalDate.now(),"ikk","Ikke Grave i hagen",2,2);
         test.add(task1);
         test.add(task2);
         return test;

@@ -25,7 +25,6 @@ public class BackendTestClass {
             String description = "Lorem Ipsum";
             Random random  = new Random();
 
-            register.addMainTask(date, name, description, random.nextInt(3), random.nextInt(3));
         }
 
         for(int i: register.getCategories().keySet()){

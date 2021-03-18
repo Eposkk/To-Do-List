@@ -33,6 +33,10 @@ public class MainRegister {
         tasks = new ArrayList<>();
     }
 
+    public int getTaskIdCount() {
+        return taskIdCount;
+    }
+
     /**
      * Returns a category according to the id
      * @param Id id of the category
@@ -57,28 +61,12 @@ public class MainRegister {
         return null;
     }
 
-    /**
-     * Adds a task to the register
-     * @param date End date of the task
-     * @param name Name of the task
-     * @param description Description of the task
-     * @param priority The priority of the task
-     * @param categoryId The id of the category associated with the task
-     * @return Returns true if the task was registered, returns false if it failed
-     */
 
-    public boolean addMainTask(LocalDate date, String name, String description, int priority, int categoryId){
-        MainTask e;
-        if(categoryId == -1){
-            e = new MainTask(taskIdCount, date, name, description, priority);
-        }else{
-            e = new MainTask(taskIdCount, date, name, description, priority, categoryId);
-        }
-
-        if(tasks.contains(e)){
+    public boolean addMainTask(MainTask t){
+        if(tasks.contains(t)){
             return false;
         }else{
-            tasks.add(e);
+            tasks.add(t);
             taskIdCount+=1;
             return true;
         }

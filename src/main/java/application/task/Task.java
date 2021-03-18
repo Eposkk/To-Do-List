@@ -28,7 +28,7 @@ public abstract class Task implements Serializable {
      * @param description
      * @param priority
      */
-    public Task(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
+    public Task( int ID,LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
         this.ID = ID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -37,13 +37,7 @@ public abstract class Task implements Serializable {
         this.priority = priority;
         this.done = false;
     }
-    /**
-     * Creates a secondary task without dates
-     * @param ID
-     * @param name
-     * @param description
-     * @param priority
-     */
+   /*
     public Task(int ID, String name, String description, int priority) {
         this.ID = ID;
         this.name = name;
@@ -53,14 +47,7 @@ public abstract class Task implements Serializable {
         done = false;
     }
 
-    /**
-     * Creates a secondary task with an end date
-     * @param ID
-     * @param endDate
-     * @param name
-     * @param description
-     * @param priority
-     */
+
     public Task(int ID, LocalDate endDate, String name, String description, int priority) {
         this.ID = ID;
         this.endDate = endDate;
@@ -68,7 +55,7 @@ public abstract class Task implements Serializable {
         this.description = description;
         this.priority = priority;
         done = false;
-    }
+    }*/
 
 
     public int getID(){

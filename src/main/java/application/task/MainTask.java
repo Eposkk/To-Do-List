@@ -11,18 +11,11 @@ public class MainTask extends Task {
     private int secondaryTaskIdCount = 0;
     private long serialVersionUID;
 
-    public MainTask(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
-        super(ID, date, name, description, priority);
+    public MainTask(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) {
+        super(ID, startDate, endDate, name, description, priority);
         this.secondaryTasks = new ArrayList<>();
         this.categoryId = categoryId;
         this.hasCategory = true;
-        this.hasSecondaryTask = false;
-    }
-
-    public MainTask(int ID, LocalDate date, String name, String description, int priority) {
-        super(ID, date, name, description, priority);
-        this.secondaryTasks = new ArrayList<>();
-        this.hasCategory = false;
         this.hasSecondaryTask = false;
     }
 
@@ -46,8 +39,8 @@ public class MainTask extends Task {
         return secondaryTasks;
     }
 
-    public boolean addSecondaryTask(LocalDate date,String name, String description, int priority){
-        SecondaryTask t = new SecondaryTask(secondaryTaskIdCount, date, name, description, priority);
+    public boolean addSecondaryTask(LocalDate startDate, LocalDate endDate,String name, String description, int priority){
+        SecondaryTask t = new SecondaryTask(secondaryTaskIdCount, startDate, endDate, name, description, priority);
         if (!secondaryTasks.contains(t)) {
             secondaryTasks.add(t);
             return true;
