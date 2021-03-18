@@ -1,9 +1,0 @@
-application\fileHandling\Read.class
-application\event\Category.class
-application\event\Event.class
-application\event\SecondaryEvent.class
-application\MainTest.class
-application\fileHandling\Write.class
-application\userinterface\controllers\MainStage.class
-application\MainRegister.class
-application\event\MainEvent.class
