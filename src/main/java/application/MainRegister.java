@@ -144,6 +144,12 @@ public class MainRegister {
         return false;
     }
 
+    /**
+     * Removes a category from the register
+     * @param Id Id associated with the category
+     * @return Returns true if category was removed, returns false if it failed
+     */
+
     public boolean removeCategory(int Id){
         if(categories.containsKey(Id)){
             categories.remove(Id);
@@ -153,13 +159,27 @@ public class MainRegister {
         }
     }
 
+    /**
+     * Sorts by priority
+     */
+
     public void sortByPriority(){
         tasks.sort(Comparator.comparingInt(Task::getPriority));
     }
 
+    /**
+     * Sorts by category
+     */
+
     public void sortByCategory(){
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
+
+    /**
+     * Gets all task from a given category
+     * @param CategoryId Id Associated with category
+     * @return Returns an Arraylist with all the tasks
+     */
 
     public ArrayList<MainTask> getAllTaskFromCategory(int CategoryId){
         ArrayList<MainTask> tasksByCategory = new ArrayList<>();
@@ -170,6 +190,11 @@ public class MainRegister {
         }
         return tasksByCategory;
     }
+
+    /**
+     * Gets all tasks
+     * @return Returns all tasks
+     */
 
     public ArrayList<MainTask> getAllTask(){
         ArrayList<MainTask> allMainTasks = new ArrayList<MainTask>();
