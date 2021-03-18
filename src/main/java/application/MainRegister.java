@@ -102,6 +102,10 @@ public class MainRegister {
 
     }
 
+    public HashMap<Integer, Category> getCategories() {
+        return categories;
+    }
+
     /**
      * Sets the category color
      * @param Id Id of the category
