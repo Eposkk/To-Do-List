@@ -8,6 +8,7 @@ public class Category implements Serializable {
     private final int ID;
     private Color color;
     private String name;
+    private long serialVersionUID;
 
     public Category(int ID, Color color, String name) {
         this.ID = ID;
