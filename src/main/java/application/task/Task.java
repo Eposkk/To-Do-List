@@ -3,6 +3,10 @@ package application.task;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * asbtract class Task
+ * General class for all tasks
+ */
 public abstract class Task {
     private final int ID;
     private LocalDate date;
@@ -56,6 +60,10 @@ public abstract class Task {
         this.priority = priority;
     }
 
+    /**
+     * Sets a tasks status to done
+     * @param done
+     */
     public void setDone(boolean done) {
         this.done = done;
     }
