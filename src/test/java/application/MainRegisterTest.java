@@ -1,5 +1,6 @@
 package application;
 
+import application.task.Category;
 import application.task.MainTask;
 import jdk.jfr.Name;
 import org.junit.jupiter.api.Nested;
@@ -23,6 +24,13 @@ class MainRegisterTest {
         @Test
         void addCategoryPositive() {
             MainRegister register = new MainRegister();
+            assertTrue(register.addCategory("test", Color.pink));
+        }
+        @Test
+        void addCategoryNegative() {
+            MainRegister register = new MainRegister();
+            register.addCategory("test", Color.pink);
+            assertFalse(register.addCategory("test", Color.pink));
         }
     }
 
