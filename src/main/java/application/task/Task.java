@@ -20,6 +20,7 @@ public abstract class Task {
         this.date = date;
         this.name = name;
         this.description = description;
+        //TODO add priority check
         this.priority = priority;
         done = false;
     }

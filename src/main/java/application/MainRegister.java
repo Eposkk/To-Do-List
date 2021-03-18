@@ -10,7 +10,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-//TODO add javadoc
+/**
+ * This is is the main register of the whole app
+ * It keeps track of all categories and events by storing them in a HashMap and an ArrayList
+ * The Mainregister also allows for adding tasks and adding categories to the registers
+ * It also handles saving and reading from file, it also sorts the registers
+ */
 
 public class MainRegister {
     private HashMap<Integer, Category> categories;
@@ -18,13 +23,30 @@ public class MainRegister {
     private int taskIdCount=0;
     private int categoryIdCount=0;
 
+    /**
+     * Constructor for MainRegister
+     * Instantiates categories and tasks
+     */
+
     public MainRegister(){
         categories = new HashMap<>();
         tasks = new ArrayList<>();
     }
+
+    /**
+     * Returns a category according to the id
+     * @param Id id of the category
+     * @return the category associated with the id
+     */
     public Category getCategory(int Id){
         return categories.get(Id);
     }
+
+    /**
+     * Returns a task according to the id
+     * @param Id id of the task
+     * @return the task associated with the id
+     */
 
     public Task getTask(int Id) {
         for (MainTask task : tasks) {
@@ -34,6 +56,16 @@ public class MainRegister {
         }
         return null;
     }
+
+    /**
+     * Adds a task to the register
+     * @param date End date of the task
+     * @param name Name of the task
+     * @param description Description of the task
+     * @param priority The priority of the task
+     * @param categoryId The id of the category associated with the task
+     * @return Returns true if the task was registered, returns false if it failed
+     */
 
     public boolean addMainTask(LocalDate date, String name, String description, int priority, int categoryId){
         MainTask e;
@@ -52,6 +84,13 @@ public class MainRegister {
         }
     }
 
+    /**
+     * Adds a category to the register
+     * @param name The name of the category
+     * @param color The color associated with the category
+     * @return Returns true if the category was registered, returns false if it failed
+     */
+
     public boolean addCategory(String name, Color color){
         if (categories.containsValue(new Category(0, color, name))) {
             return false;
@@ -63,9 +102,21 @@ public class MainRegister {
 
     }
 
+    /**
+     * Sets the category color
+     * @param Id Id of the category
+     * @param color Color you want to set
+     */
+
     public void setCategoryColor(int Id, Color color){
         categories.get(Id).setColor(color);
     }
+
+    /**
+     * Removes a task from the register
+     * @param mainTaskId Id associated with the category
+     * @return Returns true if task was removed, returns false if it failed
+     */
 
     public boolean removeTask(int mainTaskId){
         for(MainTask task : tasks){
@@ -75,6 +126,13 @@ public class MainRegister {
         }
         return false;
     }
+
+    /**
+     * Sets the taks category
+     * @param taskId Id associated with the task you want to set a category for
+     * @param newCategoryId The category id you want to set to the task
+     * @return Returns true if it changed, returns false if it failed
+     */
 
     public boolean setTaskCategory(int taskId, int newCategoryId){
         for(MainTask task: tasks){
