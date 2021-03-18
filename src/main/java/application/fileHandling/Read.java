@@ -14,8 +14,11 @@ import java.util.HashMap;
  */
 
 public class Read {
-
-    public Read(){
+    String pathCategory;
+    String pathEvent;
+    public Read(String pathCategory, String pathEvent){
+        this.pathCategory=pathCategory;
+        this.pathEvent=pathEvent;
     }
 
     public HashMap<Integer, Category> readCategory(){
@@ -23,7 +26,7 @@ public class Read {
         FileInputStream fileInputStream = null;
         ObjectInputStream in = null;
         try{
-            fileInputStream = new FileInputStream("data/categories.ser");
+            fileInputStream = new FileInputStream(pathCategory);
             in = new ObjectInputStream(fileInputStream);
             categories=(HashMap<Integer, Category>) in.readObject();
         }
@@ -50,7 +53,7 @@ public class Read {
         FileInputStream fileInputStream = null;
         ObjectInputStream in = null;
         try{
-            fileInputStream = new FileInputStream("data/tasks.ser");
+            fileInputStream = new FileInputStream(pathEvent);
             in= new ObjectInputStream(fileInputStream);
             tasks=(ArrayList<MainTask>) in.readObject();
 

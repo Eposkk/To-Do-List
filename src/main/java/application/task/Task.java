@@ -1,5 +1,6 @@
 package application.task;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -7,7 +8,8 @@ import java.util.Objects;
  * asbtract class Task
  * General class for all tasks
  */
-public abstract class Task {
+public abstract class Task implements Serializable {
+    private static final long serialVersionUID = 5595467663718973084L;
     private final int ID;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -15,6 +17,7 @@ public abstract class Task {
     private String description;
     private int priority;
     private boolean done;
+
 
     /**
      * Creates a task with start date and end date
