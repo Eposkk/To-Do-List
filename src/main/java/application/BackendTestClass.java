@@ -1,6 +1,12 @@
 package application;
 
+import application.task.Category;
+import application.task.MainTask;
+import com.sun.tools.javac.Main;
+
 import java.awt.*;
+import java.time.LocalDate;
+import java.util.Random;
 
 public class BackendTestClass {
 
@@ -12,7 +18,25 @@ public class BackendTestClass {
         register.addCategory("Kategori_3", Color.red);
         register.addCategory("Kategori_4", Color.green);
 
-        System.out.println(register.toString());
+
+        for(int i = 0; i<=100;i++){
+            LocalDate date = null;
+            String name = "task " + i;
+            String description = "Lorem Ipsum";
+            Random random  = new Random();
+
+            register.addMainTask(date, name, description, random.nextInt(3), random.nextInt(3));
+        }
+
+        for(int i: register.getCategories().keySet()){
+            System.out.println(register.getCategories().get(i));
+        }
+        register.sortByPriority();
+        for(MainTask m: register.getAllTask()){
+
+            System.out.println(m);
+        }
+
 
 
     }
