@@ -1,13 +1,15 @@
 package application.task;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainTask extends Task {
     private boolean hasCategory;
     private int categoryId;
     private boolean HasUnderTask;
-    private HashMap<Integer, SecondaryTask> secondaryTasks;
+    private ArrayList<SecondaryTask> secondaryTasks;
+    private int secondaryTaskIdCount=0;
     private long serialVersionUID;
 
     public MainTask(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
@@ -37,14 +39,16 @@ public class MainTask extends Task {
         this.categoryId = categoryId;
     }
 
-    public HashMap<Integer, SecondaryTask> getSecondaryTasks() {
+    public ArrayList<SecondaryTask> getSecondaryTasks() {
         return secondaryTasks;
     }
 
-
-    //TODO make method
-    public boolean addSecondaryTask(){
-        return true;
+    public boolean addSecondaryTask(LocalDate date,String name, String description, int priority){
+        SecondaryTask t = new SecondaryTask(secondaryTaskIdCount, date, name, description, priority);
+        if (!secondaryTasks.contains(t)) {
+            secondaryTasks.add(t);
+        }
+        return false;
     }
 
     @Override
@@ -53,7 +57,9 @@ public class MainTask extends Task {
                 "hasCategory=" + hasCategory +
                 ", categoryId=" + categoryId +
                 ", HasUnderTask=" + HasUnderTask +
+                ", secondaryTasks=" + secondaryTasks +
+                ", secondaryTaskIdCount=" + secondaryTaskIdCount +
+                ", serialVersionUID=" + serialVersionUID +
                 "} " + super.toString();
     }
-
 }
