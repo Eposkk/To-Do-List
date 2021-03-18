@@ -6,8 +6,8 @@ import java.util.HashMap;
 public class MainTask extends Task {
     private boolean hasCategory;
     private int categoryId;
-    private boolean HasUnderEvent;
-    private HashMap<Integer, SecondaryTask> secondaryEvents;
+    private boolean HasUnderTask;
+    private HashMap<Integer, SecondaryTask> secondaryTasks;
     private long serialVersionUID;
 
     public MainTask(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
@@ -29,30 +29,30 @@ public class MainTask extends Task {
         return hasCategory;
     }
 
-    public boolean hasUnderEvent() {
-        return HasUnderEvent;
+    public boolean hasUnderTask() {
+        return HasUnderTask;
     }
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
-    public HashMap<Integer, SecondaryTask> getSecondaryEvents() {
-        return secondaryEvents;
+    public HashMap<Integer, SecondaryTask> getSecondaryTasks() {
+        return secondaryTasks;
     }
 
 
     //TODO make method
-    public boolean addSecondaryEvent(){
+    public boolean addSecondaryTask(){
         return true;
     }
 
     @Override
     public String toString() {
-        return "MainEvent{" +
+        return "MainTask{" +
                 "hasCategory=" + hasCategory +
                 ", categoryId=" + categoryId +
-                ", HasUnderEvent=" + HasUnderEvent +
+                ", HasUnderTask=" + HasUnderTask +
                 "} " + super.toString();
     }
 
