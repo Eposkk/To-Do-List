@@ -50,6 +50,15 @@ public class MainTask extends Task {
         }
         return false;
     }
+    public boolean removeSecondaryTask(int secondaryTaskId){
+        for(SecondaryTask t: secondaryTasks){
+            if(t.getID() == secondaryTaskId){
+                secondaryTasks.remove(t);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
