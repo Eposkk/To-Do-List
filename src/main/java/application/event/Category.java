@@ -40,8 +40,7 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return ID == category.ID &&
-                Objects.equals(color, category.color) &&
+        return Objects.equals(color, category.color) &&
                 Objects.equals(name, category.name);
     }
 
