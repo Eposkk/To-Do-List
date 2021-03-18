@@ -1,5 +1,6 @@
 package application;
 
+import application.exceptions.RemoveException;
 import application.task.MainTask;
 import application.task.Task;
 import application.task.Category;
@@ -59,7 +60,11 @@ public class MainRegister {
     }
 
 
-    public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId){
+    public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) throws NullPointerException{
+       if(name.equals(null)){
+           throw new NullPointerException("Name cannot be null");
+       }
+
         MainTask t = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
         if(tasks.contains(t)){
             return false;
@@ -78,6 +83,9 @@ public class MainRegister {
      */
 
     public boolean addCategory(String name, Color color){
+        if(name.equals(null)){
+            throw new NullPointerException("Name cannot be null");
+        }
         if (categories.containsValue(new Category(0, color, name))) {
             return false;
         }else{
@@ -107,13 +115,19 @@ public class MainRegister {
      * @return Returns true if task was removed, returns false if it failed
      */
 
-    public boolean removeTask(int mainTaskId){
+    public void removeTask(int mainTaskId)throws RemoveException {
+
+        boolean removed = false;
         for(MainTask task : tasks){
             if(task.getID() == mainTaskId){
-                return tasks.remove(task);
+                tasks.remove(task);
+                removed =  true;
             }
         }
-        return false;
+        if(!removed){
+            throw new RemoveException("Task with id" + mainTaskId + " doesn not exist in the register");
+        }
+
     }
 
     /**
