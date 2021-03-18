@@ -2,25 +2,28 @@ package application.task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainTask extends Task {
     private boolean hasCategory;
     private int categoryId;
-    private boolean HasUnderTask;
+    private boolean hasSecondaryTask;
     private ArrayList<SecondaryTask> secondaryTasks;
-    private int secondaryTaskIdCount=0;
+    private int secondaryTaskIdCount = 0;
     private long serialVersionUID;
 
     public MainTask(int ID, LocalDate date, String name, String description, int priority, int categoryId) {
         super(ID, date, name, description, priority);
+        this.secondaryTasks = new ArrayList<>();
         this.categoryId = categoryId;
         this.hasCategory = true;
+        this.hasSecondaryTask = false;
     }
 
     public MainTask(int ID, LocalDate date, String name, String description, int priority) {
         super(ID, date, name, description, priority);
+        this.secondaryTasks = new ArrayList<>();
         this.hasCategory = false;
+        this.hasSecondaryTask = false;
     }
 
     public int getCategoryId() {
@@ -32,7 +35,7 @@ public class MainTask extends Task {
     }
 
     public boolean hasUnderTask() {
-        return HasUnderTask;
+        return hasSecondaryTask;
     }
 
     public void setCategoryId(int categoryId) {
@@ -47,6 +50,7 @@ public class MainTask extends Task {
         SecondaryTask t = new SecondaryTask(secondaryTaskIdCount, date, name, description, priority);
         if (!secondaryTasks.contains(t)) {
             secondaryTasks.add(t);
+            return true;
         }
         return false;
     }
@@ -65,7 +69,7 @@ public class MainTask extends Task {
         return "MainTask{" +
                 "hasCategory=" + hasCategory +
                 ", categoryId=" + categoryId +
-                ", HasUnderTask=" + HasUnderTask +
+                ", HasUnderTask=" + hasSecondaryTask +
                 ", secondaryTasks=" + secondaryTasks +
                 ", secondaryTaskIdCount=" + secondaryTaskIdCount +
                 ", serialVersionUID=" + serialVersionUID +

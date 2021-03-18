@@ -23,7 +23,7 @@ public abstract class Task {
         this.name = name;
         this.description = description;
         this.priority = priority;
-        done = false;
+        this.done = false;
     }
 
     public Task(int ID, String name, String description, int priority) {
