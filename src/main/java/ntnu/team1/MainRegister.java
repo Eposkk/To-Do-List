@@ -1,6 +1,7 @@
 package ntnu.team1;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class MainRegister {
      * @return the task associated with the id
      */
 
-    public MainTask getMainTask(int id) {
+    public MainTask getMainTask(int id) throws IllegalArgumentException{
         for (MainTask task : tasks) {
             if (task.getID() == id) {
                 return task;
@@ -88,8 +89,11 @@ public class MainRegister {
      * @return Returns an Arraylist with all the tasks
      */
 
-    public List<MainTask> getAllTaskFromCategory(int categoryId){
-        return tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
+    public ArrayList<MainTask> getAllTasksFromCategory(int categoryId) throws IllegalArgumentException{
+        if(!categories.containsKey(categoryId)){
+            throw new IllegalArgumentException("No task found with the suggested Id.");
+        }
+        return (ArrayList<MainTask>)tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
     }
 
     /**
@@ -116,7 +120,7 @@ public class MainRegister {
         getMainTask(mainTaskId).setPriority(newPriority);
     }
 
-    public void changeDescriptionMainTask(int mainTaskId, String newDescription){
+    public void changeDescriptionMainTask(int mainTaskId, String newDescription) throws IllegalArgumentException{
         getMainTask(mainTaskId).setDescription(newDescription);
     }
     /**
@@ -145,12 +149,15 @@ public class MainRegister {
 
     /**
      * Sets the category color
-     * @param Id Id of the category
+     * @param id Id of the category
      * @param color Color you want to set
      */
 
-    public void setCategoryColor(int Id, Color color){
-        categories.get(Id).setColor(color);
+    public void setCategoryColor(int id, Color color) throws IllegalArgumentException{
+        if(!categories.containsKey(id)){
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        categories.get(id).setColor(color);
     }
 
 
@@ -161,7 +168,7 @@ public class MainRegister {
      * @return Returns true if it changed, returns false if it failed
      */
 
-    public void setTaskCategory(int taskId, int newCategoryId){
+    public void setMainTaskCategory(int taskId, int newCategoryId) throws IllegalArgumentException{
         if(!categories.containsKey(newCategoryId)){
             throw new IllegalArgumentException("Category does not exist");
         }

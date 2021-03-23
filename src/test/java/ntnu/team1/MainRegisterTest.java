@@ -3,6 +3,7 @@ package ntnu.team1;
 import ntnu.team1.application.exceptions.RemoveException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -50,6 +51,28 @@ class MainRegisterTest {
                 assertThrows(RemoveException.class, ()-> register.removeCategory(0));
             }
         }
+
+        @Nested
+        class setCategoryColor{
+
+            @Test
+            void setCategoryColorPositive(){
+                MainRegister register = new MainRegister();
+                assertTrue(register.addCategory("test", Color.pink));
+
+                register.setCategoryColor(0,Color.green);
+                assertEquals(register.getCategory(0).getColor(), Color.green);
+            }
+
+            @Test
+            void setCategoryColorNegative(){
+                MainRegister register = new MainRegister();
+                assertTrue(register.addCategory("test", Color.pink));
+
+                assertThrows(IllegalArgumentException.class, () -> register.setCategoryColor(1,Color.green));
+            }
+        }
+
     }
 
     @Nested
@@ -93,6 +116,7 @@ class MainRegisterTest {
                         null, "Lorem Ipsum",1 ,1));
             }
         }
+
         @Nested
         class removeMainTask{
 
@@ -124,7 +148,7 @@ class MainRegisterTest {
                 assertThrows(IllegalArgumentException.class, () -> register.getMainTask(1));
             }
             @Test
-            void removeMainTaskNegative()  {
+            void removeMainTaskNegative(){
                 MainRegister register = new MainRegister();
 
                 assertThrows(IllegalArgumentException.class, () -> register.removeMainTask(1));
@@ -143,14 +167,106 @@ class MainRegisterTest {
                 assertEquals(2, register.getMainTask(0).getPriority());
             }
         }
+
+        @Nested
+        class getAllTasksFromCategory{
+
+            @Test
+            void getAllTasksFromCategoryPositive(){
+                MainRegister register = new MainRegister();
+                String name = "task";
+                String description = "Lorem Ipsum";
+                Random random = new Random();
+
+                register.addCategory("Kategori_1", Color.pink);
+                register.addCategory("Kategori_2", Color.blue);
+                register.addCategory("Kategori_3", Color.red);
+                register.addCategory("Kategori_4", Color.green);
+
+                register.addMainTask(null, null, name, description, random.nextInt(3), 2);
+                register.addMainTask(null, null, name, description, random.nextInt(3), 2);
+                register.addMainTask(null, null, name, description, random.nextInt(3), 0);
+                register.addMainTask(null, null, name, description, random.nextInt(3), 1);
+
+                assert(register.getAllTasksFromCategory(2).size() == 2);
+            }
+            @Test
+            void getAllTasksFromCategoryNegative(){
+                MainRegister register = new MainRegister();
+                assertThrows(IllegalArgumentException.class, () -> register.getAllTasksFromCategory(1));
+            }
+        }
+
+        @Nested
+        class setMainTaskCategory{
+            @Test
+            void setMainTaskCategoryPositive(){
+
+                try{
+                    MainRegister register = new MainRegister();
+                    register.addMainTask(null, null, "test", "description", 1, -1);
+                    register.addCategory("Name", Color.PINK);
+
+                    register.setMainTaskCategory(0, 0);
+
+                    assert(register.getMainTask(0).getCategoryId() == 0);
+
+                }catch(IllegalArgumentException e){
+                    assertNull(e.getMessage());
+
+                }
+            }
+
+            @Test
+            void setMainTaskCategoryNegative(){
+
+                try{
+                    MainRegister register = new MainRegister();
+                    register.addMainTask(null, null, "test", "description", 1, -1);
+
+                    register.setMainTaskCategory(0, 1);
+
+                }catch(IllegalArgumentException e){
+                    assertEquals(e.getMessage(), "Category does not exist");
+                }
+            }
+        }
+
+        @Nested
+        class changeDescriptionMainTask {
+
+            @Test
+            void changeDescriptionMainTaskPositive() {
+                try {
+
+                    MainRegister register = new MainRegister();
+                    register.addMainTask(null, null, "test", "description", 1, -1);
+                    register.changeDescriptionMainTask(0, "New description");
+                    assertEquals(register.getMainTask(0).getDescription(), "New description");
+
+                } catch (IllegalArgumentException e) {
+                    assertNull(e.getMessage());
+                }
+            }
+
+            @Test
+            void changeDescriptionMainTaskNegative() {
+                try {
+                    MainRegister register = new MainRegister();
+                    register.addMainTask(null, null, "test", "description", 1, -1);
+                    register.changeDescriptionMainTask(1, "New description");
+                } catch (IllegalArgumentException e) {
+                    assertEquals(e.getMessage(), "No task found with the suggested Id.");
+                }
+            }
+        }
     }
 
-    @Test
-    void setTaskCategory() {
-    }
 
-    @Test
+@Test
     void sortByPriority() {
+
+
     }
 
     @Test
