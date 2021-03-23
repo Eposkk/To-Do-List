@@ -62,6 +62,13 @@ class MainRegisterTest {
                 register.addMainTask(null, null, "test", "description", 1, -1);
                 assertNotNull(register.getMainTask(0));
             }
+
+            @Test
+            void getMainTaskNegative(){
+                MainRegister register = new MainRegister();
+                register.addMainTask(null, null, "test", "description", 1, -1);
+                assertNull(register.getMainTask(1));
+            }
         }
 
         @Nested
