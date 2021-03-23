@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ntnu.team1.Today"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.TodayController">
+    <children>
+        <MenuBar layoutY="6.0" prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #2b78e4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Menu">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Home" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane dividerPositions="0.2" layoutY="48.0" prefHeight="352.0" prefWidth="600.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <ListView layoutX="-28.0" layoutY="14.0" prefHeight="350.0" prefWidth="143.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Text fx:id="todayCategoryText" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today" wrappingWidth="91.22900390625">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="upcomingCategoryText" layoutY="61.0" onMouseClicked="#switchToUpcoming" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming" wrappingWidth="91.22900390625">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="191.0">
+                    <children>
+                        <Text fx:id="todayTitleText" layoutX="23.0" layoutY="42.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Today" underline="true" wrappingWidth="83.22900390625">
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Text>
+                        <Text layoutX="48.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder task">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Text>
+                        <Text layoutX="48.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder task two">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Text>
+                        <CheckBox layoutX="14.0" layoutY="88.0" mnemonicParsing="false" />
+                        <CheckBox layoutX="14.0" layoutY="123.0" mnemonicParsing="false" />
+                        <Separator layoutX="48.0" layoutY="107.0" prefWidth="200.0" />
+                        <Separator layoutX="48.0" layoutY="142.0" prefWidth="200.0" />
+                        <Text fx:id="addNewTaskText" layoutX="75.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new task...">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </Text>
+                        <Button fx:id="addNewTaskButton" layoutX="48.0" layoutY="150.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
