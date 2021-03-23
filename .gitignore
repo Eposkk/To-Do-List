@@ -7,3 +7,7 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /target/
+.idea
+.DS_Store
+target
+*.iml
