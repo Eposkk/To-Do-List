@@ -39,6 +39,7 @@ class MainRegisterTest {
                 try{
                     register.removeCategory(0);
                 }catch(RemoveException e){
+                    assertNull(e);
                 }
                 assert(register.getCategories().size() == 0);
             }
@@ -56,6 +57,9 @@ class MainRegisterTest {
 
         @Nested
         class getMainTask{
+
+            //TODO
+            // Use better assert
             @Test
             void getMainTaskPositive(){
                 MainRegister register = new MainRegister();
@@ -67,7 +71,7 @@ class MainRegisterTest {
             void getMainTaskNegative(){
                 MainRegister register = new MainRegister();
                 register.addMainTask(null, null, "test", "description", 1, -1);
-                assertNull(register.getMainTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.getMainTask(1));
             }
         }
 
@@ -130,7 +134,7 @@ class MainRegisterTest {
         @Nested
         class changePriority{
             @Test
-            void changePriority(){
+            void changePriorityPositive(){
                 MainRegister register = new MainRegister();
                 register.addMainTask(null, null, "test", "description", 1, -1);
 
