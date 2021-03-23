@@ -1,6 +1,7 @@
 package ntnu.team1;
 
 import java.awt.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,13 +78,60 @@ public class MainRegister {
     }
 
     /**
+     * Removes a task from the register
+     * @param mainTaskId Id associated with the category
+     * @return Returns true if task was removed, returns false if it failed
+     */
+
+    public void removeMainTask(int mainTaskId)throws IllegalArgumentException{
+        tasks.remove(getTask(mainTaskId));
+    }
+
+    /**
+     * Gets all task from a given category
+     * @param categoryId Id Associated with category
+     * @return Returns an Arraylist with all the tasks
+     */
+
+    public List<MainTask> getAllTaskFromCategory(int categoryId){
+        return tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
+    }
+
+    /**
+     * Gets all tasks
+     * @return Returns all tasks
+     */
+
+    public ArrayList<MainTask> getAllTasks(){
+        ArrayList<MainTask> allMainTasks = new ArrayList<>(tasks);
+        return allMainTasks;
+    }
+
+    /**
+     *
+     * @param mainTaskId
+     * @param newPriority
+     * @throws IllegalArgumentException
+     */
+
+    public void changePriorityMainTask(int mainTaskId, int newPriority) throws IllegalArgumentException {
+        if(newPriority<1 || newPriority > 3){
+            throw new IllegalArgumentException("Priority must be a number in the range [1,3]");
+        }
+        getTask(mainTaskId).setPriority(newPriority);
+    }
+
+    public void changeDescriptionMainTask(int mainTaskId, String newDescription){
+        getTask(mainTaskId).setDescription(newDescription);
+    }
+    /**
      * Adds a category to the register
      * @param name The name of the category
      * @param color The color associated with the category
      * @return Returns true if the category was registered, returns false if it failed
      */
 
-    public boolean addCategory(String name, Color color){
+    public boolean addCategory(String name, Color color) throws NullPointerException{
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
@@ -110,19 +158,6 @@ public class MainRegister {
         categories.get(Id).setColor(color);
     }
 
-    /**
-     * Removes a task from the register
-     * @param mainTaskId Id associated with the category
-     * @return Returns true if task was removed, returns false if it failed
-     */
-
-    public void removeMainTask(int mainTaskId)throws RemoveException{
-        if(tasks.remove(getTask(mainTaskId))){
-
-        }else{
-            throw new RemoveException("Task with id" + mainTaskId + " doesn not exist in the register");
-        }
-    }
 
     /**
      * Sets the taks category
@@ -144,13 +179,11 @@ public class MainRegister {
      * @return Returns true if category was removed, returns false if it failed
      */
 
-    public boolean removeCategory(int id){
-        if(categories.containsKey(id)){
-            categories.remove(id);
-            return true;
-        }else{
-            return false;
+    public void removeCategory(int id) throws RemoveException{
+        if(!categories.containsKey(id)){
+            throw new RemoveException("Category does not exist");
         }
+        categories.remove(id);
     }
 
     /**
@@ -169,25 +202,7 @@ public class MainRegister {
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
-    /**
-     * Gets all task from a given category
-     * @param categoryId Id Associated with category
-     * @return Returns an Arraylist with all the tasks
-     */
 
-    public List<MainTask> getAllTaskFromCategory(int categoryId){
-        return tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
-    }
-
-    /**
-     * Gets all tasks
-     * @return Returns all tasks
-     */
-
-    public ArrayList<MainTask> getAllTasks(){
-        ArrayList<MainTask> allMainTasks = new ArrayList<>(tasks);
-        return allMainTasks;
-    }
 
     //TODO toString()
 

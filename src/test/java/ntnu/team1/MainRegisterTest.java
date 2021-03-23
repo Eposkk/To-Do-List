@@ -12,23 +12,44 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainRegisterTest {
 
-
-
     @Nested
-    class addCategory{
-        @Test
-        void addCategoryPositive() {
-            MainRegister register = new MainRegister();
-            assertTrue(register.addCategory("test", Color.pink));
+    class category{
+
+        @Nested
+        class addCategory{
+            @Test
+            void addCategoryPositive() {
+                MainRegister register = new MainRegister();
+                assertTrue(register.addCategory("test", Color.pink));
+            }
+            @Test
+            void addCategoryNegative() {
+                MainRegister register = new MainRegister();
+                register.addCategory("test", Color.pink);
+                assertFalse(register.addCategory("test", Color.pink));
+            }
         }
-        @Test
-        void addCategoryNegative() {
-            MainRegister register = new MainRegister();
-            register.addCategory("test", Color.pink);
-            assertFalse(register.addCategory("test", Color.pink));
+
+        @Nested
+        class removeCategory{
+            @Test
+            void removeCategoryPositive(){
+                MainRegister register = new MainRegister();
+                register.addCategory("test", Color.pink);
+                try{
+                    register.removeCategory(0);
+                }catch(RemoveException e){
+                }
+                assert(register.getCategories().size() == 0);
+            }
+
+            @Test
+            void removeCategoryNegative(){
+                MainRegister register = new MainRegister();
+                assertThrows(RemoveException.class, ()-> register.removeCategory(0));
+            }
         }
     }
-
 
     @Nested
     class MainTask{
@@ -44,6 +65,7 @@ class MainRegisterTest {
                 assertNotNull(register.getTask(0));
             }
 
+            @Test
             void addMainTaskNegative() {
                 MainRegister register = new MainRegister();
                 assertThrows(NullPointerException.class, ()-> register.addMainTask(null, null,
@@ -54,7 +76,7 @@ class MainRegisterTest {
         class removeMainTask{
 
             @Test
-            void removeMainTaskPositive() throws RemoveException {
+            void removeMainTaskPositive() {
                 MainRegister register = new MainRegister();
 
                 register.addCategory("Kategori_1", Color.pink);
@@ -63,11 +85,10 @@ class MainRegisterTest {
                 register.addCategory("Kategori_4", Color.green);
 
                 for(int i = 0; i<=10;i++) {
-                    LocalDate date = null;
                     String name = "task " + i;
                     String description = "Lorem Ipsum";
                     Random random = new Random();
-                    register.addMainTask(date, date, name, description, random.nextInt(3), random.nextInt(3));
+                    register.addMainTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
                 }
                 assertNotNull(register.getTask(1));
 
@@ -86,6 +107,19 @@ class MainRegisterTest {
                 MainRegister register = new MainRegister();
 
                 assertThrows(IllegalArgumentException.class, () -> register.removeMainTask(1));
+            }
+        }
+
+        @Nested
+        class changePriority{
+            @Test
+            void changePriority(){
+                MainRegister register = new MainRegister();
+                register.addMainTask(null, null, "test", "description", 1, -1);
+
+                assertEquals(1, register.getTask(0).getPriority());
+                register.changePriorityMainTask(0,2);
+                assertEquals(2, register.getTask(0).getPriority());
             }
         }
     }
