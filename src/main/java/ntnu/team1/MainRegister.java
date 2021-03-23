@@ -16,7 +16,7 @@ import ntnu.team1.application.task.Task;
 
 /**
  * This is is the main register of the whole app
- * It keeps track of all categories and events by storing them in a HashMap and an ArrayList
+ * It keeps track of all categories and tasks by storing them in a HashMap and an ArrayList
  * The Mainregister also allows for adding tasks and adding categories to the registers
  * It also handles saving and reading from file, it also sorts the registers
  */
@@ -76,7 +76,6 @@ public class MainRegister {
     /**
      * Removes a task from the register
      * @param mainTaskId Id associated with the category
-     * @return Returns true if task was removed, returns false if it failed
      */
 
     public void removeMainTask(int mainTaskId)throws IllegalArgumentException{

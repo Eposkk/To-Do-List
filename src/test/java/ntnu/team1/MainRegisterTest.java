@@ -138,8 +138,6 @@ class MainRegisterTest {
                 }
                 assertNotNull(register.getMainTask(1));
 
-                System.out.println(register.getAllTasks());
-
                 try{
                     register.removeMainTask(1);
                 }catch (IllegalArgumentException e){
@@ -264,7 +262,7 @@ class MainRegisterTest {
     }
 
 
-@Test
+    @Test
     void sortByPriority() {
         MainRegister register = new MainRegister();
         register.addCategory("Kategori_1", Color.pink);
