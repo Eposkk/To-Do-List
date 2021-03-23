@@ -1,7 +1,6 @@
 package ntnu.team1;
 
 import java.awt.*;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class MainRegister {
      * @return the task associated with the id
      */
 
-    public MainTask getTask(int id) {
+    public MainTask getMainTask(int id) {
         for (MainTask task : tasks) {
             if (task.getID() == id) {
                 return task;
@@ -62,19 +61,15 @@ public class MainRegister {
     }
 
 
-    public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) throws NullPointerException{
+    public void addMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
+                               int priority, int categoryId) throws NullPointerException{
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
 
         MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
-        if(tasks.contains(task)){
-            return false;
-        }else{
-            tasks.add(task);
-            taskIdCount+=1;
-            return true;
-        }
+        tasks.add(task);
+        taskIdCount+=1;
     }
 
     /**
@@ -84,7 +79,7 @@ public class MainRegister {
      */
 
     public void removeMainTask(int mainTaskId)throws IllegalArgumentException{
-        tasks.remove(getTask(mainTaskId));
+        tasks.remove(getMainTask(mainTaskId));
     }
 
     /**
@@ -118,11 +113,11 @@ public class MainRegister {
         if(newPriority<1 || newPriority > 3){
             throw new IllegalArgumentException("Priority must be a number in the range [1,3]");
         }
-        getTask(mainTaskId).setPriority(newPriority);
+        getMainTask(mainTaskId).setPriority(newPriority);
     }
 
     public void changeDescriptionMainTask(int mainTaskId, String newDescription){
-        getTask(mainTaskId).setDescription(newDescription);
+        getMainTask(mainTaskId).setDescription(newDescription);
     }
     /**
      * Adds a category to the register
@@ -170,7 +165,7 @@ public class MainRegister {
         if(!categories.containsKey(newCategoryId)){
             throw new IllegalArgumentException("Category does not exist");
         }
-        getTask(taskId).setCategoryId(newCategoryId);
+        getMainTask(taskId).setCategoryId(newCategoryId);
     }
 
     /**

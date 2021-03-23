@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainRegisterTest {
 
     @Nested
-    class category{
+    class Category{
 
         @Nested
         class addCategory{
@@ -55,6 +55,16 @@ class MainRegisterTest {
     class MainTask{
 
         @Nested
+        class getMainTask{
+            @Test
+            void getMainTaskPositive(){
+                MainRegister register = new MainRegister();
+                register.addMainTask(null, null, "test", "description", 1, -1);
+                assertNotNull(register.getMainTask(0));
+            }
+        }
+
+        @Nested
         class addMainTask{
             @Test
             void addMainTaskPositive() {
@@ -62,7 +72,7 @@ class MainRegisterTest {
                 register.addMainTask(LocalDate.now(), LocalDate.now(),"Task_1",
                         "Lorem Ipsum", 0,0);
 
-                assertNotNull(register.getTask(0));
+                assertNotNull(register.getMainTask(0));
             }
 
             @Test
@@ -90,7 +100,7 @@ class MainRegisterTest {
                     Random random = new Random();
                     register.addMainTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
                 }
-                assertNotNull(register.getTask(1));
+                assertNotNull(register.getMainTask(1));
 
                 System.out.println(register.getAllTasks());
 
@@ -100,7 +110,7 @@ class MainRegisterTest {
                     assertNull(e);
                 }
 
-                assertThrows(IllegalArgumentException.class, () -> register.getTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.getMainTask(1));
             }
             @Test
             void removeMainTaskNegative()  {
@@ -117,19 +127,15 @@ class MainRegisterTest {
                 MainRegister register = new MainRegister();
                 register.addMainTask(null, null, "test", "description", 1, -1);
 
-                assertEquals(1, register.getTask(0).getPriority());
+                assertEquals(1, register.getMainTask(0).getPriority());
                 register.changePriorityMainTask(0,2);
-                assertEquals(2, register.getTask(0).getPriority());
+                assertEquals(2, register.getMainTask(0).getPriority());
             }
         }
     }
 
     @Test
     void setTaskCategory() {
-    }
-
-    @Test
-    void removeCategory() {
     }
 
     @Test
