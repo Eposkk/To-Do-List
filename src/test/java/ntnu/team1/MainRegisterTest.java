@@ -7,7 +7,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.awt.*;
 import java.time.LocalDate;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -265,11 +266,43 @@ class MainRegisterTest {
 
 @Test
     void sortByPriority() {
+        MainRegister register = new MainRegister();
+        register.addCategory("Kategori_1", Color.pink);
+        register.addCategory("Kategori_2", Color.blue);
+        register.addCategory("Kategori_3", Color.red);
+        register.addCategory("Kategori_4", Color.green);
+        for(int i = 0; i<=100;i++) {
+            String name = "task " + i;
+            String description = "Lorem Ipsum";
+            Random random = new Random();
+            register.addMainTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
+        }
 
+        register.sortByPriority();
 
+        for(int i = 0; i<99;i++){
+            assert (register.getAllTasks().get(i).getPriority()<=register.getAllTasks().get(i+1).getPriority());
+        }
     }
 
     @Test
     void sortByCategory() {
+        MainRegister register = new MainRegister();
+        register.addCategory("Kategori_1", Color.pink);
+        register.addCategory("Kategori_2", Color.blue);
+        register.addCategory("Kategori_3", Color.red);
+        register.addCategory("Kategori_4", Color.green);
+        for(int i = 0; i<=100;i++) {
+            String name = "task " + i;
+            String description = "Lorem Ipsum";
+            Random random = new Random();
+            register.addMainTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
+        }
+
+        register.sortByCategory();
+
+        for(int i = 0; i<99;i++){
+            assert (register.getAllTasks().get(i).getCategoryId()<=register.getAllTasks().get(i+1).getCategoryId());
+        }
     }
 }
