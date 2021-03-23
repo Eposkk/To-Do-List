@@ -1,10 +1,13 @@
 package ntnu.team1;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
@@ -13,7 +16,7 @@ import ntnu.team1.application.task.Task;
 
 /**
  * This is is the main register of the whole app
- * It keeps track of all categories and events by storing them in a HashMap and an ArrayList
+ * It keeps track of all categories and tasks by storing them in a HashMap and an ArrayList
  * The Mainregister also allows for adding tasks and adding categories to the registers
  * It also handles saving and reading from file, it also sorts the registers
  */
@@ -36,44 +39,89 @@ public class MainRegister {
 
     /**
      * Returns a category according to the id
-     * @param Id id of the category
+     * @param id id of the category
      * @return the category associated with the id
      */
-    public Category getCategory(int Id){
-        return categories.get(Id);
+    public Category getCategory(int id){
+        return categories.get(id);
     }
 
     /**
      * Returns a task according to the id
-     * @param Id id of the task
+     * @param id id of the task
      * @return the task associated with the id
      */
 
-    public Task getTask(int Id) {
+    public MainTask getMainTask(int id) throws IllegalArgumentException{
         for (MainTask task : tasks) {
-            if (task.getID() == Id) {
+            if (task.getID() == id) {
                 return task;
             }
         }
-        return null;
+        throw new IllegalArgumentException("No task found with the suggested Id.");
     }
 
 
-    public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) throws NullPointerException{
-        if(name.equals(null)){
+    public void addMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
+                               int priority, int categoryId) throws NullPointerException{
+        if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
 
-        MainTask t = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
-        if(tasks.contains(t)){
-            return false;
-        }else{
-            tasks.add(t);
-            taskIdCount+=1;
-            return true;
-        }
+        MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
+        tasks.add(task);
+        taskIdCount+=1;
     }
 
+    /**
+     * Removes a task from the register
+     * @param mainTaskId Id associated with the category
+     */
+
+    public void removeMainTask(int mainTaskId)throws IllegalArgumentException{
+        tasks.remove(getMainTask(mainTaskId));
+    }
+
+    /**
+     * Gets all task from a given category
+     * @param categoryId Id Associated with category
+     * @return Returns an Arraylist with all the tasks
+     */
+
+    public ArrayList<MainTask> getAllTasksFromCategory(int categoryId) throws IllegalArgumentException{
+        if(!categories.containsKey(categoryId)){
+            throw new IllegalArgumentException("No task found with the suggested Id.");
+        }
+        return (ArrayList<MainTask>)tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
+    }
+
+    /**
+     * Gets all tasks
+     * @return Returns all tasks
+     */
+
+    public ArrayList<MainTask> getAllTasks(){
+        ArrayList<MainTask> allMainTasks = new ArrayList<>(tasks);
+        return allMainTasks;
+    }
+
+    /**
+     *
+     * @param mainTaskId
+     * @param newPriority
+     * @throws IllegalArgumentException
+     */
+
+    public void changePriorityMainTask(int mainTaskId, int newPriority) throws IllegalArgumentException {
+        if(newPriority<1 || newPriority > 3){
+            throw new IllegalArgumentException("Priority must be a number in the range [1,3]");
+        }
+        getMainTask(mainTaskId).setPriority(newPriority);
+    }
+
+    public void changeDescriptionMainTask(int mainTaskId, String newDescription) throws IllegalArgumentException{
+        getMainTask(mainTaskId).setDescription(newDescription);
+    }
     /**
      * Adds a category to the register
      * @param name The name of the category
@@ -81,8 +129,8 @@ public class MainRegister {
      * @return Returns true if the category was registered, returns false if it failed
      */
 
-    public boolean addCategory(String name, Color color){
-        if(name.equals(null)){
+    public boolean addCategory(String name, Color color) throws NullPointerException{
+        if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
         if (categories.containsValue(new Category(-1,color, name))) {
@@ -100,31 +148,17 @@ public class MainRegister {
 
     /**
      * Sets the category color
-     * @param Id Id of the category
+     * @param id Id of the category
      * @param color Color you want to set
      */
 
-    public void setCategoryColor(int Id, Color color){
-        categories.get(Id).setColor(color);
-    }
-
-    /**
-     * Removes a task from the register
-     * @param mainTaskId Id associated with the category
-     * @return Returns true if task was removed, returns false if it failed
-     */
-
-    public void removeMainTask(int mainTaskId)throws RemoveException {
-
-        boolean removed = false;
-
-        if(tasks.remove(getTask(mainTaskId))){
-            removed = true;
-        }else{
-            throw new RemoveException("Task with id" + mainTaskId + " doesn not exist in the register");
+    public void setCategoryColor(int id, Color color) throws IllegalArgumentException{
+        if(!categories.containsKey(id)){
+            throw new IllegalArgumentException("Category does not exist");
         }
-
+        categories.get(id).setColor(color);
     }
+
 
     /**
      * Sets the taks category
@@ -133,29 +167,24 @@ public class MainRegister {
      * @return Returns true if it changed, returns false if it failed
      */
 
-    public boolean setTaskCategory(int taskId, int newCategoryId){
-        for(MainTask task: tasks){
-            if(taskId == task.getID()){
-                task.setCategoryId(newCategoryId);
-                return true;
-            }
+    public void setMainTaskCategory(int taskId, int newCategoryId) throws IllegalArgumentException{
+        if(!categories.containsKey(newCategoryId)){
+            throw new IllegalArgumentException("Category does not exist");
         }
-        return false;
+        getMainTask(taskId).setCategoryId(newCategoryId);
     }
 
     /**
      * Removes a category from the register
-     * @param Id Id associated with the category
+     * @param id Id associated with the category
      * @return Returns true if category was removed, returns false if it failed
      */
 
-    public boolean removeCategory(int Id){
-        if(categories.containsKey(Id)){
-            categories.remove(Id);
-            return true;
-        }else{
-            return false;
+    public void removeCategory(int id) throws RemoveException{
+        if(!categories.containsKey(id)){
+            throw new RemoveException("Category does not exist");
         }
+        categories.remove(id);
     }
 
     /**
@@ -174,32 +203,7 @@ public class MainRegister {
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
-    /**
-     * Gets all task from a given category
-     * @param CategoryId Id Associated with category
-     * @return Returns an Arraylist with all the tasks
-     */
 
-    public ArrayList<MainTask> getAllTaskFromCategory(int CategoryId){
-        ArrayList<MainTask> tasksByCategory = new ArrayList<>();
-        for(MainTask task: tasks){
-            if(task.getCategoryId() == CategoryId){
-                tasksByCategory.add(task);
-            }
-        }
-        return tasksByCategory;
-    }
-
-    /**
-     * Gets all tasks
-     * @return Returns all tasks
-     */
-
-    public ArrayList<MainTask> getAllTask(){
-        ArrayList<MainTask> allMainTasks = new ArrayList<MainTask>();
-        allMainTasks.addAll(tasks);
-        return allMainTasks;
-    }
 
     //TODO toString()
 
