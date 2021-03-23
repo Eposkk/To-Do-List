@@ -1,9 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/../../../../../../../../../../:\Users\eiha0\Google Drive\NTNU\2. Semester\IDATT1002\Prosjekt\to-do-list\target/
 # Datasource local storage ignored files
 /../../../../../../../../../../:\Users\eiha0\Google Drive\NTNU\2. Semester\IDATT1002\Prosjekt\to-do-list\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-target/
+
