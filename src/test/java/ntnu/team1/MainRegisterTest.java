@@ -75,17 +75,17 @@ class MainRegisterTest {
 
                 try{
                     register.removeMainTask(1);
-                }catch (RemoveException e){
+                }catch (IllegalArgumentException e){
                     assertNull(e);
                 }
 
-                assertNull(register.getTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.getTask(1));
             }
             @Test
             void removeMainTaskNegative()  {
                 MainRegister register = new MainRegister();
 
-                assertThrows(RemoveException.class, () -> register.removeMainTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.removeMainTask(1));
             }
         }
     }

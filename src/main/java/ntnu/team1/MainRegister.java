@@ -38,26 +38,26 @@ public class MainRegister {
 
     /**
      * Returns a category according to the id
-     * @param Id id of the category
+     * @param id id of the category
      * @return the category associated with the id
      */
-    public Category getCategory(int Id){
-        return categories.get(Id);
+    public Category getCategory(int id){
+        return categories.get(id);
     }
 
     /**
      * Returns a task according to the id
-     * @param Id id of the task
+     * @param id id of the task
      * @return the task associated with the id
      */
 
-    public Task getTask(int Id) {
+    public MainTask getTask(int id) {
         for (MainTask task : tasks) {
-            if (task.getID() == Id) {
+            if (task.getID() == id) {
                 return task;
             }
         }
-        return null;
+        throw new IllegalArgumentException("No task found with the suggested Id.");
     }
 
 
@@ -131,14 +131,11 @@ public class MainRegister {
      * @return Returns true if it changed, returns false if it failed
      */
 
-    public boolean setTaskCategory(int taskId, int newCategoryId){
-        for(MainTask task: tasks){
-            if(taskId == task.getID()){
-                task.setCategoryId(newCategoryId);
-                return true;
-            }
+    public void setTaskCategory(int taskId, int newCategoryId){
+        if(!categories.containsKey(newCategoryId)){
+            throw new IllegalArgumentException("Category does not exist");
         }
-        return false;
+        getTask(taskId).setCategoryId(newCategoryId);
     }
 
     /**
