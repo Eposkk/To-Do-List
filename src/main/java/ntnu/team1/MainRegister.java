@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import ntnu.team1.application.exceptions.RemoveException;
+import ntnu.team1.application.task.Category;
+import ntnu.team1.application.task.MainTask;
+import ntnu.team1.application.task.Task;
+
 /**
  * This is is the main register of the whole app
  * It keeps track of all categories and events by storing them in a HashMap and an ArrayList
