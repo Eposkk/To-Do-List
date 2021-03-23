@@ -3,6 +3,7 @@ package ntnu.team1;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -60,15 +61,15 @@ public class MainRegister {
 
 
     public boolean addMainTask(LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) throws NullPointerException{
-        if(name.equals(null)){
+        if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
 
-        MainTask t = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
-        if(tasks.contains(t)){
+        MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
+        if(tasks.contains(task)){
             return false;
         }else{
-            tasks.add(t);
+            tasks.add(task);
             taskIdCount+=1;
             return true;
         }
@@ -82,7 +83,7 @@ public class MainRegister {
      */
 
     public boolean addCategory(String name, Color color){
-        if(name.equals(null)){
+        if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
         if (categories.containsValue(new Category(-1,color, name))) {
@@ -195,9 +196,8 @@ public class MainRegister {
      * @return Returns all tasks
      */
 
-    public ArrayList<MainTask> getAllTask(){
-        ArrayList<MainTask> allMainTasks = new ArrayList<MainTask>();
-        allMainTasks.addAll(tasks);
+    public ArrayList<MainTask> getAllTasks(){
+        ArrayList<MainTask> allMainTasks = new ArrayList<>(tasks);
         return allMainTasks;
     }
 

@@ -71,7 +71,7 @@ class MainRegisterTest {
                 }
                 assertNotNull(register.getTask(1));
 
-                System.out.println(register.getAllTask());
+                System.out.println(register.getAllTasks());
 
                 try{
                     register.removeMainTask(1);
