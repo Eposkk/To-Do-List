@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
@@ -115,16 +116,12 @@ public class MainRegister {
      * @return Returns true if task was removed, returns false if it failed
      */
 
-    public void removeMainTask(int mainTaskId)throws RemoveException {
-
-        boolean removed = false;
-
+    public void removeMainTask(int mainTaskId)throws RemoveException{
         if(tasks.remove(getTask(mainTaskId))){
-            removed = true;
+
         }else{
             throw new RemoveException("Task with id" + mainTaskId + " doesn not exist in the register");
         }
-
     }
 
     /**
@@ -146,13 +143,13 @@ public class MainRegister {
 
     /**
      * Removes a category from the register
-     * @param Id Id associated with the category
+     * @param id Id associated with the category
      * @return Returns true if category was removed, returns false if it failed
      */
 
-    public boolean removeCategory(int Id){
-        if(categories.containsKey(Id)){
-            categories.remove(Id);
+    public boolean removeCategory(int id){
+        if(categories.containsKey(id)){
+            categories.remove(id);
             return true;
         }else{
             return false;
@@ -177,18 +174,12 @@ public class MainRegister {
 
     /**
      * Gets all task from a given category
-     * @param CategoryId Id Associated with category
+     * @param categoryId Id Associated with category
      * @return Returns an Arraylist with all the tasks
      */
 
-    public ArrayList<MainTask> getAllTaskFromCategory(int CategoryId){
-        ArrayList<MainTask> tasksByCategory = new ArrayList<>();
-        for(MainTask task: tasks){
-            if(task.getCategoryId() == CategoryId){
-                tasksByCategory.add(task);
-            }
-        }
-        return tasksByCategory;
+    public List<MainTask> getAllTaskFromCategory(int categoryId){
+        return tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
     }
 
     /**
