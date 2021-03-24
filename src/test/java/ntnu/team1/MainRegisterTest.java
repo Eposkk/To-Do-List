@@ -269,7 +269,8 @@ class MainRegisterTest {
         register.addCategory("Kategori_2", Color.blue);
         register.addCategory("Kategori_3", Color.red);
         register.addCategory("Kategori_4", Color.green);
-        for(int i = 0; i<=100;i++) {
+        int n=1000;
+        for(int i = 0; i<=n;i++) {
             String name = "task " + i;
             String description = "Lorem Ipsum";
             Random random = new Random();
@@ -278,7 +279,7 @@ class MainRegisterTest {
 
         register.sortByPriority();
 
-        for(int i = 0; i<99;i++){
+        for(int i = 0; i<n-1;i++){
             assert (register.getAllTasks().get(i).getPriority()<=register.getAllTasks().get(i+1).getPriority());
         }
     }
@@ -290,7 +291,8 @@ class MainRegisterTest {
         register.addCategory("Kategori_2", Color.blue);
         register.addCategory("Kategori_3", Color.red);
         register.addCategory("Kategori_4", Color.green);
-        for(int i = 0; i<=100;i++) {
+        int n=1000;
+        for(int i = 0; i<=n;i++) {
             String name = "task " + i;
             String description = "Lorem Ipsum";
             Random random = new Random();
@@ -299,7 +301,7 @@ class MainRegisterTest {
 
         register.sortByCategory();
 
-        for(int i = 0; i<99;i++){
+        for(int i = 0; i<n-1;i++){
             assert (register.getAllTasks().get(i).getCategoryId()<=register.getAllTasks().get(i+1).getCategoryId());
         }
     }
