@@ -4,7 +4,7 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReadWrite {
     private HashMap<Integer, Category> addCategoryData(){
         HashMap<Integer,Category> test=new HashMap<>();
-        Category cat1 = new Category(1, new Color(2,2,2),"Skole");
-        Category cat2 = new Category(2, new Color(2,2,2),"Arbeid");
+        Category cat1 = new Category(1, Color.BLUE,"Skole");
+        Category cat2 = new Category(2, Color.GREEN,"Arbeid");
         test.put(cat1.getID(), cat1);
         test.put(cat2.getID(), cat2);
         return test;
