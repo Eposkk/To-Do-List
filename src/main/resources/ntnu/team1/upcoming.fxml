@@ -1,137 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.UpcomingController">
-    <children>
-        <MenuBar layoutY="6.0" prefHeight="48.0" prefWidth="600.0" style="-fx-background-color: #2b78e4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="Menu">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Home" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <SplitPane dividerPositions="0.18896321070234115" layoutY="48.0" prefHeight="352.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
-            <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <ListView layoutX="-28.0" layoutY="14.0" prefHeight="350.0" prefWidth="143.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Text fx:id="todayCategoryText" layoutY="27.0" onMouseClicked="#switchToToday" strokeType="OUTSIDE" strokeWidth="0.0" text="Today" wrappingWidth="91.22900390625">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                        <Text fx:id="upcomingCategoryText" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming" wrappingWidth="91.22900390625">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="191.0">
-                    <children>
-                        <Text fx:id="upcomingTitleText" layoutX="23.0" layoutY="42.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming" underline="true" wrappingWidth="127.22900390625">
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                            <effect>
-                                <Glow />
-                            </effect>
-                        </Text>
-                        <HBox layoutX="23.0" layoutY="75.0" prefHeight="56.0" prefWidth="425.0">
-                            <children>
-                                <AnchorPane fx:id="monAnchorPane" onMouseClicked="#viewMonday" prefHeight="70.0" prefWidth="85.0" style="-fx-border-color: #333333;">
-                                    <children>
-                                        <Text fx:id="monText" layoutX="24.0" layoutY="21.0" onMouseClicked="#viewMonday" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fx:id="monTextOne" layoutX="38.0" layoutY="42.0" onMouseClicked="#viewMonday" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Circle fx:id="dotMonday" layoutX="43.0" layoutY="50.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="tusAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="85.0" style="-fx-border-color: #333333;">
-                                    <children>
-                                        <Text fx:id="tueText" layoutX="27.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fx:id="tusTextTwo" layoutX="38.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Circle fx:id="dotTuesday" layoutX="44.0" layoutY="50.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="wedAnchorPane" layoutX="95.0" layoutY="10.0" prefHeight="70.0" prefWidth="85.0" style="-fx-border-color: #333333;">
-                                    <children>
-                                        <Text fx:id="wedText" layoutX="24.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fx:id="wedTextThree" layoutX="38.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Circle fx:id="dotWednsday" layoutX="44.0" layoutY="50.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="thuAnchorPane" layoutX="180.0" layoutY="10.0" prefHeight="70.0" prefWidth="85.0" style="-fx-border-color: #333333;">
-                                    <children>
-                                        <Text fx:id="thuText" layoutX="26.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fx:id="thuTextFour" layoutX="38.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Circle fx:id="dotThursday" layoutX="44.0" layoutY="50.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="friAnchorPane" layoutX="265.0" layoutY="10.0" prefHeight="70.0" prefWidth="85.0" style="-fx-border-color: #333333;">
-                                    <children>
-                                        <Text fx:id="friText" layoutX="32.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Text fx:id="friTextFive" layoutX="38.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER">
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                        </Text>
-                                        <Circle fx:id="dotFriday" layoutX="44.0" layoutY="50.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-                                    </children>
-                                </AnchorPane>
-                            </children>
-                        </HBox>
-                    </children>
-                </AnchorPane>
-            </items>
-        </SplitPane>
-    </children>
-</AnchorPane>
+<BorderPane prefHeight="439.0" prefWidth="531.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.UpcomingController">
+   <top>
+      <HBox prefHeight="62.0" prefWidth="528.0" style="-fx-background-color: #2b78e4 #2b78e4;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="75.0" text="Home">
+               <font>
+                  <Font name="Avenir Book" size="21.0" />
+               </font>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets top="1.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <left>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="338.0" prefWidth="123.0">
+               <children>
+                  <HBox fx:id="todayCategoryHBox" alignment="CENTER" onMouseClicked="#switchToToday" prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="31.0" prefWidth="66.0" text="Today">
+                           <font>
+                              <Font name="Avenir Book" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="31.0" prefWidth="94.0" text="Upcoming">
+                           <font>
+                              <Font name="Avenir Book" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+         </children>
+      </HBox>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="83.0" prefWidth="102.0" text="Upcoming" underline="true">
+                     <font>
+                        <Font name="Avenir Book" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="46.0" prefWidth="402.0">
+                     <children>
+                        <VBox fx:id="monHBox" alignment="CENTER" onMouseClicked="#viewMonday" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Mon" />
+                              <Text fx:id="monDate" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+                              <Circle fx:id="dotMonday" fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Tue" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Wen" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Thu" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Fri" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Sat" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                           <children>
+                              <Label text="Sun" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
+                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+
+import java.awt.*;
 import java.io.IOException;
 
 public class UpcomingController {
@@ -17,14 +19,15 @@ public class UpcomingController {
     @FXML
     private Text monText;
     @FXML
-    private Text monTextOne;
+    private Text monDate;
     @FXML
     private Circle dotMonday;
 
+
     @FXML
-    private void viewMonday() throws Exception{
+    private void viewMonday() throws IOException{
         dotMonday.setVisible(true);
-        monTextOne.setFill(Paint.valueOf("#ff0000"));
+        monDate.setFill(Paint.valueOf("#ff0000"));
     }
 
     @FXML
