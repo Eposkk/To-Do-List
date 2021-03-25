@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="439.0" prefWidth="531.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.UpcomingController">
    <top>
@@ -76,52 +77,52 @@
                <children>
                   <HBox prefHeight="46.0" prefWidth="402.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
+                        <VBox fx:id="monHBox" alignment="CENTER" onMouseClicked="#viewMonday" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Mon" />
-                              <Label text="1" />
-                              <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text fx:id="monDate" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+                              <Circle fx:id="dotMonday" fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Tue" />
-                              <Label text="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Wen" />
-                              <Label text="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Thu" />
-                              <Label text="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Fri" />
-                              <Label text="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Sat" />
-                              <Label text="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="74.0" prefWidth="75.0" style="-fx-border-color: #333333;">
                            <children>
                               <Label text="Sun" />
-                              <Label text="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
                               <Circle fill="WHITE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </VBox>
