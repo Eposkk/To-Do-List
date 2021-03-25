@@ -29,6 +29,11 @@ public class UpcomingController {
     }
 
     @FXML
+    private void viewItemsMonday() {
+
+    }
+
+    @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
