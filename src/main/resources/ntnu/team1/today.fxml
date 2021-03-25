@@ -67,6 +67,7 @@
                            </cursor>
                         </HBox>
                         <Separator prefWidth="200.0" />
+                              <Button fx:id="addNewTaskButton" mnemonicParsing="false" onAction="#switchToTest" prefHeight="18.0" prefWidth="18.0" />
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -89,6 +90,5 @@
             </BorderPane>
          </center>
       </BorderPane>
-            <Button fx:id="addNewTaskButton" layoutX="165.0" layoutY="-59.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" />
     </children>
 </AnchorPane>
