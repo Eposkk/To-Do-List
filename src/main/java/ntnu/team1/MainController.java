@@ -87,11 +87,12 @@ public class MainController {
     private void submitTask(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),-1);
-        showTasks.getChildren().add(addNewTaskHBox);
+        updateTasks();
 
     }
 
     private void updateTasks(){
+        showTasks.getChildren().clear();
         for (MainTask t: register.getAllTasks() ){
 
             HBox hBox = new HBox();
