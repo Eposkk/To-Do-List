@@ -1,5 +1,6 @@
 package ntnu.team1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,5 +32,9 @@ public class TodayController {
     @FXML
     private void switchToUpcoming() throws IOException {
         App.setRoot("upcoming");
+    }
+    @FXML
+    public void switchToTest(ActionEvent actionEvent) throws IOException {
+        App.setRoot("test");
     }
 }

@@ -1,6 +1,6 @@
 package ntnu.team1;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;

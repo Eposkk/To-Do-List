@@ -14,4 +14,9 @@ public class PrimaryController {
     private void switchToToday() throws IOException {
         App.setRoot("today");
     }
+
+    @FXML
+    private void switchToTest() throws IOException {
+        App.setRoot("test");
+    }
 }
