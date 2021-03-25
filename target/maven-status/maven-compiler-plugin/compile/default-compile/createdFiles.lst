@@ -1,5 +1,6 @@
 ntnu/team1/PrimaryController.class
 ntnu/team1/application/fileHandling/Read.class
+ntnu/team1/MainController.class
 ntnu/team1/application/task/Category.class
 ntnu/team1/application/task/Task.class
 ntnu/team1/MainRegister.class

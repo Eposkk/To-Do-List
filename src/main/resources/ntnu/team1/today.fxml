@@ -7,14 +7,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="744.0" prefWidth="1097.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.TodayController">
@@ -73,6 +72,9 @@
                         </HBox>
                         <Separator prefWidth="200.0" />
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                </children>
@@ -89,33 +91,42 @@
                            </font>
                         </Label>
                      </children>
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" />
+                     </BorderPane.margin>
                   </HBox>
                </top>
                <center>
-                  <VBox fx:id="mainTaskVBox" prefHeight="411.0" prefWidth="852.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="mainTaskVBox" prefHeight="604.0" prefWidth="969.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="852.0" style="-fx-border-color: #333333;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="852.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="172.0">
+                              <VBox alignment="CENTER" prefHeight="54.0" prefWidth="80.0">
                                  <children>
                                     <CheckBox mnemonicParsing="false" />
                                  </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="54.0" prefWidth="685.0" style="-fx-border-color: #333333;">
+                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="54.0" prefWidth="550.0">
                                  <children>
                                     <Label text="Task Name">
                                        <font>
-                                          <Font name="Avenir Book" size="15.0" />
+                                          <Font name="Avenir Book" size="17.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="54.0" prefWidth="137.0">
+                              <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="54.0" prefWidth="167.0">
                                  <children>
                                     <Label text="Deadline" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="54.0" prefWidth="114.0" style="-fx-border-color: #333333;">
+                              <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="54.0" prefWidth="167.0">
                                  <children>
                                     <Label text="Category" />
                                  </children>
@@ -126,45 +137,37 @@
                                  </children>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="35.0" prefWidth="852.0" style="-fx-border-color: #333333;">
+                        <Separator layoutX="95.0" layoutY="108.0" prefWidth="200.0" style="-fx-background-color: #333333;">
+                           <effect>
+                              <Glow />
+                           </effect>
+                           <VBox.margin>
+                              <Insets left="80.0" right="170.0" />
+                           </VBox.margin>
+                        </Separator>
+                        <HBox prefHeight="32.0" prefWidth="969.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="172.0">
+                              <VBox alignment="CENTER" prefHeight="86.0" prefWidth="80.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" />
+                                    <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../Images/Plus.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="393.0" style="-fx-border-color: #333333;">
-                                 <children>
-                                    <TextField fx:id="addNewTaskTextField" promptText="add new task" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="100.0" prefWidth="307.0">
-                                 <children>
-                                    <TextField fx:id="addNewDeadlineTextField" promptText="deadline" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="100.0" prefWidth="177.0" style="-fx-border-color: #333333;">
-                                 <children>
-                                    <TextField fx:id="addNewCategoryTextField" prefHeight="27.0" prefWidth="93.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" layoutX="310.0" layoutY="10.0" prefHeight="100.0" prefWidth="167.0" />
-                           </children>
-                        </HBox>
-                        <Button mnemonicParsing="false" onAction="#addNewTask" text="Button" />
-                        <HBox prefHeight="32.0" prefWidth="969.0" style="-fx-border-color: #333333; -fx-background-color: #E2DFDF;">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="86.0" prefWidth="99.0" style="-fx-border-color: #333333;">
-                                 <children>
-                                    <Circle fill="DODGERBLUE" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
                               </VBox>
                               <VBox alignment="CENTER_LEFT" prefHeight="98.0" prefWidth="368.0">
                                  <children>
                                     <Label text="Add new task">
                                        <font>
-                                          <Font size="21.0" />
+                                          <Font name="Avenir Book" size="17.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -173,8 +176,18 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <Separator prefWidth="200.0" />
+                        <Separator prefWidth="200.0" style="-fx-background-color: #333333;">
+                           <effect>
+                              <Glow />
+                           </effect>
+                           <VBox.margin>
+                              <Insets left="120.0" right="170.0" />
+                           </VBox.margin>
+                        </Separator>
                      </children>
                      <opaqueInsets>
                         <Insets />

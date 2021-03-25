@@ -33,7 +33,7 @@
             </HBox>
          </top>
          <left>
-            <HBox prefHeight="1018.0" prefWidth="305.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="1018.0" prefWidth="170.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox prefHeight="1018.0" prefWidth="289.0">
                      <children>
