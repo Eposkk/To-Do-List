@@ -3,12 +3,19 @@ package ntnu.team1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import ntnu.team1.application.task.MainTask;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FilterInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -39,6 +46,8 @@ public class MainController {
     public ToggleGroup priority;
     public VBox showTasks;
     public HBox addNewTaskHBox;
+    @FXML
+    private VBox mainVBox;
 
     @FXML
     private Button textGenerateButton;
@@ -93,19 +102,79 @@ public class MainController {
 
     private void updateTasks(){
         showTasks.getChildren().clear();
+        showTasks.setPrefWidth(969);
         for (MainTask t: register.getAllTasks() ){
 
             HBox hBox = new HBox();
+            VBox vBox1 = new VBox();
+            VBox vBox2 = new VBox();
+            VBox vBox3 = new VBox();
+            VBox vBox4 = new VBox();
+            VBox vBox5 = new VBox();
+
+            AnchorPane anchorPane = new AnchorPane();
+            ImageView imageView = new ImageView();
+
+            CheckBox checkBox = new CheckBox();
             Label taskName=new Label(t.getName());
             Label taskDate=new Label(String.valueOf(t.getEndDate()));
             Label description = new Label(t.getDescription());
+            Label category = new Label("Testkategori");
             Label priority = new Label(String.valueOf(t.getPriority()));
+            Separator separator = new Separator();
 
-            hBox.getChildren().add(taskName);
-            hBox.getChildren().add(taskDate);
-            hBox.getChildren().add(description);
-            hBox.getChildren().add(priority);
+            vBox1.getChildren().add(checkBox);
+            vBox2.getChildren().add(taskName);
+            vBox3.getChildren().add(taskDate);
+            vBox4.getChildren().add(category);
+            vBox5.getChildren().add(imageView);
+
+            hBox.getChildren().add(vBox1);
+            hBox.getChildren().add(vBox2);
+            hBox.getChildren().add(vBox3);
+            hBox.getChildren().add(vBox4);
+            hBox.setPrefHeight(56);
+
+            separator.setOrientation(Orientation.HORIZONTAL);
+            separator.setPrefWidth(900);
+            separator.setLayoutX(95);
+            separator.setLayoutY(108);
+            anchorPane.getChildren().add(separator);
+            anchorPane.setPrefHeight(3);
+            AnchorPane.setLeftAnchor(separator, 80.0);
+            AnchorPane.setBottomAnchor(separator, 0.0);
+            AnchorPane.setTopAnchor(separator, 0.0);
+
+
+            vBox1.setPrefWidth(80);
+            vBox1.setPrefHeight(54);
+            vBox1.setPadding(new Insets(0, 0, 0, 30));
+            vBox1.setAlignment(Pos.CENTER);
+
+            vBox2.setPrefWidth(550);
+            vBox2.setPrefHeight(54);
+            vBox2.setAlignment(Pos.CENTER_LEFT);
+
+            vBox3.setPrefWidth(167);
+            vBox3.setPrefHeight(54);
+            vBox3.setAlignment(Pos.CENTER);
+
+            vBox3.setPrefWidth(167);
+            vBox3.setPrefHeight(54);
+            vBox3.setAlignment(Pos.CENTER);
+
+            vBox4.setPrefWidth(167);
+            vBox4.setPrefHeight(54);
+            vBox4.setAlignment(Pos.CENTER);
+
+            imageView.setFitHeight(29);
+            imageView.setFitWidth(30);
+            vBox5.setPrefWidth(6);
+            vBox5.setPrefHeight(54);
+            vBox5.setAlignment(Pos.CENTER);
+
             showTasks.getChildren().add(hBox);
+            showTasks.getChildren().add(anchorPane);
         }
     }
 }

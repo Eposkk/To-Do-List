@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -41,7 +42,7 @@
                            <children>
                               <ImageView fx:id="todayImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Images/Today.png" />
+                                    <Image url="@../../Images/Today.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="todayCategoryText" prefHeight="31.0" prefWidth="61.0" text="Today">
@@ -59,7 +60,7 @@
                            <children>
                               <ImageView fx:id="upcomingImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Images/Upcoming.png" />
+                                    <Image url="@../../Images/Upcoming.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="todayCategoryText1" prefHeight="31.0" prefWidth="91.0" text="Upcoming">
@@ -83,28 +84,17 @@
                <top>
                   <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="198.0" text="Today" underline="true">
+                        <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="Today" underline="true">
                            <font>
-                              <Font size="47.0" />
+                              <Font name="Avenir Book" size="31.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label onMouseClicked="#addNewTask" text="Add new task">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                </top>
                <center>
-                  <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0" BorderPane.alignment="CENTER">
+                  <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0">
                      <children>
                         <VBox prefHeight="940.0" prefWidth="336.0">
                            <children>
@@ -135,14 +125,15 @@
                                  <RadioButton text="1">
                                     <toggleGroup>
                                        <ToggleGroup fx:id="priority" />
-                                    </toggleGroup></RadioButton>
+                                    </toggleGroup>
+                                 </RadioButton>
                                  <RadioButton text="2" toggleGroup="$priority">
 
                                  </RadioButton>
                                  <RadioButton text="3" toggleGroup="$priority">
                                  </RadioButton>
 
-                              </VBox>
+                                          </VBox>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -155,6 +146,9 @@
                            </children>
                         </VBox>
                      </children>
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" />
+                     </BorderPane.margin>
                   </HBox>
                </center>
                <bottom>

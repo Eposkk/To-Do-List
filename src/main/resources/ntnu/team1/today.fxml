@@ -39,7 +39,7 @@
                            <children>
                               <ImageView fx:id="todayImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Images/Today.png" />
+                                    <Image url="@../../Images/Today.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="todayCategoryText" prefHeight="31.0" prefWidth="61.0" text="Today">
@@ -57,7 +57,7 @@
                            <children>
                               <ImageView fx:id="upcomingImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../Images/Upcoming.png" />
+                                    <Image url="@../../Images/Upcoming.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="todayCategoryText1" prefHeight="31.0" prefWidth="91.0" text="Upcoming">
@@ -141,21 +141,25 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Separator layoutX="95.0" layoutY="108.0" prefWidth="200.0" style="-fx-background-color: #333333;">
-                           <effect>
-                              <Glow />
-                           </effect>
+                        <AnchorPane>
                            <VBox.margin>
-                              <Insets left="80.0" right="170.0" />
+                              <Insets />
                            </VBox.margin>
-                        </Separator>
+                           <children>
+                              <Separator prefWidth="900.0" style="-fx-background-color: #333333;" AnchorPane.leftAnchor="80.0">
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Separator>
+                           </children>
+                        </AnchorPane>
                         <HBox prefHeight="32.0" prefWidth="969.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="86.0" prefWidth="80.0">
                                  <children>
                                     <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../Images/Plus.png" />
+                                          <Image url="@../../Images/Plus.png" />
                                        </image>
                                     </ImageView>
                                  </children>

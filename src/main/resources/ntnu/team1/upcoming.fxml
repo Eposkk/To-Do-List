@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -33,7 +34,10 @@
                <children>
                   <HBox fx:id="todayCategoryHBox" alignment="CENTER" onMouseClicked="#switchToToday" prefHeight="50.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Today.png" />
+                           </image></ImageView>
                         <Label prefHeight="31.0" prefWidth="66.0" text="Today">
                            <font>
                               <Font name="Avenir Book" size="19.0" />
@@ -44,7 +48,10 @@
                   <Separator prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Upcoming.png" />
+                           </image></ImageView>
                         <Label prefHeight="31.0" prefWidth="94.0" text="Upcoming">
                            <font>
                               <Font name="Avenir Book" size="19.0" />
