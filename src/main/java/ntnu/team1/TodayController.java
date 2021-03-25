@@ -3,12 +3,14 @@ package ntnu.team1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import ntnu.team1.application.task.MainTask;
 
@@ -22,13 +24,7 @@ public class TodayController {
     @FXML
     public ImageView upcomingImage;*/
     @FXML
-    public GridPane gridPane;
-    @FXML
     public Label testLabel;
-    @FXML
-    public TextField newDescriptionTextField;
-    @FXML
-    private Button textGenerateButton;
     @FXML
     private Button addNewTaskButton;
     @FXML
@@ -39,6 +35,14 @@ public class TodayController {
     private Text upcomingCategoryText;
     @FXML
     private HBox todayCategoryHBox;
+    @FXML
+    private TextField addNewTaskTextField;
+    @FXML
+    private TextField addNewDeadlineTextField;
+    @FXML
+    private TextField addNewCategoryTextField;
+    @FXML
+    private VBox mainTaskVBox;
 
 
     @FXML
@@ -47,11 +51,35 @@ public class TodayController {
     }
 
     @FXML
-    private void generateRow() {
-        MainTask mainTask = new MainTask(1, LocalDate.now(), LocalDate.of(2021, 03, 26), "Test", "Dette er en test", 2);
-        Label newDescription = new Label(newDescriptionTextField.getText());
+    private void addNewTask() {
+        CheckBox checkBox = new CheckBox();
+        HBox hbox1 = new HBox();
+        VBox vBox1 = new VBox();
+        VBox vBox2 = new VBox();
+        VBox vBox3 = new VBox();
+        VBox vBox4 = new VBox();
+        VBox vBox5 = new VBox();
 
-        this.gridPane.addRow(9,newDescription);
+        Label newTaskName = new Label(addNewTaskTextField.getText());
+        Label newDeadline = new Label(addNewDeadlineTextField.getText());
+        Label newCategory = new Label(addNewCategoryTextField.getText());
+
+        vBox1.getChildren().add(checkBox);
+        vBox2.getChildren().add(newTaskName);
+        vBox3.getChildren().add(newDeadline);
+        vBox4.getChildren().add(newCategory);
+
+        hbox1.getChildren().add(0, vBox1);
+        hbox1.getChildren().add(1, vBox2);
+        hbox1.getChildren().add(2, vBox3);
+        hbox1.getChildren().add(3, vBox4);
+
+        vBox1.setPrefHeight(100);
+        vBox1.setPrefWidth(172);
+        hbox1.setPrefHeight(35);
+        hbox1.setPrefWidth(852);
+
+        mainTaskVBox.getChildren().add(hbox1);
     }
 
     @FXML
