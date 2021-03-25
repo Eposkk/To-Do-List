@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
@@ -22,13 +22,13 @@ class MainRegisterTest {
             @Test
             void addCategoryPositive() {
                 MainRegister register = new MainRegister();
-                assertTrue(register.addCategory("test", Color.pink));
+                assertTrue(register.addCategory("test", Color.PINK));
             }
             @Test
             void addCategoryNegative() {
                 MainRegister register = new MainRegister();
-                register.addCategory("test", Color.pink);
-                assertFalse(register.addCategory("test", Color.pink));
+                register.addCategory("test", Color.PINK);
+                assertFalse(register.addCategory("test", Color.PINK));
             }
         }
 
@@ -37,7 +37,7 @@ class MainRegisterTest {
             @Test
             void removeCategoryPositive(){
                 MainRegister register = new MainRegister();
-                register.addCategory("test", Color.pink);
+                register.addCategory("test", Color.PINK);
                 try{
                     register.removeCategory(0);
                 }catch(RemoveException e){
@@ -59,18 +59,18 @@ class MainRegisterTest {
             @Test
             void setCategoryColorPositive(){
                 MainRegister register = new MainRegister();
-                assertTrue(register.addCategory("test", Color.pink));
+                assertTrue(register.addCategory("test", Color.PINK));
 
-                register.setCategoryColor(0,Color.green);
-                assertEquals(register.getCategory(0).getColor(), Color.green);
+                register.setCategoryColor(0,Color.GREEN);
+                assertEquals(register.getCategory(0).getColor(), Color.GREEN);
             }
 
             @Test
             void setCategoryColorNegative(){
                 MainRegister register = new MainRegister();
-                assertTrue(register.addCategory("test", Color.pink));
+                assertTrue(register.addCategory("test", Color.PINK));
 
-                assertThrows(IllegalArgumentException.class, () -> register.setCategoryColor(1,Color.green));
+                assertThrows(IllegalArgumentException.class, () -> register.setCategoryColor(1,Color.GREEN));
             }
         }
 
@@ -125,10 +125,10 @@ class MainRegisterTest {
             void removeMainTaskPositive() {
                 MainRegister register = new MainRegister();
 
-                register.addCategory("Kategori_1", Color.pink);
-                register.addCategory("Kategori_2", Color.blue);
-                register.addCategory("Kategori_3", Color.red);
-                register.addCategory("Kategori_4", Color.green);
+                register.addCategory("Kategori_1", Color.PINK);
+                register.addCategory("Kategori_2", Color.BLUE);
+                register.addCategory("Kategori_3", Color.RED);
+                register.addCategory("Kategori_4", Color.GREEN);
 
                 for(int i = 0; i<=10;i++) {
                     String name = "task " + i;
@@ -177,10 +177,10 @@ class MainRegisterTest {
                 String description = "Lorem Ipsum";
                 Random random = new Random();
 
-                register.addCategory("Kategori_1", Color.pink);
-                register.addCategory("Kategori_2", Color.blue);
-                register.addCategory("Kategori_3", Color.red);
-                register.addCategory("Kategori_4", Color.green);
+                register.addCategory("Kategori_1", Color.PINK);
+                register.addCategory("Kategori_2", Color.BLUE);
+                register.addCategory("Kategori_3", Color.RED);
+                register.addCategory("Kategori_4", Color.GREEN);
 
                 register.addMainTask(null, null, name, description, random.nextInt(3), 2);
                 register.addMainTask(null, null, name, description, random.nextInt(3), 2);
@@ -265,10 +265,10 @@ class MainRegisterTest {
     @Test
     void sortByPriority() {
         MainRegister register = new MainRegister();
-        register.addCategory("Kategori_1", Color.pink);
-        register.addCategory("Kategori_2", Color.blue);
-        register.addCategory("Kategori_3", Color.red);
-        register.addCategory("Kategori_4", Color.green);
+        register.addCategory("Kategori_1", Color.PINK);
+        register.addCategory("Kategori_2", Color.BLUE);
+        register.addCategory("Kategori_3", Color.RED);
+        register.addCategory("Kategori_4", Color.GREEN);
         int n=1000;
         for(int i = 0; i<=n;i++) {
             String name = "task " + i;
@@ -287,10 +287,10 @@ class MainRegisterTest {
     @Test
     void sortByCategory() {
         MainRegister register = new MainRegister();
-        register.addCategory("Kategori_1", Color.pink);
-        register.addCategory("Kategori_2", Color.blue);
-        register.addCategory("Kategori_3", Color.red);
-        register.addCategory("Kategori_4", Color.green);
+        register.addCategory("Kategori_1", Color.PINK);
+        register.addCategory("Kategori_2", Color.BLUE);
+        register.addCategory("Kategori_3", Color.RED);
+        register.addCategory("Kategori_4", Color.GREEN);
         int n=1000;
         for(int i = 0; i<=n;i++) {
             String name = "task " + i;

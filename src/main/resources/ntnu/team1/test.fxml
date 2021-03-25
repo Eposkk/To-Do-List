@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.TestController">
+
+
+    <ScrollPane prefHeight="386.0" prefWidth="572.0">
+        <VBox fx:id="taskList" prefHeight="383.0" prefWidth="573.0">
+
+        </VBox>
+    </ScrollPane>
+   <Button layoutX="546.0" layoutY="374.0" mnemonicParsing="false" onAction="#generateTask" text="Button" />
+    
+
+</AnchorPane>

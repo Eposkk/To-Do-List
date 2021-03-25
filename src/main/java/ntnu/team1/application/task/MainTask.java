@@ -19,6 +19,14 @@ public class MainTask extends Task {
         this.hasSecondaryTask = false;
     }
 
+    public MainTask(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
+        super(ID, startDate, endDate, name, description, priority);
+        this.secondaryTasks = new ArrayList<>();
+        this.categoryId = -1;
+        this.hasCategory = true;
+        this.hasSecondaryTask = false;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
