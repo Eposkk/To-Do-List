@@ -1,0 +1,5 @@
+module:ntnu.team1
+ntnu.team1
+ntnu.team1.application.exceptions
+ntnu.team1.application.fileHandling
+ntnu.team1.application.task
