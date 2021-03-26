@@ -3,12 +3,10 @@ package ntnu.team1;
 import ntnu.team1.application.exceptions.RemoveException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 import javafx.scene.paint.Color;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
