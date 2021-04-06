@@ -1,5 +1,6 @@
 package ntnu.team1;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,9 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import java.io.IOException;
+import java.security.cert.PolicyNode;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 
 public class MainController {
 
@@ -58,8 +63,10 @@ public class MainController {
     @FXML
     private HBox todayCategoryHBox;
 
-
-    MainRegister register=new MainRegister();
+    MainRegister register = new MainRegister();
+    private VBox vBoxPriority;
+    ArrayList<Category> categories;
+    ArrayList<String> namesOfCategories;
 
 
     @FXML
@@ -69,6 +76,28 @@ public class MainController {
     @FXML
     private void addNewTask(){
 
+    }
+
+    @FXML
+    private void start(){
+        register.addCategory("Test",null);
+        ArrayList<Category> categories = new ArrayList<Category>(register.getCategories().values());
+        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(categories));
+        vBoxPriority.getChildren().add(cb);
+    }
+
+    @FXML
+        private void updateChoiceBox(){
+        register.addCategory("Test",null);
+        register.addCategory("Skole", null);
+        categories =  new ArrayList<>(register.getCategories().values());
+        namesOfCategories = new ArrayList<>();
+
+
+        for (Category c: categories){
+            namesOfCategories.add(c.getName());
+        }
+        choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
     }
 
     @FXML
@@ -91,7 +120,14 @@ public class MainController {
     @FXML
     private void submitTask(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
-        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),-1);
+        Category category1 = null;
+        for (Category category: categories){
+            if(category.getName().equals(choiceBox.getValue().toString())){
+                category1=category;
+            }
+        }
+        assert category1 != null;
+        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1.getID());
         updateTasks();
     }
 
@@ -106,7 +142,6 @@ public class MainController {
         showTasks.getChildren().clear();
         showTasks.setPrefWidth(969);
         for (MainTask t: register.getAllTasks() ){
-
 
             if(!t.isDone()){
                 HBox hBox = new HBox();
@@ -134,8 +169,8 @@ public class MainController {
                 Label description = new Label(t.getDescription());
                 edit(description, t.getDescription());
 
-                Label category = new Label("test");
-                edit(category, "test");
+                Label category = new Label(register.getCategory(t.getCategoryId()).getName());
+                edit(category, register.getCategory(t.getCategoryId()).getName());
 
                 Label priority = new Label(String.valueOf(t.getPriority()));
                 edit(priority, String.valueOf(t.getPriority()));

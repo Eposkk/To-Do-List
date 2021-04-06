@@ -48,6 +48,9 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
+                    <release>11</release>
+                    <jlinkImageName>to-do-list</jlinkImageName>
+                    <launcher>launcher</launcher>
                     <mainClass>ntnu.team1.App</mainClass>
                 </configuration>
             </plugin>
