@@ -17,7 +17,7 @@ public abstract class Task implements Serializable {
     private String name;
     private String description;
     private int priority;
-    private boolean done;
+    private boolean isDone;
 
 
     /**
@@ -36,7 +36,7 @@ public abstract class Task implements Serializable {
         this.name = name;
         this.description = description;
         this.priority = priority;
-        this.done = false;
+        this.isDone = false;
     }
    /*
     public Task(int ID, String name, String description, int priority) {
@@ -162,16 +162,18 @@ public abstract class Task implements Serializable {
      * @param done A boolean
      */
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
 
     /**
      * Equals method for the class
-     * @param o An object
      * @return a boolean according to if an object matches this object
      */
 
+    public Boolean isDone(){
+        return isDone;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -179,7 +181,7 @@ public abstract class Task implements Serializable {
         Task task = (Task) o;
         return ID == task.ID &&
                 priority == task.priority &&
-                done == task.done &&
+                isDone == task.isDone &&
                 Objects.equals(startDate, task.startDate) &&
                 Objects.equals(name, task.name) &&
                 Objects.equals(description, task.description);
@@ -187,7 +189,7 @@ public abstract class Task implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, startDate, name, description, priority, done);
+        return Objects.hash(ID, startDate, name, description, priority, isDone);
     }
 
 
@@ -205,7 +207,7 @@ public abstract class Task implements Serializable {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
-                ", done=" + done +
+                ", done=" + isDone +
                 '}';
     }
 }

@@ -1,21 +1,17 @@
 package ntnu.team1;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import ntnu.team1.application.task.MainTask;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilterInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -97,7 +93,13 @@ public class MainController {
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),-1);
         updateTasks();
+    }
 
+    private void edit(Label l, String t){
+        l.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                event -> l.setText("Edit"));
+        l.addEventHandler(MouseEvent.MOUSE_EXITED,
+                event -> l.setText(t));
     }
 
     private void updateTasks(){
@@ -105,76 +107,71 @@ public class MainController {
         showTasks.setPrefWidth(969);
         for (MainTask t: register.getAllTasks() ){
 
-            HBox hBox = new HBox();
-            VBox vBox1 = new VBox();
-            VBox vBox2 = new VBox();
-            VBox vBox3 = new VBox();
-            VBox vBox4 = new VBox();
-            VBox vBox5 = new VBox();
 
-            AnchorPane anchorPane = new AnchorPane();
-            ImageView imageView = new ImageView();
+            if(!t.isDone()){
+                HBox hBox = new HBox();
+                hBox.setId("taskBox");
 
-            CheckBox checkBox = new CheckBox();
-            Label taskName=new Label(t.getName());
-            Label taskDate=new Label(String.valueOf(t.getEndDate()));
-            Label description = new Label(t.getDescription());
-            Label category = new Label("Testkategori");
-            Label priority = new Label(String.valueOf(t.getPriority()));
-            Separator separator = new Separator();
+                AnchorPane anchorPane = new AnchorPane();
+                ImageView imageView = new ImageView();
 
-            vBox1.getChildren().add(checkBox);
-            vBox2.getChildren().add(taskName);
-            vBox3.getChildren().add(taskDate);
-            vBox4.getChildren().add(category);
-            vBox5.getChildren().add(imageView);
+                CheckBox checkBox = new CheckBox();
+                checkBox.setId(String.valueOf(t.getID()));
+                checkBox.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+                    t.setDone(true);
+                    updateTasks();
+                });
 
-            hBox.getChildren().add(vBox1);
-            hBox.getChildren().add(vBox2);
-            hBox.getChildren().add(vBox3);
-            hBox.getChildren().add(vBox4);
-            hBox.setPrefHeight(56);
+                Label taskName=new Label(t.getName());
+                edit(taskName, t.getName());
 
-            separator.setOrientation(Orientation.HORIZONTAL);
-            separator.setPrefWidth(900);
-            separator.setLayoutX(95);
-            separator.setLayoutY(108);
-            anchorPane.getChildren().add(separator);
-            anchorPane.setPrefHeight(3);
-            AnchorPane.setLeftAnchor(separator, 80.0);
-            AnchorPane.setBottomAnchor(separator, 0.0);
-            AnchorPane.setTopAnchor(separator, 0.0);
+                Label startDate=new Label(String.valueOf(t.getStartDate()));
+                edit(startDate, String.valueOf(t.getStartDate()));
+
+                Label endDate=new Label(String.valueOf(t.getEndDate()));
+                edit(endDate, String.valueOf(t.getEndDate()));
+
+                Label description = new Label(t.getDescription());
+                edit(description, t.getDescription());
+
+                Label category = new Label("test");
+                edit(category, "test");
+
+                Label priority = new Label(String.valueOf(t.getPriority()));
+                edit(priority, String.valueOf(t.getPriority()));
+
+                Separator separator = new Separator();
+
+                hBox.getChildren().add(checkBox);
+                hBox.getChildren().add(taskName);
+                hBox.getChildren().add(description);
+                hBox.getChildren().add(startDate);
+                hBox.getChildren().add(endDate);
+                hBox.getChildren().add(priority);
+                hBox.getChildren().add(category);
+
+                separator.setOrientation(Orientation.HORIZONTAL);
+                separator.setPrefWidth(900);
+                separator.setLayoutX(95);
+                separator.setLayoutY(108);
+                anchorPane.getChildren().add(separator);
+                anchorPane.setPrefHeight(3);
+                AnchorPane.setLeftAnchor(separator, 80.0);
+                AnchorPane.setBottomAnchor(separator, 0.0);
+                AnchorPane.setTopAnchor(separator, 0.0);
 
 
-            vBox1.setPrefWidth(80);
-            vBox1.setPrefHeight(54);
-            vBox1.setPadding(new Insets(0, 0, 0, 30));
-            vBox1.setAlignment(Pos.CENTER);
+                checkBox.setPrefWidth(80);
+                checkBox.setPrefHeight(54);
+                checkBox.setPadding(new Insets(0, 0, 0, 30));
+                checkBox.setAlignment(Pos.CENTER);
 
-            vBox2.setPrefWidth(550);
-            vBox2.setPrefHeight(54);
-            vBox2.setAlignment(Pos.CENTER_LEFT);
+                imageView.setFitHeight(29);
+                imageView.setFitWidth(30);
 
-            vBox3.setPrefWidth(167);
-            vBox3.setPrefHeight(54);
-            vBox3.setAlignment(Pos.CENTER);
-
-            vBox3.setPrefWidth(167);
-            vBox3.setPrefHeight(54);
-            vBox3.setAlignment(Pos.CENTER);
-
-            vBox4.setPrefWidth(167);
-            vBox4.setPrefHeight(54);
-            vBox4.setAlignment(Pos.CENTER);
-
-            imageView.setFitHeight(29);
-            imageView.setFitWidth(30);
-            vBox5.setPrefWidth(6);
-            vBox5.setPrefHeight(54);
-            vBox5.setAlignment(Pos.CENTER);
-
-            showTasks.getChildren().add(hBox);
-            showTasks.getChildren().add(anchorPane);
+                showTasks.getChildren().add(hBox);
+                showTasks.getChildren().add(anchorPane);
+            }
         }
     }
 }

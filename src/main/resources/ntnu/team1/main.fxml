@@ -18,144 +18,130 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MainController">
-    <children>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #2b78e4;" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="62.0" prefWidth="90.0" text="Home">
+<?import java.net.URL?>
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ntnu.team1.MainController">
+   <stylesheets>
+      <URL value="@main.css"/>
+   </stylesheets>
+   <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+      <top>
+         <HBox prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #2b78e4;" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" prefHeight="62.0" prefWidth="90.0" text="Home">
+               <font>
+                  <Font name="Avenir Book" size="21.0"/>
+               </font>
+            </Label>
+            <Label fx:id="testLabel" onMouseClicked="#generateRow" text="Label"/>
+         </HBox>
+      </top>
+      <left>
+         <HBox prefHeight="1018.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="1018.0" prefWidth="289.0">
+               <HBox fx:id="todayCategoryHBox" alignment="CENTER" prefHeight="47.0" prefWidth="100.0">
+                  <cursor>
+                     <Cursor fx:constant="HAND"/>
+                  </cursor>
+                  <ImageView fx:id="todayImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true"
+                             preserveRatio="true">
+                     <Image url="@../../Images/Today.png"/>
+                  </ImageView>
+                  <Label fx:id="todayCategoryText" prefHeight="31.0" prefWidth="61.0" text="Today">
                      <font>
-                        <Font name="Avenir Book" size="21.0" />
+                        <Font name="Avenir Book" size="19.0"/>
                      </font>
                   </Label>
-                  <Label fx:id="testLabel" onMouseClicked="#generateRow" text="Label" />
-               </children>
-            </HBox>
-         </top>
-         <left>
-            <HBox prefHeight="1018.0" prefWidth="170.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox prefHeight="1018.0" prefWidth="289.0">
-                     <children>
-                        <HBox fx:id="todayCategoryHBox" alignment="CENTER" prefHeight="47.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="todayImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/Today.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="todayCategoryText" prefHeight="31.0" prefWidth="61.0" text="Today">
-                                 <font>
-                                    <Font name="Avenir Book" size="19.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </HBox>
-                        <Separator prefWidth="200.0" />
-                        <HBox fx:id="upcomingCategoryHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#switchToUpcoming" prefHeight="47.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fx:id="upcomingImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/Upcoming.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="todayCategoryText1" prefHeight="31.0" prefWidth="91.0" text="Upcoming">
-                                 <font>
-                                    <Font name="Avenir Book" size="19.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </HBox>
-                     </children>
+               </HBox>
+               <Separator prefWidth="200.0"/>
+               <HBox fx:id="upcomingCategoryHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0"
+                     onMouseClicked="#switchToUpcoming" prefHeight="47.0" prefWidth="100.0">
+                  <cursor>
+                     <Cursor fx:constant="HAND"/>
+                  </cursor>
+                  <ImageView fx:id="upcomingImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true"
+                             preserveRatio="true">
+                     <Image url="@../../Images/Upcoming.png"/>
+                  </ImageView>
+                  <Label fx:id="todayCategoryText1" prefHeight="31.0" prefWidth="91.0" text="Upcoming">
+                     <font>
+                        <Font name="Avenir Book" size="19.0"/>
+                     </font>
+                  </Label>
+               </HBox>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+         </HBox>
+      </left>
+      <center>
+         <BorderPane prefHeight="1018.0" prefWidth="1618.0" BorderPane.alignment="CENTER">
+            <top>
+               <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
+                  <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="Today"
+                         underline="true">
+                     <font>
+                        <Font name="Avenir Book" size="31.0"/>
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0"/>
+               </HBox>
+            </top>
+            <center>
+               <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0">
+                  <BorderPane.margin>
+                     <Insets bottom="20.0"/>
+                  </BorderPane.margin>
+                  <VBox prefHeight="940.0" prefWidth="336.0">
+                     <TextArea fx:id="taskName" prefHeight="77.0" prefWidth="100.0" promptText="Add task name">
+                        <font>
+                           <Font size="25.0"/>
+                        </font>
+                     </TextArea>
+                     <TextArea fx:id="description" prefHeight="291.0" prefWidth="336.0"
+                               promptText="Add description">
+                        <font>
+                           <Font size="19.0"/>
+                        </font>
+                     </TextArea>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
-               </children>
-            </HBox>
-         </left>
-         <center>
-            <BorderPane prefHeight="1018.0" prefWidth="1618.0" BorderPane.alignment="CENTER">
-               <top>
-                  <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="Today" underline="true">
-                           <font>
-                              <Font name="Avenir Book" size="31.0" />
-                           </font>
-                        </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" />
-                     </children>
-                  </HBox>
-               </top>
-               <center>
-                  <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0">
-                     <children>
-                        <VBox prefHeight="940.0" prefWidth="336.0">
-                           <children>
-                              <TextArea fx:id="taskName" prefHeight="77.0" prefWidth="100.0" promptText="Add task name">
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </TextArea>
-                              <TextArea fx:id="description" prefHeight="291.0" prefWidth="336.0" promptText="Add description">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                              </TextArea>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="940.0" prefWidth="157.0">
-                           <children>
-                              <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
-                              <Label text="Priority">
-                                <font>
-                                   <Font size="25.0" />
-                                </font>
-                              </Label>
-                              <VBox>
-                                 <fx:define>
-                                    <ToggleGroup fx:id="priority" />
-                                 </fx:define>
-                                 <RadioButton text="1">
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="priority" />
-                                    </toggleGroup>
-                                 </RadioButton>
-                                 <RadioButton text="2" toggleGroup="$priority">
+                  <VBox prefHeight="940.0" prefWidth="157.0">
+                     <ChoiceBox fx:id="choiceBox" prefWidth="150.0"/>
+                     <Label text="Priority">
+                        <font>
+                           <Font size="25.0"/>
+                        </font>
+                     </Label>
+                     <VBox>
+                        <fx:define>
+                           <ToggleGroup fx:id="priority"/>
+                        </fx:define>
+                        <RadioButton text="1">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="priority"/>
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton text="2" toggleGroup="$priority">
 
-                                 </RadioButton>
-                                 <RadioButton text="3" toggleGroup="$priority">
-                                 </RadioButton>
+                        </RadioButton>
+                        <RadioButton text="3" toggleGroup="$priority">
+                        </RadioButton>
 
-                                          </VBox>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Start date:" />
-                              <DatePicker fx:id="startDate" />
-                              <Label text="End date:" />
-                              <DatePicker fx:id="endDate" />
-                              <Button fx:id="submitTask" mnemonicParsing="false" onAction="#submitTask" text="Submit" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets bottom="20.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </center>
-               <bottom>
-                  <VBox fx:id="showTasks" prefHeight="523.0" prefWidth="1615.0" BorderPane.alignment="CENTER" />
-               </bottom>
-            </BorderPane>
-         </center>
-      </BorderPane>
-    </children>
+                     </VBox>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <Label text="Start date:"/>
+                     <DatePicker fx:id="startDate"/>
+                     <Label text="End date:"/>
+                     <DatePicker fx:id="endDate"/>
+                     <Button fx:id="submitTask" mnemonicParsing="false" onAction="#submitTask" text="Submit"/>
+                  </VBox>
+               </HBox>
+            </center>
+            <bottom>
+               <VBox fx:id="showTasks" prefHeight="523.0" prefWidth="1615.0" BorderPane.alignment="CENTER"/>
+            </bottom>
+         </BorderPane>
+      </center>
+   </BorderPane>
 </AnchorPane>

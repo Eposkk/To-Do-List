@@ -1,0 +1,21 @@
+#taskpart{
+
+}
+#taskBox{
+    -fx-pref-height: 54;
+}
+#taskBox:hover{
+    -fx-pref-height: 54;
+    -fx-background-color: lightgrey;
+}
+#taskBox>Label{
+    -fx-alignment: center;
+    -fx-pref-height: 54;
+    -fx-pref-width: 167 ;
+
+}
+#taskBox>Label:hover{
+    -fx-scale-y: 1.2;
+    -fx-scale-x: 1.2;
+    -fx-cursor: hand;
+}
