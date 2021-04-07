@@ -38,25 +38,6 @@ public abstract class Task implements Serializable {
         this.priority = priority;
         this.isDone = false;
     }
-   /*
-    public Task(int ID, String name, String description, int priority) {
-        this.ID = ID;
-        this.name = name;
-        this.description = description;
-        //TODO add priority check
-        this.priority = priority;
-        done = false;
-    }
-
-
-    public Task(int ID, LocalDate endDate, String name, String description, int priority) {
-        this.ID = ID;
-        this.endDate = endDate;
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
-        done = false;
-    }*/
 
     /**
      * Gets the id

@@ -2,6 +2,7 @@ package ntnu.team1;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -16,7 +17,10 @@ import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
+import ntnu.team1.application.task.Task;
+
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.security.cert.PolicyNode;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -143,12 +147,50 @@ public class MainController {
         updateTasks();
     }
 
-    private void edit(Label l, String t){
+    private void showEditOption(Label l, String t){
         l.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 event -> l.setText("Edit"));
         l.addEventHandler(MouseEvent.MOUSE_EXITED,
                 event -> l.setText(t));
     }
+
+    private void edit(Label l, MainTask t,int i, VBox vBox){
+        HBox newDataBox = new HBox();
+        TextField newData = new TextField();
+        Button newDataButton = new Button();
+        newDataButton.setText("Update");
+        newDataButton.setOnAction(event ->{
+            switch(i){
+                case 1:
+                    t.setName(newData.getText());
+                    break;
+                case 2:
+                    t.setStartDate(LocalDate.parse(newData.getText()));
+                    break;
+                case 3:
+                    t.setEndDate(LocalDate.parse(newData.getText()));
+                    break;
+                case 4:
+                    t.setDescription(newData.getText());
+                    break;
+                case 5:
+                    t.setPriority(Integer.parseInt(newData.getText()));
+                    break;
+                case 6:
+                    t.setCategoryId(Integer.parseInt(newData.getText()));
+                    break;
+            }
+            updateTasks();
+                }
+        );
+        newDataBox.getChildren().add(newData);
+        newDataBox.getChildren().add(newDataButton);
+        l.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                event ->
+                        vBox.getChildren().add(newDataBox));
+
+    }
+
 
     private void updateTasks(){
         showTasks.getChildren().clear();
@@ -156,6 +198,8 @@ public class MainController {
         for (MainTask t: register.getAllTasks() ){
 
             if(!t.isDone()){
+                VBox vBox = new VBox();
+                vBox.setId("taskHolder");
                 HBox hBox = new HBox();
                 hBox.setId("taskBox");
 
@@ -170,22 +214,28 @@ public class MainController {
                 });
 
                 Label taskName=new Label(t.getName());
-                edit(taskName, t.getName());
+                showEditOption(taskName, t.getName());
+                edit(taskName, t,1,vBox);
 
                 Label startDate=new Label(String.valueOf(t.getStartDate()));
-                edit(startDate, String.valueOf(t.getStartDate()));
+                showEditOption(startDate, String.valueOf(t.getStartDate()));
+                edit(startDate, t,2, vBox);
 
                 Label endDate=new Label(String.valueOf(t.getEndDate()));
-                edit(endDate, String.valueOf(t.getEndDate()));
+                showEditOption(endDate, String.valueOf(t.getEndDate()));
+                edit(endDate, t,3, vBox);
 
                 Label description = new Label(t.getDescription());
-                edit(description, t.getDescription());
+                showEditOption(description, t.getDescription());
+                edit(description, t,4, vBox);
 
                 Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-                edit(category, register.getCategory(t.getCategoryId()).getName());
+                showEditOption(category, register.getCategory(t.getCategoryId()).getName());
+                edit(category, t,5, vBox);
 
                 Label priority = new Label(String.valueOf(t.getPriority()));
-                edit(priority, String.valueOf(t.getPriority()));
+                showEditOption(priority, String.valueOf(t.getPriority()));
+                edit(priority, t,6, vBox);
 
                 Separator separator = new Separator();
 
@@ -216,7 +266,8 @@ public class MainController {
                 imageView.setFitHeight(29);
                 imageView.setFitWidth(30);
 
-                showTasks.getChildren().add(hBox);
+                vBox.getChildren().add(hBox);
+                showTasks.getChildren().add(vBox);
                 showTasks.getChildren().add(anchorPane);
             }
         }

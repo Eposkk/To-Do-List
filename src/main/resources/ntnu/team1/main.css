@@ -10,7 +10,7 @@
 }
 #taskBox>Label{
     -fx-alignment: center;
-    -fx-pref-height: 54;
+    -fx-min-height: 70;
     -fx-pref-width: 167 ;
 
 }
