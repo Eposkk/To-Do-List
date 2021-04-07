@@ -19,6 +19,7 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.application.task.Task;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.security.cert.PolicyNode;
@@ -76,10 +77,15 @@ public class MainController {
 
     @FXML
     private void initialize(){
-        Read reader = new Read("data/categories.ser","data/tasks.ser");
-        register.setCategories(reader.readCategory());
-        register.setTasks(reader.readTasks());
-        updateTasks();
+        File category= new File("data/categories.ser");
+        if (category.exists()){
+            Read reader = new Read("data/categories.ser","data/tasks.ser");
+            register.setCategories(reader.readCategory());
+            register.setTasks(reader.readTasks());
+            updateTasks();
+        }
+
+
 
         register.addCategory("Test",null);
         register.addCategory("Skole", null);

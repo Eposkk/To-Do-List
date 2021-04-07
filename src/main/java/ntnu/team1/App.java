@@ -29,10 +29,10 @@ public class App extends Application {
     }
 
     static void setRootWithSave(String fxml, MainRegister register) throws IOException {
-        scene.setRoot(loadFXML(fxml));
         Write writer = new Write(register.getCategories(),register.getAllTasks());
         writer.writeCategories();
         writer.writeTasks();
+        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
