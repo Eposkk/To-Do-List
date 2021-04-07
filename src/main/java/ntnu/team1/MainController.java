@@ -94,22 +94,6 @@ public class MainController {
     }
 
     @FXML
-    private void start(){
-        register.addCategory("Test",null);
-        ArrayList<Category> categories = new ArrayList<Category>(register.getCategories().values());
-        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(categories));
-        vBoxPriority.getChildren().add(cb);
-    }
-
-    @FXML
-    private void generateRow() {
-        MainTask mainTask = new MainTask(1, LocalDate.now(), LocalDate.of(2021, 03, 26), "Test", "Dette er en test", 2);
-        Label newDescription = new Label(newDescriptionTextField.getText());
-
-        this.gridPane.addRow(9,newDescription);
-    }
-
-    @FXML
     private void switchToUpcoming() throws IOException {
         App.setRoot("upcoming");
     }
@@ -117,14 +101,13 @@ public class MainController {
     @FXML
     private void submitTask(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
-        Category category1 = null;
+        int category1 = -1;
         for (Category category: categories){
             if(category.getName().equals(choiceBox.getValue().toString())){
-                category1=category;
+                category1=category.getID();
             }
         }
-        assert category1 != null;
-        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1.getID());
+        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         updateTasks();
     }
 
@@ -135,7 +118,7 @@ public class MainController {
                 event -> l.setText(t));
     }
 
-    private void edit(Label l, MainTask t,int i, VBox vBox){
+    private void edit(Label l, MainTask t, int i, VBox vBox){
         HBox newDataBox = new HBox();
         TextField newData = new TextField();
         Button newDataButton = new Button();
@@ -167,8 +150,7 @@ public class MainController {
         newDataBox.getChildren().add(newData);
         newDataBox.getChildren().add(newDataButton);
         l.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                event ->
-                        vBox.getChildren().add(newDataBox));
+                event -> vBox.getChildren().add(newDataBox));
 
     }
 

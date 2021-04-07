@@ -32,7 +32,6 @@
                   <Font name="Avenir Book" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="testLabel" onMouseClicked="#generateRow" text="Label" />
          </HBox>
       </top>
       <left>
