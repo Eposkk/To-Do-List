@@ -82,6 +82,7 @@ public class MainController {
             namesOfCategories.add(c.getName());
         }
         choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
+        App.setReg(register);
     }
 
     @FXML

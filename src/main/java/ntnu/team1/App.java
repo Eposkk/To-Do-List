@@ -16,6 +16,7 @@ import java.io.IOException;
 public class App extends Application {
 
     public static Scene scene;
+    public static MainRegister reg = new MainRegister();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,7 +30,12 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    public static void setReg(MainRegister reg) {
+        App.reg = reg;
+    }
+
     static void setRootWithSave(String fxml, MainRegister register) throws IOException {
+        reg=register;
         Write writer = new Write(register.getCategories(),register.getAllTasks());
         writer.writeCategories();
         writer.writeTasks();
@@ -45,4 +51,11 @@ public class App extends Application {
         launch();
     }
 
+    @Override
+    public void stop(){
+        System.out.println("Program is closing");
+        Write writer = new Write(reg.getCategories(),reg.getAllTasks());
+        writer.writeCategories();
+        writer.writeTasks();
+    }
 }
