@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import ntnu.team1.application.fileHandling.Read;
+import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import java.io.IOException;
@@ -68,26 +70,13 @@ public class MainController {
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
 
-
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-    }
-    @FXML
-    private void addNewTask(){
+    private void initialize(){
+        Read reader = new Read("data/categories.ser","data/tasks.ser");
+        register.setCategories(reader.readCategory());
+        register.setTasks(reader.readTasks());
+        updateTasks();
 
-    }
-
-    @FXML
-    private void start(){
-        register.addCategory("Test",null);
-        ArrayList<Category> categories = new ArrayList<Category>(register.getCategories().values());
-        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(categories));
-        vBoxPriority.getChildren().add(cb);
-    }
-
-    @FXML
-        private void updateChoiceBox(){
         register.addCategory("Test",null);
         register.addCategory("Skole", null);
         categories =  new ArrayList<>(register.getCategories().values());
@@ -101,6 +90,33 @@ public class MainController {
     }
 
     @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+
+    @FXML
+    private void addNewTask(){
+
+    }
+
+    @FXML
+    private void switchToFinished() throws IOException {
+        App.setRootWithSave("finished", register);
+    }
+
+    public MainRegister getRegister() {
+        return register;
+    }
+
+    @FXML
+    private void start(){
+        register.addCategory("Test",null);
+        ArrayList<Category> categories = new ArrayList<Category>(register.getCategories().values());
+        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(categories));
+        vBoxPriority.getChildren().add(cb);
+    }
+
+    @FXML
     private void generateRow() {
         MainTask mainTask = new MainTask(1, LocalDate.now(), LocalDate.of(2021, 03, 26), "Test", "Dette er en test", 2);
         Label newDescription = new Label(newDescriptionTextField.getText());
@@ -111,10 +127,6 @@ public class MainController {
     @FXML
     private void switchToUpcoming() throws IOException {
         App.setRoot("upcoming");
-    }
-    @FXML
-    public void switchToTest(ActionEvent actionEvent) throws IOException {
-        App.setRoot("test");
     }
 
     @FXML

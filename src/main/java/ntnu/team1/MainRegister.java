@@ -203,7 +203,13 @@ public class MainRegister {
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
+    public void setCategories(HashMap<Integer, Category> categories) {
+        this.categories = categories;
+    }
 
+    public void setTasks(ArrayList<MainTask> tasks) {
+        this.tasks = tasks;
+    }
 
     //TODO toString()
 

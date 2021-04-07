@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ntnu.team1.application.fileHandling.Write;
 
 import java.io.IOException;
 
@@ -25,6 +26,13 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+
+    static void setRootWithSave(String fxml, MainRegister register) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+        Write writer = new Write(register.getCategories(),register.getAllTasks());
+        writer.writeCategories();
+        writer.writeTasks();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
