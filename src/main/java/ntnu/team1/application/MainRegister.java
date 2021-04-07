@@ -1,4 +1,4 @@
-package ntnu.team1;
+package ntnu.team1.application;
 
 import javafx.scene.paint.Color;
 import java.lang.reflect.Array;

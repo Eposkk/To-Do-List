@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.MainTask;
 

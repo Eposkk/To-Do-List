@@ -1,9 +1,6 @@
 package ntnu.team1;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -13,16 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
-import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
-import ntnu.team1.application.task.Task;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.security.cert.PolicyNode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -47,16 +41,12 @@ public class MainController {
     public DatePicker endDate;
     public Button submitTask;
     public DatePicker startDate;
-    public RadioButton pri3;
-    public RadioButton pri2;
-    public RadioButton pri1;
     public ChoiceBox choiceBox;
     public ToggleGroup priority;
     public VBox showTasks;
     public HBox addNewTaskHBox;
     @FXML
     private VBox mainVBox;
-
     @FXML
     private Button textGenerateButton;
     @FXML
@@ -84,29 +74,14 @@ public class MainController {
             register.setTasks(reader.readTasks());
             updateTasks();
         }
-
-
-
         register.addCategory("Test",null);
         register.addCategory("Skole", null);
         categories =  new ArrayList<>(register.getCategories().values());
         namesOfCategories = new ArrayList<>();
-
-
         for (Category c: categories){
             namesOfCategories.add(c.getName());
         }
         choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
-    }
-
-    @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-    }
-
-    @FXML
-    private void addNewTask(){
-
     }
 
     @FXML

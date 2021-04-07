@@ -1,5 +1,6 @@
 package ntnu.team1;
 
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

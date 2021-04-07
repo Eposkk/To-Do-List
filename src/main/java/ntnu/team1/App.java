@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Write;
 
 import java.io.IOException;
