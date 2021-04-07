@@ -51,8 +51,6 @@ public class Read {
             fileInputStream = new FileInputStream(pathEvent);
             in= new ObjectInputStream(fileInputStream);
             tasks=(ArrayList<MainTask>) in.readObject();
-
-
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
