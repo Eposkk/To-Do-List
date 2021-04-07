@@ -26,6 +26,7 @@ public class FinishedController {
         Read reader = new Read("data/categories.ser","data/tasks.ser");
         register.setCategories(reader.readCategory());
         register.setTasks(reader.readTasks());
+        App.setReg(register);
         updateTasks();
     }
 
