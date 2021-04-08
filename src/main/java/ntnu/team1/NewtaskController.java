@@ -33,8 +33,6 @@ public class NewtaskController {
             register.setCategories(reader.readCategory());
             register.setTasks(reader.readTasks());
         }
-        register.addCategory("Test",null);
-        register.addCategory("Skole", null);
         categories =  new ArrayList<>(register.getCategories().values());
         namesOfCategories = new ArrayList<>();
         for (Category c: categories){
