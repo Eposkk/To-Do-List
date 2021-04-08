@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MainController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MainController">
    <stylesheets>
       <URL value="@main.css" />
    </stylesheets>
@@ -138,6 +138,15 @@
                      <DatePicker fx:id="endDate" />
                      <Button fx:id="submitTask" mnemonicParsing="false" onAction="#submitTask" text="Submit" />
                   </VBox>
+                  <HBox prefHeight="327.0" prefWidth="280.0">
+                     <children>
+                        <Button fx:id="addNewTaskButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="89.0" text="+" onAction="#addNewTask">
+                           <font>
+                              <Font size="42.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </HBox>
             </center>
             <bottom>
