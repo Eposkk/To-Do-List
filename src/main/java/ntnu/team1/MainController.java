@@ -83,8 +83,11 @@ public class MainController {
         namesOfCategories = new ArrayList<>();
         for (Category c: categories){
             namesOfCategories.add(c.getName());
+            HBox hbox = new HBox();
+            Label categoryName = new Label(c.getName());
+            hbox.getChildren().add(categoryName);
+            allCategoriesVBox.getChildren().add(hbox);
         }
-        choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
         App.setReg(register);
 
         for(int i=0; i<register.getCategories().size();i++){
@@ -217,7 +220,8 @@ public class MainController {
 
     public void updateTasks(){
         showTasks.getChildren().clear();
-        showTasks.setPrefWidth(969);
+        showTasks.setPrefWidth(1000);
+
         for (MainTask t: register.getAllTasks() ){
 
             if(!t.isDone()){
@@ -226,82 +230,72 @@ public class MainController {
                 HBox hBox = new HBox();
                 hBox.setId("taskBox");
 
-                AnchorPane anchorPane = new AnchorPane();
-                ImageView imageView = new ImageView();
-
                 CheckBox checkBox = new CheckBox();
                 checkBox.setId(String.valueOf(t.getID()));
                 checkBox.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
                     t.setDone(true);
                     updateTasks();
                 });
+                hBox.getChildren().add(checkBox);
 
                 Label taskName=new Label(t.getName());
                 showEditOption(taskName, t.getName());
                 edit(taskName, t,1,vBox);
+                hBox.getChildren().add(taskName);
 
                 Label description = new Label(t.getDescription());
                 showEditOption(description, t.getDescription());
                 edit(description, t,2, vBox);
+                hBox.getChildren().add(description);
 
                 Label startDate=new Label(String.valueOf(t.getStartDate()));
                 showEditOption(startDate, String.valueOf(t.getStartDate()));
                 edit(startDate, t,3, vBox);
+                hBox.getChildren().add(startDate);
 
                 Label endDate=new Label(String.valueOf(t.getEndDate()));
                 showEditOption(endDate, String.valueOf(t.getEndDate()));
                 edit(endDate, t,4, vBox);
+                hBox.getChildren().add(endDate);
 
                 Label priority = new Label(String.valueOf(t.getPriority()));
                 showEditOption(priority, String.valueOf(t.getPriority()));
                 edit(priority, t,5, vBox);
+                hBox.getChildren().add(priority);
+
+                Label category = new Label("No Category");
+                showEditOption(category, "No category");
+                if(t.hasCategory()){
+                    category = new Label(register.getCategory(t.getCategoryId()).getName());
+                    showEditOption(category, register.getCategory(t.getCategoryId()).getName());
+                }
+                edit(category, t, 6, vBox);
+                hBox.getChildren().add(category);
 
 
                 Button delete = new Button("Delete");
                 delete.setOnAction(event ->{
                     register.removeMainTask(t.getID());
                     updateTasks();
-                }
-                );
-
-                Separator separator = new Separator();
-
-                hBox.getChildren().add(checkBox);
-                hBox.getChildren().add(taskName);
-                hBox.getChildren().add(description);
-                hBox.getChildren().add(startDate);
-                hBox.getChildren().add(endDate);
-                hBox.getChildren().add(priority);
-                if(t.hasCategory()){
-                    Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-                    showEditOption(category, register.getCategory(t.getCategoryId()).getName());
-                    edit(category, t, 6, vBox);
-                    hBox.getChildren().add(category);
-                }
+                });
                 hBox.getChildren().add(delete);
 
-                separator.setOrientation(Orientation.HORIZONTAL);
-                separator.setPrefWidth(900);
-                separator.setLayoutX(95);
-                separator.setLayoutY(108);
+                AnchorPane anchorPane = new AnchorPane();
+                Separator separator = new Separator();
                 anchorPane.getChildren().add(separator);
-                anchorPane.setPrefHeight(3);
                 AnchorPane.setLeftAnchor(separator, 80.0);
                 AnchorPane.setBottomAnchor(separator, 0.0);
                 AnchorPane.setTopAnchor(separator, 0.0);
-
-                checkBox.setPrefWidth(80);
-                checkBox.setPrefHeight(54);
-                checkBox.setPadding(new Insets(0, 0, 0, 30));
-                checkBox.setAlignment(Pos.CENTER);
-
-                imageView.setFitHeight(29);
-                imageView.setFitWidth(30);
 
                 vBox.getChildren().add(hBox);
                 showTasks.getChildren().add(vBox);
                 showTasks.getChildren().add(anchorPane);
             }
         }
+    }
+
+    @FXML
+    private void switchToCategories() throws IOException {
+        App.setRootWithSave("category", register);
     }
 }

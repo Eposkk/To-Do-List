@@ -81,7 +81,7 @@ public class MainRegister {
 
     /**
      * Removes a task from the register
-     * @param mainTaskId Id associated with the category
+     * @param mainTaskId Id associated with the task
      */
 
     public void removeMainTask(int mainTaskId) throws IllegalArgumentException{

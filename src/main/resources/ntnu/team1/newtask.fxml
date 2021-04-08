@@ -13,9 +13,7 @@
 
 
 <AnchorPane prefHeight="950.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.NewtaskController">
-   <children>
       <VBox layoutX="396.0" layoutY="113.0" prefHeight="714.0" prefWidth="173.0">
-         <children>
             <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
             <Label text="Priority">
                <font>
@@ -26,26 +24,16 @@
                <fx:define>
                   <ToggleGroup fx:id="priority" />
                </fx:define>
-               <RadioButton text="1">
-                  <toggleGroup>
-                     <ToggleGroup fx:id="priority" />
-                  </toggleGroup>
-               </RadioButton>
-               <RadioButton text="2" toggleGroup="$priority">
-
-               </RadioButton>
-               <RadioButton text="3" toggleGroup="$priority">
-               </RadioButton>
+               <RadioButton text="1" selected="true" toggleGroup="$priority"/>
+               <RadioButton text="2" toggleGroup="$priority"/>
+               <RadioButton text="3" toggleGroup="$priority"/>
             </VBox>
-         </children>
       </VBox>
       <VBox layoutX="569.0" layoutY="113.0" prefHeight="375.0" prefWidth="157.0">
-         <children>
             <Label text="Start date:" />
             <DatePicker fx:id="startDate" />
             <Label text="End date:" />
             <DatePicker fx:id="endDate" />
-         </children>
       </VBox>
       <TextArea fx:id="description" layoutX="60.0" layoutY="192.0" prefHeight="291.0" prefWidth="336.0" promptText="Add description">
          <font>
@@ -77,5 +65,4 @@
             <Font size="30.0" />
          </font>
       </Button>
-   </children>
 </AnchorPane>

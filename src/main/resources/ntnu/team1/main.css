@@ -1,12 +1,10 @@
-#taskpart{
 
-}
 #taskBox{
     -fx-pref-height: 54;
+
 }
 #taskBox:hover{
-    -fx-pref-height: 54;
-    -fx-background-color: lightgrey;
+    -fx-background-color: lightblue;
 }
 #taskBox>Label{
     -fx-alignment: center;
@@ -17,6 +15,12 @@
     -fx-alignment: center;
     -fx-min-height: 70;
     -fx-pref-width: 150 ;
+}
+#taskBox>CheckBox{
+    -fx-alignment: center;
+    -fx-min-height: 54;
+    -fx-pref-width: 80 ;
+    -fx-padding: 0 0 0 30;
 }
 #taskBox>Label:hover{
     -fx-scale-y: 1.2;
@@ -35,4 +39,15 @@
     -fx-min-height: 31;
     -fx-min-width: 91;
     -fx-font-size: 19;
+}
+#taskBox>Seperator{
+    -fx-orientation: horizontal;
+    -fx-min-height: 70;
+    -fx-pref-width: 1000 ;
+    -fx-scale-x: 95;
+    -fx-scale-y: 108;
+}
+
+#taskBox>AnchorPane{
+    -fx-min-height: 3;
 }
