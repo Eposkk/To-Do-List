@@ -35,7 +35,7 @@ public class MainTask extends Task {
         return hasCategory;
     }
 
-    public boolean hasUnderTask() {
+    public boolean hasSecondaryTask() {
         return hasSecondaryTask;
     }
 
