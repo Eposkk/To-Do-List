@@ -89,6 +89,11 @@ public class MainController {
     }
 
     @FXML
+    private void addNewTask() throws IOException {
+        App.setRootWithSave("newtask", register);
+    }
+
+    @FXML
     private void switchToFinished() throws IOException {
         App.setRootWithSave("finished", register);
     }
@@ -192,7 +197,7 @@ public class MainController {
     }
 
 
-    private void updateTasks(){
+    public void updateTasks(){
         showTasks.getChildren().clear();
         showTasks.setPrefWidth(969);
         for (MainTask t: register.getAllTasks() ){

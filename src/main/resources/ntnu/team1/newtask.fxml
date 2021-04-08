@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="950.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.unused.Newtask">
+<AnchorPane prefHeight="950.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.NewtaskController">
    <children>
       <VBox layoutX="396.0" layoutY="113.0" prefHeight="714.0" prefWidth="173.0">
          <children>
@@ -23,19 +23,19 @@
                </font>
             </Label>
             <VBox>
-               <children>
-                  <RadioButton text="1" />
-                  <RadioButton text="2">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="priority" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton text="3">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="priority" />
-                     </toggleGroup>
-                  </RadioButton>
-               </children>
+               <fx:define>
+                  <ToggleGroup fx:id="priority" />
+               </fx:define>
+               <RadioButton text="1">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="priority" />
+                  </toggleGroup>
+               </RadioButton>
+               <RadioButton text="2" toggleGroup="$priority">
+
+               </RadioButton>
+               <RadioButton text="3" toggleGroup="$priority">
+               </RadioButton>
             </VBox>
          </children>
       </VBox>
@@ -67,12 +67,12 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="cancel" layoutX="60.0" layoutY="507.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="134.0" text="Cancel">
+      <Button fx:id="cancel" layoutX="60.0" layoutY="507.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="134.0" text="Cancel" onAction="#cancel">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Button fx:id="submitTask" layoutX="262.0" layoutY="507.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="134.0" text="Submit">
+      <Button fx:id="submitTask" layoutX="262.0" layoutY="507.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="134.0" text="Submit" onAction="#submit">
          <font>
             <Font size="30.0" />
          </font>
