@@ -1,6 +1,7 @@
 package ntnu.team1;
 
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -48,6 +49,7 @@ public class MainController {
     public ToggleGroup priority;
     public VBox showTasks;
     public HBox addNewTaskHBox;
+    public VBox allCategoriesVBox;
     @FXML
     private VBox mainVBox;
     @FXML
@@ -77,8 +79,6 @@ public class MainController {
             register.setTasks(reader.readTasks());
             updateTasks();
         }
-        register.addCategory("Test",null);
-        register.addCategory("Skole", null);
         categories =  new ArrayList<>(register.getCategories().values());
         namesOfCategories = new ArrayList<>();
         for (Category c: categories){
@@ -86,6 +86,24 @@ public class MainController {
         }
         choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
         App.setReg(register);
+
+        for(int i=0; i<register.getCategories().size();i++){
+            Label l = new Label(register.getCategories().get(i).getName()); l.setId("labelCategoryBox");
+            HBox c=new HBox(l); c.setId("categoryBox");
+            allCategoriesVBox.getChildren().add(c);
+            allCategoriesVBox.getChildren().add(new Separator());
+        }
+        Label l = new Label("Add new category"); l.setId("labelCategoryBox");
+        HBox c=new HBox(l); c.setId("categoryBox");
+        c.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                mouseEvent -> {
+                    try {
+                        App.setRootWithSave("category",register);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+        allCategoriesVBox.getChildren().add(c);
     }
 
     @FXML
