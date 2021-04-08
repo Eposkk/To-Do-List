@@ -79,15 +79,6 @@ public class MainController {
             register.setTasks(reader.readTasks());
             updateTasks();
         }
-        categories =  new ArrayList<>(register.getCategories().values());
-        namesOfCategories = new ArrayList<>();
-        for (Category c: categories){
-            namesOfCategories.add(c.getName());
-            HBox hbox = new HBox();
-            Label categoryName = new Label(c.getName());
-            hbox.getChildren().add(categoryName);
-            allCategoriesVBox.getChildren().add(hbox);
-        }
         App.setReg(register);
 
         for(int i=0; i<register.getCategories().size();i++){
@@ -126,21 +117,6 @@ public class MainController {
     @FXML
     private void switchToUpcoming() throws IOException {
         App.setRoot("upcoming");
-    }
-
-    @FXML
-    private void submitTask(){
-        RadioButton r =(RadioButton) priority.getSelectedToggle();
-        int category1 = -1;
-        if(choiceBox.getValue() != null){
-            for (Category category: categories){
-                if(category.getName().equals(choiceBox.getValue().toString())){
-                    category1=category.getID();
-                }
-            }
-        }
-        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
-        updateTasks();
     }
 
     private void showEditOption(Label l, String t){

@@ -51,3 +51,8 @@
 #taskBox>AnchorPane{
     -fx-min-height: 3;
 }
+
+#leftVBox{
+    -fx-alignment: top center;
+    -fx-font-size: 40;
+}
