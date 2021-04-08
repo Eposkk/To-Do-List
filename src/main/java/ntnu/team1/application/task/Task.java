@@ -148,13 +148,19 @@ public abstract class Task implements Serializable {
 
 
     /**
-     * Equals method for the class
-     * @return a boolean according to if an object matches this object
+     * Returns if the task is marked as done
+     * @return a boolean indicating done or not
      */
 
     public Boolean isDone(){
         return isDone;
     }
+
+    /**
+     * Equals method for the class
+     * @return a boolean according to if an object matches this object
+     */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -181,7 +187,7 @@ public abstract class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "Task" +
                 "ID=" + ID +
                 ", start date=" + startDate +
                 ", end date=" + endDate +
