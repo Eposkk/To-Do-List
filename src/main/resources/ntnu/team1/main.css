@@ -23,3 +23,16 @@
     -fx-scale-x: 1.2;
     -fx-cursor: hand;
 }
+#categoryBox>Label{
+    -fx-alignment: center;
+    -fx-min-height: 31;
+    -fx-min-width: 91;
+    -fx-font-size: 19;
+}
+
+#labelCategoryBox>Label{
+    -fx-alignment: center;
+    -fx-min-height: 31;
+    -fx-min-width: 91;
+    -fx-font-size: 19;
+}
