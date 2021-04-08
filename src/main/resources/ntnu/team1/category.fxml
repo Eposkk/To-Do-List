@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MainController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.CategoryController">
    <stylesheets>
       <URL value="@main.css" />
    </stylesheets>
@@ -77,7 +77,7 @@
                   </children>
                </HBox>
                <Separator prefWidth="200.0" />
-               <HBox alignment="CENTER" onMouseClicked="#switchToCategories" prefHeight="100.0" prefWidth="200.0">
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                   <children>
                      <Label text="Categories">
                         <font>
@@ -94,28 +94,25 @@
          <BorderPane prefHeight="1018.0" prefWidth="1618.0" BorderPane.alignment="CENTER">
             <top>
                <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
-                  <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="All tasks" underline="true">
+                  <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="Categories" underline="true">
                      <font>
                         <Font name="Avenir Book" size="31.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="addNewTaskButton" mnemonicParsing="false" onAction="#addNewTask" prefHeight="80.0" prefWidth="193.0" text="Add new +">
-                           <font>
-                              <Font size="26.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children></HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
                </HBox>
             </top>
+            <center>
+               <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0">
+                  <BorderPane.margin>
+                     <Insets bottom="20.0" />
+                  </BorderPane.margin>
+               </HBox>
+            </center>
             <bottom>
-               <ScrollPane prefHeight="936.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
+               <ScrollPane prefHeight="593.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
                   <content>
-                     <VBox fx:id="showTasks" prefHeight="933.0" prefWidth="1615.0" />
+                     <VBox fx:id="showTasks" prefHeight="523.0" prefWidth="1615.0" />
                   </content>
                </ScrollPane>
             </bottom>

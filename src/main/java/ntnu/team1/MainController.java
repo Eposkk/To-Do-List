@@ -48,6 +48,7 @@ public class MainController {
     public ToggleGroup priority;
     public VBox showTasks;
     public HBox addNewTaskHBox;
+    public VBox leftVBox;
     @FXML
     private VBox mainVBox;
     @FXML
@@ -83,6 +84,10 @@ public class MainController {
         namesOfCategories = new ArrayList<>();
         for (Category c: categories){
             namesOfCategories.add(c.getName());
+            HBox hbox = new HBox();
+            Label categoryName = new Label(c.getName());
+            hbox.getChildren().add(categoryName);
+            leftVBox.getChildren().add(hbox);
         }
         App.setReg(register);
     }
@@ -270,5 +275,10 @@ public class MainController {
                 showTasks.getChildren().add(anchorPane);
             }
         }
+    }
+
+    @FXML
+    private void switchToCategories() throws IOException {
+        App.setRootWithSave("category", register);
     }
 }
