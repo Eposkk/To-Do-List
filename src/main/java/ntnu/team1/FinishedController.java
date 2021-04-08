@@ -14,8 +14,12 @@ import javafx.scene.layout.VBox;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.MainTask;
+import ntnu.team1.application.task.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class FinishedController {
 
@@ -32,6 +36,12 @@ public class FinishedController {
 
     public void switchToMain() throws IOException {
         App.setRootWithSave("main", register);
+    }
+
+    public void deleteAllFinished(){
+        ArrayList<MainTask> task = (ArrayList<MainTask>) register.getAllTasks().stream().filter(i -> !i.isDone()).collect(Collectors.toList());
+        register.setTasks(task);
+        updateTasks();
     }
 
     private void updateTasks(){
@@ -53,22 +63,16 @@ public class FinishedController {
                 });
 
                 Label taskName = new Label(t.getName());
-                edit(taskName, t.getName());
 
                 Label startDate = new Label(String.valueOf(t.getStartDate()));
-                edit(startDate, String.valueOf(t.getStartDate()));
 
                 Label endDate = new Label(String.valueOf(t.getEndDate()));
-                edit(endDate, String.valueOf(t.getEndDate()));
 
                 Label description = new Label(t.getDescription());
-                edit(description, t.getDescription());
 
                 Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-                edit(category, register.getCategory(t.getCategoryId()).getName());
 
                 Label priority = new Label(String.valueOf(t.getPriority()));
-                edit(priority, String.valueOf(t.getPriority()));
 
                 Separator separator = new Separator();
 
@@ -103,12 +107,5 @@ public class FinishedController {
                 showTasks.getChildren().add(anchorPane);
             }
         }
-    }
-
-    private void edit(Label l, String t){
-        l.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                event -> l.setText("Edit"));
-        l.addEventHandler(MouseEvent.MOUSE_EXITED,
-                event -> l.setText(t));
     }
 }

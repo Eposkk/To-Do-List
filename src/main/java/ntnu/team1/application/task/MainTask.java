@@ -40,7 +40,7 @@ public class MainTask extends Task {
         super(ID, startDate, endDate, name, description, priority);
         this.secondaryTasks = new ArrayList<>();
         this.categoryId = -1;
-        this.hasCategory = true;
+        this.hasCategory = false;
         this.hasSecondaryTask = false;
     }
 
@@ -112,6 +112,7 @@ public class MainTask extends Task {
      * @param secondaryTaskId
      * @return returns true if removal was successful, false if not.
      */
+
     public boolean removeSecondaryTask(int secondaryTaskId){
         for(SecondaryTask t: secondaryTasks){
             if(t.getID() == secondaryTaskId){
@@ -128,13 +129,12 @@ public class MainTask extends Task {
      */
     @Override
     public String toString() {
-        return "MainTask{" +
-                "hasCategory=" + hasCategory +
-                ", categoryId=" + categoryId +
-                ", HasUnderTask=" + hasSecondaryTask +
-                ", secondaryTasks=" + secondaryTasks +
-                ", secondaryTaskIdCount=" + secondaryTaskIdCount +
-                ", serialVersionUID=" + serialVersionUID +
-                "} " + super.toString();
+        return "MainTask" +
+                "\nhasCategory=" + hasCategory +
+                "\ncategoryId=" + categoryId +
+                "\nHasUnderTask=" + hasSecondaryTask +
+                "\nsecondaryTasks=" + secondaryTasks +
+                "\nsecondaryTaskIdCount=" + secondaryTaskIdCount +
+                "\nserialVersionUID=" + serialVersionUID + super.toString();
     }
 }

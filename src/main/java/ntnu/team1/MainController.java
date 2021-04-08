@@ -103,9 +103,11 @@ public class MainController {
     private void submitTask(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         int category1 = -1;
-        for (Category category: categories){
-            if(category.getName().equals(choiceBox.getValue().toString())){
-                category1=category.getID();
+        if(choiceBox.getValue() != null){
+            for (Category category: categories){
+                if(category.getName().equals(choiceBox.getValue().toString())){
+                    category1=category.getID();
+                }
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
@@ -193,13 +195,16 @@ public class MainController {
                 showEditOption(description, t.getDescription());
                 edit(description, t,4, vBox);
 
-                Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-                showEditOption(category, register.getCategory(t.getCategoryId()).getName());
-                edit(category, t,5, vBox);
-
                 Label priority = new Label(String.valueOf(t.getPriority()));
                 showEditOption(priority, String.valueOf(t.getPriority()));
                 edit(priority, t,6, vBox);
+
+                Button delete = new Button("Delete");
+                delete.setOnAction(event ->{
+                    register.removeMainTask(t.getID());
+                    updateTasks();
+                }
+                );
 
                 Separator separator = new Separator();
 
@@ -209,7 +214,13 @@ public class MainController {
                 hBox.getChildren().add(startDate);
                 hBox.getChildren().add(endDate);
                 hBox.getChildren().add(priority);
-                hBox.getChildren().add(category);
+                if(t.hasCategory()){
+                    Label category = new Label(register.getCategory(t.getCategoryId()).getName());
+                    showEditOption(category, register.getCategory(t.getCategoryId()).getName());
+                    edit(category, t, 5, vBox);
+                    hBox.getChildren().add(category);
+                }
+                hBox.getChildren().add(delete);
 
                 separator.setOrientation(Orientation.HORIZONTAL);
                 separator.setPrefWidth(900);
@@ -220,7 +231,6 @@ public class MainController {
                 AnchorPane.setLeftAnchor(separator, 80.0);
                 AnchorPane.setBottomAnchor(separator, 0.0);
                 AnchorPane.setTopAnchor(separator, 0.0);
-
 
                 checkBox.setPrefWidth(80);
                 checkBox.setPrefHeight(54);
