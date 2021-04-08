@@ -55,6 +55,7 @@ public class MainTask extends Task {
         }
         return false;
     }
+
     public boolean removeSecondaryTask(int secondaryTaskId){
         for(SecondaryTask t: secondaryTasks){
             if(t.getID() == secondaryTaskId){
@@ -67,13 +68,12 @@ public class MainTask extends Task {
 
     @Override
     public String toString() {
-        return "MainTask{" +
-                "hasCategory=" + hasCategory +
-                ", categoryId=" + categoryId +
-                ", HasUnderTask=" + hasSecondaryTask +
-                ", secondaryTasks=" + secondaryTasks +
-                ", secondaryTaskIdCount=" + secondaryTaskIdCount +
-                ", serialVersionUID=" + serialVersionUID +
-                "} " + super.toString();
+        return "MainTask" +
+                "\nhasCategory=" + hasCategory +
+                "\ncategoryId=" + categoryId +
+                "\nHasUnderTask=" + hasSecondaryTask +
+                "\nsecondaryTasks=" + secondaryTasks +
+                "\nsecondaryTaskIdCount=" + secondaryTaskIdCount +
+                "\nserialVersionUID=" + serialVersionUID + super.toString();
     }
 }

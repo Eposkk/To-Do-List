@@ -199,6 +199,13 @@ public class MainController {
                 showEditOption(priority, String.valueOf(t.getPriority()));
                 edit(priority, t,6, vBox);
 
+                Button delete = new Button("Delete");
+                delete.setOnAction(event ->{
+                    register.removeMainTask(t.getID());
+                    updateTasks();
+                }
+                );
+
                 Separator separator = new Separator();
 
                 hBox.getChildren().add(checkBox);
@@ -213,7 +220,7 @@ public class MainController {
                     edit(category, t, 5, vBox);
                     hBox.getChildren().add(category);
                 }
-
+                hBox.getChildren().add(delete);
 
                 separator.setOrientation(Orientation.HORIZONTAL);
                 separator.setPrefWidth(900);
@@ -224,7 +231,6 @@ public class MainController {
                 AnchorPane.setLeftAnchor(separator, 80.0);
                 AnchorPane.setBottomAnchor(separator, 0.0);
                 AnchorPane.setTopAnchor(separator, 0.0);
-
 
                 checkBox.setPrefWidth(80);
                 checkBox.setPrefHeight(54);
