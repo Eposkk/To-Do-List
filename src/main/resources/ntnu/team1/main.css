@@ -11,8 +11,12 @@
 #taskBox>Label{
     -fx-alignment: center;
     -fx-min-height: 70;
-    -fx-pref-width: 167 ;
-
+    -fx-pref-width: 150 ;
+}
+#taskBox>Button{
+    -fx-alignment: center;
+    -fx-min-height: 70;
+    -fx-pref-width: 150 ;
 }
 #taskBox>Label:hover{
     -fx-scale-y: 1.2;

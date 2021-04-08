@@ -35,7 +35,7 @@ public class MainTask extends Task {
         return hasCategory;
     }
 
-    public boolean hasUnderTask() {
+    public boolean hasSecondaryTask() {
         return hasSecondaryTask;
     }
 
@@ -55,6 +55,7 @@ public class MainTask extends Task {
         }
         return false;
     }
+
     public boolean removeSecondaryTask(int secondaryTaskId){
         for(SecondaryTask t: secondaryTasks){
             if(t.getID() == secondaryTaskId){
