@@ -26,10 +26,8 @@
                <fx:define>
                   <ToggleGroup fx:id="priority" />
                </fx:define>
-               <RadioButton text="1">
-                  <toggleGroup>
-                     <ToggleGroup fx:id="priority" />
-                  </toggleGroup>
+               <RadioButton text="1" toggleGroup="$priority">
+
                </RadioButton>
                <RadioButton text="2" toggleGroup="$priority">
 
