@@ -103,9 +103,11 @@ public class MainController {
     private void submitTask(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         int category1 = -1;
-        for (Category category: categories){
-            if(category.getName().equals(choiceBox.getValue().toString())){
-                category1=category.getID();
+        if(choiceBox.getValue() != null){
+            for (Category category: categories){
+                if(category.getName().equals(choiceBox.getValue().toString())){
+                    category1=category.getID();
+                }
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
@@ -193,10 +195,6 @@ public class MainController {
                 showEditOption(description, t.getDescription());
                 edit(description, t,4, vBox);
 
-                Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-                showEditOption(category, register.getCategory(t.getCategoryId()).getName());
-                edit(category, t,5, vBox);
-
                 Label priority = new Label(String.valueOf(t.getPriority()));
                 showEditOption(priority, String.valueOf(t.getPriority()));
                 edit(priority, t,6, vBox);
@@ -209,7 +207,13 @@ public class MainController {
                 hBox.getChildren().add(startDate);
                 hBox.getChildren().add(endDate);
                 hBox.getChildren().add(priority);
-                hBox.getChildren().add(category);
+                if(t.hasCategory()){
+                    Label category = new Label(register.getCategory(t.getCategoryId()).getName());
+                    showEditOption(category, register.getCategory(t.getCategoryId()).getName());
+                    edit(category, t, 5, vBox);
+                    hBox.getChildren().add(category);
+                }
+
 
                 separator.setOrientation(Orientation.HORIZONTAL);
                 separator.setPrefWidth(900);

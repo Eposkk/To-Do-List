@@ -67,10 +67,16 @@ public class MainRegister {
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
+        else if(categoryId == -1){
+            MainTask task = new MainTask(taskIdCount, startDate, endDate, name, description, priority);
+            tasks.add(task);
+            taskIdCount+=1;
+        }else{
+            MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
+            tasks.add(task);
+            taskIdCount+=1;
+        }
 
-        MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
-        tasks.add(task);
-        taskIdCount+=1;
     }
 
     /**

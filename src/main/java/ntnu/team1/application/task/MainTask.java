@@ -23,7 +23,7 @@ public class MainTask extends Task {
         super(ID, startDate, endDate, name, description, priority);
         this.secondaryTasks = new ArrayList<>();
         this.categoryId = -1;
-        this.hasCategory = true;
+        this.hasCategory = false;
         this.hasSecondaryTask = false;
     }
 
