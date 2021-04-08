@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -90,69 +84,28 @@
          <BorderPane prefHeight="1018.0" prefWidth="1618.0" BorderPane.alignment="CENTER">
             <top>
                <HBox prefHeight="78.0" prefWidth="472.0" BorderPane.alignment="CENTER">
-                  <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="Today" underline="true">
+                  <Label fx:id="todayTitleLabel" alignment="CENTER" prefHeight="78.0" prefWidth="159.0" text="All tasks" underline="true">
                      <font>
                         <Font name="Avenir Book" size="31.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="addNewTaskButton" mnemonicParsing="false" onAction="#addNewTask" prefHeight="80.0" prefWidth="193.0" text="Add new +">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children></HBox>
                </HBox>
             </top>
-            <center>
-               <HBox fx:id="addNewTaskHBox" prefHeight="335.0" prefWidth="1615.0">
-                  <BorderPane.margin>
-                     <Insets bottom="20.0" />
-                  </BorderPane.margin>
-                  <VBox prefHeight="940.0" prefWidth="336.0">
-                     <TextArea fx:id="taskName" prefHeight="77.0" prefWidth="100.0" promptText="Add task name">
-                        <font>
-                           <Font size="25.0" />
-                        </font>
-                     </TextArea>
-                     <TextArea fx:id="description" prefHeight="291.0" prefWidth="336.0" promptText="Add description">
-                        <font>
-                           <Font size="19.0" />
-                        </font>
-                     </TextArea>
-                  </VBox>
-                  <VBox prefHeight="940.0" prefWidth="157.0">
-                     <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
-                     <Label text="Priority">
-                        <font>
-                           <Font size="25.0" />
-                        </font>
-                     </Label>
-                     <VBox>
-                        <fx:define>
-                           <ToggleGroup fx:id="priority" />
-                        </fx:define>
-                        <RadioButton text="1" toggleGroup="$priority"/>
-                        <RadioButton text="2" toggleGroup="$priority"/>
-                        <RadioButton text="3" toggleGroup="$priority"/>
-                     </VBox>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <Label text="Start date:" />
-                     <DatePicker fx:id="startDate" />
-                     <Label text="End date:" />
-                     <DatePicker fx:id="endDate" />
-                     <Button fx:id="submitTask" mnemonicParsing="false" onAction="#submitTask" text="Submit" />
-                  </VBox>
-                  <HBox prefHeight="327.0" prefWidth="280.0">
-                     <children>
-                        <Button fx:id="addNewTaskButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="89.0" text="+" onAction="#addNewTask">
-                           <font>
-                              <Font size="42.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-               </HBox>
-            </center>
             <bottom>
-               <ScrollPane prefHeight="400.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
+               <ScrollPane prefHeight="936.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
                   <content>
-                     <VBox fx:id="showTasks" prefHeight="523.0" prefWidth="1615.0" />
+                     <VBox fx:id="showTasks" prefHeight="933.0" prefWidth="1615.0" />
                   </content>
                </ScrollPane>
             </bottom>
