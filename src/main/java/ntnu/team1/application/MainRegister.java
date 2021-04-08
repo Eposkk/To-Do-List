@@ -24,8 +24,8 @@ import ntnu.team1.application.task.Task;
 public class MainRegister {
     private HashMap<Integer, Category> categories;
     private ArrayList<MainTask> tasks;
-    private int taskIdCount=0;
-    private int categoryIdCount=0;
+    private int taskIdCount = 0;
+    private int categoryIdCount = 0;
 
     /**
      * Constructor for MainRegister
@@ -78,7 +78,7 @@ public class MainRegister {
      * @param mainTaskId Id associated with the category
      */
 
-    public void removeMainTask(int mainTaskId)throws IllegalArgumentException{
+    public void removeMainTask(int mainTaskId) throws IllegalArgumentException{
         tasks.remove(getMainTask(mainTaskId));
     }
 

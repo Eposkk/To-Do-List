@@ -31,7 +31,7 @@ public class FinishedController {
     }
 
     public void switchToMain() throws IOException {
-        App.setRootWithSave("main",register);
+        App.setRootWithSave("main", register);
     }
 
     private void updateTasks(){
