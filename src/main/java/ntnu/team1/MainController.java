@@ -5,16 +5,19 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -123,34 +126,65 @@ public class MainController {
 
     private void edit(Label l, MainTask t, int i, VBox vBox){
         HBox newDataBox = new HBox();
-        TextField newData = new TextField();
         Button newDataButton = new Button();
         newDataButton.setText("Update");
-        newDataButton.setOnAction(event ->{
-            switch(i){
-                case 1:
+        switch(i){
+            case 1:
+                newDataBox.getChildren().clear();
+                TextField newData = new TextField();
+                newDataBox.getChildren().add(newData);
+                newDataButton.setOnAction(event -> {
                     t.setName(newData.getText());
-                    break;
-                case 2:
-                    t.setStartDate(LocalDate.parse(newData.getText()));
-                    break;
-                case 3:
-                    t.setEndDate(LocalDate.parse(newData.getText()));
-                    break;
-                case 4:
+                    updateTasks();
+                });
+                break;
+            case 2:
+                newDataBox.getChildren().clear();
+                newData = new TextField();
+                newDataBox.getChildren().add(newData);
+                newDataButton.setOnAction(event -> {
                     t.setDescription(newData.getText());
-                    break;
-                case 5:
-                    t.setPriority(Integer.parseInt(newData.getText()));
-                    break;
-                case 6:
-                    t.setCategoryId(Integer.parseInt(newData.getText()));
-                    break;
-            }
-            updateTasks();
+                    updateTasks();
+                });
+                break;
+            case 3:
+                newDataBox.getChildren().clear();
+                DatePicker newDate = new DatePicker();
+                newDataBox.getChildren().add(newDate);
+                newDataButton.setOnAction(event -> {
+                    t.setStartDate(newDate.getValue());
+                    updateTasks();
+                });
+                break;
+            case 4:
+                newDataBox.getChildren().clear();
+                newDate = new DatePicker();
+                newDataBox.getChildren().add(newDate);
+                newDataButton.setOnAction(event -> {
+                    t.setEndDate(newDate.getValue());
+                    updateTasks();
+                });
+                break;
+            case 5:
+                newDataBox.getChildren().clear();
+                ToggleGroup group = new ToggleGroup();
+                for(int j = 1; j<=3; j++) {
+                    RadioButton b = new RadioButton(String.valueOf(j));
+                    b.setToggleGroup(group);
+                    if(j==t.getPriority()){
+                        b.setSelected(true);
+                    }
+                    b.setOnAction(event ->{
+                        t.setPriority(Integer.parseInt(b.getText()));
+                    updateTasks();});
+                    newDataBox.getChildren().add(b);
                 }
-        );
-        newDataBox.getChildren().add(newData);
+                return;
+            case 6:
+                break;
+
+
+        }
         newDataBox.getChildren().add(newDataButton);
         l.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 event -> vBox.getChildren().add(newDataBox));
@@ -183,21 +217,22 @@ public class MainController {
                 showEditOption(taskName, t.getName());
                 edit(taskName, t,1,vBox);
 
+                Label description = new Label(t.getDescription());
+                showEditOption(description, t.getDescription());
+                edit(description, t,2, vBox);
+
                 Label startDate=new Label(String.valueOf(t.getStartDate()));
                 showEditOption(startDate, String.valueOf(t.getStartDate()));
-                edit(startDate, t,2, vBox);
+                edit(startDate, t,3, vBox);
 
                 Label endDate=new Label(String.valueOf(t.getEndDate()));
                 showEditOption(endDate, String.valueOf(t.getEndDate()));
-                edit(endDate, t,3, vBox);
-
-                Label description = new Label(t.getDescription());
-                showEditOption(description, t.getDescription());
-                edit(description, t,4, vBox);
+                edit(endDate, t,4, vBox);
 
                 Label priority = new Label(String.valueOf(t.getPriority()));
                 showEditOption(priority, String.valueOf(t.getPriority()));
-                edit(priority, t,6, vBox);
+                edit(priority, t,5, vBox);
+
 
                 Button delete = new Button("Delete");
                 delete.setOnAction(event ->{
@@ -217,7 +252,7 @@ public class MainController {
                 if(t.hasCategory()){
                     Label category = new Label(register.getCategory(t.getCategoryId()).getName());
                     showEditOption(category, register.getCategory(t.getCategoryId()).getName());
-                    edit(category, t, 5, vBox);
+                    edit(category, t, 6, vBox);
                     hBox.getChildren().add(category);
                 }
                 hBox.getChildren().add(delete);
