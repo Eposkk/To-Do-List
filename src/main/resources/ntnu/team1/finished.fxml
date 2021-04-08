@@ -30,7 +30,7 @@
       </top>
       <left>
          <HBox prefHeight="1018.0" prefWidth="170.0" BorderPane.alignment="CENTER">
-            <VBox prefHeight="1018.0" prefWidth="289.0">
+            <VBox fx:id="allCategoriesVBox" prefHeight="1018.0" prefWidth="289.0">
                <HBox fx:id="todayCategoryHBox" alignment="CENTER" onMouseClicked="#switchToMain" prefHeight="47.0" prefWidth="100.0">
                   <cursor>
                      <Cursor fx:constant="HAND" />
@@ -76,6 +76,7 @@
                      </Label>
                   </children>
                </HBox>
+               <Separator prefWidth="200.0" />
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
          </HBox>

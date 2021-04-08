@@ -1,5 +1,8 @@
 package ntnu.team1;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -8,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -15,24 +19,44 @@ import javafx.scene.layout.VBox;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.MainTask;
-import ntnu.team1.application.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class FinishedController {
 
     public VBox showTasks;
+    public VBox allCategoriesVBox;
     private MainRegister register = new MainRegister();
 
-    public void initialize(){
+    @FXML
+    public void initialize() throws IOException {
         Read reader = new Read("data/categories.ser","data/tasks.ser");
         register.setCategories(reader.readCategory());
         register.setTasks(reader.readTasks());
         App.setReg(register);
         updateTasks();
+
+        for(int i=0; i<register.getCategories().size();i++){
+            Label l = new Label(register.getCategories().get(i).getName()); l.setId("labelCategoryBox");
+            HBox c=new HBox(l); c.setId("categoryBox");
+            allCategoriesVBox.getChildren().add(c);
+            allCategoriesVBox.getChildren().add(new Separator());
+        }
+        Label l = new Label("Add new category"); l.setId("labelCategoryBox");
+        HBox c=new HBox(l); c.setId("categoryBox");
+        c.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        try {
+                            App.setRootWithSave("category",register);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        allCategoriesVBox.getChildren().add(c);
     }
 
     public void switchToMain() throws IOException {
