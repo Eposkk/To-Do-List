@@ -126,17 +126,9 @@
                         <fx:define>
                            <ToggleGroup fx:id="priority" />
                         </fx:define>
-                        <RadioButton text="1">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="priority" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton text="2" toggleGroup="$priority">
-
-                        </RadioButton>
-                        <RadioButton text="3" toggleGroup="$priority">
-                        </RadioButton>
-
+                        <RadioButton text="1" toggleGroup="$priority"/>
+                        <RadioButton text="2" toggleGroup="$priority"/>
+                        <RadioButton text="3" toggleGroup="$priority"/>
                      </VBox>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -149,7 +141,7 @@
                </HBox>
             </center>
             <bottom>
-               <ScrollPane prefHeight="593.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
+               <ScrollPane prefHeight="400.0" prefWidth="1750.0" BorderPane.alignment="CENTER">
                   <content>
                      <VBox fx:id="showTasks" prefHeight="523.0" prefWidth="1615.0" />
                   </content>

@@ -3,6 +3,7 @@ package ntnu.team1;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -70,9 +71,14 @@ public class FinishedController {
 
                 Label description = new Label(t.getDescription());
 
-                Label category = new Label(register.getCategory(t.getCategoryId()).getName());
-
                 Label priority = new Label(String.valueOf(t.getPriority()));
+
+                Button delete = new Button("Delete");
+                delete.setOnAction(event ->{
+                            register.removeMainTask(t.getID());
+                            updateTasks();
+                        }
+                );
 
                 Separator separator = new Separator();
 
@@ -82,7 +88,11 @@ public class FinishedController {
                 hBox.getChildren().add(startDate);
                 hBox.getChildren().add(endDate);
                 hBox.getChildren().add(priority);
-                hBox.getChildren().add(category);
+                if(t.hasCategory()){
+                    Label category = new Label(register.getCategory(t.getCategoryId()).getName());
+                    hBox.getChildren().add(category);
+                }
+                hBox.getChildren().add(delete);
 
                 separator.setOrientation(Orientation.HORIZONTAL);
                 separator.setPrefWidth(900);
