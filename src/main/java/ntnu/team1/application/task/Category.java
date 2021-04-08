@@ -12,7 +12,9 @@ import java.util.Objects;
 
 public class Category implements Serializable {
     private final int ID;
-    private Color color;
+    private double r;
+    private double g;
+    private double b;
     private String name;
     private long serialVersionUID;
 
@@ -24,7 +26,9 @@ public class Category implements Serializable {
      */
     public Category(int ID, Color color, String name) {
         this.ID = ID;
-        this.color = color;
+        this.r = color.getRed();
+        this.g = color.getGreen();
+        this.b = color.getBlue();
         this.name = name;
     }
 
@@ -43,6 +47,7 @@ public class Category implements Serializable {
      */
 
     public Color getColor() {
+        Color color = new Color(0,r,g,b);
         return color;
     }
 
@@ -60,7 +65,9 @@ public class Category implements Serializable {
      */
 
     public void setColor(Color color) {
-        this.color = color;
+        this.r = color.getRed();
+        this.g= color.getGreen();
+        this.b = color.getBlue();
     }
 
     /**
@@ -85,20 +92,20 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(color, category.color) &&
+        return Objects.equals(r, category.r) &&
                 Objects.equals(name, category.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, color, name);
+        return Objects.hash(ID, r,g,b, name);
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "ID=" + ID +
-                ", color=" + color +
+                ", color=" + r +g+b+
                 ", name='" + name + '\'' +
                 '}';
     }
