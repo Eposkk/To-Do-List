@@ -81,7 +81,7 @@ public class MainRegister {
 
     /**
      * Removes a task from the register
-     * @param mainTaskId Id associated with the category
+     * @param mainTaskId Id associated with the task
      */
 
     public void removeMainTask(int mainTaskId) throws IllegalArgumentException{
@@ -138,9 +138,6 @@ public class MainRegister {
     public boolean addCategory(String name, Color color) throws NullPointerException{
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
-        }
-        if (categories.containsValue(new Category(-1,color, name))) {
-            return false;
         }else{
             categories.put(categoryIdCount, new Category(categoryIdCount, color, name));
             categoryIdCount+=1;
