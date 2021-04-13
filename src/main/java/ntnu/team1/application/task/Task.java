@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-/**
- * Abstarct class task, keeps track of a specific task. Implements serializable to be able to store the data.
+/**Implements serializable to be able to store the data.
+ * Abstarct class task, keeps track of a specific task.
  *
  */
 

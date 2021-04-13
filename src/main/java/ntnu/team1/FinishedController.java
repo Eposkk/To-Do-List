@@ -27,6 +27,9 @@ public class FinishedController {
     public VBox showTasks;
     private MainRegister register = new MainRegister();
 
+    /**
+     *
+     */
     public void initialize(){
         Read reader = new Read("data/categories.ser","data/tasks.ser");
         register.setCategories(reader.readCategory());
@@ -35,16 +38,28 @@ public class FinishedController {
         updateTasks();
     }
 
+    /**
+     * A method that switch scene to main
+     * @throws IOException
+     */
+
     public void switchToMain() throws IOException {
         App.setRootWithSave("main", register);
     }
 
-    public void deleteAllFinished(){
-        ArrayList<MainTask> task = (ArrayList<MainTask>) register.getAllTasks().stream().filter(i -> !i.isDone()).collect(Collectors.toList());
-        register.setTasks(task);
-        updateTasks();
-    }
 
+    /**
+     * A method that delete all finished tasks
+     */
+    public void deleteAllFinished(){
+        ArrayList<MainTask> task = (ArrayList<MainTask>) register.getAllTasks().stream().filter(i -> i.isDone()).collect(Collectors.toList());
+       // register.setTasks(task);
+        for(MainTask t : task){
+            register.removeMainTask(t.getID());
+            updateTasks();
+        }
+
+    }
     private void updateTasks(){
         showTasks.getChildren().clear();
         showTasks.setPrefWidth(969);
