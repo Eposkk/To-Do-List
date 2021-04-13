@@ -82,6 +82,7 @@ public class FinishedController {
 
                 CheckBox checkBox = new CheckBox();
                 checkBox.setId(String.valueOf(t.getID()));
+                checkBox.setSelected(t.isDone());
                 checkBox.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
                     t.setDone(false);
                     updateTasks();

@@ -87,8 +87,10 @@ public class MainController {
             allCategoriesVBox.getChildren().add(c);
             allCategoriesVBox.getChildren().add(new Separator());
         }
-        Label l = new Label("Add new category"); l.setId("labelCategoryBox");
-        HBox c=new HBox(l); c.setId("categoryBox");
+        Label l = new Label("Add new category");
+        l.setId("labelCategoryBox");
+        HBox c=new HBox(l);
+        c.setId("categoryBox");
         c.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 mouseEvent -> {
                     try {
