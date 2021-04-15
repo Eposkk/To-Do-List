@@ -13,11 +13,26 @@ import java.io.IOException;
 
 public class MainApplicationController {
 
+
+
     @FXML
     private AnchorPane view;
 
     public void initialize() throws IOException {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("toDo.fxml"));
+        view.getChildren().add(newLoadedPane);
+    }
+
+    @FXML
+    public void switchToFinished() throws IOException {
+        view.getChildren().clear();
+        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("finished.fxml"));
+        view.getChildren().add(newLoadedPane);
+    }
+    @FXML
+    public void switchToToDo() throws IOException {
+        view.getChildren().clear();
+        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("toDo.fxml"));
         view.getChildren().add(newLoadedPane);
     }
 

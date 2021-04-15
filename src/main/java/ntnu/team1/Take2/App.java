@@ -1,12 +1,15 @@
 package ntnu.team1.Take2;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Write;
+import ntnu.team1.application.task.MainTask;
 
 import java.io.IOException;
 
@@ -17,6 +20,7 @@ public class App extends Application {
 
     public static Scene scene;
     public static MainRegister register = new MainRegister();
+    public static ObservableList<MainTask> registerWrapper= FXCollections.observableArrayList(register.getAllTasks());
 
     public static void main(String[] args) {
         launch();

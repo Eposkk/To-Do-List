@@ -1,6 +1,8 @@
 package ntnu.team1.Take2;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ToDoController {
 
@@ -47,17 +50,9 @@ public class ToDoController {
 
 
     MainRegister register = App.getRegister();
+    ObservableList<MainTask> registerWrapper;
 
     public void initialize(){
-        doneColumn.setCellValueFactory( new PropertyValueFactory<>( "isDone" ));
-        doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
-
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
         int n=1000;
         for(int i = 0; i<=n;i++) {
@@ -66,7 +61,14 @@ public class ToDoController {
             Random random = new Random();
             register.addMainTask(null, null, name, description, random.nextInt(3), -1);
         }
-        fillTable();
+
+        columFactory();
+        updateWrapper();
+
+        TableView.setItems(registerWrapper);
+
+
+
         /*File category= new File("data/categories.ser");
          if(category.exists()){
             Read reader = new Read("data/categories.ser","data/tasks.ser");
@@ -81,13 +83,39 @@ public class ToDoController {
 
     }
 
+    private void columFactory(){
+
+        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+        doneColumn.setCellValueFactory(cellData -> {
+            MainTask task = cellData.getValue();
+            BooleanProperty property = new SimpleBooleanProperty(task.isDone());
+
+            property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
+                task.setDone(newValue);
+                updateWrapper();
+                TableView.setItems(registerWrapper);
+
+            });
+            return property;
+        });
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+
+    }
+
     @FXML
     private void addNewTask() throws IOException {
         App.setRootWithSave("newtask", register);
     }
-    private void fillTable(){
-            ObservableList<MainTask> registerWrapper = FXCollections.observableArrayList(register.getAllTasks());
-            TableView.setItems(registerWrapper);
+
+    private void updateWrapper(){
+        registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
+
     }
 
 
