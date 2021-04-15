@@ -1,5 +1,6 @@
 package ntnu.team1.application.task;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  */
 
-public class MainTask {
+public class MainTask implements Serializable {
     private final int ID;
     private boolean hasCategory=false;
     private String name;
@@ -19,6 +20,7 @@ public class MainTask {
     private int priority;
     private int categoryId;
     private boolean isDone;
+    private final long serialVersionUID;
 
     public MainTask(int ID, String name, String description, LocalDate startDate, LocalDate endDate, int priority, int categoryId) {
         this.ID = ID;
@@ -32,6 +34,7 @@ public class MainTask {
         this.description = description;
         this.priority = priority;
         this.isDone = false;
+        serialVersionUID =  -68497944707546120L;
     }
 
     /**
