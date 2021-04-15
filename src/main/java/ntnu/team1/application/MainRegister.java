@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
-import ntnu.team1.application.task.Task;
 
 /**
  * This is is the main register of the whole app
@@ -67,16 +66,10 @@ public class MainRegister {
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
-        else if(categoryId == -1){
-            MainTask task = new MainTask(taskIdCount, startDate, endDate, name, description, priority);
-            tasks.add(task);
-            taskIdCount+=1;
-        }else{
-            MainTask task = new MainTask(taskIdCount,startDate,endDate,name,description,priority,categoryId);
-            tasks.add(task);
-            taskIdCount+=1;
-        }
 
+            MainTask task = new MainTask(taskIdCount, name, description,  startDate,  endDate,  priority,  categoryId);
+            tasks.add(task);
+            taskIdCount+=1;
     }
 
     /**
@@ -195,7 +188,7 @@ public class MainRegister {
      */
 
     public void sortByPriority(){
-        tasks.sort(Comparator.comparingInt(Task::getPriority));
+        tasks.sort(Comparator.comparingInt(MainTask::getPriority));
     }
 
     /**
@@ -223,7 +216,7 @@ public class MainRegister {
         //TODO add code
         return null;
     }
-    public ArrayList<Task> readTask(){
+    public ArrayList<MainTask> readTask(){
         //TODO add code
         return null;
     }

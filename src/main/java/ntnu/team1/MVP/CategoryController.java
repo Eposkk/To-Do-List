@@ -1,6 +1,5 @@
-package ntnu.team1;
+package ntnu.team1.MVP;
 
-import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
@@ -12,11 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
-import ntnu.team1.application.task.Category;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class CategoryController {

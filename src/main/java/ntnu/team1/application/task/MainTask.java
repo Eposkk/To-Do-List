@@ -9,13 +9,30 @@ import java.util.ArrayList;
  *
  */
 
-public class MainTask extends Task {
-    private boolean hasCategory;
+public class MainTask {
+    private final int ID;
+    private boolean hasCategory=false;
+    private String name;
+    private String description;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int priority;
     private int categoryId;
-    private boolean hasSecondaryTask;
-    private ArrayList<SecondaryTask> secondaryTasks;
-    private int secondaryTaskIdCount = 0;
-    private long serialVersionUID;
+    private boolean isDone;
+
+    public MainTask(int ID, String name, String description, LocalDate startDate, LocalDate endDate, int priority, int categoryId) {
+        this.ID = ID;
+        if(categoryId> -1){
+            this.hasCategory = true;
+        }
+        this.categoryId = categoryId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+        this.description = description;
+        this.priority = priority;
+        this.isDone = false;
+    }
 
     /**
      *
@@ -27,22 +44,6 @@ public class MainTask extends Task {
      * @param priority An integer representing the priority of the Task
      * @param categoryId An Integer representing the ID of a category
      */
-
-    public MainTask(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority, int categoryId) {
-        super(ID, startDate, endDate, name, description, priority);
-        this.secondaryTasks = new ArrayList<>();
-        this.categoryId = categoryId;
-        this.hasCategory = true;
-        this.hasSecondaryTask = false;
-    }
-
-    public MainTask(int ID, LocalDate startDate, LocalDate endDate, String name, String description, int priority) {
-        super(ID, startDate, endDate, name, description, priority);
-        this.secondaryTasks = new ArrayList<>();
-        this.categoryId = -1;
-        this.hasCategory = false;
-        this.hasSecondaryTask = false;
-    }
 
     /**
      *
@@ -61,14 +62,7 @@ public class MainTask extends Task {
         return hasCategory;
     }
 
-    /**
-     *
-     * @return returns true if main task has a secondary task, false if not.
-     */
 
-    public boolean hasSecondaryTask() {
-        return hasSecondaryTask;
-    }
 
     /**
      * Updates the category ID
@@ -79,48 +73,64 @@ public class MainTask extends Task {
         this.categoryId = categoryId;
     }
 
-    /**
-     *
-     * @return returns all secondary tasks
-     */
-
-    public ArrayList<SecondaryTask> getSecondaryTasks() {
-        return secondaryTasks;
+    public int getID() {
+        return ID;
     }
 
-    /**
-     * A method that adds a secondary task to the list 'secondaryTasks'
-     * @param startDate
-     * @param endDate
-     * @param name
-     * @param description
-     * @param priority
-     * @return returns true if secondary task s successfully added, false if not.
-     */
-
-    public boolean addSecondaryTask(LocalDate startDate, LocalDate endDate,String name, String description, int priority){
-        SecondaryTask t = new SecondaryTask(secondaryTaskIdCount, startDate, endDate, name, description, priority);
-        if (!secondaryTasks.contains(t)) {
-            secondaryTasks.add(t);
-            return true;
-        }
-        return false;
+    public boolean isHasCategory() {
+        return hasCategory;
     }
 
-    /**
-     * A method that removes a secondary task if ID exist.
-     * @param secondaryTaskId
-     * @return returns true if removal was successful, false if not.
-     */
+    public void setHasCategory(boolean hasCategory) {
+        this.hasCategory = hasCategory;
+    }
 
-    public boolean removeSecondaryTask(int secondaryTaskId){
-        for(SecondaryTask t: secondaryTasks){
-            if(t.getID() == secondaryTaskId){
-                secondaryTasks.remove(t);
-                return true;
-            }
-        }
-        return false;
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     /**
@@ -129,12 +139,16 @@ public class MainTask extends Task {
      */
     @Override
     public String toString() {
-        return "MainTask" +
-                "\nhasCategory=" + hasCategory +
-                "\ncategoryId=" + categoryId +
-                "\nHasUnderTask=" + hasSecondaryTask +
-                "\nsecondaryTasks=" + secondaryTasks +
-                "\nsecondaryTaskIdCount=" + secondaryTaskIdCount +
-                "\nserialVersionUID=" + serialVersionUID + super.toString();
+        return "MainTask{" +
+                "ID=" + ID +
+                ", hasCategory=" + hasCategory +
+                ", categoryId=" + categoryId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                ", isDone=" + isDone +
+                '}';
     }
 }

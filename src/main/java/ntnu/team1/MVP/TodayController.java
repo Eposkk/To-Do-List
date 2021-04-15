@@ -1,4 +1,4 @@
-package ntnu.team1;
+package ntnu.team1.MVP;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,16 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import ntnu.team1.application.task.MainTask;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class TodayController {
 

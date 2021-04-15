@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.CategoryController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MVP.CategoryController">
    <stylesheets>
       <URL value="@main.css" />
    </stylesheets>
@@ -40,7 +40,7 @@
                            <Cursor fx:constant="HAND" />
                         </cursor>
                         <ImageView fx:id="todayImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../../Images/Today.png" />
+                           <Image url="@../../../Images/Today.png" />
                         </ImageView>
                         <Label fx:id="todayCategoryText" prefHeight="31.0" prefWidth="61.0" text="Today">
                            <font>
@@ -54,7 +54,7 @@
                            <Cursor fx:constant="HAND" />
                         </cursor>
                         <ImageView fx:id="upcomingImage" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../../Images/Upcoming.png" />
+                           <Image url="@../../../Images/Upcoming.png" />
                         </ImageView>
                         <Label fx:id="todayCategoryText1" prefHeight="31.0" prefWidth="91.0" text="Upcoming">
                            <font>
@@ -70,7 +70,7 @@
                         <children>
                            <ImageView fx:id="upcomingImage1" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../Images/Upcoming.png" />
+                                 <Image url="@../../../Images/Upcoming.png" />
                               </image>
                            </ImageView>
                            <Label fx:id="todayCategoryText11" prefHeight="31.0" prefWidth="91.0" text="Finished">
