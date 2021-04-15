@@ -49,7 +49,6 @@ public class ToDoController {
     MainRegister register = App.getRegister();
 
     public void initialize(){
-        doneColumn.setCellValueFactory( new PropertyValueFactory<>( "isDone" ));
         doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
