@@ -45,7 +45,8 @@ public class NewtaskController {
 
     @FXML
     public void cancel() throws IOException {
-        App.setRoot("main");
+        Stage stage = (Stage) submitTask.getScene().getWindow();
+        stage.close();
     }
     @FXML
     public void submit() throws IOException {
