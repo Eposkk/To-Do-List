@@ -3,6 +3,7 @@ package ntnu.team1;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
@@ -59,6 +60,8 @@ public class NewtaskController {
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
+        Stage stage = (Stage) submitTask.getScene().getWindow();
+        stage.close();
         App.setRootWithSave("main", register);
     }
 }
