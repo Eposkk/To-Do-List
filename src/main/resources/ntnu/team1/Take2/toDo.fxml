@@ -6,8 +6,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.Take2.ToDoController">
    <children>
-      <TableView fx:id="TableView" prefHeight="373.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="TableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
+            <TableColumn fx:id="doneColumn" minWidth="-1.0" prefWidth="-1.0" text="Done" />
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="startDateColumn" prefWidth="75.0" text="Start Date" />
