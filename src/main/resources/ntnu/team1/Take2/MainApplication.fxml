@@ -17,17 +17,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem fx:id="menuFileClose" mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="menuEditAdd" onAction="#addNewTask" mnemonicParsing="false" text="Add new task" />
+                        <MenuItem fx:id="menuEditEdit" mnemonicParsing="false" text="Edit selected" />
+                    <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Delete selected" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="menuHelpAbout" mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -36,7 +38,7 @@
                <top>
                   <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
-                      <Button fx:id="add" mnemonicParsing="false" text="Add new task" onAction="#addNewTask"/>
+                      <Button fx:id="add" mnemonicParsing="false" onAction="#addNewTask" text="Add new task" />
                         <Button mnemonicParsing="false" text="Remove task" />
                         <Button mnemonicParsing="false" text="Edit task" />
                     </items>
