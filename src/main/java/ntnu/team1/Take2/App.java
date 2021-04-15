@@ -29,10 +29,6 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
     public static void setRegister(MainRegister register) {
         App.register = register;
     }
@@ -45,7 +41,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    static MainRegister getRegister(){
+    public static MainRegister getRegister(){
         return register;
     }
 
