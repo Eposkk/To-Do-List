@@ -52,6 +52,13 @@ public class ToDoController {
 
 
     public void initialize(){
+        File category= new File("data/categories.ser");
+        if (category.exists()){
+            Read reader = new Read("data/categories.ser","data/tasks.ser");
+            register.setCategories(reader.readCategory());
+            register.setTasks(reader.readTasks());
+        }
+        App.setRegister(register);
         doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -84,6 +91,7 @@ public class ToDoController {
     }
 
     private void fillTable(){
+
         registerWrapper = FXCollections.observableArrayList(register.getAllTasks());
         registerWrapper.addListener((ListChangeListener<MainTask>) change -> System.out.println("List has updated"));
         TableView.setItems(registerWrapper);
