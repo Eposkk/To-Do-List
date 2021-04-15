@@ -2,6 +2,7 @@ package ntnu.team1.Take2;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -47,6 +48,8 @@ public class ToDoController {
 
 
     MainRegister register = App.getRegister();
+    ObservableList<MainTask> registerWrapper;
+
 
     public void initialize(){
         doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
@@ -59,12 +62,12 @@ public class ToDoController {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
         int n=1000;
-        for(int i = 0; i<=n;i++) {
+        /*for(int i = 0; i<=n;i++) {
             String name = "task " + i;
             String description = "Lorem Ipsum";
             Random random = new Random();
             register.addMainTask(null, null, name, description, random.nextInt(3), -1);
-        }
+        }*/
         fillTable();
         /*File category= new File("data/categories.ser");
          if(category.exists()){
@@ -80,14 +83,13 @@ public class ToDoController {
 
     }
 
-    @FXML
-    private void addNewTask() throws IOException {
-        App.setRootWithSave("newtask", register);
-    }
     private void fillTable(){
-            ObservableList<MainTask> registerWrapper = FXCollections.observableArrayList(register.getAllTasks());
-            TableView.setItems(registerWrapper);
+        registerWrapper = FXCollections.observableArrayList(register.getAllTasks());
+        registerWrapper.addListener((ListChangeListener<MainTask>) change -> System.out.println("List has updated"));
+        TableView.setItems(registerWrapper);
     }
 
-
+    public ObservableList<MainTask> getRegisterWrapper() {
+        return registerWrapper;
+    }
 }
