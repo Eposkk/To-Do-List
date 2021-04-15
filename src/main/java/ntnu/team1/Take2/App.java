@@ -14,6 +14,7 @@ import ntnu.team1.application.task.MainTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 /**
  * JavaFX App
@@ -44,6 +45,23 @@ public class App extends Application {
         stage.show();
     }
 
+
+    public static ObservableList<MainTask> getWrapper(){
+        return registerWrapper;
+    }
+
+    public static void updateWrapper(ObservableList<MainTask> o){
+        registerWrapper = o;
+    }
+
+    public static void loadFXML(){
+
+    }
+
+    public static void changeWrapper(boolean isDone){
+        registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
+
+    }
     public static void setRegister(MainRegister register) {
         App.register = register;
     }

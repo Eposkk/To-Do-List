@@ -50,39 +50,19 @@ public class ToDoController {
     private TableColumn<MainTask, Integer> categoryColumn;
 
 
-    MainRegister register = App.getRegister();
-    ObservableList<MainTask> registerWrapper;
+    ObservableList<MainTask> registerWrapper = App.getWrapper();
 
     public void initialize(){
-        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
-        doneColumn.setCellValueFactory(cellData -> {
-            MainTask task = cellData.getValue();
-            BooleanProperty property = new SimpleBooleanProperty(task.isDone());
-
-            property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
-                task.setDone(newValue);
-                updateWrapper();
-                TableView.setItems(registerWrapper);
-            });
-            return property;
-        });
-
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-
         columFactory();
-        updateWrapper();
-
-        TableView.setItems(registerWrapper);
+        updateList();
     }
 
+    @FXML
+    private void removeTask(){
+        registerWrapper.remove(TableView.getSelectionModel().getSelectedItem());
+    }
 
     private void columFactory(){
-
         doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
         doneColumn.setCellValueFactory(cellData -> {
             MainTask task = cellData.getValue();
@@ -90,9 +70,7 @@ public class ToDoController {
 
             property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
                 task.setDone(newValue);
-                updateWrapper();
-                TableView.setItems(registerWrapper);
-
+                App.updateWrapper(registerWrapper);
             });
             return property;
         });
@@ -106,9 +84,9 @@ public class ToDoController {
 
     }
 
-    private void updateWrapper(){
-        registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
-
+    private void updateList(){
+        registerWrapper= App.getWrapper();
+        TableView.setItems(registerWrapper);
     }
 
     public ObservableList<MainTask> getRegisterWrapper() {
