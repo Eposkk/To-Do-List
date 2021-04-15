@@ -3,10 +3,10 @@ package ntnu.team1.Take2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ntnu.team1.MVP.App;
+import javafx.scene.layout.GridPane;
+import ntnu.team1.Take2.App;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
@@ -69,6 +69,42 @@ public class ToDoController {
             fillTable();
         }*/
     }
+
+    /*@FXML
+    private void addPatientDialog(){
+        Dialog<MainTask> dialog = new Dialog<>();
+        dialog.setTitle("Add new task");
+        dialog.setHeaderText("Fill in the fields below:");
+        dialog.setResizable(true);
+
+        Label nameLabel= new Label("Name: ");
+        Label lastNameLabel= new Label("Description: ");
+        Label socialSecurityLabel= new Label("Social security number: ");
+        Label diagnosisLabel= new Label("Diagnosis: ");
+        Label generalPractitionerLabel= new Label("General practitioner: ");
+        TextField firstName = new TextField();
+        TextField lastName = new TextField();
+        TextField socialSecurityNumber = new TextField();
+        TextField diagnosis = new TextField();
+        TextField generalPractitioner = new TextField();
+
+        GridPane grid = new GridPane();
+        grid.add(firstNameLabel, 1, 1);
+        grid.add(firstName, 2, 1);
+        grid.add(lastNameLabel, 1, 2);
+        grid.add(lastName, 2, 2);
+        grid.add(socialSecurityLabel, 1, 3);
+        grid.add(socialSecurityNumber, 2, 3);
+        grid.add(diagnosisLabel, 1, 4);
+        grid.add(diagnosis, 2, 4);
+        grid.add(generalPractitionerLabel, 1, 5);
+        grid.add(generalPractitioner, 2, 5);
+        dialog.getDialogPane().setContent(grid);
+
+        ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+        dialog.showAndWait();
+    }*/
 
     @FXML
     private void addNewTask() throws IOException {
