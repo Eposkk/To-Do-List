@@ -1,11 +1,10 @@
-package ntnu.team1;
+package ntnu.team1.MVP;
 
 import javafx.fxml.FXML;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class UpcomingController {

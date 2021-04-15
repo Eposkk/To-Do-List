@@ -1,4 +1,4 @@
-package ntnu.team1;
+package ntnu.team1.MVP;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

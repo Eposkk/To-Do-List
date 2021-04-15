@@ -1,4 +1,4 @@
-package ntnu.team1;
+package ntnu.team1.MVP;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +38,7 @@ public class App extends Application {
         App.reg = reg;
     }
 
-    static void setRootWithSave(String fxml, MainRegister register) throws IOException {
+    public static void setRootWithSave(String fxml, MainRegister register) throws IOException {
         reg=register;
         Write writer = new Write(register.getCategories(),register.getAllTasks());
         writer.writeCategories();
