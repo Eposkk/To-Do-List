@@ -64,7 +64,7 @@ public class MainApplicationController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
         Parent parent = fxmlLoader.load();
         AddTaskDialogController dialogController = new AddTaskDialogController();
-        ToDoController toDoController = new ToDoController();
+        ListController toDoController = new ListController();
         dialogController.setAppMainObservableList(toDoController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 800, 600);

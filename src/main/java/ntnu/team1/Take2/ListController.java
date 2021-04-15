@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class ToDoController {
+public class ListController {
 
     @FXML
     private javafx.scene.control.TableView<MainTask> TableView;
