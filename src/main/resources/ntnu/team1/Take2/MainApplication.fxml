@@ -36,7 +36,7 @@
                <top>
                   <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
-                      <Button fx:id="add" mnemonicParsing="false" text="Add new task" />
+                      <Button fx:id="add" mnemonicParsing="false" text="Add new task" onAction="#addNewTask"/>
                         <Button mnemonicParsing="false" text="Remove task" />
                         <Button mnemonicParsing="false" text="Edit task" />
                     </items>
