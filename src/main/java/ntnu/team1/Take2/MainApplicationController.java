@@ -42,22 +42,23 @@ public class MainApplicationController {
 
 
     public void initialize() throws IOException {
+        view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("toDo.fxml"));
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
     }
 
+
+
     @FXML
     public void switchToFinished() throws IOException {
-        view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("finished.fxml"));
-        view.getChildren().add(newLoadedPane);
+        App.changeWrapper(true);
+        initialize();
     }
     @FXML
     public void switchToToDo() throws IOException {
-        view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("toDo.fxml"));
-        view.getChildren().add(newLoadedPane);
+        App.changeWrapper(false);
+        initialize();
     }
 
     @FXML
