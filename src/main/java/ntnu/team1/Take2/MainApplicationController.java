@@ -92,4 +92,16 @@ public class MainApplicationController {
         return eventHandler;
     }
 
+    public void switchToCategory() throws IOException {
+        view.getChildren().clear();
+        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("newcategory.fxml"));
+        view.getChildren().add(newLoadedPane);
+
+    }
+
+    public void addNewCategory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        Parent parent = fxmlLoader.load();
+        addCategoryDialogController dialogController = new addCategoryDialogController();
+    }
 }
