@@ -18,7 +18,7 @@ public class MainTask {
     private LocalDate endDate;
     private int priority;
     private int categoryId;
-    private boolean isDone;
+    public Boolean isDone;
 
     public MainTask(int ID, String name, String description, LocalDate startDate, LocalDate endDate, int priority, int categoryId) {
         this.ID = ID;
