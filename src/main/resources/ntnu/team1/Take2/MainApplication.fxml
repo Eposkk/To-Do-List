@@ -23,7 +23,7 @@
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
                         <MenuItem fx:id="menuEditAdd" mnemonicParsing="false" onAction="#addNewTask" text="Add new task" />
-                        <MenuItem fx:id="menuEditEdit" mnemonicParsing="false" text="Edit selected" />
+                        <MenuItem fx:id="menuEditEdit" onAction="#editSelectedTask" mnemonicParsing="false" text="Edit selected" />
                     <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Delete selected" />
                   </items>
                 </Menu>
@@ -39,8 +39,8 @@
                   <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
                       <Button fx:id="add" mnemonicParsing="false" onAction="#addNewTask" text="Add new task" />
-                        <Button mnemonicParsing="false" text="Remove task" />
-                        <Button mnemonicParsing="false" text="Edit task" />
+                        <Button fx:id="remove" mnemonicParsing="false" text="Remove task" />
+                        <Button fx:id="edit" onAction="#editSelectedTask" mnemonicParsing="false" text="Edit task" />
                     </items>
                   </ToolBar>
                </top>
