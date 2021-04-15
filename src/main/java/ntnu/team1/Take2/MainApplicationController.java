@@ -1,10 +1,12 @@
 package ntnu.team1.Take2;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +42,7 @@ public class MainApplicationController {
     public void initialize() throws IOException {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("toDo.fxml"));
         view.getChildren().add(newLoadedPane);
+        menuHelpAbout.setOnAction(showAbout());
     }
 
     @FXML
@@ -53,4 +56,23 @@ public class MainApplicationController {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    @FXML
+    private EventHandler<ActionEvent> showAbout() {
+        EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.initModality(Modality.APPLICATION_MODAL);
+                alert.setTitle("About");
+                alert.setHeaderText("To-Do-List Application");
+                alert.setContentText("Version 1.0\n" +
+                        "Made by Team 1.1"+
+                        "\n2021 \u00A9");
+                alert.showAndWait();
+            }
+        };
+        return eventHandler;
+    }
+
 }
