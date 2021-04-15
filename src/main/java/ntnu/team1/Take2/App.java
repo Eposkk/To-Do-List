@@ -23,7 +23,7 @@ public class App extends Application {
 
     public static Scene scene;
     public static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> registerWrapper= FXCollections.observableArrayList(register.getAllTasks());
+    public static ObservableList<MainTask> registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
 
     public static void main(String[] args) {
         launch();
@@ -38,6 +38,8 @@ public class App extends Application {
             register.setCategories(reader.readCategory());
             register.setTasks(reader.readTasks());
         }
+
+        registerWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
 
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);

@@ -65,6 +65,7 @@ public class AddTaskDialogController {
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         observableList = FXCollections.observableArrayList(register.getAllTasks());
+        App.updateWrapper(observableList);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
         App.setRootWithSave("MainApplication", register);

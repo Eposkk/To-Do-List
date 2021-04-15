@@ -48,8 +48,6 @@ public class MainApplicationController {
         menuHelpAbout.setOnAction(showAbout());
     }
 
-
-
     @FXML
     public void switchToFinished() throws IOException {
         App.changeWrapper(true);
