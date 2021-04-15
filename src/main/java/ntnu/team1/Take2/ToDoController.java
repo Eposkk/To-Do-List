@@ -54,14 +54,18 @@ public class ToDoController {
     ObservableList<MainTask> registerWrapper;
 
     public void initialize(){
-        File category= new File("data/categories.ser");
-        if (category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            register.setCategories(reader.readCategory());
-            register.setTasks(reader.readTasks());
-        }
-        App.setRegister(register);
-        doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
+        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+        doneColumn.setCellValueFactory(cellData -> {
+            MainTask task = cellData.getValue();
+            BooleanProperty property = new SimpleBooleanProperty(task.isDone());
+
+            property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
+                task.setDone(newValue);
+                updateWrapper();
+                TableView.setItems(registerWrapper);
+            });
+            return property;
+        });
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -70,34 +74,12 @@ public class ToDoController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
-        int n=1000;
-        for(int i = 0; i<=n;i++) {
-            String name = "task " + i;
-            String description = "Lorem Ipsum";
-            Random random = new Random();
-            register.addMainTask(null, null, name, description, random.nextInt(3), -1);
-        }
-
         columFactory();
         updateWrapper();
 
         TableView.setItems(registerWrapper);
-
-
-
-        /*File category= new File("data/categories.ser");
-         if(category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            register.setCategories(reader.readCategory());
-            register.setTasks(reader.readTasks());
-            fillTable();
-        }*/
     }
 
-    @FXML
-    private void markAsDone(){
-
-    }
 
     private void columFactory(){
 
@@ -122,11 +104,6 @@ public class ToDoController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
-    }
-
-    @FXML
-    private void addNewTask() throws IOException {
-        App.setRootWithSave("newtask", register);
     }
 
     private void updateWrapper(){

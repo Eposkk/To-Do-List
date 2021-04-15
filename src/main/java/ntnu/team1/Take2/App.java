@@ -8,9 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
+import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.MainTask;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -28,6 +30,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        File category= new File("data/categories.ser");
+        if (category.exists()){
+            Read reader = new Read("data/categories.ser","data/tasks.ser");
+            register.setCategories(reader.readCategory());
+            register.setTasks(reader.readTasks());
+        }
+
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setScene(scene);
         stage.show();

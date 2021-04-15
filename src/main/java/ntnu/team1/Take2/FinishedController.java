@@ -57,14 +57,8 @@ public class FinishedController {
         columFactory();
         updateWrapper();
         TableView.setItems(registerWrapper);
-
-
     }
 
-    @FXML
-    private void markAsDone(){
-
-    }
 
     private void columFactory(){
 
