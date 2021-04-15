@@ -84,11 +84,6 @@ public class ToDoController {
 
     }
 
-    private void updateList(){
-        registerWrapper= App.getWrapper();
-        TableView.setItems(registerWrapper);
-    }
-
     public ObservableList<MainTask> getRegisterWrapper() {
         return registerWrapper;
     }
