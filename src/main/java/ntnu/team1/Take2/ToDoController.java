@@ -68,21 +68,15 @@ public class ToDoController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
+        /*
         int n=1000;
-        /*for(int i = 0; i<=n;i++) {
+        for(int i = 0; i<=n;i++) {
             String name = "task " + i;
             String description = "Lorem Ipsum";
             Random random = new Random();
             register.addMainTask(null, null, name, description, random.nextInt(3), -1);
         }*/
         fillTable();
-        /*File category= new File("data/categories.ser");
-         if(category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            register.setCategories(reader.readCategory());
-            register.setTasks(reader.readTasks());
-            fillTable();
-        }*/
     }
 
     @FXML
