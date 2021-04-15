@@ -49,6 +49,9 @@ public class MainApplicationController {
     private void addNewTask() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
         Parent parent = fxmlLoader.load();
+        AddTaskDialogController dialogController = new AddTaskDialogController();
+        ToDoController toDoController = new ToDoController();
+        dialogController.setAppMainObservableList(toDoController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
