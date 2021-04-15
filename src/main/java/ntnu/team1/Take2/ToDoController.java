@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -53,6 +54,21 @@ public class ToDoController {
     ObservableList<MainTask> registerWrapper;
 
     public void initialize(){
+        File category= new File("data/categories.ser");
+        if (category.exists()){
+            Read reader = new Read("data/categories.ser","data/tasks.ser");
+            register.setCategories(reader.readCategory());
+            register.setTasks(reader.readTasks());
+        }
+        App.setRegister(register);
+        doneColumn.setCellFactory( MainTask -> new CheckBoxTableCell<>());
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
         int n=1000;
         for(int i = 0; i<=n;i++) {
@@ -118,5 +134,7 @@ public class ToDoController {
 
     }
 
-
+    public ObservableList<MainTask> getRegisterWrapper() {
+        return registerWrapper;
+    }
 }

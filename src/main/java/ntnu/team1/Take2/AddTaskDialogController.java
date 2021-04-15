@@ -5,13 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import ntnu.team1.MVP.App;
+import ntnu.team1.Take2.App;
 import ntnu.team1.MVP.MainController;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
+import ntnu.team1.application.task.MainTask;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -30,6 +32,9 @@ public class AddTaskDialogController {
     MainRegister register = new MainRegister();
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
+
+    private ObservableList<MainTask> observableList;
+
     @FXML
     private void initialize(){
         File category= new File("data/categories.ser");
@@ -44,11 +49,11 @@ public class AddTaskDialogController {
             namesOfCategories.add(c.getName());
         }
         choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
-        App.setReg(register);
+        App.setRegister(register);
     }
 
     @FXML
-    private void submit(){
+    private void submit() throws IOException {
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         int category1 = -1;
         if(choiceBox.getValue() != null){
@@ -59,12 +64,19 @@ public class AddTaskDialogController {
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
+        observableList = FXCollections.observableArrayList(register.getAllTasks());
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
+        App.setRootWithSave("MainApplication", register);
     }
     @FXML
     private void cancel(){
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
+    }
+
+    public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
+        this.observableList = tvObservableList;
+
     }
 }

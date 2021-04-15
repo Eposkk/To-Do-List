@@ -30,6 +30,7 @@ public class Category implements Serializable {
         this.g = color.getGreen();
         this.b = color.getBlue();
         this.name = name;
+        this.serialVersionUID = 98128L;
     }
 
     /**
