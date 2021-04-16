@@ -18,8 +18,6 @@ import java.io.IOException;
 
 public class MainApplicationController {
 
-
-
     @FXML
     private MenuItem menuFileClose;
 
@@ -60,6 +58,14 @@ public class MainApplicationController {
         initialize();
     }
 
+    @FXML
+    public void switchToCategory() throws IOException {
+        view.getChildren().clear();
+        System.out.println("Test");
+        Pane categoryPane = FXMLLoader.load(getClass().getResource("categoryList.fxml"));
+        view.getChildren().add(categoryPane);
+    }
+
 
 
     @FXML
@@ -96,12 +102,7 @@ public class MainApplicationController {
         return eventHandler;
     }
 
-    public void switchToCategory() throws IOException {
-        view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("category.fxml"));
-        view.getChildren().add(newLoadedPane);
 
-    }
 
 
     @FXML

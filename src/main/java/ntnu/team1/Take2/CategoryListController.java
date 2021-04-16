@@ -1,16 +1,17 @@
 package ntnu.team1.Take2;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
+
+import java.io.IOException;
 
 public class CategoryListController {
 
@@ -30,7 +31,6 @@ public class CategoryListController {
     private void columFactory(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
-        taskNumberColumn.setCellValueFactory(new PropertyValueFactory<>("number of tasks") );
     }
 
     private void updateList(){
@@ -42,4 +42,17 @@ public class CategoryListController {
         return registerWrapper;
     }
 
+    public void addNewCategory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newcategory.fxml"));
+        Parent parent = fxmlLoader.load();
+        addCategoryDialogController dialogController = new addCategoryDialogController();
+        CategoryListController toDoController = new CategoryListController();
+        dialogController.setAppCategoryObservableList(toDoController.getRegisterWrapper());
+
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
 }

@@ -63,8 +63,9 @@ public class App extends Application {
 
     public static void changeWrapper(boolean isDone){
         taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
-        categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
     }
+
+
 
     public static void setRegister(MainRegister register) {
         App.register = register;
