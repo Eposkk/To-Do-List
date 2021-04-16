@@ -61,10 +61,6 @@ public class App extends Application {
         categoryRegisterWrapper = o;
     }
 
-    public static void loadFXML(){
-
-    }
-
     public static void changeWrapper(boolean isDone){
         taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
         categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
@@ -101,6 +97,7 @@ public class App extends Application {
         }
         return registerLocal;
     }
+
 
     @Override
     public void stop(){
