@@ -42,7 +42,7 @@ public class TaskListController {
     private TableColumn<MainTask, Button> deleteButtonColumn;
 
 
-    ObservableList<MainTask> registerWrapper = App.getWrapper();
+    ObservableList<MainTask> registerWrapper = App.getTaskWrapper();
 
     public void initialize(){
         columFactory();
@@ -78,7 +78,7 @@ public class TaskListController {
     }
 
     private void updateList(){
-        registerWrapper= App.getWrapper();
+        registerWrapper= App.getTaskWrapper();
         TableView.setItems(registerWrapper);
     }
 

@@ -25,8 +25,8 @@ public class App extends Application {
 
     public static Scene scene;
     public static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
-    public static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
+    public static ObservableList<MainTask> taskRegisterWrapper;
+    public static ObservableList<Category> categoryRegisterWrapper;
 
     public static void main(String[] args) {
         launch();
@@ -38,15 +38,19 @@ public class App extends Application {
         register = getRegisterFromSave();
 
         taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
-
+        categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static ObservableList<MainTask> getWrapper(){
+    public static ObservableList<MainTask> getTaskWrapper(){
         return taskRegisterWrapper;
+    }
+
+    public static ObservableList<Category> getCategoryWrapper(){
+        return categoryRegisterWrapper;
     }
 
     public static void updateTaskWrapper(ObservableList<MainTask> o){
@@ -63,7 +67,7 @@ public class App extends Application {
 
     public static void changeWrapper(boolean isDone){
         taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
-
+        categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
     }
 
     public static void setRegister(MainRegister register) {

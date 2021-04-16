@@ -80,7 +80,8 @@ public class MainApplicationController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newcategory.fxml"));
         Parent parent = fxmlLoader.load();
         addCategoryDialogController dialogController = new addCategoryDialogController();
-
+        CategoryListController categoryListController = new CategoryListController();
+        dialogController.setAppCategoryObservableList(categoryListController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 400,364);
         Stage stage = new Stage();
@@ -110,7 +111,7 @@ public class MainApplicationController {
 
     public void switchToCategory() throws IOException {
         view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("newcategory.fxml"));
+        Pane newLoadedPane = FXMLLoader.load(App.class.getResource("category.fxml"));
         view.getChildren().add(newLoadedPane);
 
     }

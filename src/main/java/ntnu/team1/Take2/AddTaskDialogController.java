@@ -29,7 +29,8 @@ public class AddTaskDialogController {
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
 
-    private ObservableList<MainTask> observableList;
+    private ObservableList<MainTask> observableTaskList;
+
 
     @FXML
     private void initialize(){
@@ -55,8 +56,8 @@ public class AddTaskDialogController {
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
-        observableList = FXCollections.observableArrayList(register.getAllTasks());
-        App.updateTaskWrapper(observableList);
+        observableTaskList = FXCollections.observableArrayList(register.getAllTasks());
+        App.updateTaskWrapper(observableTaskList);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
         App.setRootWithSave("MainApplication", register);
@@ -68,6 +69,8 @@ public class AddTaskDialogController {
     }
 
     public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
-        this.observableList = tvObservableList;
+        this.observableTaskList = tvObservableList;
     }
+
+
 }
