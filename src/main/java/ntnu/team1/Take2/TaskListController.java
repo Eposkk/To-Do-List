@@ -49,6 +49,9 @@ public class TaskListController {
     @FXML
     private TableColumn<MainTask, Integer> categoryColumn;
 
+    @FXML
+    private TableColumn<MainTask, Button> deleteButtonColumn;
+
 
     ObservableList<MainTask> registerWrapper = App.getWrapper();
 
@@ -81,6 +84,7 @@ public class TaskListController {
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
     }
 
