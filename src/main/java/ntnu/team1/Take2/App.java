@@ -51,13 +51,10 @@ public class App extends Application {
 
     public static void updateTaskWrapper(){
         taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));;
-
-        public static ObservableList<Category> getCategoryWrapper(){
-        return categoryRegisterWrapper;
     }
 
-    public static void updateTaskWrapper(ObservableList<MainTask> o){
-        taskRegisterWrapper = o;
+    public static ObservableList<Category> getCategoryWrapper() {
+        return categoryRegisterWrapper;
     }
 
     public static void updateCategoryWrapper(ObservableList<Category> o){
@@ -92,7 +89,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static MainRegister getRegisterFromSave (){
+    public static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
         File category= new File("data/categories.ser");
         if (category.exists()){
