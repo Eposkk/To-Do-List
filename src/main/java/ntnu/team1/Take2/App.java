@@ -45,12 +45,19 @@ public class App extends Application {
         stage.show();
     }
 
-    public static ObservableList<MainTask> getWrapper(){
+    public static ObservableList<MainTask> getTaskWrapper(){
         return taskRegisterWrapper;
     }
 
     public static void updateTaskWrapper(){
         taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));;
+
+        public static ObservableList<Category> getCategoryWrapper(){
+        return categoryRegisterWrapper;
+    }
+
+    public static void updateTaskWrapper(ObservableList<MainTask> o){
+        taskRegisterWrapper = o;
     }
 
     public static void updateCategoryWrapper(ObservableList<Category> o){

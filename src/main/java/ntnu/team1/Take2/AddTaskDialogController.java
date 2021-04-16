@@ -29,7 +29,8 @@ public class AddTaskDialogController {
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
 
-    private ObservableList<MainTask> observableList;
+    private ObservableList<MainTask> observableTaskList;
+
 
     @FXML
     private void initialize(){
@@ -68,6 +69,6 @@ public class AddTaskDialogController {
     }
 
     public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
-        this.observableList = tvObservableList;
+        this.observableTaskList = tvObservableList;
     }
 }
