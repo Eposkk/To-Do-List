@@ -5,14 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import ntnu.team1.Take2.App;
-import ntnu.team1.MVP.MainController;
 import ntnu.team1.application.MainRegister;
-import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,12 +33,7 @@ public class AddTaskDialogController {
 
     @FXML
     private void initialize(){
-        File category= new File("data/categories.ser");
-        if (category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            register.setCategories(reader.readCategory());
-            register.setTasks(reader.readTasks());
-        }
+        register = App.getRegister();
         categories =  new ArrayList<>(register.getCategories().values());
         namesOfCategories = new ArrayList<>();
         for (Category c: categories){
@@ -65,7 +56,7 @@ public class AddTaskDialogController {
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         observableList = FXCollections.observableArrayList(register.getAllTasks());
-        App.updateWrapper(observableList);
+        App.updateTaskWrapper(observableList);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
         App.setRootWithSave("MainApplication", register);

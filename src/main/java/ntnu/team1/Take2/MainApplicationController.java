@@ -69,7 +69,7 @@ public class MainApplicationController {
         addCategoryDialogController dialogController = new addCategoryDialogController();
 
 
-        Scene scene = new Scene(parent, 800,600);
+        Scene scene = new Scene(parent, 400,364);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);

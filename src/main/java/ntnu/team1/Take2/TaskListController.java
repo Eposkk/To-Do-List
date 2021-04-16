@@ -3,8 +3,6 @@ package ntnu.team1.Take2;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,11 +20,7 @@ import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class TaskListController {
 
@@ -93,7 +87,7 @@ public class TaskListController {
 
             property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
                 task.setDone(newValue);
-                App.updateWrapper(registerWrapper);
+                App.updateTaskWrapper(registerWrapper);
             });
             return property;
         });
