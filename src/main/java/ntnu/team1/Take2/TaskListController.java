@@ -7,10 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ntnu.team1.Take2.App;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
@@ -58,6 +63,21 @@ public class TaskListController {
     public void initialize(){
         columFactory();
         updateList();
+    }
+
+    @FXML
+    private void addNewTask() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddTaskDialogController dialogController = new AddTaskDialogController();
+        TaskListController toDoController = new TaskListController();
+        dialogController.setAppMainObservableList(toDoController.getRegisterWrapper());
+
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML

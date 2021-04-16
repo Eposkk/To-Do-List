@@ -56,10 +56,6 @@ public class App extends Application {
         registerWrapper = o;
     }
 
-    public static void loadFXML(){
-
-    }
-
     public static void changeWrapper(boolean isDone){
         registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
 
@@ -84,6 +80,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
     @Override
     public void stop(){
         System.out.println("Program is closing");
