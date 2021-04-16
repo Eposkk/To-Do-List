@@ -25,8 +25,8 @@ public class App extends Application {
 
     private static Scene scene;
     private static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> taskRegisterWrapper;
-    private static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
+    private static ObservableList<MainTask> taskRegisterWrapper;
+    private static ObservableList<Category> categoryRegisterWrapper;
 
     private static boolean taskSelector = false;
 
@@ -39,6 +39,7 @@ public class App extends Application {
 
         register = getRegisterFromSave();
         updateTaskWrapper();
+        updateCategoryWrapper();
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
@@ -50,15 +51,15 @@ public class App extends Application {
     }
 
     public static void updateTaskWrapper(){
-        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));;
+        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));
     }
 
     public static ObservableList<Category> getCategoryWrapper() {
         return categoryRegisterWrapper;
     }
 
-    public static void updateCategoryWrapper(ObservableList<Category> o){
-        categoryRegisterWrapper = o;
+    public static void updateCategoryWrapper(){
+        categoryRegisterWrapper =  FXCollections.observableArrayList(register.getCategories().values());
     }
 
     public static void changeTaskWrapper(boolean isDone){
@@ -69,6 +70,7 @@ public class App extends Application {
     public static void setRegister(MainRegister reg) {
         register = reg;
         updateTaskWrapper();
+        updateCategoryWrapper();
     }
 
     public static MainRegister getRegister(){

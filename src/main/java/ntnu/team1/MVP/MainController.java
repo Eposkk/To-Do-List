@@ -43,32 +43,15 @@ public class MainController {
     public TextArea taskName;
     public TextArea description;
     public DatePicker endDate;
-    public Button submitTask;
     public DatePicker startDate;
-    public ChoiceBox choiceBox;
     public ToggleGroup priority;
     public VBox showTasks;
     public HBox addNewTaskHBox;
     public VBox allCategoriesVBox;
-    @FXML
-    private VBox mainVBox;
-    @FXML
-    private Button textGenerateButton;
-    @FXML
-    private Button addNewTaskButton;
-    @FXML
-    private Text addNewTaskText;
-    @FXML
-    private Label todayTitleLabel;
-    @FXML
-    private Text upcomingCategoryText;
-    @FXML
-    private HBox todayCategoryHBox;
+
 
     MainRegister register = new MainRegister();
-    private VBox vBoxPriority;
-    ArrayList<Category> categories;
-    ArrayList<String> namesOfCategories;
+
 
     @FXML
     private void initialize(){
@@ -104,7 +87,7 @@ public class MainController {
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newTask.fxml"));
         Parent parent = fxmlLoader.load();
 
         Scene scene = new Scene(parent, 800, 600);
@@ -112,8 +95,6 @@ public class MainController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
-
-        //App.setRootWithSave("newtask", register);
     }
 
     @FXML

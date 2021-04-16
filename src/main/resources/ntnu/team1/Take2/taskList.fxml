@@ -17,7 +17,7 @@
             <Button mnemonicParsing="false" text="Edit"/>
         </ToolBar>
 
-        <TableView fx:id="TableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+        <TableView fx:id="tableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columns>
                 <TableColumn fx:id="doneColumn" minWidth="-1.0" prefWidth="-1.0" text="Done"/>

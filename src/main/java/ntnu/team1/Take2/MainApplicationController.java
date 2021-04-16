@@ -68,27 +68,20 @@ public class MainApplicationController {
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newTask.fxml"));
         Parent parent = fxmlLoader.load();
-        AddTaskDialogController dialogController = new AddTaskDialogController();
-        TaskListController toDoController = new TaskListController();
-        dialogController.setAppMainObservableList(toDoController.getTaskRegisterWrapper());
 
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
-        toDoController.updateList();
     }
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newcategory.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newCategory.fxml"));
         Parent parent = fxmlLoader.load();
-        addCategoryDialogController dialogController = new addCategoryDialogController();
-        CategoryListController categoryListController = new CategoryListController();
-        dialogController.setAppCategoryObservableList(categoryListController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 400,364);
         Stage stage = new Stage();
@@ -100,20 +93,16 @@ public class MainApplicationController {
 
     @FXML
     private EventHandler<ActionEvent> showAbout() {
-        EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.initModality(Modality.APPLICATION_MODAL);
-                alert.setTitle("About");
-                alert.setHeaderText("To-Do-List Application");
-                alert.setContentText("Version 1.0\n" +
-                        "Made by Team 1.1"+
-                        "\n2021 \u00A9");
-                alert.showAndWait();
-            }
+        return event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("About");
+            alert.setHeaderText("To-Do-List Application");
+            alert.setContentText("Version 1.0\n" +
+                    "Made by Team 1.1" +
+                    "\n2021 \u00A9");
+            alert.showAndWait();
         };
-        return eventHandler;
     }
 
 

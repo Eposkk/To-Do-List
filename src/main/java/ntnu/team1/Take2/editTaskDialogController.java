@@ -1,22 +1,18 @@
 package ntnu.team1.Take2;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+public class editTaskDialogController {
 
-public class AddTaskDialogController {
-
-
-    public ChoiceBox choiceBox;
+    public ChoiceBox<String> choiceBox;
     public DatePicker startDate;
     public DatePicker endDate;
     public TextArea description;
@@ -28,9 +24,6 @@ public class AddTaskDialogController {
     MainRegister register = new MainRegister();
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
-
-    private ObservableList<MainTask> observableTaskList;
-
 
     @FXML
     private void initialize(){
@@ -56,7 +49,6 @@ public class AddTaskDialogController {
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
-        observableTaskList = FXCollections.observableArrayList(register.getAllTasks());
         App.updateTaskWrapper();
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
@@ -68,7 +60,6 @@ public class AddTaskDialogController {
         stage.close();
     }
 
-    public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
-        this.observableTaskList = tvObservableList;
-    }
+
 }
+
