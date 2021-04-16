@@ -10,10 +10,12 @@ import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
+import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -23,7 +25,8 @@ public class App extends Application {
 
     public static Scene scene;
     public static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
+    public static ObservableList<MainTask> taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
+    public static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
 
     public static void main(String[] args) {
         launch();
@@ -32,14 +35,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        File category= new File("data/categories.ser");
-        if (category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            register.setCategories(reader.readCategory());
-            register.setTasks(reader.readTasks());
-        }
+        register = getRegisterFromSave();
 
-        registerWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
+        taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
 
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
@@ -47,13 +45,16 @@ public class App extends Application {
         stage.show();
     }
 
-
     public static ObservableList<MainTask> getWrapper(){
-        return registerWrapper;
+        return taskRegisterWrapper;
     }
 
-    public static void updateWrapper(ObservableList<MainTask> o){
-        registerWrapper = o;
+    public static void updateTaskWrapper(ObservableList<MainTask> o){
+        taskRegisterWrapper = o;
+    }
+
+    public static void updateCategoryWrapper(ObservableList<Category> o){
+        categoryRegisterWrapper = o;
     }
 
     public static void loadFXML(){
@@ -61,9 +62,10 @@ public class App extends Application {
     }
 
     public static void changeWrapper(boolean isDone){
-        registerWrapper= FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
+        taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
 
     }
+
     public static void setRegister(MainRegister register) {
         App.register = register;
     }
@@ -84,6 +86,18 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    public static MainRegister getRegisterFromSave (){
+        MainRegister registerLocal = new MainRegister();
+        File category= new File("data/categories.ser");
+        if (category.exists()){
+            Read reader = new Read("data/categories.ser","data/tasks.ser");
+            registerLocal.setCategories(reader.readCategory());
+            registerLocal.setTasks(reader.readTasks());
+        }
+        return registerLocal;
+    }
+
     @Override
     public void stop(){
         System.out.println("Program is closing");
