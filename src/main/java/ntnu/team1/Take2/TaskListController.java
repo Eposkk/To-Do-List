@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class ListController {
+public class TaskListController {
 
     @FXML
     private javafx.scene.control.TableView<MainTask> TableView;
@@ -48,6 +48,9 @@ public class ListController {
 
     @FXML
     private TableColumn<MainTask, Integer> categoryColumn;
+
+    @FXML
+    private TableColumn<MainTask, Button> deleteButtonColumn;
 
 
     ObservableList<MainTask> registerWrapper = App.getWrapper();
@@ -81,6 +84,7 @@ public class ListController {
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
     }
 

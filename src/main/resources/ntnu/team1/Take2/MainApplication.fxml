@@ -17,7 +17,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="menuFileClose" mnemonicParsing="false" text="Close" />
+                    <MenuItem fx:id="menuFileClose" mnemonicParsing="false" onAction="#close" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -36,15 +36,6 @@
               </menus>
             </MenuBar>
             <BorderPane prefHeight="564.0" prefWidth="797.0" VBox.vgrow="ALWAYS">
-               <top>
-                  <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <items>
-                      <Button fx:id="add" mnemonicParsing="false" onAction="#addNewTask" text="Add new" />
-                        <Button mnemonicParsing="false" text="Remove current" />
-                        <Button mnemonicParsing="false" text="Edit current" />
-                    </items>
-                  </ToolBar>
-               </top>
                <center>
                   <AnchorPane fx:id="view" />
                </center>
