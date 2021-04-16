@@ -13,7 +13,7 @@
           AnchorPane.topAnchor="0.0">
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <Button onAction="#addNewTask" mnemonicParsing="false" text="Add new task"/>
-            <Button mnemonicParsing="false" text="Delete selected"/>
+            <Button onAction="#removeTask" mnemonicParsing="false" text="Delete selected"/>
             <Button mnemonicParsing="false" text="Edit"/>
         </ToolBar>
 

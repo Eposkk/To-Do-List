@@ -51,12 +51,12 @@ public class MainApplicationController {
 
     @FXML
     public void switchToFinished() throws IOException {
-        App.changeWrapper(true);
+        App.changeTaskWrapper(true);
         initialize();
     }
     @FXML
     public void switchToToDo() throws IOException {
-        App.changeWrapper(false);
+        App.changeTaskWrapper(false);
         initialize();
     }
 
