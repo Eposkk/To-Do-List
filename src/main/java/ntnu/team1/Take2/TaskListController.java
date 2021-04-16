@@ -11,17 +11,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ntnu.team1.Take2.App;
 import ntnu.team1.application.MainRegister;
-import ntnu.team1.application.fileHandling.Read;
-import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
+import static ntnu.team1.Take2.App.taskRegisterWrapper;
 
 public class TaskListController {
 
@@ -53,7 +51,7 @@ public class TaskListController {
     private TableColumn<MainTask, Button> deleteButtonColumn;
 
 
-    ObservableList<MainTask> registerWrapper = App.getTaskWrapper();
+
 
     public void initialize(){
         columFactory();
@@ -66,7 +64,7 @@ public class TaskListController {
         Parent parent = fxmlLoader.load();
         AddTaskDialogController dialogController = new AddTaskDialogController();
         TaskListController toDoController = new TaskListController();
-        dialogController.setAppMainObservableList(toDoController.getRegisterWrapper());
+        dialogController.setAppMainObservableList(toDoController.getTaskRegisterWrapper());
 
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
@@ -111,12 +109,11 @@ public class TaskListController {
 
     }
 
-    private void updateList(){
-        registerWrapper= App.getTaskWrapper();
-        TableView.setItems(registerWrapper);
+    void updateList(){
+        TableView.setItems(taskRegisterWrapper);
     }
 
-    public ObservableList<MainTask> getRegisterWrapper() {
-        return registerWrapper;
+    public ObservableList<MainTask> getTaskRegisterWrapper() {
+        return taskRegisterWrapper;
     }
 }

@@ -25,7 +25,7 @@ public class App extends Application {
 
     private static Scene scene;
     private static MainRegister register = new MainRegister();
-    private static ObservableList<MainTask> taskRegisterWrapper;
+    public static ObservableList<MainTask> taskRegisterWrapper;
     private static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
 
     private static boolean taskSelector = false;

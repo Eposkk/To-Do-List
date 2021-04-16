@@ -66,7 +66,21 @@ public class MainApplicationController {
         view.getChildren().add(categoryPane);
     }
 
+    @FXML
+    private void addNewTask() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        Parent parent = fxmlLoader.load();
+        AddTaskDialogController dialogController = new AddTaskDialogController();
+        TaskListController toDoController = new TaskListController();
+        dialogController.setAppMainObservableList(toDoController.getTaskRegisterWrapper());
 
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        toDoController.updateList();
+    }
 
     @FXML
     public void addNewCategory() throws IOException {
