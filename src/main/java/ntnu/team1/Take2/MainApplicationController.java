@@ -1,5 +1,6 @@
 package ntnu.team1.Take2;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class MainApplicationController {
 
     public void initialize() throws IOException {
         view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("toDo.fxml"));
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("taskList.fxml"));
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
     }
@@ -64,7 +65,7 @@ public class MainApplicationController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
         Parent parent = fxmlLoader.load();
         AddTaskDialogController dialogController = new AddTaskDialogController();
-        ListController toDoController = new ListController();
+        TaskListController toDoController = new TaskListController();
         dialogController.setAppMainObservableList(toDoController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 800, 600);
@@ -73,6 +74,21 @@ public class MainApplicationController {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    @FXML
+    public void addNewCategory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newcategory.fxml"));
+        Parent parent = fxmlLoader.load();
+        addCategoryDialogController dialogController = new addCategoryDialogController();
+
+
+        Scene scene = new Scene(parent, 800,600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
 
     @FXML
     private EventHandler<ActionEvent> showAbout() {
@@ -99,9 +115,9 @@ public class MainApplicationController {
 
     }
 
-    public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
-        Parent parent = fxmlLoader.load();
-        addCategoryDialogController dialogController = new addCategoryDialogController();
+
+    @FXML
+    public void close(){
+        Platform.exit();
     }
 }

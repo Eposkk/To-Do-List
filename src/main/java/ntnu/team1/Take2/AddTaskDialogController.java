@@ -78,6 +78,5 @@ public class AddTaskDialogController {
 
     public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
         this.observableList = tvObservableList;
-
     }
 }

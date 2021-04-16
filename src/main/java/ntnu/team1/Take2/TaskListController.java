@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class ListController {
+public class TaskListController {
 
     @FXML
     private javafx.scene.control.TableView<MainTask> TableView;
@@ -82,6 +82,11 @@ public class ListController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
+    }
+
+    private void updateList(){
+        registerWrapper= App.getWrapper();
+        TableView.setItems(registerWrapper);
     }
 
     public ObservableList<MainTask> getRegisterWrapper() {

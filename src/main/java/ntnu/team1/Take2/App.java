@@ -84,10 +84,10 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
     @Override
     public void stop(){
         System.out.println("Program is closing");
+        System.out.println("This was run in App.java");
         Write writer = new Write(register.getCategories(), register.getAllTasks());
         writer.writeCategories();
         writer.writeTasks();
