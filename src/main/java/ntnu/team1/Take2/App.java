@@ -68,9 +68,8 @@ public class App extends Application {
 
     public static void setRegister(MainRegister reg) {
         register = reg;
+        updateTaskWrapper();
     }
-
-
 
     public static MainRegister getRegister(){
         return register;
