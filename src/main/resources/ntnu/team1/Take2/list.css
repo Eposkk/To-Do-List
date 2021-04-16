@@ -1,0 +1,35 @@
+.table-view .column-header-background .filler {
+    -fx-background-color: derive;
+    -fx-stroke: transparent;
+    -fx-alignment: CENTER ;
+    -fx-text-alignment: center;
+
+}
+
+.anchor-pane{
+    -fx-background-color: blue;
+}
+.table-row-cell:hover{
+    -fx-cursor: hand;
+    -fx-background-color: ligthgrey;
+}
+
+.table-row-cell:filled:hover {
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+
+.table-view .table-column{
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER
+
+}
