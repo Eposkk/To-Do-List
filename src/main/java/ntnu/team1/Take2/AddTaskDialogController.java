@@ -57,7 +57,7 @@ public class AddTaskDialogController {
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         observableTaskList = FXCollections.observableArrayList(register.getAllTasks());
-        App.updateTaskWrapper(observableTaskList);
+        App.updateTaskWrapper();
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
         App.setRootWithSave("MainApplication", register);
@@ -71,6 +71,4 @@ public class AddTaskDialogController {
     public void setAppMainObservableList(ObservableList<MainTask> tvObservableList) {
         this.observableTaskList = tvObservableList;
     }
-
-
 }

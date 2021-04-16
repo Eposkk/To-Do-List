@@ -23,10 +23,12 @@ import java.util.stream.Collectors;
  */
 public class App extends Application {
 
-    public static Scene scene;
-    public static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> taskRegisterWrapper;
-    public static ObservableList<Category> categoryRegisterWrapper;
+    private static Scene scene;
+    private static MainRegister register = new MainRegister();
+    private static ObservableList<MainTask> taskRegisterWrapper;
+    private static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
+
+    private static boolean taskSelector = false;
 
     public static void main(String[] args) {
         launch();
@@ -36,9 +38,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         register = getRegisterFromSave();
-
-        taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==false).collect(Collectors.toList()));
-        categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
+        updateTaskWrapper();
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
@@ -49,26 +49,31 @@ public class App extends Application {
         return taskRegisterWrapper;
     }
 
-    public static ObservableList<Category> getCategoryWrapper(){
-        return categoryRegisterWrapper;
+    public static void updateTaskWrapper(){
+        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));;
     }
 
-    public static void updateTaskWrapper(ObservableList<MainTask> o){
-        taskRegisterWrapper = o;
+    public static ObservableList<Category> getCategoryWrapper() {
+        return categoryRegisterWrapper;
     }
 
     public static void updateCategoryWrapper(ObservableList<Category> o){
         categoryRegisterWrapper = o;
     }
 
-    public static void changeWrapper(boolean isDone){
-        taskRegisterWrapper = FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==isDone).collect(Collectors.toList()));
+    public static void changeTaskWrapper(boolean isDone){
+       taskSelector = isDone;
+       updateTaskWrapper();
+    }
+
+    public static void setRegister(MainRegister reg) {
+        register = reg;
     }
 
 
 
-    public static void setRegister(MainRegister register) {
-        App.register = register;
+    public static MainRegister getRegister(){
+        return register;
     }
 
     static void setRootWithSave(String fxml, MainRegister register) throws IOException {
@@ -79,16 +84,14 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    public static MainRegister getRegister(){
-        return register;
-    }
+
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
-    public static MainRegister getRegisterFromSave (){
+    public static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
         File category= new File("data/categories.ser");
         if (category.exists()){

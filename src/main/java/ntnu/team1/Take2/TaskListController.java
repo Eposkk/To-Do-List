@@ -73,11 +73,15 @@ public class TaskListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        updateList();
     }
 
     @FXML
     private void removeTask(){
-        registerWrapper.remove(TableView.getSelectionModel().getSelectedItem());
+        MainRegister result = App.getRegister();
+        result.removeMainTask(TableView.getSelectionModel().getSelectedItem().getID());
+        App.setRegister(result);
+        updateList();
     }
 
     private void columFactory(){
@@ -87,8 +91,11 @@ public class TaskListController {
             BooleanProperty property = new SimpleBooleanProperty(task.isDone());
 
             property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
-                task.setDone(newValue);
-                App.updateTaskWrapper(registerWrapper);
+                MainRegister register = App.getRegister();
+                register.getMainTask(task.getID()).setDone(newValue);
+                App.setRegister(register);
+                updateList();
+
             });
             return property;
         });
