@@ -20,6 +20,7 @@ import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class TaskListController {
