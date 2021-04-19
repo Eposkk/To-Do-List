@@ -1,0 +1,32 @@
+
+
+#header{
+    -fx-font-size: 30;
+    -fx-alignment: center;
+}
+
+.anchor-pane{
+    -fx-background-color: blue;
+}
+.table-row-cell:hover{
+    -fx-cursor: hand;
+}
+
+.table-row-cell:filled:hover {
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+
+.table-view .table-column{
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER
+
+}

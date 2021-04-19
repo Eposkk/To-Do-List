@@ -1,5 +1,6 @@
 package ntnu.team1.application.fileHandling;
 
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReadWrite {
+public class ReadWrite {
     private HashMap<Integer, Category> addCategoryData(){
         HashMap<Integer,Category> test=new HashMap<>();
         Category cat1 = new Category(1, Color.BLUE,"Skole");
@@ -30,24 +31,28 @@ class ReadWrite {
         return test;
     }
 
-    @Test
-    void writeAndReadPositive() {
-        HashMap<Integer,Category> data=addCategoryData();
-        ArrayList<MainTask> tasks = addTaskData();
-        Write write = new Write(data,tasks);
-        write.writeCategories();
-        write.writeTasks();
-        Read read = new Read("data/categories.ser","data/tasks.ser");
-        HashMap<Integer,Category> dataRead = read.readCategory();
-        ArrayList<MainTask> tasksRead= read.readTasks();
-        assert(data.equals(dataRead));
-        assert (tasksRead.equals(tasks));
+    private MainRegister addRegister(){
+        MainRegister register = new MainRegister();
+        register.setCategories(addCategoryData());
+        register.setTasks(addTaskData());
+        return register;
     }
 
+   /* @Test
+    void writeAndReadPositive() {
+        MainRegister register = addRegister();
+        Write write = new Write(register);
+        write.writeRegister();
+
+        Read read = new Read("data/mainRegister.ser");
+        MainRegister readRegister = read.readRegister();
+        assert(register.getAllTasks().equals(readRegister.getAllTasks()));
+        assert(register.getCategories().equals(readRegister.getCategories()));
+    }*/
+
     @Test
-    void writeAndReadNullPointerException() {
-        Read read = new Read("data/categor.ser","data/tass.ser");
-        assertThrows(NullPointerException.class, () -> { read.readTasks();});
-        assertThrows(NullPointerException.class, () -> { read.readCategory();});
+    public void writeAndReadNullPointerException() {
+        Read read = new Read("data/eqw");
+        assertThrows(NullPointerException.class, read::readRegister);
     }
 }

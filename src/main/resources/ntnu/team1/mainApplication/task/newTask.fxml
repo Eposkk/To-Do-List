@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="950.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.MVP.NewtaskController">
+<AnchorPane prefHeight="950.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.task.AddTaskDialogController">
       <VBox layoutX="396.0" layoutY="113.0" prefHeight="714.0" prefWidth="173.0">
             <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
             <Label text="Priority">

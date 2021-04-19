@@ -5,52 +5,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
 public class Read {
-    String pathCategory;
-    String pathEvent;
-    public Read(String pathCategory, String pathEvent){
-        this.pathCategory=pathCategory;
-        this.pathEvent=pathEvent;
+    String pathRegister;
+    public Read(String pathRegister){
+        this.pathRegister=pathRegister;
     }
 
-    public HashMap<Integer, Category> readCategory(){
-        HashMap<Integer, Category> categories=null;
+    public MainRegister readRegister(){
+        MainRegister register = null;
         FileInputStream fileInputStream = null;
         ObjectInputStream in = null;
         try{
-            fileInputStream = new FileInputStream(pathCategory);
-            in = new ObjectInputStream(fileInputStream);
-            categories=(HashMap<Integer, Category>) in.readObject();
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        catch (ClassNotFoundException c){
-            System.out.println(c.getMessage());
-        }
-        finally { //The files will close even tough an exception will be caught when reading from category files.
-            try{
-                fileInputStream.close();
-                in.close();
-            }
-            catch (IOException i){
-                System.out.println(i.getMessage());
-            }
-        }
-        return categories;
-    }
-
-    public ArrayList<MainTask> readTasks(){
-        ArrayList<MainTask> tasks = null;
-        FileInputStream fileInputStream = null;
-        ObjectInputStream in = null;
-        try{
-            fileInputStream = new FileInputStream(pathEvent);
+            fileInputStream = new FileInputStream(pathRegister);
             in= new ObjectInputStream(fileInputStream);
-            tasks=(ArrayList<MainTask>) in.readObject();
+            register=(MainRegister)in.readObject();
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
@@ -66,7 +39,7 @@ public class Read {
                 System.out.println(i.getMessage());
             }
         }
-        return tasks;
+        return register;
     }
 }
 
