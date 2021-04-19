@@ -90,7 +90,6 @@ public class TaskListController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/editTask.fxml"));
         Parent parent = fxmlLoader.load();
-
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

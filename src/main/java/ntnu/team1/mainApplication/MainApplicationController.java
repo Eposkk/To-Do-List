@@ -69,8 +69,10 @@ public class MainApplicationController {
 
     @FXML
     public void switchToTasks() throws IOException {
-        currentView="todo";
-        initialize();
+        view.getChildren().clear();
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+
+        view.getChildren().add(newLoadedPane);
     }
 
     @FXML
