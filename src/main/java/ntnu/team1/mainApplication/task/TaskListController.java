@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -80,6 +82,8 @@ public class TaskListController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
+        stage.setTitle("Add new task");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
         stage.showAndWait();
         updateList();
     }
@@ -95,6 +99,8 @@ public class TaskListController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
+        stage.setTitle("Edit task");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/edit.png")));
         stage.showAndWait();
         tableView.getItems().clear();
         initialize();

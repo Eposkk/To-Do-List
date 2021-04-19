@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
@@ -17,6 +19,7 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -30,7 +33,7 @@ public class CategoryListController {
     @FXML
     public TableColumn<Category, String> nameColumn;
     @FXML
-    public TableColumn colorColumn;
+    public TableColumn<Color, Color> colorColumn;
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
 
@@ -50,11 +53,12 @@ public class CategoryListController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
         Parent parent = fxmlLoader.load();
 
-        Scene scene = new Scene(parent, 800, 600);
+        Scene scene = new Scene(parent, 364, 393);
         Stage stage = new Stage();
-        stage.setTitle("Add new category");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
+        stage.setTitle("Add new category");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
         stage.showAndWait();
         updateList();
     }
@@ -74,10 +78,12 @@ public class CategoryListController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/editCategory.fxml"));
         Parent parent = fxmlLoader.load();
 
-        Scene scene = new Scene(parent, 800, 600);
+        Scene scene = new Scene(parent, 364, 393);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
+        stage.setTitle("Edit task");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/edit.png")));
         stage.showAndWait();
         tableView.getItems().clear();
         initialize();
