@@ -1,4 +1,4 @@
-package ntnu.team1.mainApplication;
+package ntnu.team1.mainApplication.category;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
+import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
 
@@ -41,7 +42,7 @@ public class CategoryListController {
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newCategory.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
         Parent parent = fxmlLoader.load();
 
         Scene scene = new Scene(parent, 800, 600);

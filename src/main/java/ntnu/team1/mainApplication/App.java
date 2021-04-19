@@ -76,7 +76,7 @@ public class App extends Application {
         return register;
     }
 
-    static void setRootWithSave(String fxml, MainRegister register) throws IOException {
+    public static void setRootWithSave(String fxml, MainRegister register) throws IOException {
         App.register =register;
         Write writer = new Write(register);
         writer.writeRegister();
