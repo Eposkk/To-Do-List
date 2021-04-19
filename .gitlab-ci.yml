@@ -27,16 +27,6 @@ test:
     - mvn clean test -e
 
 
-  stage: deploy
-  script:
-  - mkdir .public
-  - cp -r JavaDoc/* .public
-  - mv .public public
-  artifacts:
-    paths:
-    - public
-  only:
-  - testing
 
 pages:
   stage: deploy
