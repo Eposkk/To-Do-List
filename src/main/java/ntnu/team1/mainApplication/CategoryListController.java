@@ -1,7 +1,5 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,6 +46,7 @@ public class CategoryListController {
 
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
+        stage.setTitle("Add new category");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();

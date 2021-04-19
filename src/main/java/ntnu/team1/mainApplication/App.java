@@ -1,4 +1,4 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -15,7 +15,6 @@ import ntnu.team1.application.task.MainTask;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -79,9 +78,8 @@ public class App extends Application {
 
     static void setRootWithSave(String fxml, MainRegister register) throws IOException {
         App.register =register;
-        Write writer = new Write(register.getCategories(),register.getAllTasks());
-        writer.writeCategories();
-        writer.writeTasks();
+        Write writer = new Write(register);
+        writer.writeRegister();
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -94,11 +92,11 @@ public class App extends Application {
 
     public static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
-        File category= new File("data/categories.ser");
-        if (category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            registerLocal.setCategories(reader.readCategory());
-            registerLocal.setTasks(reader.readTasks());
+        File register= new File("data/mainRegister.ser");
+        if (register.exists()){
+            System.out.println("Register exists");
+            Read reader = new Read("data/mainRegister.ser");
+            registerLocal= reader.readRegister();
         }
         return registerLocal;
     }
@@ -108,8 +106,8 @@ public class App extends Application {
     public void stop(){
         System.out.println("Program is closing");
         System.out.println("This was run in App.java");
-        Write writer = new Write(register.getCategories(), register.getAllTasks());
-        writer.writeCategories();
-        writer.writeTasks();
+        Write writer = new Write(register);
+        writer.writeRegister();
+
     }
 }
