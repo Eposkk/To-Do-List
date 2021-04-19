@@ -25,8 +25,6 @@ public class App extends Application {
 
     private static Scene scene;
     private static MainRegister register = new MainRegister();
-    private static ObservableList<MainTask> taskRegisterWrapper;
-    private static ObservableList<Category> categoryRegisterWrapper;
     private static int chosenCategory = -1;
 
     private static boolean taskSelector = false;
@@ -39,8 +37,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         register = getRegisterFromSave();
-        updateTaskWrapper();
-        updateCategoryWrapper();
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
@@ -54,31 +50,10 @@ public class App extends Application {
         return chosenCategory;
     }
 
-    public static ObservableList<MainTask> getTaskWrapper(){
-        return taskRegisterWrapper;
-    }
 
-    public static void updateTaskWrapper(){
-        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));
-    }
-
-    public static ObservableList<Category> getCategoryWrapper() {
-        return categoryRegisterWrapper;
-    }
-
-    public static void updateCategoryWrapper(){
-        categoryRegisterWrapper =  FXCollections.observableArrayList(register.getCategories().values());
-    }
-
-    public static void changeTaskWrapper(boolean isDone){
-       taskSelector = isDone;
-       updateTaskWrapper();
-    }
 
     public static void setRegister(MainRegister reg) {
         register = reg;
-        updateTaskWrapper();
-        updateCategoryWrapper();
     }
 
     public static MainRegister getRegister(){

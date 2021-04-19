@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
-public class showByCategoryController {
+public class ShowByCategoryController {
 
     public AnchorPane Pane;
     @FXML
@@ -119,21 +119,24 @@ public class showByCategoryController {
         RadioButton r = (RadioButton) choice.getSelectedToggle();
         String selected = r.getText();
         ObservableList<MainTask> list = null;
-        if(selected.equals("all")){
-            list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
-                    .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
-                    .collect(Collectors.toList()));
-        }else if(selected.equals("done")){
-            list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
-                    .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
-                    .filter(MainTask::isDone)
-                    .collect(Collectors.toList()));
-        }
-        else if(selected.equals("active")){
-            list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
-                    .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
-                    .filter(MainTask -> !MainTask.isDone())
-                    .collect(Collectors.toList()));
+        switch (selected) {
+            case "all":
+                list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
+                        .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
+                        .collect(Collectors.toList()));
+                break;
+            case "done":
+                list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
+                        .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
+                        .filter(MainTask::isDone)
+                        .collect(Collectors.toList()));
+                break;
+            case "active":
+                list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
+                        .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
+                        .filter(MainTask -> !MainTask.isDone())
+                        .collect(Collectors.toList()));
+                break;
         }
         tableView.setItems(list);
     }

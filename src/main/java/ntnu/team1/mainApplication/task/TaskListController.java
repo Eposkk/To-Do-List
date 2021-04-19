@@ -3,6 +3,8 @@ package ntnu.team1.mainApplication.task;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +22,8 @@ import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TaskListController {
 
@@ -51,9 +55,18 @@ public class TaskListController {
     @FXML
     private TableColumn<MainTask, Button> deleteButtonColumn;
 
+    @FXML
+    private ToggleGroup choice;
+
+    @FXML
+    private Label header;
+
+
 
 
     public void initialize(){
+        choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
+        header.setText("Viewing all tasks");
         columFactory();
         updateList();
     }
@@ -70,6 +83,7 @@ public class TaskListController {
         stage.showAndWait();
         updateList();
     }
+
     @FXML
     private void editTask() throws IOException{
         App.getRegister().setSelectedTask(tableView.getSelectionModel().getSelectedItem());
@@ -82,7 +96,6 @@ public class TaskListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
-        App.updateTaskWrapper();
         tableView.getItems().clear();
         initialize();
     }
@@ -120,7 +133,25 @@ public class TaskListController {
     }
 
     void updateList(){
-        tableView.setItems(App.getTaskWrapper());
+        RadioButton r = (RadioButton) choice.getSelectedToggle();
+        String selected = r.getText();
+        ObservableList<MainTask> list = null;
+        switch (selected) {
+            case "all":
+                list = FXCollections.observableList(new ArrayList<>(App.getRegister().getAllTasks()));
+                break;
+            case "done":
+                list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
+                        .filter(MainTask::isDone)
+                        .collect(Collectors.toList()));
+                break;
+            case "active":
+                list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
+                        .filter(MainTask -> !MainTask.isDone())
+                        .collect(Collectors.toList()));
+                break;
+        }
+        tableView.setItems(list);
     }
 
 

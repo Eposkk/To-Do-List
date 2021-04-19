@@ -10,14 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import ntnu.team1.mainApplication.task.EditTaskDialogController;
+import ntnu.team1.application.task.Category;
 
 import java.io.IOException;
 
@@ -32,10 +30,12 @@ public class MainApplicationController {
     @FXML
     private VBox categoryButtonList;
 
+    private String currentView="todo";
+
 
     private void generateCategoryList(){
         categoryButtonList.getChildren().clear();
-        for(Category c : App.getCategoryWrapper()){
+        for(Category c : App.getRegister().getCategories().values()){
             Button button = new Button(c.getName());
             button.setId(c.getName());
             button.setOnAction(actionEvent ->  {
@@ -55,7 +55,7 @@ public class MainApplicationController {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/showByCategory.fxml"));
         view.getChildren().add(newLoadedPane);
     }
-    private String currentView="todo";
+
 
 
     public void initialize() throws IOException {
@@ -68,13 +68,7 @@ public class MainApplicationController {
     }
 
     @FXML
-    public void switchToFinished() throws IOException {
-        App.changeTaskWrapper(true);
-        initialize();
-    }
-    @FXML
-    public void switchToToDo() throws IOException {
-        App.changeTaskWrapper(false);
+    public void switchToTasks() throws IOException {
         currentView="todo";
         initialize();
     }

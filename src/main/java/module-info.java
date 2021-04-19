@@ -11,5 +11,7 @@ module ntnu.team1 {
     exports ntnu.team1.mainApplication;
     exports ntnu.team1.mainApplication.category;
     exports ntnu.team1.mainApplication.task;
+    exports ntnu.team1.application.task;
+    exports ntnu.team1.application;
 
 }

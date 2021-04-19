@@ -1,5 +1,7 @@
 package ntnu.team1.mainApplication.category;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +14,12 @@ import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
+import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CategoryListController {
 
@@ -74,12 +79,12 @@ public class CategoryListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
-        App.updateTaskWrapper();
         tableView.getItems().clear();
         initialize();
     }
 
     private void updateList(){
-        tableView.setItems(App.getCategoryWrapper());
+        ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
+        tableView.setItems(list);
     }
 }
