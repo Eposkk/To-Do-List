@@ -51,7 +51,6 @@ public class editTaskDialogController {
             }
         }
         register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
-        observableTaskList = FXCollections.observableArrayList(register.getAllTasks());
         App.updateTaskWrapper();
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();

@@ -70,7 +70,6 @@ public class MainApplicationController {
     private void addNewTask() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
         Parent parent = fxmlLoader.load();
-        TaskListController toDoController = new TaskListController();
 
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
