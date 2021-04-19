@@ -1,22 +1,17 @@
 package ntnu.team1.mainApplication;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
-import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
-import ntnu.team1.mainApplication.task.TaskListController;
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 /**
  * JavaFX App
@@ -40,6 +35,8 @@ public class App extends Application {
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
+        stage.setTitle("To-Do-List 1.0");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/ntnu/team1/mainApplication/Logo256px.png")));
         stage.show();
     }
 
@@ -87,6 +84,5 @@ public class App extends Application {
         System.out.println("This was run in App.java");
         Write writer = new Write(register);
         writer.writeRegister();
-
     }
 }

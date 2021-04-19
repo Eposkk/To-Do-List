@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import ntnu.team1.application.task.Category;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MainApplicationController {
@@ -89,6 +91,8 @@ public class MainApplicationController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
+        stage.setTitle("Add new task");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
         stage.showAndWait();
     }
 
