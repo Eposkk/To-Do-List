@@ -1,4 +1,4 @@
-package ntnu.team1.mainApplication;
+package ntnu.team1.mainApplication.category;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,6 +6,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
+import ntnu.team1.mainApplication.App;
 
 public class addCategoryDialogController {
 
