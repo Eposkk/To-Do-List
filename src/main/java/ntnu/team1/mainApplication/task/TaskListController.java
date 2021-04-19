@@ -1,30 +1,31 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication.task;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
+import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static ntnu.team1.Take2.App.taskRegisterWrapper;
-
 public class TaskListController {
 
+    public AnchorPane Pane;
     @FXML
-    private javafx.scene.control.TableView<MainTask> TableView;
+    private javafx.scene.control.TableView<MainTask> tableView;
 
     @FXML
     private TableColumn<MainTask, Boolean> doneColumn;
@@ -60,7 +61,7 @@ public class TaskListController {
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
         Parent parent = fxmlLoader.load();
 
         Scene scene = new Scene(parent, 800, 600);
@@ -74,7 +75,7 @@ public class TaskListController {
     @FXML
     private void removeTask(){
         MainRegister result = App.getRegister();
-        result.removeMainTask(TableView.getSelectionModel().getSelectedItem().getID());
+        result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
         App.setRegister(result);
         updateList();
     }
@@ -88,10 +89,8 @@ public class TaskListController {
             property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
                 MainRegister register = App.getRegister();
                 register.getMainTask(task.getID()).setDone(newValue);
-                System.out.println(task.getID());
                 App.setRegister(register);
                 updateList();
-
             });
             return property;
         });
@@ -104,13 +103,11 @@ public class TaskListController {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
         deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
+
+
     }
 
     void updateList(){
-        TableView.setItems(taskRegisterWrapper);
-    }
-
-    public ObservableList<MainTask> getTaskRegisterWrapper() {
-        return taskRegisterWrapper;
+        tableView.setItems(App.getTaskWrapper());
     }
 }

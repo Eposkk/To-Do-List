@@ -1,4 +1,4 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,7 +42,7 @@ public class MainApplicationController {
 
     public void initialize() throws IOException {
         view.getChildren().clear();
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("taskList.fxml"));
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
     }
@@ -62,13 +62,13 @@ public class MainApplicationController {
     public void switchToCategory() throws IOException {
         view.getChildren().clear();
         System.out.println("Test");
-        Pane categoryPane = FXMLLoader.load(getClass().getResource("categoryList.fxml"));
+        Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
         view.getChildren().add(categoryPane);
     }
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newtask.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
         Parent parent = fxmlLoader.load();
         TaskListController toDoController = new TaskListController();
 
@@ -77,16 +77,12 @@ public class MainApplicationController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
-        toDoController.updateList();
     }
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "newcategory.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
         Parent parent = fxmlLoader.load();
-        addCategoryDialogController dialogController = new addCategoryDialogController();
-        CategoryListController categoryListController = new CategoryListController();
-        dialogController.setAppCategoryObservableList(categoryListController.getRegisterWrapper());
 
         Scene scene = new Scene(parent, 400,364);
         Stage stage = new Stage();
@@ -98,20 +94,16 @@ public class MainApplicationController {
 
     @FXML
     private EventHandler<ActionEvent> showAbout() {
-        EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.initModality(Modality.APPLICATION_MODAL);
-                alert.setTitle("About");
-                alert.setHeaderText("To-Do-List Application");
-                alert.setContentText("Version 1.0\n" +
-                        "Made by Team 1.1"+
-                        "\n2021 \u00A9");
-                alert.showAndWait();
-            }
+        return event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("About");
+            alert.setHeaderText("To-Do-List Application");
+            alert.setContentText("Version 1.0\n" +
+                    "Made by Team 1.1" +
+                    "\n2021 \u00A9");
+            alert.showAndWait();
         };
-        return eventHandler;
     }
 
 

@@ -1,4 +1,4 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -15,7 +15,6 @@ import ntnu.team1.application.task.MainTask;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -25,8 +24,8 @@ public class App extends Application {
 
     private static Scene scene;
     private static MainRegister register = new MainRegister();
-    public static ObservableList<MainTask> taskRegisterWrapper;
-    private static ObservableList<Category> categoryRegisterWrapper = FXCollections.observableArrayList(new ArrayList<>(register.getCategories().values()));
+    private static ObservableList<MainTask> taskRegisterWrapper;
+    private static ObservableList<Category> categoryRegisterWrapper;
 
     private static boolean taskSelector = false;
 
@@ -39,6 +38,7 @@ public class App extends Application {
 
         register = getRegisterFromSave();
         updateTaskWrapper();
+        updateCategoryWrapper();
         scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
@@ -50,15 +50,15 @@ public class App extends Application {
     }
 
     public static void updateTaskWrapper(){
-        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));;
+        taskRegisterWrapper =  FXCollections.observableArrayList(register.getAllTasks().stream().filter(MainTask -> MainTask.isDone()==taskSelector).collect(Collectors.toList()));
     }
 
     public static ObservableList<Category> getCategoryWrapper() {
         return categoryRegisterWrapper;
     }
 
-    public static void updateCategoryWrapper(ObservableList<Category> o){
-        categoryRegisterWrapper = o;
+    public static void updateCategoryWrapper(){
+        categoryRegisterWrapper =  FXCollections.observableArrayList(register.getCategories().values());
     }
 
     public static void changeTaskWrapper(boolean isDone){
@@ -69,17 +69,17 @@ public class App extends Application {
     public static void setRegister(MainRegister reg) {
         register = reg;
         updateTaskWrapper();
+        updateCategoryWrapper();
     }
 
     public static MainRegister getRegister(){
         return register;
     }
 
-    static void setRootWithSave(String fxml, MainRegister register) throws IOException {
+    public static void setRootWithSave(String fxml, MainRegister register) throws IOException {
         App.register =register;
-        Write writer = new Write(register.getCategories(),register.getAllTasks());
-        writer.writeCategories();
-        writer.writeTasks();
+        Write writer = new Write(register);
+        writer.writeRegister();
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -92,11 +92,11 @@ public class App extends Application {
 
     public static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
-        File category= new File("data/categories.ser");
-        if (category.exists()){
-            Read reader = new Read("data/categories.ser","data/tasks.ser");
-            registerLocal.setCategories(reader.readCategory());
-            registerLocal.setTasks(reader.readTasks());
+        File register= new File("data/mainRegister.ser");
+        if (register.exists()){
+            System.out.println("Register exists");
+            Read reader = new Read("data/mainRegister.ser");
+            registerLocal= reader.readRegister();
         }
         return registerLocal;
     }
@@ -106,8 +106,8 @@ public class App extends Application {
     public void stop(){
         System.out.println("Program is closing");
         System.out.println("This was run in App.java");
-        Write writer = new Write(register.getCategories(), register.getAllTasks());
-        writer.writeCategories();
-        writer.writeTasks();
+        Write writer = new Write(register);
+        writer.writeRegister();
+
     }
 }

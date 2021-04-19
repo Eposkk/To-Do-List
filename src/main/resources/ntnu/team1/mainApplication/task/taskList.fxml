@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.Take2.TaskListController">
+<AnchorPane fx:id="Pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.task.TaskListController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
           AnchorPane.topAnchor="0.0">
         <ToolBar prefHeight="40.0" prefWidth="200.0">
@@ -17,7 +17,7 @@
             <Button mnemonicParsing="false" text="Edit"/>
         </ToolBar>
 
-        <TableView fx:id="TableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+        <TableView fx:id="tableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columns>
                 <TableColumn fx:id="doneColumn" minWidth="-1.0" prefWidth="-1.0" text="Done"/>
