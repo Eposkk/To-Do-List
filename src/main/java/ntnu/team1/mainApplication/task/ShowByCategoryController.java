@@ -2,27 +2,19 @@ package ntnu.team1.mainApplication.task;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -65,7 +57,12 @@ public class ShowByCategoryController {
 
     public void initialize(){
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
-        header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+        if(App.getChosenCategory() < -1){
+            header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+
+        }else{
+            header.setText("Viewing all tasks without a given category");
+        }
         columFactory();
         updateList();
     }
