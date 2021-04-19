@@ -26,6 +26,7 @@ public class App extends Application {
     private static MainRegister register = new MainRegister();
     private static ObservableList<MainTask> taskRegisterWrapper;
     private static ObservableList<Category> categoryRegisterWrapper;
+    private static int chosenCategory = -1;
 
     private static boolean taskSelector = false;
 
@@ -43,6 +44,13 @@ public class App extends Application {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void setChosenCategory(int id){
+        chosenCategory = id;
+    }
+    public static int getChosenCategory(){
+        return chosenCategory;
     }
 
     public static ObservableList<MainTask> getTaskWrapper(){

@@ -1,9 +1,8 @@
-.table-view .column-header-background .filler {
-    -fx-background-color: derive;
-    -fx-stroke: transparent;
-    -fx-alignment: CENTER ;
-    -fx-text-alignment: center;
 
+
+#header{
+    -fx-font-size: 30;
+    -fx-alignment: center;
 }
 
 .anchor-pane{
@@ -11,13 +10,11 @@
 }
 .table-row-cell:hover{
     -fx-cursor: hand;
-    -fx-background-color: ligthgrey;
 }
 
 .table-row-cell:filled:hover {
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
-
 
 }
 .table-view:row-selection {
