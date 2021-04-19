@@ -1,24 +1,28 @@
 package ntnu.team1.mainApplication;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import ntnu.team1.application.task.Category;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainApplicationController {
 
@@ -34,9 +38,22 @@ public class MainApplicationController {
     private String currentView="todo";
 
 
-    private void generateCategoryList(){
+    public void generateCategoryList(){
+        ObservableList<Category> list  = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
         categoryButtonList.getChildren().clear();
-        for(Category c : App.getRegister().getCategories().values()){
+        if(App.getRegister().getAllTasks().stream().anyMatch(MainTask -> !MainTask.hasCategory())){
+            Button noCategory = new Button("No category");
+            noCategory.setOnAction(actionEvent ->  {
+                try {
+                    showByCategory(-1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            categoryButtonList.getChildren().add(noCategory);
+        }
+
+        for(Category c : list){
             Button button = new Button(c.getName());
             button.setId(c.getName());
             button.setOnAction(actionEvent ->  {
@@ -77,7 +94,6 @@ public class MainApplicationController {
     @FXML
     public void switchToCategory() throws IOException {
         view.getChildren().clear();
-        System.out.println("Test");
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
         currentView="category";
         view.getChildren().add(categoryPane);
