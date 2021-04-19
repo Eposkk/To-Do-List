@@ -99,9 +99,6 @@ public class TaskListController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
         deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-
-
-
     }
 
     void updateList(){

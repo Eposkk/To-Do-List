@@ -57,7 +57,7 @@ public class CategoryListController {
     @FXML
     private void removeCategory() throws RemoveException {
         MainRegister result = App.getRegister();
-        result.removeCategory(((Category) tableView.getSelectionModel().getSelectedItem()).getID());
+        result.removeCategory(tableView.getSelectionModel().getSelectedItem().getID());
         App.setRegister(result);
         updateList();
     }

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -39,6 +40,13 @@ public class MainApplicationController {
     @FXML
     private AnchorPane view;
 
+    @FXML
+    private ListView categoryList;
+
+
+    private void generateCategoryList(){
+
+    }
 
     public void initialize() throws IOException {
         view.getChildren().clear();
