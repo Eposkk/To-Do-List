@@ -5,9 +5,11 @@ module ntnu.team1 {
 
     opens ntnu.team1.mainApplication to javafx.fxml, javafx.base, javafx.graphics;
     opens ntnu.team1.application.task to javafx.fxml, javafx.base, javafx.graphics;
+    opens ntnu.team1.mainApplication.category to javafx.base, javafx.fxml, javafx.graphics;
+    opens ntnu.team1.mainApplication.task to javafx.base, javafx.fxml, javafx.graphics;
+
     exports ntnu.team1.mainApplication;
     exports ntnu.team1.mainApplication.category;
-    opens ntnu.team1.mainApplication.category to javafx.base, javafx.fxml, javafx.graphics;
     exports ntnu.team1.mainApplication.task;
-    opens ntnu.team1.mainApplication.task to javafx.base, javafx.fxml, javafx.graphics;
+
 }

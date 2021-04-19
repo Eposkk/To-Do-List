@@ -41,10 +41,13 @@ public class MainApplicationController {
     @FXML
     private AnchorPane view;
 
+    private String currentView="todo";
+
 
     public void initialize() throws IOException {
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
     }
@@ -57,6 +60,7 @@ public class MainApplicationController {
     @FXML
     public void switchToToDo() throws IOException {
         App.changeTaskWrapper(false);
+        currentView="todo";
         initialize();
     }
 
@@ -65,6 +69,7 @@ public class MainApplicationController {
         view.getChildren().clear();
         System.out.println("Test");
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
+        currentView="category";
         view.getChildren().add(categoryPane);
     }
 
@@ -90,6 +95,10 @@ public class MainApplicationController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+
+    @FXML
+    public void edit(){
     }
 
 

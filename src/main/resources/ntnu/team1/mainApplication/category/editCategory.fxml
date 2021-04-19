@@ -5,8 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="393.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.category.AddCategoryDialogController">
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ntnu.team1.mainApplication.category.EditCategoryController"
+            prefHeight="393.0" prefWidth="364.0">
     <GridPane prefHeight="401.0" prefWidth="364.0" AnchorPane.leftAnchor="0.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="110.0"/>
@@ -56,4 +58,5 @@
             </GridPane.margin>
         </ColorPicker>
     </GridPane>
+
 </AnchorPane>

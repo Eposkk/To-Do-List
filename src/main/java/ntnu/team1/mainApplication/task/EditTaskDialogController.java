@@ -42,7 +42,7 @@ public class EditTaskDialogController {
         if(choiceBox.getValue() != null){
             category1 = App.getRegister().getCategories().values().stream().filter(Category -> Category.getName().equals(choiceBox.getValue())).findFirst().get().getID();
         }
-        result.editMainTask(selected, startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
+        result.editMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         App.setRegister(result);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
@@ -53,12 +53,13 @@ public class EditTaskDialogController {
         stage.close();
     }
     private void setTextFields(){
-        System.out.println(selected.toString());
         taskName.setText(selected.getName());
         description.setText(selected.getDescription());
         endDate.setValue(selected.getEndDate());
         startDate.setValue(selected.getStartDate());
-        priority.setUserData(selected.getPriority());
+        priority.selectToggle(priority.getToggles().get(selected.getPriority()-1));
+        choiceBox.getSelectionModel().select(selected.getCategoryId());
+
     }
 }
 

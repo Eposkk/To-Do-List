@@ -13,7 +13,7 @@
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <Button mnemonicParsing="false" onAction="#addNewCategory" text="Add new category"/>
             <Button mnemonicParsing="false" onAction="#removeCategory" text="Delete selected"/>
-            <Button mnemonicParsing="false" text="Edit"/>
+            <Button mnemonicParsing="false" onAction="#editCategory" text="Edit"/>
         </ToolBar>
         <TableView fx:id="tableView" editable="true" prefHeight="277.0" prefWidth="380.0">
             <columns>

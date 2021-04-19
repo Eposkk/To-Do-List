@@ -62,6 +62,23 @@ public class CategoryListController {
         updateList();
     }
 
+    @FXML
+    public void editCategory() throws IOException {
+        App.getRegister().setSelectedCategory(tableView.getSelectionModel().getSelectedItem());
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/editCategory.fxml"));
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        App.updateTaskWrapper();
+        tableView.getItems().clear();
+        initialize();
+    }
+
     private void updateList(){
         tableView.setItems(App.getCategoryWrapper());
     }

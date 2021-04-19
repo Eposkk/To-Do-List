@@ -82,6 +82,9 @@ public class TaskListController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        App.updateTaskWrapper();
+        tableView.getItems().clear();
+        initialize();
     }
 
     @FXML

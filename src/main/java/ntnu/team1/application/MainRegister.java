@@ -28,6 +28,7 @@ public class MainRegister implements Serializable {
     private int taskIdCount = 0;
     private int categoryIdCount = 0;
     private MainTask selectedMainTask;
+    private Category selectedCategory;
 
     /**
      * Constructor for MainRegister
@@ -74,19 +75,30 @@ public class MainRegister implements Serializable {
             tasks.add(task);
             taskIdCount+=1;
     }
-    public void editMainTask(MainTask task, LocalDate startDate, LocalDate endDate, String name, String description,
+    public void editMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
                              int priority, int categoryId){
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }else{
-           task.setStartDate(startDate);
-           task.setEndDate(endDate);
-           task.setName(name);
-           task.setDescription(description);
-           task.setPriority(priority);
-           task.setCategoryId(categoryId);
+           selectedMainTask.setStartDate(startDate);
+           selectedMainTask.setEndDate(endDate);
+           selectedMainTask.setName(name);
+           selectedMainTask.setDescription(description);
+           selectedMainTask.setPriority(priority);
+           selectedMainTask.setCategoryId(categoryId);
         }
     }
+
+    public void editCategory(String name, Color color){
+        if(name.equals("")){
+            throw new IllegalArgumentException("Fuck off, jeg er lei og du har et feil arghument");
+        }
+        else {
+            selectedCategory.setName(name);
+            selectedCategory.setColor(color);
+        }
+    }
+
     /**
      * Removes a task from the register
      * @param mainTaskId Id associated with the task
@@ -227,6 +239,14 @@ public class MainRegister implements Serializable {
     }
     public MainTask getSelectedMainTask(){
         return selectedMainTask;
+    }
+
+    public void setSelectedCategory(Category category){
+        selectedCategory=category;
+    }
+
+    public Category getSelectedCategory() {
+        return selectedCategory;
     }
 
     public void Save(){
