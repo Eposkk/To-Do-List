@@ -12,8 +12,7 @@ cache:
 build:
   stage: build
   only:
-    - master
-    - merge_requests
+    - testing
   script:
     - echo "BUILDING PROJECT"
     - mvn clean compile
@@ -22,8 +21,7 @@ build:
 test:
   stage: test
   only:
-    - master
-    - merge_requests
+    - testing
   script:
     - echo "RUNNING TESTS"
     - mvn clean test -e
@@ -38,7 +36,7 @@ test:
     paths:
     - public
   only:
-  - master
+  - testing
 
 pages:
   stage: deploy
@@ -50,5 +48,5 @@ pages:
     paths:
     - public
   only:
-  - master
+  - testing
 
