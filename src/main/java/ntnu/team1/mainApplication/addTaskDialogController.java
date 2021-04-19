@@ -1,15 +1,12 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 

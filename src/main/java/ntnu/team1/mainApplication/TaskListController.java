@@ -1,16 +1,17 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 
 public class TaskListController {
 
+    public AnchorPane Pane;
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
 

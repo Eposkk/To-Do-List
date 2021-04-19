@@ -1,63 +1,37 @@
 package ntnu.team1.application.fileHandling;
 
 
+import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.application.task.Category;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Write {
-    private final HashMap<Integer,Category> categories;
-    private final ArrayList<MainTask> tasks;
+    private final MainRegister register;
 
-    public Write(HashMap<Integer,Category> categories,ArrayList<MainTask> tasks){
-        this.categories=categories;
-        this.tasks = tasks;
+    public Write(MainRegister register){
+        this.register=register;
     }
 
-    public void writeCategories(){
-        FileOutputStream fileOutCategories = null;
+    public void writeRegister(){
+        FileOutputStream fileOutRegister = null;
         ObjectOutputStream out = null;
-        try{
-            fileOutCategories = new FileOutputStream("data/categories.ser");
-            out = new ObjectOutputStream(fileOutCategories);
-            out.writeObject(categories);
-        }catch (IOException i){
+        try {
+            fileOutRegister = new FileOutputStream("data/mainRegister.ser");
+            out = new ObjectOutputStream(fileOutRegister);
+            out.writeObject(register);
+        } catch (IOException i){
             System.out.println(i.getMessage());
         }
-        finally { //The files will close even tough an exception will be caught when writing to task files.
-            try{
+        finally {
+            try {
                 out.close();
-                fileOutCategories.close();
-            }
-            catch (IOException i){
+                fileOutRegister.close();
+            }catch (IOException i){
                 System.out.println(i.getMessage());
-            }
-        }
-    }
-
-    public void writeTasks(){
-        FileOutputStream fileOutTasks = null;
-        ObjectOutputStream out = null;
-        try{
-            fileOutTasks = new FileOutputStream("data/tasks.ser");
-            out = new ObjectOutputStream(fileOutTasks);
-            out.writeObject(tasks);
-        }catch (IOException i){
-            System.out.println(i.getMessage());
-        }
-        finally { //The files will close even tough an exception will be caught when writing to task files.
-            try{
-                out.close();
-                fileOutTasks.close();
-            }
-            catch (IOException i){
-                System.out.println(i.getMessage());
-
             }
         }
 

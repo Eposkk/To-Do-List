@@ -1,6 +1,8 @@
 package ntnu.team1.application;
 
 import javafx.scene.paint.Color;
+
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import ntnu.team1.application.task.MainTask;
  * It also handles saving and reading from file, it also sorts the registers
  */
 
-public class MainRegister {
+public class MainRegister implements Serializable {
     private HashMap<Integer, Category> categories;
     private ArrayList<MainTask> tasks;
     private int taskIdCount = 0;

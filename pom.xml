@@ -51,7 +51,7 @@
                     <release>11</release>
                     <jlinkImageName>to-do-list</jlinkImageName>
                     <launcher>launcher</launcher>
-                    <mainClass>ntnu.team1.Take2.App</mainClass>
+                    <mainClass>ntnu.team1.mainApplication.App</mainClass>
                 </configuration>
             </plugin>
             <plugin>

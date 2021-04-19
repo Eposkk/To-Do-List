@@ -1,4 +1,4 @@
-package ntnu.team1.Take2;
+package ntnu.team1.mainApplication;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
