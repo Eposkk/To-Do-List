@@ -26,6 +26,7 @@ public class editTaskDialogController {
     ArrayList<Category> categories;
     ArrayList<String> namesOfCategories;
 
+
     @FXML
     private void initialize(){
         register = App.getRegister();
