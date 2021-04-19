@@ -209,20 +209,6 @@ public class MainRegister implements Serializable {
         this.tasks = tasks;
     }
 
-    //TODO toString()
-
-    public void Save(){
-        //TODO add code
-    }
-    public HashMap<Integer, Category> readCategory(){
-        //TODO add code
-        return null;
-    }
-    public ArrayList<MainTask> readTask(){
-        //TODO add code
-        return null;
-    }
-
     @Override
     public String toString() {
         return "MainRegister{" +

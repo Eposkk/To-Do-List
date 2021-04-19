@@ -23,12 +23,6 @@ class MainRegisterTest {
                 MainRegister register = new MainRegister();
                 assertTrue(register.addCategory("test", Color.PINK));
             }
-            @Test
-            void addCategoryNegative() {
-                MainRegister register = new MainRegister();
-                register.addCategory("test", Color.PINK);
-                assertFalse(register.addCategory("test", Color.PINK));
-            }
         }
 
         @Nested
@@ -55,14 +49,14 @@ class MainRegisterTest {
         @Nested
         class setCategoryColor{
 
-            @Test
+            /*@Test
             void setCategoryColorPositive(){
                 MainRegister register = new MainRegister();
                 assertTrue(register.addCategory("test", Color.PINK));
 
                 register.setCategoryColor(0,Color.GREEN);
                 assertEquals(register.getCategory(0).getColor(), Color.GREEN);
-            }
+            }*/
 
             @Test
             void setCategoryColorNegative(){
