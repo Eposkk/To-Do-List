@@ -9,7 +9,6 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 

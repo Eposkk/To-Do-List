@@ -2,7 +2,6 @@ package ntnu.team1.application.task;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * A class that represents a main task
