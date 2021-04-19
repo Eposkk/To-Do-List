@@ -27,6 +27,7 @@ public class MainRegister implements Serializable {
     private ArrayList<MainTask> tasks;
     private int taskIdCount = 0;
     private int categoryIdCount = 0;
+    private MainTask selectedMainTask;
 
     /**
      * Constructor for MainRegister
@@ -73,7 +74,19 @@ public class MainRegister implements Serializable {
             tasks.add(task);
             taskIdCount+=1;
     }
-
+    public void editMainTask(MainTask task, LocalDate startDate, LocalDate endDate, String name, String description,
+                             int priority, int categoryId){
+        if(name.equals("")){
+            throw new NullPointerException("Name cannot be null");
+        }else{
+           task.setStartDate(startDate);
+           task.setEndDate(endDate);
+           task.setName(name);
+           task.setDescription(description);
+           task.setPriority(priority);
+           task.setCategoryId(categoryId);
+        }
+    }
     /**
      * Removes a task from the register
      * @param mainTaskId Id associated with the task
@@ -209,7 +222,12 @@ public class MainRegister implements Serializable {
         this.tasks = tasks;
     }
 
-    //TODO toString()
+    public void setSelectedTask(MainTask mainTask){
+        selectedMainTask = mainTask;
+    }
+    public MainTask getSelectedMainTask(){
+        return selectedMainTask;
+    }
 
     public void Save(){
         //TODO add code

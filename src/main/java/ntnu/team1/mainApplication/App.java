@@ -12,6 +12,7 @@ import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
+import ntnu.team1.mainApplication.task.TaskListController;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,7 +101,6 @@ public class App extends Application {
         }
         return registerLocal;
     }
-
 
     @Override
     public void stop(){

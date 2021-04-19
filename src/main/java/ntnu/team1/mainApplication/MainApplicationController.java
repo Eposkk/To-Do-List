@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ntnu.team1.mainApplication.task.EditTaskDialogController;
+
 import java.io.IOException;
 
 public class MainApplicationController {
@@ -69,6 +71,18 @@ public class MainApplicationController {
     @FXML
     private void addNewTask() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    @FXML
+    private void editTask() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/editTask.fxml"));
         Parent parent = fxmlLoader.load();
 
         Scene scene = new Scene(parent, 800, 600);
