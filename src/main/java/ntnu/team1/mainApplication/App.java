@@ -18,11 +18,8 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
     private static MainRegister register = new MainRegister();
     private static int chosenCategory = -1;
-
-    private static boolean taskSelector = false;
 
     public static void main(String[] args) {
         launch();
@@ -30,9 +27,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
         register = getRegisterFromSave();
-        scene = new Scene(loadFXML("MainApplication"), 640, 480);
+        Scene scene = new Scene(loadFXML("MainApplication"), 640, 480);
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("To-Do-List 1.0");
@@ -47,19 +43,12 @@ public class App extends Application {
         return chosenCategory;
     }
 
-    public static void setRegister(MainRegister reg) {
-        register = reg;
+    public static void setRegister(MainRegister register) {
+        App.register = register;
     }
 
     public static MainRegister getRegister(){
         return register;
-    }
-
-    public static void setRootWithSave(String fxml, MainRegister register) throws IOException {
-        App.register =register;
-        Write writer = new Write(register);
-        writer.writeRegister();
-        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -67,7 +56,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static MainRegister getRegisterFromSave(){
+    private static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
         File register= new File("data/mainRegister.ser");
         if (register.exists()){
