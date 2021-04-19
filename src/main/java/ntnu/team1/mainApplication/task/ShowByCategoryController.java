@@ -72,33 +72,17 @@ public class ShowByCategoryController {
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent, 800, 600);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.showAndWait();
+        Buttons.addNewTask();
         updateList();
     }
 
     @FXML
     private void editTask() throws IOException{
-        App.getRegister().setSelectedTask(tableView.getSelectionModel().getSelectedItem());
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/editTask.fxml"));
-        Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, 800, 600);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.showAndWait();
-        tableView.getItems().clear();
-        initialize();
+        Buttons.editTask(tableView.getSelectionModel().getSelectedItem());
+        updateList();
     }
 
-    @FXML
+        @FXML
     private void removeTask(){
         MainRegister result = App.getRegister();
         result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());

@@ -127,8 +127,7 @@ public class MainRegister implements Serializable {
      */
 
     public ArrayList<MainTask> getAllTasks(){
-        ArrayList<MainTask> allMainTasks = new ArrayList<>(tasks);
-        return allMainTasks;
+        return new ArrayList<>(tasks);
     }
 
     /**

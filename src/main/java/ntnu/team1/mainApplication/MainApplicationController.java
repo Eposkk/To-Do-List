@@ -1,7 +1,6 @@
 package ntnu.team1.mainApplication;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -61,7 +60,6 @@ public class MainApplicationController {
     public void initialize() throws IOException {
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
-
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
@@ -71,7 +69,6 @@ public class MainApplicationController {
     public void switchToTasks() throws IOException {
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
-
         view.getChildren().add(newLoadedPane);
     }
 
@@ -88,7 +85,6 @@ public class MainApplicationController {
     private void addNewTask() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
         Parent parent = fxmlLoader.load();
-
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

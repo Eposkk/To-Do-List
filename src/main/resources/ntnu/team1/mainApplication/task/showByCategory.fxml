@@ -18,7 +18,7 @@
             <Button mnemonicParsing="false" onAction="#addNewTask" text="Add new " />
             <Button mnemonicParsing="false" onAction="#removeTask" text="Delete selected" />
          <Button mnemonicParsing="false" onAction="#removeTask" text="Delete all" />
-            <Button mnemonicParsing="false" text="Edit selected" />
+            <Button mnemonicParsing="false" onAction="#editTask" text="Edit selected" />
          <Separator orientation="VERTICAL" />
          <Label text="Show:" />
 

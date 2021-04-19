@@ -50,8 +50,6 @@ public class App extends Application {
         return chosenCategory;
     }
 
-
-
     public static void setRegister(MainRegister reg) {
         register = reg;
     }
@@ -66,8 +64,6 @@ public class App extends Application {
         writer.writeRegister();
         scene.setRoot(loadFXML(fxml));
     }
-
-
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
