@@ -16,7 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ntnu.team1.application.task.Category;
+
+import ntnu.team1.mainApplication.task.EditTaskDialogController;
 
 import java.io.IOException;
 
@@ -54,10 +55,13 @@ public class MainApplicationController {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/showByCategory.fxml"));
         view.getChildren().add(newLoadedPane);
     }
+    private String currentView="todo";
+
 
     public void initialize() throws IOException {
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
@@ -71,6 +75,7 @@ public class MainApplicationController {
     @FXML
     public void switchToToDo() throws IOException {
         App.changeTaskWrapper(false);
+        currentView="todo";
         initialize();
     }
 
@@ -79,6 +84,7 @@ public class MainApplicationController {
         view.getChildren().clear();
         System.out.println("Test");
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
+        currentView="category";
         view.getChildren().add(categoryPane);
     }
 
@@ -104,6 +110,10 @@ public class MainApplicationController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+
+    @FXML
+    public void edit(){
     }
 
 

@@ -53,7 +53,6 @@ public class TaskListController {
 
 
 
-
     public void initialize(){
         columFactory();
         updateList();
@@ -70,6 +69,22 @@ public class TaskListController {
         stage.setScene(scene);
         stage.showAndWait();
         updateList();
+    }
+    @FXML
+    private void editTask() throws IOException{
+        App.getRegister().setSelectedTask(tableView.getSelectionModel().getSelectedItem());
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/editTask.fxml"));
+        Parent parent = fxmlLoader.load();
+
+        Scene scene = new Scene(parent, 800, 600);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        App.updateTaskWrapper();
+        tableView.getItems().clear();
+        initialize();
     }
 
     @FXML
@@ -107,4 +122,6 @@ public class TaskListController {
     void updateList(){
         tableView.setItems(App.getTaskWrapper());
     }
+
+
 }

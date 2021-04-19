@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReadWrite {
+public class ReadWrite {
     private HashMap<Integer, Category> addCategoryData(){
         HashMap<Integer,Category> test=new HashMap<>();
         Category cat1 = new Category(1, Color.BLUE,"Skole");
@@ -30,26 +30,29 @@ class ReadWrite {
         test.add(task2);
         return test;
     }
-    
-    //TODO: Remake tests
+
+    private MainRegister addRegister(){
+        MainRegister register = new MainRegister();
+        register.setCategories(addCategoryData());
+        register.setTasks(addTaskData());
+        return register;
+    }
 
    /* @Test
     void writeAndReadPositive() {
-        HashMap<Integer,Category> data=addCategoryData();
-        ArrayList<MainTask> tasks = addTaskData();
-        MainRegister register = new MainRegister();
+        MainRegister register = addRegister();
         Write write = new Write(register);
         write.writeRegister();
 
-        Read read = new Read("data/register.ser");
-        assert(data.equals(dataRead));
-        assert (tasksRead.equals(tasks));
-    }
+        Read read = new Read("data/mainRegister.ser");
+        MainRegister readRegister = read.readRegister();
+        assert(register.getAllTasks().equals(readRegister.getAllTasks()));
+        assert(register.getCategories().equals(readRegister.getCategories()));
+    }*/
 
     @Test
-    void writeAndReadNullPointerException() {
-        Read read = new Read("data/categor.ser","data/tass.ser","data/eqw");
-        assertThrows(NullPointerException.class, () -> { read.readTasks();});
-        assertThrows(NullPointerException.class, () -> { read.readCategory();});
-    }*/
+    public void writeAndReadNullPointerException() {
+        Read read = new Read("data/eqw");
+        assertThrows(NullPointerException.class, read::readRegister);
+    }
 }

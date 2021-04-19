@@ -8,10 +8,12 @@ import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-public class editTaskDialogController {
+
+public class AddTaskDialogController {
+
 
     public ChoiceBox<String> choiceBox;
     public DatePicker startDate;
@@ -22,38 +24,26 @@ public class editTaskDialogController {
     public Button submitTask;
     public ToggleGroup priority;
 
-    MainRegister register = new MainRegister();
-    ArrayList<Category> categories;
-    ArrayList<String> namesOfCategories;
 
     @FXML
     private void initialize(){
-        register = App.getRegister();
-        categories =  new ArrayList<>(register.getCategories().values());
-        namesOfCategories = new ArrayList<>();
-        for (Category c: categories){
-            namesOfCategories.add(c.getName());
-        }
+        ArrayList<String> namesOfCategories = (ArrayList<String>) App.getRegister().getCategories().values().stream().map(Category::getName).collect(Collectors.toList());
         choiceBox.setItems(FXCollections.observableArrayList(namesOfCategories));
-        App.setRegister(register);
     }
 
     @FXML
-    private void submit() throws IOException {
+    private void submit(){
         RadioButton r =(RadioButton) priority.getSelectedToggle();
         int category1 = -1;
         if(choiceBox.getValue() != null){
-            for (Category category: categories){
-                if(category.getName().equals(choiceBox.getValue().toString())){
-                    category1=category.getID();
-                }
-            }
+            category1 = App.getRegister().getCategories().values().stream().filter(Category -> Category.getName().equals(choiceBox.getValue())).findFirst().get().getID();
+
         }
-        register.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
-        App.updateTaskWrapper();
+        MainRegister result = App.getRegister();
+        result.addMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
+        App.setRegister(result);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();
-        App.setRootWithSave("MainApplication", register);
     }
     @FXML
     private void cancel(){
@@ -63,4 +53,3 @@ public class editTaskDialogController {
 
 
 }
-

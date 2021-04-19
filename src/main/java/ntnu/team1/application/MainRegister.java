@@ -27,6 +27,8 @@ public class MainRegister implements Serializable {
     private ArrayList<MainTask> tasks;
     private int taskIdCount = 0;
     private int categoryIdCount = 0;
+    private MainTask selectedMainTask;
+    private Category selectedCategory;
 
     /**
      * Constructor for MainRegister
@@ -72,6 +74,29 @@ public class MainRegister implements Serializable {
             MainTask task = new MainTask(taskIdCount, name, description,  startDate,  endDate,  priority,  categoryId);
             tasks.add(task);
             taskIdCount+=1;
+    }
+    public void editMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
+                             int priority, int categoryId){
+        if(name.equals("")){
+            throw new NullPointerException("Name cannot be null");
+        }else{
+           selectedMainTask.setStartDate(startDate);
+           selectedMainTask.setEndDate(endDate);
+           selectedMainTask.setName(name);
+           selectedMainTask.setDescription(description);
+           selectedMainTask.setPriority(priority);
+           selectedMainTask.setCategoryId(categoryId);
+        }
+    }
+
+    public void editCategory(String name, Color color){
+        if(name.equals("")){
+            throw new IllegalArgumentException("Fuck off, jeg er lei og du har et feil arghument");
+        }
+        else {
+            selectedCategory.setName(name);
+            selectedCategory.setColor(color);
+        }
     }
 
     /**
@@ -209,7 +234,20 @@ public class MainRegister implements Serializable {
         this.tasks = tasks;
     }
 
-    //TODO toString()
+    public void setSelectedTask(MainTask mainTask){
+        selectedMainTask = mainTask;
+    }
+    public MainTask getSelectedMainTask(){
+        return selectedMainTask;
+    }
+
+    public void setSelectedCategory(Category category){
+        selectedCategory=category;
+    }
+
+    public Category getSelectedCategory() {
+        return selectedCategory;
+    }
 
     public void Save(){
         //TODO add code
