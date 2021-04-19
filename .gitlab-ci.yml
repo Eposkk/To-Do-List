@@ -39,3 +39,16 @@ test:
     - public
   only:
   - master
+
+pages:
+  stage: deploy
+  script:
+  - mkdir .public
+  - cp -r JavaDoc/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
