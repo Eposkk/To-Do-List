@@ -32,6 +32,7 @@ import ntnu.team1.application.task.Category;
 
 public class MainApplicationController {
 
+    public MenuItem menuEditAdd;
     @FXML
     private MenuItem menuHelpAbout;
 
@@ -42,6 +43,11 @@ public class MainApplicationController {
     private VBox categoryButtonList;
 
     private String currentView="todo";
+
+    @FXML
+    private void update(){
+        generateCategoryList();
+    }
 
 
     public void generateCategoryList(){
@@ -76,7 +82,7 @@ public class MainApplicationController {
     public void showByCategory(int id) throws IOException {
         view.getChildren().clear();
         App.setChosenCategory(id);
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/showByCategory.fxml"));
+        Pane newLoadedPane = FXMLLoader.load(MainApplicationController.class.getResource("task/showByCategory.fxml"));
         view.getChildren().add(newLoadedPane);
     }
 
@@ -88,6 +94,7 @@ public class MainApplicationController {
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
+        Platform.runLater(this::generateCategoryList);
     }
 
     @FXML
@@ -127,6 +134,7 @@ public class MainApplicationController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        generateCategoryList();
     }
 
     @FXML
