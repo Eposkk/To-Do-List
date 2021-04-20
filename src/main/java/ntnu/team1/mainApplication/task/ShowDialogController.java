@@ -12,7 +12,7 @@ import ntnu.team1.mainApplication.App;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Buttons {
+public class ShowDialogController {
 
     public static void addNewTask() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));

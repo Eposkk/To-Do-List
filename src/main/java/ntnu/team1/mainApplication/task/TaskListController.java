@@ -65,13 +65,13 @@ public class TaskListController {
 
     @FXML
     private void addNewTask() throws IOException {
-        Buttons.addNewTask();
+        ShowDialogController.addNewTask();
         updateList();
     }
 
     @FXML
     private void editTask() throws IOException{
-        Buttons.editTask(tableView.getSelectionModel().getSelectedItem());
+        ShowDialogController.editTask(tableView.getSelectionModel().getSelectedItem());
         updateList();
     }
 
