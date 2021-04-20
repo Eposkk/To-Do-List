@@ -9,12 +9,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +27,31 @@ import java.util.stream.Collectors;
 public class TaskListController {
 
     public AnchorPane Pane;
+
+    @FXML
+    private Button addNewTool;
+
+    @FXML
+    private Button editTool;
+
+    @FXML
+    private Button deleteTool;
+
+    @FXML
+    private Button deleteAllTool;
+
+    @FXML
+    private ImageView addTaskIcon;
+
+    @FXML
+    private ImageView removeTaskIcon;
+
+    @FXML
+    private ImageView editTaskIcon;
+
+    @FXML
+    private ImageView deleteAllIcon;
+
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
 
@@ -56,11 +85,12 @@ public class TaskListController {
     @FXML
     private Label header;
 
-    public void initialize(){
+    public void initialize() throws FileNotFoundException {
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         header.setText("Viewing all tasks");
         columFactory();
         updateList();
+        displayToolbarIcons();
     }
 
     @FXML
@@ -81,6 +111,37 @@ public class TaskListController {
         result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
         App.setRegister(result);
         updateList();
+    }
+
+    @FXML
+    private void displayToolbarIcons() throws FileNotFoundException {
+        FileInputStream inputAdd = new FileInputStream("src/main/resources/Images/Plus.png");
+        Image imageAdd = new Image(inputAdd);
+        addTaskIcon = new ImageView(imageAdd);
+        addTaskIcon.setFitWidth(25);
+        addTaskIcon.setFitHeight(25);
+        addNewTool.setGraphic(addTaskIcon);
+
+        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/removeIcon.jpg");
+        Image imageRemove = new Image(inputRemove);
+        removeTaskIcon = new ImageView(imageRemove);
+        removeTaskIcon.setFitWidth(25);
+        removeTaskIcon.setFitHeight(25);
+        deleteTool.setGraphic(removeTaskIcon);
+
+        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/edit.png");
+        Image imageEdit = new Image(inputEdit);
+        editTaskIcon = new ImageView(imageEdit);
+        editTaskIcon.setFitWidth(25);
+        editTaskIcon.setFitHeight(25);
+        editTool.setGraphic(editTaskIcon);
+
+        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/deleteAllIcon.png");
+        Image imageDeleteAll = new Image(inputDeleteAll);
+        deleteAllIcon = new ImageView(imageDeleteAll);
+        deleteAllIcon.setFitWidth(25);
+        deleteAllIcon.setFitHeight(25);
+        deleteAllTool.setGraphic(deleteAllIcon);
     }
 
     private void columFactory(){
