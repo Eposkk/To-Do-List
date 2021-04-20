@@ -3,10 +3,8 @@ package ntnu.team1.application;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -221,9 +219,19 @@ public class MainRegister implements Serializable {
         tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
     }
 
+    /**
+     * Sets the category list
+     * @param categories
+     */
+
     public void setCategories(HashMap<Integer, Category> categories) {
         this.categories = categories;
     }
+
+    /**
+     * Sets the task list
+     * @param tasks
+     */
 
     public void setTasks(ArrayList<MainTask> tasks) {
         this.tasks = tasks;
@@ -242,18 +250,6 @@ public class MainRegister implements Serializable {
 
     public Category getSelectedCategory() {
         return selectedCategory;
-    }
-
-    public void Save(){
-        //TODO add code
-    }
-    public HashMap<Integer, Category> readCategory(){
-        //TODO add code
-        return null;
-    }
-    public ArrayList<MainTask> readTask(){
-        //TODO add code
-        return null;
     }
 
     @Override

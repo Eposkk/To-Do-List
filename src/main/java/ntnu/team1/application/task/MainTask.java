@@ -75,6 +75,10 @@ public class MainTask implements Serializable {
         this.categoryId = categoryId;
     }
 
+    /**
+     * Gets the ID
+     * @return an int
+     */
     public int getID() {
         return ID;
     }
@@ -87,49 +91,109 @@ public class MainTask implements Serializable {
         this.hasCategory = hasCategory;
     }
 
+    /**
+     * Gets start date
+     * @return
+     */
+
     public LocalDate getStartDate() {
         return startDate;
     }
+
+    /**
+     * Sets start date
+     * @param startDate
+     */
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     * Gets end date
+     * @return
+     */
+
     public LocalDate getEndDate() {
         return endDate;
     }
+
+    /**
+     * Sets end date
+     * @param endDate
+     */
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     * Gets name
+     * @return
+     */
+
     public String getName() {
         return name;
     }
+
+    /**
+     * Sets name
+     * @param name
+     */
 
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets description
+     * @return
+     */
+
     public String getDescription() {
         return description;
     }
+
+    /**
+     * Sets description
+     * @param description
+     */
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Gets priority
+     * @return
+     */
+
     public int getPriority() {
         return priority;
     }
+
+    /**
+     * Sets priority
+     * @param priority
+     */
 
     public void setPriority(int priority) {
         this.priority = priority;
     }
 
+    /**
+     * Checks if task is done
+     * @return
+     */
+
     public boolean isDone() {
         return isDone;
     }
+
+    /**
+     * Sets task as done
+     * @param done
+     */
 
     public void setDone(boolean done) {
         isDone = done;
