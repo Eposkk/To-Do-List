@@ -24,6 +24,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ntnu.team1.application.task.Category;
+
+/**
+ * Class that handles the main view of the application
+ */
+
 public class MainApplicationController {
 
     @FXML
@@ -116,7 +122,6 @@ public class MainApplicationController {
     public void addNewCategory() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
         Parent parent = fxmlLoader.load();
-
         Scene scene = new Scene(parent, 400,364);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -127,7 +132,6 @@ public class MainApplicationController {
     @FXML
     public void edit(){
     }
-
 
     @FXML
     private EventHandler<ActionEvent> showAbout() {

@@ -14,7 +14,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX App, this is the main class of the application.
+ * Handles storing the register and saving and reading to files.
+ * Also loads fxml file
  */
 public class App extends Application {
 
