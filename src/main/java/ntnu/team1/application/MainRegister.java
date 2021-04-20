@@ -75,17 +75,13 @@ public class MainRegister implements Serializable {
             tasks.add(task);
             taskIdCount+=1;
     }
-    public void editMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
+    public void editMainTask(int id, LocalDate startDate, LocalDate endDate, String name, String description,
                              int priority, int categoryId){
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }else{
-           selectedMainTask.setStartDate(startDate);
-           selectedMainTask.setEndDate(endDate);
-           selectedMainTask.setName(name);
-           selectedMainTask.setDescription(description);
-           selectedMainTask.setPriority(priority);
-           selectedMainTask.setCategoryId(categoryId);
+           tasks.remove(getMainTask(id));
+           tasks.add(new MainTask(id, name, description, startDate,endDate,priority,categoryId));
         }
     }
 

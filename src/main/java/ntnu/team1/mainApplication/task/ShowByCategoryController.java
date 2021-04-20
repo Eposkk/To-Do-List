@@ -57,7 +57,7 @@ public class ShowByCategoryController {
 
     public void initialize(){
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
-        if(App.getChosenCategory() < -1){
+        if(App.getChosenCategory() > -1){
             header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
 
         }else{

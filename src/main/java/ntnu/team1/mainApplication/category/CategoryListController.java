@@ -58,6 +58,7 @@ public class CategoryListController {
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
         stage.showAndWait();
         updateList();
+
     }
 
     @FXML

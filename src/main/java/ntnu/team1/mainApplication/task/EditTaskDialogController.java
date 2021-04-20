@@ -41,7 +41,7 @@ public class EditTaskDialogController {
         if(choiceBox.getValue() != null){
             category1 = App.getRegister().getCategories().values().stream().filter(Category -> Category.getName().equals(choiceBox.getValue())).findFirst().get().getID();
         }
-        result.editMainTask(startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
+        result.editMainTask(selected.getID(), startDate.getValue(),endDate.getValue(),taskName.getText(),description.getText(),Integer.parseInt(r.getText()),category1);
         App.setRegister(result);
         Stage stage = (Stage) submitTask.getScene().getWindow();
         stage.close();

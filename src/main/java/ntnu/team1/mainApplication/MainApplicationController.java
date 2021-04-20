@@ -74,8 +74,6 @@ public class MainApplicationController {
         view.getChildren().add(newLoadedPane);
     }
 
-
-
     public void initialize() throws IOException {
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
