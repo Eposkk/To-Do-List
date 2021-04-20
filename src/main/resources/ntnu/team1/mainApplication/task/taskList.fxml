@@ -15,10 +15,10 @@
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label fx:id="header" text="Label" />
         <ToolBar prefHeight="40.0" prefWidth="200.0">
-            <Button mnemonicParsing="false" onAction="#addNewTask" text="Add new " />
-            <Button mnemonicParsing="false" onAction="#removeTask" text="Delete selected" />
-            <Button mnemonicParsing="false" onAction="#removeTask" text="Delete all" />
-            <Button mnemonicParsing="false" onAction="#editTask" text="Edit selected" />
+            <Button fx:id="addNewTool" mnemonicParsing="false" onAction="#addNewTask" />
+            <Button fx:id="deleteTool" mnemonicParsing="false" onAction="#removeTask" />
+            <Button fx:id="deleteAllTool" mnemonicParsing="false" onAction="#removeTask" text="Delete all" />
+            <Button fx:id="editTool" mnemonicParsing="false" onAction="#editTask" />
             <Separator orientation="VERTICAL" />
             <Label text="Show:" />
 
