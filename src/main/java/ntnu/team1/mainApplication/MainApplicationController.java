@@ -44,11 +44,6 @@ public class MainApplicationController {
 
     private String currentView="todo";
 
-    @FXML
-    private void update(){
-        generateCategoryList();
-    }
-
 
     public void generateCategoryList(){
         ObservableList<Category> list  = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
@@ -87,12 +82,12 @@ public class MainApplicationController {
     }
 
     public void initialize() throws IOException {
+        view.setOnMouseMoved(e-> generateCategoryList());
         view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.getChildren().add(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
-        Platform.runLater(this::generateCategoryList);
     }
 
     @FXML
