@@ -118,29 +118,29 @@ public class TaskListController {
         FileInputStream inputAdd = new FileInputStream("src/main/resources/Images/Plus.png");
         Image imageAdd = new Image(inputAdd);
         addTaskIcon = new ImageView(imageAdd);
-        addTaskIcon.setFitWidth(25);
-        addTaskIcon.setFitHeight(25);
+        addTaskIcon.setFitWidth(30);
+        addTaskIcon.setFitHeight(30);
         addNewTool.setGraphic(addTaskIcon);
 
-        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/removeIcon.jpg");
+        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/DeleteTaskIcon.png");
         Image imageRemove = new Image(inputRemove);
         removeTaskIcon = new ImageView(imageRemove);
-        removeTaskIcon.setFitWidth(25);
-        removeTaskIcon.setFitHeight(25);
+        removeTaskIcon.setFitWidth(30);
+        removeTaskIcon.setFitHeight(30);
         deleteTool.setGraphic(removeTaskIcon);
 
-        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/edit.png");
+        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/editIcons.png");
         Image imageEdit = new Image(inputEdit);
         editTaskIcon = new ImageView(imageEdit);
-        editTaskIcon.setFitWidth(25);
-        editTaskIcon.setFitHeight(25);
+        editTaskIcon.setFitWidth(30);
+        editTaskIcon.setFitHeight(30);
         editTool.setGraphic(editTaskIcon);
 
-        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/deleteAllIcon.png");
+        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/søppelkasse.png");
         Image imageDeleteAll = new Image(inputDeleteAll);
         deleteAllIcon = new ImageView(imageDeleteAll);
-        deleteAllIcon.setFitWidth(25);
-        deleteAllIcon.setFitHeight(25);
+        deleteAllIcon.setFitWidth(30);
+        deleteAllIcon.setFitHeight(30);
         deleteAllTool.setGraphic(deleteAllIcon);
     }
 
