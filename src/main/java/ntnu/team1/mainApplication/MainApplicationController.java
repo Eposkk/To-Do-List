@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ import ntnu.team1.application.task.Category;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import ntnu.team1.application.task.Category;
 
@@ -42,20 +44,20 @@ public class MainApplicationController {
     @FXML
     private VBox categoryButtonList;
 
-    private String currentView="todo";
+    private String currentView = "todo";
 
     @FXML
-    private void update(){
+    private void update() {
         generateCategoryList();
     }
 
 
-    public void generateCategoryList(){
-        ObservableList<Category> list  = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
+    public void generateCategoryList() {
+        ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
         categoryButtonList.getChildren().clear();
-        if(App.getRegister().getAllTasks().stream().anyMatch(MainTask -> !MainTask.hasCategory())){
+        if (App.getRegister().getAllTasks().stream().anyMatch(MainTask -> !MainTask.hasCategory())) {
             Button noCategory = new Button("No category");
-            noCategory.setOnAction(actionEvent ->  {
+            noCategory.setOnAction(actionEvent -> {
                 try {
                     showByCategory(-1);
                 } catch (IOException e) {
@@ -65,10 +67,10 @@ public class MainApplicationController {
             categoryButtonList.getChildren().add(noCategory);
         }
 
-        for(Category c : list){
+        for (Category c : list) {
             Button button = new Button(c.getName());
             button.setId(c.getName());
-            button.setOnAction(actionEvent ->  {
+            button.setOnAction(actionEvent -> {
                 try {
                     showByCategory(c.getID());
                 } catch (IOException e) {
@@ -106,13 +108,13 @@ public class MainApplicationController {
     public void switchToCategory() throws IOException {
         view.getChildren().clear();
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
-        currentView="category";
+        currentView = "category";
         view.getChildren().add(categoryPane);
     }
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "task/newTask.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/newTask.fxml"));
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
@@ -125,9 +127,9 @@ public class MainApplicationController {
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/newCategory.fxml"));
         Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, 400,364);
+        Scene scene = new Scene(parent, 400, 364);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
@@ -136,7 +138,7 @@ public class MainApplicationController {
     }
 
     @FXML
-    public void edit(){
+    public void edit() {
     }
 
     @FXML
@@ -154,7 +156,14 @@ public class MainApplicationController {
     }
 
     @FXML
-    public void close(){
-        Platform.exit();
+    public void exit(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setContentText("Do you want to exit the application?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Platform.exit();
+        }
     }
 }
