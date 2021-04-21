@@ -14,13 +14,12 @@ To-Do-List is an application that helps you keep track of all your tasks
 # Installation
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
-    - HTTPS: Using git, run the command:
+***HTTPS:***
 ```
 git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
 ```
 
-***SSH***
-
+***SSH:***
 ```
 git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
 ```
