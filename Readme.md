@@ -18,7 +18,9 @@ To-Do-List is an application that helps you keep track of all your tasks
 ```
 git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
 ```
+
     - SSH: Using git, run the command:
+
 ```
 git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
 ```
