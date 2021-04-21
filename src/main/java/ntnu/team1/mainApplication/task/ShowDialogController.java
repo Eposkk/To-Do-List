@@ -33,7 +33,7 @@ public class ShowDialogController {
         Scene scene = new Scene(parent, 800, 600);
         Stage stage = new Stage();
         stage.setTitle("Edit task");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/edit.png")));
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/editIcons.png")));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
