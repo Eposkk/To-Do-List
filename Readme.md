@@ -11,7 +11,7 @@ To-Do-List is an application that helps you keep track of all your tasks
 - Java 14 or newer
 - Git installed, if you are downloading using git
 
-#Installation
+# Installation
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
     - Using git run the command:
@@ -22,11 +22,13 @@ To-Do-List is an application that helps you keep track of all your tasks
 - Run the project either by navigating to App.java and clicking the play button to the left side of the class declaration or,
 in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javafx -> javafx:run. This will compile and run the program for you
 
-#Documentation
+# Documentation
 [JavaDoc](http://eivisha.pages.stud.idi.ntnu.no/to-do-list/ntnu.team1/module-summary.html)
+
+
 [Wiki](https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/wikis/home)
 
-#Made by
+# Made by
 - Adrian Wist Hakvåg
 - Anders Heftøy Carlsen
 - Magnus Rosvold Farstad
