@@ -1,5 +1,6 @@
 package ntnu.team1.mainApplication.task;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class TaskListController {
@@ -107,9 +109,17 @@ public class TaskListController {
 
     @FXML
     private void removeTask(){
-        MainRegister result = App.getRegister();
-        result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
-        App.setRegister(result);
+        MainRegister register = App.getRegister();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog - Delete Item");
+        alert.setContentText("Are you sure you want to delete this task?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Platform.exit();
+        }
+        register.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
+        App.setRegister(register);
         updateList();
     }
 
