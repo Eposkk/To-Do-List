@@ -1,9 +1,10 @@
+ #To-Do-List
+ To-Do-List is an application that helps you keep track of all your tasks
+ 
  ![](build/Logo_25.png)
 
 # Table of content
 [[_TOC_]]
-
-To-Do-List is an application that helps you keep track of all your tasks
 
 # Requirements
 
