@@ -1,4 +1,4 @@
-![](build/Logo_25.png)
+ ![](build/Logo_25.png)
 
 # Table of content
 [[_TOC_]]
@@ -19,7 +19,7 @@ To-Do-List is an application that helps you keep track of all your tasks
 git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
 ```
 
-    - SSH: Using git, run the command:
+***SSH***
 
 ```
 git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
