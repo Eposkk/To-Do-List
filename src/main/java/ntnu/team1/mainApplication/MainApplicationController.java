@@ -9,11 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -22,6 +20,7 @@ import javafx.stage.Stage;
 import ntnu.team1.application.task.Category;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -148,6 +147,54 @@ public class MainApplicationController {
                     "\n2021 \u00A9");
             alert.showAndWait();
         };
+    }
+
+    @FXML
+    public static ArrayList<Button> displayToolbarIcons( Button addNewTool , Button deleteTool, Button editTool,Button deleteAllTool) throws FileNotFoundException {
+        ArrayList<Button> buttons = new ArrayList<>();
+        FileInputStream inputAdd = new FileInputStream("src/main/resources/Images/Plus.png");
+        Image imageAdd = new Image(inputAdd);
+        ImageView addTaskIcon = new ImageView(imageAdd);
+        addTaskIcon.setFitWidth(30);
+        addTaskIcon.setFitHeight(30);
+        addNewTool.setGraphic(addTaskIcon);
+        System.out.println(addNewTool);
+        Tooltip tooltipAdd = new Tooltip("Add new task");
+        addNewTool.setTooltip(tooltipAdd);
+        buttons.add(addNewTool);
+
+        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/DeleteTaskIcon.png");
+        Image imageRemove = new Image(inputRemove);
+        ImageView removeTaskIcon = new ImageView(imageRemove);
+        removeTaskIcon.setFitWidth(30);
+        removeTaskIcon.setFitHeight(30);
+        deleteTool.setGraphic(removeTaskIcon);
+        Tooltip tooltipRemove = new Tooltip("Remove task");
+        deleteTool.setTooltip(tooltipRemove);
+        buttons.add(deleteTool);
+
+
+        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/editIcons.png");
+        Image imageEdit = new Image(inputEdit);
+        ImageView editTaskIcon = new ImageView(imageEdit);
+        editTaskIcon.setFitWidth(30);
+        editTaskIcon.setFitHeight(30);
+        editTool.setGraphic(editTaskIcon);
+        Tooltip tooltipEdit = new Tooltip("Edit task");
+        editTool.setTooltip(tooltipEdit);
+        buttons.add(editTool);
+
+        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/søppelkasse.png");
+        Image imageDeleteAll = new Image(inputDeleteAll);
+        ImageView deleteAllIcon = new ImageView(imageDeleteAll);
+        deleteAllIcon.setFitWidth(30);
+        deleteAllIcon.setFitHeight(30);
+        deleteAllTool.setGraphic(deleteAllIcon);
+        Tooltip tooltipRemoveAll = new Tooltip("Remove all tasks");
+        deleteAllTool.setTooltip(tooltipRemoveAll);
+        buttons.add(deleteAllTool);
+
+        return buttons;
     }
 
     @FXML

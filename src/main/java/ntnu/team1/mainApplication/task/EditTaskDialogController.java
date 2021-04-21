@@ -12,7 +12,7 @@ import ntnu.team1.mainApplication.App;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class EditTaskDialogController {
+public class EditTaskDialogController{
 
     public ChoiceBox<String> choiceBox;
     public DatePicker startDate;
@@ -25,6 +25,7 @@ public class EditTaskDialogController {
 
     private MainTask selected;
     private MainRegister result;
+
     @FXML
     private void initialize(){
         result = App.getRegister();
