@@ -5,7 +5,7 @@
 
 To-Do-List is an application that helps you keep track of all your tasks
 
-#Requirements
+# Requirements
 
 - Intellij IDEA (Or another Java IDE)
 - Java 14 or newer
