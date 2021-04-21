@@ -1,6 +1,6 @@
  # To-Do-List
  
- To-Do-List is an application that helps you keep track of all your tasks
+ To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
  
  ![](build/Logo_25.png)
 
@@ -16,11 +16,6 @@
 # Installation
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
-
-***ZIP-Download:***
-```
-https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/archive/master/to-do-list-master.zip
-```
 
 ***HTTPS:***
 ```
