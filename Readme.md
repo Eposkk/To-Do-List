@@ -20,7 +20,7 @@
 
 ***ZIP-Download:***
 ```
-https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/archive/master/to-do-list-master.zip
+[Link] (https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/archive/master/to-do-list-master.zip)
 ```
 
 ***HTTPS:***
