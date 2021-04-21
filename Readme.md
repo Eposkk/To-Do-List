@@ -15,7 +15,7 @@ To-Do-List is an application that helps you keep track of all your tasks
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
     - Using git run the command:
-   ```
+```
 git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
 ```
 - Open the project with your IDE, and import it as a maven project.
