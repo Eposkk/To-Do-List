@@ -17,6 +17,11 @@
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
 
+***Zip-File***
+```
+https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/archive/master/to-do-list-master.zip
+```
+
 ***HTTPS:***
 ```
 git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
