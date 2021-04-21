@@ -10,7 +10,7 @@
 # Requirements
 
 - Intellij IDEA (Or another Java IDE)
-- Java 14 or newer
+- Java SDK 14 or newer
 - Git installed, if you are downloading using git
 
 # Installation
