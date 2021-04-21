@@ -15,9 +15,9 @@ To-Do-List is an application that helps you keep track of all your tasks
 
 - Download the package as a zip file and extract it, or clone the entire project using git.
     - Using git run the command:
-    '''
-    git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
-    '''
+   ```
+git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
+```
 - Open the project with your IDE, and import it as a maven project.
 - Run the project either by navigating to App.java and clicking the play button to the left side of the class declaration or,
 in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javafx -> javafx:run. This will compile and run the program for you
