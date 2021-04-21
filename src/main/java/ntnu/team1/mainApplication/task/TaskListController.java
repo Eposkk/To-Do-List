@@ -116,11 +116,10 @@ public class TaskListController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Platform.exit();
+            register.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
+            App.setRegister(register);
+            updateList();
         }
-        register.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
-        App.setRegister(register);
-        updateList();
     }
 
     @FXML
