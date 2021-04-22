@@ -36,19 +36,8 @@ public class ShowByCategoryController {
     @FXML
     private Button deleteAllTool;
 
-    @FXML
-    private ImageView addTaskIcon;
-
-    @FXML
-    private ImageView removeTaskIcon;
-
-    @FXML
-    private ImageView editTaskIcon;
-
-    @FXML
-    private ImageView deleteAllIcon;
-
     public AnchorPane Pane;
+
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
 
@@ -69,9 +58,6 @@ public class ShowByCategoryController {
 
     @FXML
     private TableColumn<MainTask, Integer> priorityColumn;
-
-    @FXML
-    private TableColumn<MainTask, Integer> categoryColumn;
 
     @FXML
     private TableColumn<MainTask, Button> deleteButtonColumn;
@@ -136,8 +122,7 @@ public class ShowByCategoryController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
     }
 
     @FXML
