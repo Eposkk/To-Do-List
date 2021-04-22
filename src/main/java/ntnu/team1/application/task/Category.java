@@ -98,11 +98,6 @@ public class Category implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(ID, r,g,b, name);
-    }
-
-    @Override
     public String toString() {
         return "Category{" +
                 "ID=" + ID +

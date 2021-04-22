@@ -1,6 +1,8 @@
-package ntnu.team1.application.fileHandling;
+package ntnu.team1;
 
 import ntnu.team1.application.MainRegister;
+import ntnu.team1.application.fileHandling.Read;
+import ntnu.team1.application.fileHandling.Write;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import org.junit.jupiter.api.Test;
@@ -38,7 +40,7 @@ public class ReadWrite {
         return register;
     }
 
-   /* @Test
+   @Test
     void writeAndReadPositive() {
         MainRegister register = addRegister();
         Write write = new Write(register);
@@ -46,9 +48,13 @@ public class ReadWrite {
 
         Read read = new Read("data/mainRegister.ser");
         MainRegister readRegister = read.readRegister();
-        assert(register.getAllTasks().equals(readRegister.getAllTasks()));
-        assert(register.getCategories().equals(readRegister.getCategories()));
-    }*/
+        for(int i=0; i< register.getAllTasks().size();i++){
+            assert (register.getAllTasks().get(i).equals(readRegister.getAllTasks().get(i)));
+        }
+       for(int i=1; i< register.getCategories().size()+1;i++){
+           assert (register.getCategories().get(i).equals(readRegister.getCategories().get(i)));
+       }
+    }
 
     @Test
     public void writeAndReadNullPointerException() {
