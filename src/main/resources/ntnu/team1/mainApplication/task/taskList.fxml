@@ -10,9 +10,9 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.ToggleGroup?>
-<AnchorPane fx:id="Pane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../list.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.task.TaskListController">
+
+<AnchorPane fx:id="Pane" stylesheets="@../list.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.task.TaskListController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label fx:id="header" text="Label" />
         <ToolBar prefHeight="40.0" prefWidth="200.0">
@@ -22,11 +22,12 @@
             <Label text="Show:" />
 
             <fx:define>
-                <ToggleGroup fx:id="choice" />
+               <ToggleGroup fx:id="choice" />
             </fx:define>
-            <RadioButton text="all" selected="true" toggleGroup="$choice"/>
-            <RadioButton text="done" toggleGroup="$choice"/>
-            <RadioButton text="active" toggleGroup="$choice"/>
+            <RadioButton selected="true" text="all" toggleGroup="$choice"/>
+            <RadioButton text="done" toggleGroup="$choice" />
+            <RadioButton text="active" toggleGroup="$choice" />
+
 
 
         </ToolBar>

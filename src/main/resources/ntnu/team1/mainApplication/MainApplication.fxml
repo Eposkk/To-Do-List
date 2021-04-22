@@ -27,7 +27,7 @@
                 <MenuItem fx:id="menuHelpAbout" mnemonicParsing="false" text="About" />
             </Menu>
         </MenuBar>
-        <BorderPane fx:id="view" prefHeight="564.0" prefWidth="797.0" VBox.vgrow="ALWAYS">
+        <BorderPane fx:id="view" VBox.vgrow="ALWAYS">
             <left>
                 <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefWidth="113.0">

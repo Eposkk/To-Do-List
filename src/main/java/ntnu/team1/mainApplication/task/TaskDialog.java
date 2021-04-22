@@ -105,6 +105,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         ChoiceBox<String> category = new ChoiceBox();
         ArrayList<String> namesOfCategories = (ArrayList<String>) App.getRegister().getCategories().values().stream().map(Category::getName).collect(Collectors.toList());
         category.setItems(FXCollections.observableArrayList(namesOfCategories));
+        category.setValue("No category");
 
         DatePicker startDate = new DatePicker();
         DatePicker endDate = new DatePicker();

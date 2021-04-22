@@ -55,7 +55,6 @@ public class CategoryDialog extends Dialog<MainRegister> {
         switch (this.mode) {
             case EDIT:
                 setTitle("Edit category");
-
                 break;
 
             case NEW:
@@ -86,8 +85,10 @@ public class CategoryDialog extends Dialog<MainRegister> {
         if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
             name.setText(existingCategory.getName());
             color.setValue(existingCategory.getColor());
-
-
+            if(existingCategory.getID() == -1) {
+                name.setDisable(true);
+                color.setDisable(true);
+            }
             if (mode == Mode.INFO) {
 
             }

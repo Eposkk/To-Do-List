@@ -44,17 +44,7 @@ public class MainApplicationController {
     public void generateCategoryList() {
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
         categoryButtonList.getChildren().clear();
-        if (App.getRegister().getAllTasks().stream().anyMatch(MainTask -> !MainTask.hasCategory())) {
-            Button noCategory = new Button("No category");
-            noCategory.setOnAction(actionEvent -> {
-                try {
-                    showByCategory(-1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            categoryButtonList.getChildren().add(noCategory);
-        }
+
         GridPane gridPane = new GridPane();
         gridPane.setHgap(5);
         gridPane.setVgap(5);
