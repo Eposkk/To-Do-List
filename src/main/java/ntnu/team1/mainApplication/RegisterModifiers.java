@@ -54,6 +54,19 @@ public class RegisterModifiers {
         }
     }
 
+    public static void removeAllTasksInCategory(int categoryId){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog - Delete Item");
+        alert.setContentText("Are you sure you want to delete ALL tasks in category? \n \nThis action can not be rolled back");
+        MainRegister register = App.getRegister();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            App.getRegister().getAllTasks().stream()
+                    .filter(MainTask -> MainTask.getCategoryId() == categoryId)
+                    .forEach(MainTask -> register.removeMainTask(MainTask.getID()));
+        }
+    }
+
     public static void addNewCategory(){
         CategoryDialog addNewDialog = new CategoryDialog();
         Optional<MainRegister> result = addNewDialog.showAndWait();

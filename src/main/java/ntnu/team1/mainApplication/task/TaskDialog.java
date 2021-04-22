@@ -113,14 +113,24 @@ public class TaskDialog extends Dialog<MainRegister> {
         if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
-           //TODO category.setValue(App.getRegister().getCategory(existingTask.getCategoryId()).getName());
+            switch (existingTask.getPriority()){
+                case 2:
+                    pri2.setSelected(true);
+                    break;
+                case 3:
+                    pri3.setSelected(true);
+                    break;
+            }
+            if(App.getRegister().getCategory(existingTask.getCategoryId()) != null){
+                category.setValue(App.getRegister().getCategory(existingTask.getCategoryId()).getName());
+            }
+            startDate.setValue(existingTask.getStartDate());
+            endDate.setValue(existingTask.getEndDate());
+
 
 
             if (mode == Mode.INFO) {
-                name.setDisable(true);
-                name.setOpacity(0.8);
-                description.setDisable(true);
-                description.setOpacity(0.8);
+
             }
         }
         vBox1.getChildren().add(name);

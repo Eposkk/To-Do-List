@@ -117,11 +117,7 @@ public class ShowByCategoryController {
 
     @FXML
     private void removeAllTasks(){
-        MainRegister result = App.getRegister();
-        for(MainTask task : tableView.getItems()){
-            result.removeMainTask(task.getID());
-        }
-        App.setRegister(result);
+        RegisterModifiers.removeAllTasksInCategory(App.getChosenCategory());
         updateList();
     }
 
