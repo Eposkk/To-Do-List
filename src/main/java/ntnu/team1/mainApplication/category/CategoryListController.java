@@ -17,9 +17,12 @@ import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
+import ntnu.team1.mainApplication.task.TaskDialog;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class CategoryListController {
 
@@ -47,17 +50,13 @@ public class CategoryListController {
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent, 364, 393);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setTitle("Add new category");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
-        stage.showAndWait();
-        updateList();
+        CategoryDialog addNewDialog = new CategoryDialog();
+        Optional<MainRegister> result = addNewDialog.showAndWait();
+        if(result.isPresent()){
+            MainRegister register = result.get();
+            App.setRegister(register);
+            updateList();
+        }
 
     }
 
@@ -71,20 +70,13 @@ public class CategoryListController {
 
     @FXML
     public void editCategory() throws IOException {
-        App.getRegister().setSelectedCategory(tableView.getSelectionModel().getSelectedItem());
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/editCategory.fxml"));
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent, 364, 393);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setTitle("Edit task");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/edit.png")));
-        stage.showAndWait();
-        tableView.getItems().clear();
-        initialize();
+        CategoryDialog editDialog = new CategoryDialog(tableView.getSelectionModel().getSelectedItem(), true);
+        Optional<MainRegister> result = editDialog.showAndWait();
+        if(result.isPresent()){
+            MainRegister register = result.get();
+            App.setRegister(register);
+            updateList();
+        }
     }
 
     private void updateList(){

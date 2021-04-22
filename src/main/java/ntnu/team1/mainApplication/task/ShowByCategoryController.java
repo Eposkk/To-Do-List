@@ -16,6 +16,7 @@ import ntnu.team1.mainApplication.App;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ShowByCategoryController {
@@ -68,15 +69,34 @@ public class ShowByCategoryController {
     }
 
     @FXML
-    private void addNewTask() throws IOException {
-        ShowDialogController.addNewTask();
-        updateList();
+    private void addNewTask(){
+        TaskDialog addNewDialog = new TaskDialog();
+        Optional<MainRegister> result = addNewDialog.showAndWait();
+        if(result.isPresent()){
+            MainRegister register = result.get();
+            App.setRegister(register);
+            updateList();
+        }
+
     }
 
     @FXML
-    private void editTask() throws IOException{
-        ShowDialogController.editTask(tableView.getSelectionModel().getSelectedItem());
-        updateList();
+    private void editTask(){
+        if(tableView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Select a Task:");
+            alert.setHeaderText("No task selected" );
+            alert.setContentText("Please select a task to edit");
+            alert.showAndWait();
+        }else{
+            TaskDialog patientDialog = new TaskDialog(tableView.getSelectionModel().getSelectedItem(), true);
+            Optional<MainRegister> result = patientDialog.showAndWait();
+            if(result.isPresent()){
+                MainRegister updatedRegister = result.get();
+                App.setRegister(updatedRegister);
+                updateList();
+            }
+        }
     }
 
         @FXML

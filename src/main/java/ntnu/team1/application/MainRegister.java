@@ -25,8 +25,6 @@ public class MainRegister implements Serializable {
     private ArrayList<MainTask> tasks;
     private int taskIdCount = 0;
     private int categoryIdCount = 0;
-    private MainTask selectedMainTask;
-    private Category selectedCategory;
 
     /**
      * Constructor for MainRegister
@@ -83,14 +81,9 @@ public class MainRegister implements Serializable {
         }
     }
 
-    public void editCategory(String name, Color color){
-        if(name.equals("")){
-            throw new IllegalArgumentException("Fuck off, jeg er lei og du har et feil arghument");
-        }
-        else {
-            selectedCategory.setName(name);
-            selectedCategory.setColor(color);
-        }
+    public void editCategory(Category updatedCategory){
+        categories.replace(updatedCategory.getID(), updatedCategory);
+
     }
 
     /**
@@ -235,21 +228,6 @@ public class MainRegister implements Serializable {
 
     public void setTasks(ArrayList<MainTask> tasks) {
         this.tasks = tasks;
-    }
-
-    public void setSelectedTask(MainTask mainTask){
-        selectedMainTask = mainTask;
-    }
-    public MainTask getSelectedMainTask(){
-        return selectedMainTask;
-    }
-
-    public void setSelectedCategory(Category category){
-        selectedCategory=category;
-    }
-
-    public Category getSelectedCategory() {
-        return selectedCategory;
     }
 
     @Override

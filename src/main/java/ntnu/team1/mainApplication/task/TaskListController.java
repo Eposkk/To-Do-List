@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -96,15 +97,34 @@ public class TaskListController {
     }
 
     @FXML
-    private void addNewTask() throws IOException {
-        ShowDialogController.addNewTask();
-        updateList();
+    private void addNewTask(){
+        TaskDialog addNewDialog = new TaskDialog();
+        Optional<MainRegister> result = addNewDialog.showAndWait();
+        if(result.isPresent()){
+            MainRegister register = result.get();
+            App.setRegister(register);
+            updateList();
+        }
     }
 
+
     @FXML
-    private void editTask() throws IOException{
-        ShowDialogController.editTask(tableView.getSelectionModel().getSelectedItem());
-        updateList();
+    private void editTask(){
+        if(tableView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Select a Task:");
+            alert.setHeaderText("No task selected" );
+            alert.setContentText("Please select a task to edit");
+            alert.showAndWait();
+        }else{
+            TaskDialog patientDialog = new TaskDialog(tableView.getSelectionModel().getSelectedItem(), true);
+            Optional<MainRegister> result = patientDialog.showAndWait();
+            if(result.isPresent()){
+                MainRegister updatedRegister = result.get();
+                App.setRegister(updatedRegister);
+                updateList();
+            }
+        }
     }
 
     @FXML
