@@ -113,7 +113,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
-            category.setValue(App.getRegister().getCategory(existingTask.getCategoryId()).getName());
+           //TODO category.setValue(App.getRegister().getCategory(existingTask.getCategoryId()).getName());
 
 
             if (mode == Mode.INFO) {
