@@ -24,7 +24,15 @@
     -fx-text-alignment: center;
 
 }
-
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: red;
+    -fx-font-family: "Pixer Regular";
+}
+.table-view.text{
+    -fx-font-family: "Pixer Regular";
+}
 .table-view .table-column{
     -fx-text-alignment: center;
     -fx-alignment: CENTER
