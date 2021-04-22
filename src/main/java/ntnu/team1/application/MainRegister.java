@@ -60,6 +60,17 @@ public class MainRegister implements Serializable {
         throw new IllegalArgumentException("No task found with the suggested Id.");
     }
 
+    /**
+     * Method for adding a task to the register
+     * @param startDate A LocalDate object representing the start date of the Task
+     * @param endDate A LocalDate object representing the end date of the Task
+     * @param name A string representing the name of the Task
+     * @param description A String representing the description of the Task
+     * @param priority An integer representing the priority of the Task
+     * @param categoryId An Integer representing the ID of a category
+     * @throws NullPointerException If the name is null the Task will not be added
+     */
+
 
     public void addMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
                                int priority, int categoryId) throws NullPointerException{

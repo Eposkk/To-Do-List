@@ -22,6 +22,18 @@ public class MainTask implements Serializable {
     private boolean isDone;
     private final long serialVersionUID;
 
+    /**
+     *Constructor of the objects
+     *
+     * @param ID an Integer representing the ID of a main task
+     * @param startDate A LocalDate object representing the start date of the Task
+     * @param endDate A LocalDate object representing the end date of the Task
+     * @param name A string representing the name of the Task
+     * @param description A String representing the description of the Task
+     * @param priority An integer representing the priority of the Task
+     * @param categoryId An Integer representing the ID of a category
+     */
+
     public MainTask(int ID, String name, String description, LocalDate startDate, LocalDate endDate, int priority, int categoryId) {
         this.ID = ID;
         if(categoryId> -1){
@@ -37,19 +49,10 @@ public class MainTask implements Serializable {
         serialVersionUID =  -68497944707546120L;
     }
 
-    /**
-     *
-     * @param ID an Integer representing the ID of a main task
-     * @param startDate A LocalDate object representing the start date of the Task
-     * @param endDate A LocalDate object representing the end date of the Task
-     * @param name A string representing the name of the Task
-     * @param description A String representing the description of the Task
-     * @param priority An integer representing the priority of the Task
-     * @param categoryId An Integer representing the ID of a category
-     */
+
 
     /**
-     *
+     * Gets the category ID
      * @return returns category ID
      */
     public int getCategoryId() {
@@ -57,7 +60,7 @@ public class MainTask implements Serializable {
     }
 
     /**
-     *
+     * Checks if the task has a category
      * @return returns true if the main task has a category, false if not.
      */
 
@@ -84,17 +87,9 @@ public class MainTask implements Serializable {
         return ID;
     }
 
-    public boolean isHasCategory() {
-        return hasCategory;
-    }
-
-    public void setHasCategory(boolean hasCategory) {
-        this.hasCategory = hasCategory;
-    }
-
     /**
      * Gets start date
-     * @return
+     * @return A Local Date Object
      */
 
     public LocalDate getStartDate() {
@@ -103,7 +98,7 @@ public class MainTask implements Serializable {
 
     /**
      * Sets start date
-     * @param startDate
+     * @param startDate Start date of the task
      */
 
     public void setStartDate(LocalDate startDate) {
@@ -112,7 +107,7 @@ public class MainTask implements Serializable {
 
     /**
      * Gets end date
-     * @return
+     * @return A Local Date Object
      */
 
     public LocalDate getEndDate() {
@@ -121,7 +116,7 @@ public class MainTask implements Serializable {
 
     /**
      * Sets end date
-     * @param endDate
+     * @param endDate A Local Date Object
      */
 
     public void setEndDate(LocalDate endDate) {
@@ -130,7 +125,7 @@ public class MainTask implements Serializable {
 
     /**
      * Gets name
-     * @return
+     * @return A String
      */
 
     public String getName() {
@@ -139,7 +134,7 @@ public class MainTask implements Serializable {
 
     /**
      * Sets name
-     * @param name
+     * @param name Name of the task
      */
 
     public void setName(String name) {
@@ -148,7 +143,7 @@ public class MainTask implements Serializable {
 
     /**
      * Gets description
-     * @return
+     * @return Description of the task
      */
 
     public String getDescription() {
@@ -157,7 +152,7 @@ public class MainTask implements Serializable {
 
     /**
      * Sets description
-     * @param description
+     * @param description Description as a String
      */
 
     public void setDescription(String description) {
@@ -166,7 +161,7 @@ public class MainTask implements Serializable {
 
     /**
      * Gets priority
-     * @return
+     * @return Priority as an int
      */
 
     public int getPriority() {
@@ -175,7 +170,7 @@ public class MainTask implements Serializable {
 
     /**
      * Sets priority
-     * @param priority
+     * @param priority Priority as an int
      */
 
     public void setPriority(int priority) {
@@ -184,7 +179,7 @@ public class MainTask implements Serializable {
 
     /**
      * Checks if task is done
-     * @return
+     * @return A boolean indicating if the task is done
      */
 
     public boolean isDone() {
@@ -193,12 +188,18 @@ public class MainTask implements Serializable {
 
     /**
      * Sets task as done
-     * @param done
+     * @param done a boolean indicating if the task is done
      */
 
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    /**
+     * Equals method for the object
+     * @param o Object we want to compare with
+     * @return A boolean indicating if the objects are equal
+     */
 
     @Override
     public boolean equals(Object o) {
@@ -210,7 +211,7 @@ public class MainTask implements Serializable {
 
 
     /**
-     *
+     * ToString for the object
      * @return returns information about MainTask objects.
      */
     @Override
