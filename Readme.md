@@ -37,7 +37,7 @@ git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
 in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javafx -> javafx:run. This will compile and run the program for you
 
 # Documentation
-[JavaDoc](http://eivisha.pages.stud.idi.ntnu.no/to-do-list/ntnu.team1/module-summary.html)
+[JavaDoc](http://eivisha.pages.stud.idi.ntnu.no/to-do-list)
 
 
 [Wiki](https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/wikis/home)
