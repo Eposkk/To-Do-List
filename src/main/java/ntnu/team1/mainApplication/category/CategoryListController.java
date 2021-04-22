@@ -1,6 +1,9 @@
 package ntnu.team1.mainApplication.category;
 
+import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,9 +23,9 @@ import java.io.CharArrayReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CategoryListController {
-
 
     @FXML
     private Button addNewTool;
@@ -45,6 +48,13 @@ public class CategoryListController {
     public void initialize() throws FileNotFoundException {
         columFactory();
         updateList();
+
+        tableView.setOnMousePressed(mouseEvent -> {
+            if (mouseEvent.isPrimaryButtonDown() && (mouseEvent.getClickCount() == 2)) {
+                App.setChosenCategory(tableView.getSelectionModel().getSelectedItem().getID());
+
+            }
+        });
         makeButtons();
     }
 
@@ -77,12 +87,10 @@ public class CategoryListController {
             @Override
             protected void updateItem(Category category, boolean empty) {
                 super.updateItem(category, empty);
-
                 if (category == null) {
                     setGraphic(null);
                     return;
                 }
-
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(
                         event -> {
@@ -96,6 +104,14 @@ public class CategoryListController {
                 );
             }
         });
+        taskNumberColumn.setCellValueFactory(cellData -> {
+            int number =  App.getRegister().getAllTasks().stream()
+                    .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID())
+                    .collect(Collectors.toList()).size();
+            return  new ReadOnlyObjectWrapper<>(number);
+
+        });
+
     }
 
 

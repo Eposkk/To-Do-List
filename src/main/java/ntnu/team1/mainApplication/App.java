@@ -47,6 +47,7 @@ public class App extends Application {
     public static void setChosenCategory(int id){
         chosenCategory = id;
     }
+
     public static int getChosenCategory(){
         return chosenCategory;
     }
