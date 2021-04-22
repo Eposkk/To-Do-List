@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"ntnu.team1","l":"ntnu.team1"},{"m":"ntnu.team1","l":"ntnu.team1.application.exceptions"},{"m":"ntnu.team1","l":"ntnu.team1.application.fileHandling"},{"m":"ntnu.team1","l":"ntnu.team1.application.task"}]
