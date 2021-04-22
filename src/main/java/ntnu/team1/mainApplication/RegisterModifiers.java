@@ -1,6 +1,7 @@
 package ntnu.team1.mainApplication;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
@@ -33,6 +34,19 @@ public class RegisterModifiers {
         Optional<MainRegister> result = addNewDialog.showAndWait();
         if(result.isPresent()){
             MainRegister register = result.get();
+            App.setRegister(register);
+        }
+    }
+
+    public static void removeTask(MainTask task){
+        MainRegister register = App.getRegister();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog - Delete Item");
+        alert.setContentText("Are you sure you want to delete this task?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            register.removeMainTask(task.getID());
             App.setRegister(register);
         }
     }

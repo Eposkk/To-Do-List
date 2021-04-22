@@ -36,19 +36,8 @@ public class ShowByCategoryController {
     @FXML
     private Button deleteAllTool;
 
-    @FXML
-    private ImageView addTaskIcon;
-
-    @FXML
-    private ImageView removeTaskIcon;
-
-    @FXML
-    private ImageView editTaskIcon;
-
-    @FXML
-    private ImageView deleteAllIcon;
-
     public AnchorPane Pane;
+
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
 
