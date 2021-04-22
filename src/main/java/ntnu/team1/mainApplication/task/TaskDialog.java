@@ -2,23 +2,26 @@ package ntnu.team1.mainApplication.task;
 
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.stream.Collectors;
 
+/**
+ * Class used for creating dialogs for adding or editing Tasks
+ */
+
 public class TaskDialog extends Dialog<MainRegister> {
+
+    /**
+     * Enumarator for class
+     */
 
     public enum Mode {
         NEW, EDIT, INFO
@@ -29,14 +32,20 @@ public class TaskDialog extends Dialog<MainRegister> {
     private MainTask existingTask = null;
 
     /**
-     *
+     * Constructor for TaskDialog
      */
     public TaskDialog() {
         super();
         this.mode = Mode.NEW;
         // Create the content of the dialog
-        createPatient();
+        createTask();
     }
+
+    /**
+     * Constructor for TaskDialog
+     * @param task task to edit
+     * @param editable a boolean indicating if the task should be edited
+     */
 
     public TaskDialog(MainTask task, boolean editable) {
         super();
@@ -47,13 +56,13 @@ public class TaskDialog extends Dialog<MainRegister> {
         }
         this.existingTask = task;
         // Create the content of the dialog
-        createPatient();
+        createTask();
     }
 
     /**
-     *
+     * Creates a task to be showed
      */
-    private void createPatient() {
+    private void createTask() {
         // Set title depending upon mode...
         switch (this.mode) {
             case EDIT:

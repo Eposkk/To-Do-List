@@ -30,16 +30,34 @@ import java.util.Optional;
 
 public class MainApplicationController {
 
+    @FXML
     public MenuItem menuEditAdd;
+    public AnchorPane pane;
     @FXML
     private MenuItem menuHelpAbout;
-
     @FXML
     BorderPane view;
-
     @FXML
     private VBox categoryButtonList;
 
+    /**
+     * Method that gets called on load of class
+     * Sets up necessary layout and configures it
+     * @throws IOException if the fxml file isnt found
+     */
+
+    public void initialize() throws IOException {
+        pane.setOnMouseMoved(e-> generateCategoryList());
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+        view.setCenter(newLoadedPane);
+        menuHelpAbout.setOnAction(showAbout());
+        generateCategoryList();
+    }
+
+    /**
+     * Method for generating the category list and displaying it
+     * Configures the view and adds neccesary information
+     */
 
     public void generateCategoryList() {
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
@@ -72,46 +90,60 @@ public class MainApplicationController {
         categoryButtonList.getChildren().add(gridPane);
     }
 
+    /**
+     * Changes the pane to category view
+     * @param id Id of the category we want to load
+     * @throws IOException If the fxml file cant be found
+     */
+
     public void showByCategory(int id) throws IOException {
         App.setChosenCategory(id);
         Pane newLoadedPane = FXMLLoader.load(MainApplicationController.class.getResource("task/showByCategory.fxml"));
         view.setCenter(newLoadedPane);
     }
 
-    public void initialize() throws IOException {
-        view.setOnMouseMoved(e-> generateCategoryList());
-        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
-        view.setCenter(newLoadedPane);
-        menuHelpAbout.setOnAction(showAbout());
-        generateCategoryList();
-    }
-
+    /**
+     * Switches the view to tasks
+     * @throws IOException Throws IOException if the fxml file cannot be found
+     */
     @FXML
     public void switchToTasks() throws IOException {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.setCenter(newLoadedPane);
     }
 
+    /**
+     * Switches the view to categories
+     * @throws IOException Throws IOException if the fxml file cannot be found
+     */
     @FXML
     public void switchToCategory() throws IOException {
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
         view.setCenter(categoryPane);
     }
 
+    /**
+     * Adds new task
+     */
+
     @FXML
     private void addNewTask(){
         RegisterModifiers.addNewTask();
     }
+
+    /**
+     * Adds new category
+     */
 
     @FXML
     public void addNewCategory() {
         RegisterModifiers.addNewCategory();
     }
 
-    @FXML
-    public void edit() {
-    }
-
+    /**
+     * Makes about page display if the button is clicked on
+     * @return An eventHandler
+     */
     @FXML
     private EventHandler<ActionEvent> showAbout() {
         return event -> {
@@ -127,15 +159,12 @@ public class MainApplicationController {
     }
 
 
-    @FXML
-    public void exit(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setContentText("Do you want to exit the application?");
+    /**
+     * Gets called on exit.
+     */
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            Platform.exit();
-        }
+    @FXML
+    public void exit() {
+        App.alertOnExit();
     }
 }

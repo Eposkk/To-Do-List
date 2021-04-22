@@ -24,6 +24,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Class used for displaying tasks by catgeory
+ */
+
 public class ShowByCategoryController {
 
     @FXML
@@ -35,7 +39,7 @@ public class ShowByCategoryController {
     @FXML
     private Button deleteAllTool;
 
-
+    @FXML
     public AnchorPane Pane;
 
     @FXML
@@ -68,6 +72,12 @@ public class ShowByCategoryController {
     @FXML
     private ToggleGroup choice;
 
+    /**
+     * Initial method that is called at class loading
+     * Sets and creates tableview, creates buttons and configures all other elements
+     * @throws FileNotFoundException if file is not found
+     */
+
 
     public void initialize() throws FileNotFoundException {
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
@@ -78,10 +88,14 @@ public class ShowByCategoryController {
             header.setText("Viewing all tasks without a given category");
         }
         columFactory();
-
         makeButtons();
         updateList();
     }
+
+    /**
+     * Method for making buttons
+     * @throws FileNotFoundException if file is not found
+     */
 
     private void makeButtons() throws FileNotFoundException {
         addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
@@ -94,6 +108,13 @@ public class ShowByCategoryController {
         deleteAllTool.setTooltip(new Tooltip(("Delete all tasks in this category")));
     }
 
+    /**
+     * Adds the images to buttons
+     * @param path Path of the images
+     * @param button The button to add the images to
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
     private void addImageToButton(String path, Button button) throws FileNotFoundException {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
@@ -103,11 +124,19 @@ public class ShowByCategoryController {
         button.setGraphic(addPatientIcon);
     }
 
+    /**
+     * Method for adding tasks
+     */
+
     @FXML
     private void addNewTask(){
         RegisterModifiers.addNewTask();
         updateList();
     }
+
+    /**
+     * Method for editing tasks
+     */
 
     @FXML
     private void editTask(){
@@ -115,11 +144,19 @@ public class ShowByCategoryController {
         updateList();
     }
 
+    /**
+     * Method for removing tasks
+     */
+
     @FXML
     private void removeAllTasks(){
         RegisterModifiers.removeAllTasksInCategory(App.getChosenCategory());
         updateList();
     }
+
+    /**
+     * Factory for creating the tableview and adding information
+     */
 
     private void columFactory(){
         doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
@@ -144,6 +181,10 @@ public class ShowByCategoryController {
         deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
     }
 
+
+    /**
+     * Updates the list
+     */
 
     private void updateList(){
         RadioButton r = (RadioButton) choice.getSelectedToggle();

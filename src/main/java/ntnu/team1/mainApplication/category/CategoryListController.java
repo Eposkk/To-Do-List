@@ -41,6 +41,13 @@ public class CategoryListController {
     @FXML
     public TableColumn<Category, Category> deleteButtonColumn;
 
+    /**
+     * Initalize method that is run when the class is loaded.
+     * Creates the table view and updates it.
+     * Also creates buttons that are needed
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
     public void initialize() throws FileNotFoundException {
         columFactory();
         updateList();
@@ -54,13 +61,25 @@ public class CategoryListController {
         makeButtons();
     }
 
+    /**
+     * Loads pictures used for creating buttons and sets tooltips
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
     private void makeButtons() throws FileNotFoundException {
         addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
-        addNewTool.setTooltip(new Tooltip("Add new task"));
+        addNewTool.setTooltip(new Tooltip("Add new category"));
 
         addImageToButton("src/main/resources/Images/edit.png", editTool);
-        editTool.setTooltip(new Tooltip(("Edit task")));
+        editTool.setTooltip(new Tooltip(("Edit category")));
     }
+
+    /**
+     * Adds the images to buttons
+     * @param path Path of the images
+     * @param button The button to add the images to
+     * @throws FileNotFoundException Throws if file is not found
+     */
 
     private void addImageToButton(String path, Button button) throws FileNotFoundException {
         FileInputStream inputAdd = new FileInputStream(path);
@@ -70,6 +89,10 @@ public class CategoryListController {
         addPatientIcon.setFitHeight(30);
         button.setGraphic(addPatientIcon);
     }
+
+    /**
+     * Factory for creating the tableview and adding information
+     */
 
     private void columFactory(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -113,18 +136,28 @@ public class CategoryListController {
 
     }
 
+    /**
+     * Method called for adding new category
+     */
 
     @FXML
     public void addNewCategory(){
         RegisterModifiers.addNewCategory();
         updateList();
     }
+    /**
+     * Method called for editing new category
+     */
 
     @FXML
     public void editCategory(){
         RegisterModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
        updateList();
     }
+
+    /**
+     * Method for updating the list used by tableview
+     */
 
     private void updateList(){
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));

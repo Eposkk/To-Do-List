@@ -32,6 +32,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Class used for displaying the tasks througfh a tableView
+ */
+
 public class TaskListController {
 
     public AnchorPane Pane;
@@ -75,6 +79,13 @@ public class TaskListController {
     @FXML
     private Label header;
 
+    /**
+     * Initalize method that is run when the class is loaded.
+     * Creates the table view and updates it.
+     * Also creates buttons that are needed
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
     public void initialize() throws FileNotFoundException {
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         header.setText("Viewing all tasks");
@@ -83,6 +94,11 @@ public class TaskListController {
         makeButtons();
     }
 
+    /**
+     * Creates the buttons that are needed
+     * @throws FileNotFoundException if path doesnt lead to a file
+     */
+
     private void makeButtons() throws FileNotFoundException {
         addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
         addNewTool.setTooltip(new Tooltip("Add new task"));
@@ -90,6 +106,13 @@ public class TaskListController {
         addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit task")));
     }
+
+    /**
+     * Adds the images to buttons
+     * @param path Path of the images
+     * @param button The button to add the images to
+     * @throws FileNotFoundException Throws if file is not found
+     */
 
     private void addImageToButton(String path, Button button) throws FileNotFoundException {
         FileInputStream inputAdd = new FileInputStream(path);
@@ -100,18 +123,29 @@ public class TaskListController {
         button.setGraphic(addPatientIcon);
     }
 
+    /**
+     * Method for adding a new task
+     */
+
     @FXML
     private void addNewTask(){
         RegisterModifiers.addNewTask();
         updateList();
     }
 
+    /**
+     * Method for editing a task
+     */
 
     @FXML
     private void editTask(){
         RegisterModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
         updateList();
     }
+
+    /**
+     * Factory for creating the tableView
+     */
 
     private void columFactory(){
         deleteButtonColumn.setCellValueFactory(
@@ -168,7 +202,11 @@ public class TaskListController {
         });
     }
 
-    void updateList(){
+    /**
+     * Method for updating the list
+     */
+
+    private void updateList(){
         RadioButton r = (RadioButton) choice.getSelectedToggle();
         String selected = r.getText();
         ObservableList<MainTask> list = null;
