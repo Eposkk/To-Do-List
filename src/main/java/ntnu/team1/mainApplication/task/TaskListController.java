@@ -1,6 +1,7 @@
 package ntnu.team1.mainApplication.task;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
@@ -75,7 +77,7 @@ public class TaskListController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, Category> categoryColumn;
+    private TableColumn<MainTask, String> categoryColumn;
 
     @FXML
     private TableColumn<MainTask, Button> deleteButtonColumn;
@@ -151,7 +153,14 @@ public class TaskListController {
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-       // deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        categoryColumn.setCellValueFactory(cellData -> {
+            if(cellData.getValue().getCategoryId() < 0){
+                return new ReadOnlyStringWrapper("No category");
+            }
+            else{
+                return new ReadOnlyStringWrapper(App.getRegister().getCategory(cellData.getValue().getCategoryId()).getName());
+            }
+        });
     }
 
     void updateList(){
