@@ -75,7 +75,6 @@ public class MainApplicationController {
             Label button = new Label(c.getName());
             button.setId(c.getName());
             button.prefWidthProperty().bind(gridPane.widthProperty());
-            button.setCursor(Cursor.HAND);
             button.setOnMousePressed(actionEvent -> {
                 try {
                     showByCategory(c.getID());

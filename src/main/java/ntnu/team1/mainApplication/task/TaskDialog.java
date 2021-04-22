@@ -86,6 +86,9 @@ public class TaskDialog extends Dialog<MainRegister> {
 
         // Set the button types.
         getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        getDialogPane().getStylesheets().add(
+                getClass().getResource("dialog.css").toExternalForm());
+        getDialogPane().getStyleClass().add("dialog");
 
         HBox mainBox = new HBox();
         VBox vBox1 = new VBox();
