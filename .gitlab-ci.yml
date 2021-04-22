@@ -33,7 +33,7 @@ pages:
   script:
   - mvn javadoc:javadoc
   - mkdir .public
-  - cp -r /target/site/* .public
+  - cp -r /builds/eivisha/to-do-list/target/site/ .public
   - mv .public public
   artifacts:
     paths:
