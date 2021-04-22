@@ -9,17 +9,45 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
+import ntnu.team1.mainApplication.MainApplicationController;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class ShowByCategoryController {
+
+    @FXML
+    private Button addNewTool;
+
+    @FXML
+    private Button editTool;
+
+    @FXML
+    private Button deleteTool;
+
+    @FXML
+    private Button deleteAllTool;
+
+    @FXML
+    private ImageView addTaskIcon;
+
+    @FXML
+    private ImageView removeTaskIcon;
+
+    @FXML
+    private ImageView editTaskIcon;
+
+    @FXML
+    private ImageView deleteAllIcon;
 
     public AnchorPane Pane;
     @FXML
@@ -56,7 +84,7 @@ public class ShowByCategoryController {
     private ToggleGroup choice;
 
 
-    public void initialize(){
+    public void initialize() throws FileNotFoundException {
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         if(App.getChosenCategory() > -1){
             header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
@@ -66,6 +94,7 @@ public class ShowByCategoryController {
         }
         columFactory();
         updateList();
+        displayToolbarIcons();
     }
 
     @FXML
@@ -99,7 +128,7 @@ public class ShowByCategoryController {
         }
     }
 
-        @FXML
+    @FXML
     private void removeTask(){
         MainRegister result = App.getRegister();
         result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
@@ -129,6 +158,15 @@ public class ShowByCategoryController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
         deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+    }
+
+    @FXML
+    private void displayToolbarIcons() throws FileNotFoundException {
+        ArrayList<Button> buttons = MainApplicationController.displayToolbarIcons(addNewTool, deleteTool, editTool ,deleteAllTool);
+        addNewTool = buttons.get(0);
+        deleteTool = buttons.get(1);
+        editTool = buttons.get(2);
+        deleteAllTool = buttons.get(3);
     }
 
     private void updateList(){

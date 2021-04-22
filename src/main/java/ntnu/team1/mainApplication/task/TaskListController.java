@@ -1,6 +1,5 @@
 package ntnu.team1.mainApplication.task;
 
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -11,15 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
+import ntnu.team1.mainApplication.MainApplicationController;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -136,42 +134,19 @@ public class TaskListController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Platform.exit();
+            register.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
+            App.setRegister(register);
+            updateList();
         }
-        register.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
-        App.setRegister(register);
-        updateList();
     }
 
     @FXML
     private void displayToolbarIcons() throws FileNotFoundException {
-        FileInputStream inputAdd = new FileInputStream("src/main/resources/Images/Plus.png");
-        Image imageAdd = new Image(inputAdd);
-        addTaskIcon = new ImageView(imageAdd);
-        addTaskIcon.setFitWidth(30);
-        addTaskIcon.setFitHeight(30);
-        addNewTool.setGraphic(addTaskIcon);
-
-        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/DeleteTaskIcon.png");
-        Image imageRemove = new Image(inputRemove);
-        removeTaskIcon = new ImageView(imageRemove);
-        removeTaskIcon.setFitWidth(30);
-        removeTaskIcon.setFitHeight(30);
-        deleteTool.setGraphic(removeTaskIcon);
-
-        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/editIcons.png");
-        Image imageEdit = new Image(inputEdit);
-        editTaskIcon = new ImageView(imageEdit);
-        editTaskIcon.setFitWidth(30);
-        editTaskIcon.setFitHeight(30);
-        editTool.setGraphic(editTaskIcon);
-
-        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/søppelkasse.png");
-        Image imageDeleteAll = new Image(inputDeleteAll);
-        deleteAllIcon = new ImageView(imageDeleteAll);
-        deleteAllIcon.setFitWidth(30);
-        deleteAllIcon.setFitHeight(30);
-        deleteAllTool.setGraphic(deleteAllIcon);
+        ArrayList<Button> buttons = MainApplicationController.displayToolbarIcons(addNewTool, deleteTool, editTool ,deleteAllTool);
+        addNewTool = buttons.get(0);
+        deleteTool = buttons.get(1);
+        editTool = buttons.get(2);
+        deleteAllTool = buttons.get(3);
     }
 
     private void columFactory(){
