@@ -88,6 +88,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         name.setPromptText("Add task name");
         TextArea description = new TextArea();
         description.setPromptText("Description");
+        description.setMaxWidth(200);
 
         HBox priorityBox = new HBox();
         final ToggleGroup priority = new ToggleGroup();
@@ -112,6 +113,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
+            category.setValue(App.getRegister().getCategory(existingTask.getCategoryId()).getName());
 
 
             if (mode == Mode.INFO) {
@@ -122,12 +124,15 @@ public class TaskDialog extends Dialog<MainRegister> {
             }
         }
         vBox1.getChildren().add(name);
+        vBox1.getChildren().add(new Label("Priority:"));
         vBox1.getChildren().add(priorityBox);
         mainBox.getChildren().add(vBox1);
         vBox2.getChildren().add(description);
         mainBox.getChildren().add(vBox2);
         vBox3.getChildren().add(category);
+        vBox3.getChildren().add(new Label("Start date"));
         vBox3.getChildren().add(startDate);
+        vBox3.getChildren().add(new Label("End date"));
         vBox3.getChildren().add(endDate);
         mainBox.getChildren().add(vBox3);
 

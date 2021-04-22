@@ -78,7 +78,9 @@ public class CategoryDialog extends Dialog<MainRegister> {
 
         ColorPicker color = new ColorPicker();
 
+        mainBox.getChildren().add(new Label("Name:"));
         mainBox.getChildren().add(name);
+        mainBox.getChildren().add(new Label("Color:"));
         mainBox.getChildren().add(color);
 
         if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {

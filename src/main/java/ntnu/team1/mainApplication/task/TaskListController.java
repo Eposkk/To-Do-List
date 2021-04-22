@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import ntnu.team1.application.MainRegister;
+import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.MainApplicationController;
@@ -74,7 +76,7 @@ public class TaskListController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, Integer> categoryColumn;
+    private TableColumn<Category, String> categoryColumn;
 
     @FXML
     private TableColumn<MainTask, Button> deleteButtonColumn;
@@ -150,7 +152,7 @@ public class TaskListController {
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+       // deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
     }
 
     void updateList(){
