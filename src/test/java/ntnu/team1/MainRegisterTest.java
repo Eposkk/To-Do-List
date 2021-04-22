@@ -1,3 +1,6 @@
+/**
+ * Contains all project files
+ */
 package ntnu.team1;
 
 import ntnu.team1.application.MainRegister;

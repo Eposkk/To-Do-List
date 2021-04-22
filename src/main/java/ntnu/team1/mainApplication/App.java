@@ -1,17 +1,16 @@
+/**
+ * Contains all files relevant to the front end
+ */
 package ntnu.team1.mainApplication;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ntnu.team1.application.MainRegister;
@@ -19,9 +18,7 @@ import ntnu.team1.application.fileHandling.Read;
 import ntnu.team1.application.fileHandling.Write;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Optional;
 
 /**

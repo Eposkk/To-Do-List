@@ -1,3 +1,6 @@
+/**
+ * Contains all files used for creating, editing, removing and viewing tasks
+ */
 package ntnu.team1.mainApplication.category;
 
 import javafx.scene.control.*;
