@@ -2,6 +2,7 @@ package ntnu.team1.application.task;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A class that represents a main task
@@ -198,6 +199,15 @@ public class MainTask implements Serializable {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MainTask mainTask = (MainTask) o;
+        return ID == mainTask.ID && hasCategory == mainTask.hasCategory && priority == mainTask.priority && categoryId == mainTask.categoryId && isDone == mainTask.isDone && Objects.equals(name, mainTask.name) && Objects.equals(description, mainTask.description) && Objects.equals(startDate, mainTask.startDate) && Objects.equals(endDate, mainTask.endDate);
+    }
+
 
     /**
      *
