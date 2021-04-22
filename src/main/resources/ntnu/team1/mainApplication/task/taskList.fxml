@@ -17,8 +17,6 @@
         <Label fx:id="header" text="Label" />
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <Button fx:id="addNewTool" mnemonicParsing="false" onAction="#addNewTask" />
-            <Button fx:id="deleteTool" mnemonicParsing="false" onAction="#removeTask" prefHeight="27.0" prefWidth="16.0" />
-            <Button fx:id="deleteAllTool" mnemonicParsing="false" onAction="#removeTask" />
             <Button fx:id="editTool" mnemonicParsing="false" onAction="#editTask" />
             <Separator orientation="VERTICAL" />
             <Label text="Show:" />

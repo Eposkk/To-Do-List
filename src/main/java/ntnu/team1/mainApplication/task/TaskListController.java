@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -24,6 +25,7 @@ import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.MainApplicationController;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,24 +41,6 @@ public class TaskListController {
 
     @FXML
     private Button editTool;
-
-    @FXML
-    private Button deleteTool;
-
-    @FXML
-    private Button deleteAllTool;
-
-    @FXML
-    private ImageView addTaskIcon;
-
-    @FXML
-    private ImageView removeTaskIcon;
-
-    @FXML
-    private ImageView editTaskIcon;
-
-    @FXML
-    private ImageView deleteAllIcon;
 
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
@@ -96,7 +80,24 @@ public class TaskListController {
         header.setText("Viewing all tasks");
         columFactory();
         updateList();
-        displayToolbarIcons();
+        makeButtons();
+    }
+
+    private void makeButtons() throws FileNotFoundException {
+        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+        addNewTool.setTooltip(new Tooltip("Add new task"));
+
+        addImageToButton("src/main/resources/Images/edit.png", editTool);
+        editTool.setTooltip(new Tooltip(("Edit task")));
+    }
+
+    private void addImageToButton(String path, Button button) throws FileNotFoundException {
+        FileInputStream inputAdd = new FileInputStream(path);
+        Image imageAdd = new Image(inputAdd);
+        ImageView addPatientIcon = new ImageView(imageAdd);
+        addPatientIcon.setFitWidth(30);
+        addPatientIcon.setFitHeight(30);
+        button.setGraphic(addPatientIcon);
     }
 
     @FXML
@@ -110,21 +111,6 @@ public class TaskListController {
     private void editTask(){
         RegisterModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
         updateList();
-    }
-
-    @FXML
-    private void removeTask(){
-        RegisterModifiers.removeTask(tableView.getSelectionModel().getSelectedItem());
-        updateList();
-    }
-
-    @FXML
-    private void displayToolbarIcons() throws FileNotFoundException {
-        ArrayList<Button> buttons = MainApplicationController.displayToolbarIcons(addNewTool, deleteTool, editTool ,deleteAllTool);
-        addNewTool = buttons.get(0);
-        deleteTool = buttons.get(1);
-        editTool = buttons.get(2);
-        deleteAllTool = buttons.get(3);
     }
 
     private void columFactory(){

@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import ntnu.team1.application.MainRegister;
@@ -17,6 +18,7 @@ import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.MainApplicationController;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,10 +33,8 @@ public class ShowByCategoryController {
     private Button editTool;
 
     @FXML
-    private Button deleteTool;
-
-    @FXML
     private Button deleteAllTool;
+
 
     public AnchorPane Pane;
 
@@ -78,8 +78,29 @@ public class ShowByCategoryController {
             header.setText("Viewing all tasks without a given category");
         }
         columFactory();
+
+        makeButtons();
         updateList();
-        displayToolbarIcons();
+    }
+
+    private void makeButtons() throws FileNotFoundException {
+        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+        addNewTool.setTooltip(new Tooltip("Add new task"));
+
+        addImageToButton("src/main/resources/Images/edit.png", editTool);
+        editTool.setTooltip(new Tooltip(("Edit task")));
+
+        addImageToButton("src/main/resources/Images/deleteALL.png", deleteAllTool);
+        deleteAllTool.setTooltip(new Tooltip(("Delete all tasks in this category")));
+    }
+
+    private void addImageToButton(String path, Button button) throws FileNotFoundException {
+        FileInputStream inputAdd = new FileInputStream(path);
+        Image imageAdd = new Image(inputAdd);
+        ImageView addPatientIcon = new ImageView(imageAdd);
+        addPatientIcon.setFitWidth(30);
+        addPatientIcon.setFitHeight(30);
+        button.setGraphic(addPatientIcon);
     }
 
     @FXML
@@ -95,9 +116,11 @@ public class ShowByCategoryController {
     }
 
     @FXML
-    private void removeTask(){
+    private void removeAllTasks(){
         MainRegister result = App.getRegister();
-        result.removeMainTask(tableView.getSelectionModel().getSelectedItem().getID());
+        for(MainTask task : tableView.getItems()){
+            result.removeMainTask(task.getID());
+        }
         App.setRegister(result);
         updateList();
     }
@@ -125,14 +148,6 @@ public class ShowByCategoryController {
         deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
     }
 
-    @FXML
-    private void displayToolbarIcons() throws FileNotFoundException {
-        ArrayList<Button> buttons = MainApplicationController.displayToolbarIcons(addNewTool, deleteTool, editTool ,deleteAllTool);
-        addNewTool = buttons.get(0);
-        deleteTool = buttons.get(1);
-        editTool = buttons.get(2);
-        deleteAllTool = buttons.get(3);
-    }
 
     private void updateList(){
         RadioButton r = (RadioButton) choice.getSelectedToggle();

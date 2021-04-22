@@ -123,53 +123,6 @@ public class MainApplicationController {
         };
     }
 
-    @FXML
-    public static ArrayList<Button> displayToolbarIcons( Button addNewTool , Button deleteTool, Button editTool,Button deleteAllTool) throws FileNotFoundException {
-        ArrayList<Button> buttons = new ArrayList<>();
-        FileInputStream inputAdd = new FileInputStream("src/main/resources/Images/Plus.png");
-        Image imageAdd = new Image(inputAdd);
-        ImageView addTaskIcon = new ImageView(imageAdd);
-        addTaskIcon.setFitWidth(30);
-        addTaskIcon.setFitHeight(30);
-        addNewTool.setGraphic(addTaskIcon);
-        System.out.println(addNewTool);
-        Tooltip tooltipAdd = new Tooltip("Add new task");
-        addNewTool.setTooltip(tooltipAdd);
-        buttons.add(addNewTool);
-
-        FileInputStream inputRemove = new FileInputStream("src/main/resources/Images/DeleteTaskIcon.png");
-        Image imageRemove = new Image(inputRemove);
-        ImageView removeTaskIcon = new ImageView(imageRemove);
-        removeTaskIcon.setFitWidth(30);
-        removeTaskIcon.setFitHeight(30);
-        deleteTool.setGraphic(removeTaskIcon);
-        Tooltip tooltipRemove = new Tooltip("Remove task");
-        deleteTool.setTooltip(tooltipRemove);
-        buttons.add(deleteTool);
-
-
-        FileInputStream inputEdit = new FileInputStream("src/main/resources/Images/editIcons.png");
-        Image imageEdit = new Image(inputEdit);
-        ImageView editTaskIcon = new ImageView(imageEdit);
-        editTaskIcon.setFitWidth(30);
-        editTaskIcon.setFitHeight(30);
-        editTool.setGraphic(editTaskIcon);
-        Tooltip tooltipEdit = new Tooltip("Edit task");
-        editTool.setTooltip(tooltipEdit);
-        buttons.add(editTool);
-
-        FileInputStream inputDeleteAll = new FileInputStream("src/main/resources/Images/søppelkasse.png");
-        Image imageDeleteAll = new Image(inputDeleteAll);
-        ImageView deleteAllIcon = new ImageView(imageDeleteAll);
-        deleteAllIcon.setFitWidth(30);
-        deleteAllIcon.setFitHeight(30);
-        deleteAllTool.setGraphic(deleteAllIcon);
-        Tooltip tooltipRemoveAll = new Tooltip("Remove all tasks");
-        deleteAllTool.setTooltip(tooltipRemoveAll);
-        buttons.add(deleteAllTool);
-
-        return buttons;
-    }
 
     @FXML
     public void exit(ActionEvent event) {
