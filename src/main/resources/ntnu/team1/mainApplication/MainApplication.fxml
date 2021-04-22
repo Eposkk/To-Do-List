@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
+<AnchorPane stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="ALWAYS">
             <Menu mnemonicParsing="false" text="File">
@@ -27,10 +27,7 @@
                 <MenuItem fx:id="menuHelpAbout" mnemonicParsing="false" text="About" />
             </Menu>
         </MenuBar>
-        <BorderPane prefHeight="564.0" prefWidth="797.0" VBox.vgrow="ALWAYS">
-            <center>
-                <AnchorPane fx:id="view" />
-            </center>
+        <BorderPane fx:id="view" prefHeight="564.0" prefWidth="797.0" VBox.vgrow="ALWAYS">
             <left>
                 <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefWidth="113.0">

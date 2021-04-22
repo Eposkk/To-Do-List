@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -18,7 +17,7 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.MainApplicationController;
-import ntnu.team1.mainApplication.registerModifiers;
+import ntnu.team1.mainApplication.RegisterModifiers;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -76,7 +75,7 @@ public class TaskListController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<Category, String> categoryColumn;
+    private TableColumn<MainTask, Category> categoryColumn;
 
     @FXML
     private TableColumn<MainTask, Button> deleteButtonColumn;
@@ -97,14 +96,14 @@ public class TaskListController {
 
     @FXML
     private void addNewTask(){
-        registerModifiers.addNewTask();
+        RegisterModifiers.addNewTask();
         updateList();
     }
 
 
     @FXML
     private void editTask(){
-        registerModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
+        RegisterModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
         updateList();
     }
 

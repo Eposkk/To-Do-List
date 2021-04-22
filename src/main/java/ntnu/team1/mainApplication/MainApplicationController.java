@@ -7,16 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import ntnu.team1.application.task.Category;
 
 import java.io.FileInputStream;
@@ -24,8 +22,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
-
-import ntnu.team1.application.task.Category;
 
 /**
  * Class that handles the main view of the application
@@ -38,12 +34,10 @@ public class MainApplicationController {
     private MenuItem menuHelpAbout;
 
     @FXML
-    private AnchorPane view;
+    BorderPane view;
 
     @FXML
     private VBox categoryButtonList;
-
-    private String currentView = "todo";
 
 
     public void generateCategoryList() {
@@ -76,44 +70,39 @@ public class MainApplicationController {
     }
 
     public void showByCategory(int id) throws IOException {
-        view.getChildren().clear();
         App.setChosenCategory(id);
         Pane newLoadedPane = FXMLLoader.load(MainApplicationController.class.getResource("task/showByCategory.fxml"));
-        view.getChildren().add(newLoadedPane);
+        view.setCenter(newLoadedPane);
     }
 
     public void initialize() throws IOException {
         view.setOnMouseMoved(e-> generateCategoryList());
-        view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
-        view.getChildren().add(newLoadedPane);
+        view.setCenter(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
     }
 
     @FXML
     public void switchToTasks() throws IOException {
-        view.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
-        view.getChildren().add(newLoadedPane);
+        view.setCenter(newLoadedPane);
     }
 
     @FXML
     public void switchToCategory() throws IOException {
-        view.getChildren().clear();
         Pane categoryPane = FXMLLoader.load(getClass().getResource("category/categoryList.fxml"));
-        currentView = "category";
-        view.getChildren().add(categoryPane);
+        view.setCenter(categoryPane);
     }
 
     @FXML
-    private void addNewTask() throws IOException {
-        registerModifiers.addNewTask();
+    private void addNewTask(){
+        RegisterModifiers.addNewTask();
     }
 
     @FXML
-    public void addNewCategory() throws IOException {
-        registerModifiers.addNewCategory();
+    public void addNewCategory() {
+        RegisterModifiers.addNewCategory();
     }
 
     @FXML

@@ -3,27 +3,17 @@ package ntnu.team1.mainApplication.category;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
-import ntnu.team1.mainApplication.registerModifiers;
-import ntnu.team1.mainApplication.task.TaskDialog;
+import ntnu.team1.mainApplication.RegisterModifiers;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class CategoryListController {
 
@@ -51,7 +41,7 @@ public class CategoryListController {
 
     @FXML
     public void addNewCategory(){
-        registerModifiers.addNewCategory();
+        RegisterModifiers.addNewCategory();
         updateList();
     }
 
@@ -65,7 +55,7 @@ public class CategoryListController {
 
     @FXML
     public void editCategory(){
-        registerModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
+        RegisterModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
        updateList();
     }
 

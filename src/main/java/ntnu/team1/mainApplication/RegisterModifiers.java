@@ -9,7 +9,7 @@ import ntnu.team1.mainApplication.task.TaskDialog;
 
 import java.util.Optional;
 
-public class registerModifiers {
+public class RegisterModifiers {
 
     public static void editTask(MainTask existingTask){
         if(existingTask == null){
