@@ -15,11 +15,10 @@ import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.MainApplicationController;
+import ntnu.team1.mainApplication.registerModifiers;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -99,33 +98,14 @@ public class ShowByCategoryController {
 
     @FXML
     private void addNewTask(){
-        TaskDialog addNewDialog = new TaskDialog();
-        Optional<MainRegister> result = addNewDialog.showAndWait();
-        if(result.isPresent()){
-            MainRegister register = result.get();
-            App.setRegister(register);
-            updateList();
-        }
-
+        registerModifiers.addNewTask();
+        updateList();
     }
 
     @FXML
     private void editTask(){
-        if(tableView.getSelectionModel().getSelectedItem() == null){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Select a Task:");
-            alert.setHeaderText("No task selected" );
-            alert.setContentText("Please select a task to edit");
-            alert.showAndWait();
-        }else{
-            TaskDialog patientDialog = new TaskDialog(tableView.getSelectionModel().getSelectedItem(), true);
-            Optional<MainRegister> result = patientDialog.showAndWait();
-            if(result.isPresent()){
-                MainRegister updatedRegister = result.get();
-                App.setRegister(updatedRegister);
-                updateList();
-            }
-        }
+        registerModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
+        updateList();
     }
 
     @FXML

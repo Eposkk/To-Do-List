@@ -108,27 +108,12 @@ public class MainApplicationController {
 
     @FXML
     private void addNewTask() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("task/newTask.fxml"));
-        Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, 800, 600);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setTitle("Add new task");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
-        stage.showAndWait();
+        registerModifiers.addNewTask();
     }
 
     @FXML
     public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/newCategory.fxml"));
-        Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, 400, 364);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.showAndWait();
-        generateCategoryList();
+        registerModifiers.addNewCategory();
     }
 
     @FXML

@@ -17,6 +17,7 @@ import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
+import ntnu.team1.mainApplication.registerModifiers;
 import ntnu.team1.mainApplication.task.TaskDialog;
 
 import java.io.FileInputStream;
@@ -49,15 +50,9 @@ public class CategoryListController {
 
 
     @FXML
-    public void addNewCategory() throws IOException {
-        CategoryDialog addNewDialog = new CategoryDialog();
-        Optional<MainRegister> result = addNewDialog.showAndWait();
-        if(result.isPresent()){
-            MainRegister register = result.get();
-            App.setRegister(register);
-            updateList();
-        }
-
+    public void addNewCategory(){
+        registerModifiers.addNewCategory();
+        updateList();
     }
 
     @FXML
@@ -69,14 +64,9 @@ public class CategoryListController {
     }
 
     @FXML
-    public void editCategory() throws IOException {
-        CategoryDialog editDialog = new CategoryDialog(tableView.getSelectionModel().getSelectedItem(), true);
-        Optional<MainRegister> result = editDialog.showAndWait();
-        if(result.isPresent()){
-            MainRegister register = result.get();
-            App.setRegister(register);
-            updateList();
-        }
+    public void editCategory(){
+        registerModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
+       updateList();
     }
 
     private void updateList(){
