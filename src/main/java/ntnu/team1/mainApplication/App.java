@@ -29,9 +29,20 @@ public class App extends Application {
     private static MainRegister register = new MainRegister();
     private static int chosenCategory = -1;
 
+    /**
+     * Main method
+     * @param args
+     */
+
     public static void main(String[] args) {
         launch();
     }
+
+    /**
+     * Runs on the start of the application. Loads the scene and configures it
+     * @param stage
+     * @throws IOException
+     */
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -44,26 +55,59 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * Sets the chosen category
+     * @param id Integer
+     */
+
+
     public static void setChosenCategory(int id){
         chosenCategory = id;
     }
+
+    /**
+     * Gets the chosen category
+     * @return Integer
+     */
 
     public static int getChosenCategory(){
         return chosenCategory;
     }
 
+    /**
+     * Sets the register
+     * @param register MainRegister
+     */
+
     public static void setRegister(MainRegister register) {
         App.register = register;
     }
+
+    /**
+     * Gets the register
+     * @return Returns the MainRegister
+     */
 
     public static MainRegister getRegister(){
         return register;
     }
 
+    /**
+     * Class used for loading fxml files
+     * @param fxml A string withe the path to the fxml file
+     * @return the Parent
+     * @throws IOException If it cant find the fxml file an IOException is thrown
+     */
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    /**
+     * Gets the register from save. Uses the Read class to load in the Register from the serialized file
+     * @return the MainRegister loaded from save
+     */
 
     private static MainRegister getRegisterFromSave(){
         MainRegister registerLocal = new MainRegister();
@@ -75,6 +119,11 @@ public class App extends Application {
         }
         return registerLocal;
     }
+
+    /**
+     * Method that runs on program exit
+     * Makes sure that the program state is saved and secure
+     */
 
     @Override
     public void stop(){

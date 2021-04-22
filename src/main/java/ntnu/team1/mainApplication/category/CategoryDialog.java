@@ -1,21 +1,21 @@
 package ntnu.team1.mainApplication.category;
 
-
-import javafx.collections.FXCollections;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.stream.Collectors;
+/**
+ * Class for constructing and showing the different category dialogs
+ * Extends Dialog
+ */
 
 public class CategoryDialog extends Dialog<MainRegister> {
+
+    /**
+     * Enumarator for the class
+     */
 
     public enum Mode {
         NEW, EDIT, INFO
@@ -26,14 +26,20 @@ public class CategoryDialog extends Dialog<MainRegister> {
     private Category existingCategory = null;
 
     /**
-     *
+     *Constructor for the object
      */
     public CategoryDialog() {
         super();
         this.mode = Mode.NEW;
         // Create the content of the dialog
-        createPatient();
+        createCategory();
     }
+
+    /**
+     *Constructor for the object
+     * @param category Category
+     * @param editable If it should be editable or not
+     */
 
     public CategoryDialog(Category category, boolean editable) {
         super();
@@ -44,13 +50,13 @@ public class CategoryDialog extends Dialog<MainRegister> {
         }
         this.existingCategory= category;
         // Create the content of the dialog
-        createPatient();
+        createCategory();
     }
 
     /**
-     *
+     * Method for creating a category
      */
-    private void createPatient() {
+    private void createCategory() {
         // Set title depending upon mode...
         switch (this.mode) {
             case EDIT:
@@ -64,8 +70,6 @@ public class CategoryDialog extends Dialog<MainRegister> {
             case INFO:
                 setTitle("Category info");
                 break;
-
-
         }
 
         // Set the button types.

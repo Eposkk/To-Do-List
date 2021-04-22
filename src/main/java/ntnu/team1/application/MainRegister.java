@@ -61,6 +61,17 @@ public class MainRegister implements Serializable {
         throw new IllegalArgumentException("No task found with the suggested Id.");
     }
 
+    /**
+     * Method for adding a task to the register
+     * @param startDate A LocalDate object representing the start date of the Task
+     * @param endDate A LocalDate object representing the end date of the Task
+     * @param name A string representing the name of the Task
+     * @param description A String representing the description of the Task
+     * @param priority An integer representing the priority of the Task
+     * @param categoryId An Integer representing the ID of a category
+     * @throws NullPointerException If the name is null the Task will not be added
+     */
+
 
     public void addMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
                                int priority, int categoryId) throws NullPointerException{
@@ -72,6 +83,17 @@ public class MainRegister implements Serializable {
             tasks.add(task);
             taskIdCount+=1;
     }
+
+    /**
+     * Method for editing a task
+     * @param id an Integer representing the ID of a main task
+     * @param startDate A LocalDate object representing the start date of the Task
+     * @param endDate A LocalDate object representing the end date of the Task
+     * @param name A string representing the name of the Task
+     * @param description A String representing the description of the Task
+     * @param priority An integer representing the priority of the Task
+     * @param categoryId An Integer representing the ID of a category
+     */
     public void editMainTask(int id, LocalDate startDate, LocalDate endDate, String name, String description,
                              int priority, int categoryId){
         if(name.equals("")){
@@ -81,6 +103,11 @@ public class MainRegister implements Serializable {
            tasks.add(new MainTask(id, name, description, startDate,endDate,priority,categoryId));
         }
     }
+
+    /**
+     * Method for editing a category
+     * @param updatedCategory The category we want to replace with existing one
+     */
 
     public void editCategory(Category updatedCategory){
         categories.replace(updatedCategory.getID(), updatedCategory);
@@ -119,10 +146,10 @@ public class MainRegister implements Serializable {
     }
 
     /**
-     *
-     * @param mainTaskId
-     * @param newPriority
-     * @throws IllegalArgumentException
+     *Changes the priority of a task
+     * @param mainTaskId Id of the task
+     * @param newPriority The priority of the task
+     * @throws IllegalArgumentException Priority can only be in the range of 1,3
      */
 
     public void changePriorityMainTask(int mainTaskId, int newPriority) throws IllegalArgumentException {
@@ -213,7 +240,7 @@ public class MainRegister implements Serializable {
 
     /**
      * Sets the category list
-     * @param categories
+     * @param categories Category List we want to set
      */
 
     public void setCategories(HashMap<Integer, Category> categories) {
@@ -222,12 +249,17 @@ public class MainRegister implements Serializable {
 
     /**
      * Sets the task list
-     * @param tasks
+     * @param tasks Task list we want to set
      */
 
     public void setTasks(ArrayList<MainTask> tasks) {
         this.tasks = tasks;
     }
+
+    /**
+     * To-String for the object
+     * @return All usefull information as a String
+     */
 
     @Override
     public String toString() {
