@@ -36,7 +36,8 @@ public class MainRegisterTest {
                 }catch(RemoveException e){
                     assertNull(e);
                 }
-                assert(register.getCategories().size() == 0);
+                System.out.println(register.getCategories().size());
+                assert(register.getCategories().size() == 1);
             }
 
             @Test
