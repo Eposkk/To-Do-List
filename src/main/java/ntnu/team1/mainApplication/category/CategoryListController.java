@@ -91,17 +91,20 @@ public class CategoryListController {
                     setGraphic(null);
                     return;
                 }
-                setGraphic(deleteButton);
-                deleteButton.setOnAction(
-                        event -> {
-                            try {
-                                RegisterModifiers.removeCategory(category);
-                            } catch (RemoveException e) {
-                                e.printStackTrace();
+                if(category.getID()>-1){
+                    setGraphic(deleteButton);
+                    deleteButton.setOnAction(
+                            event -> {
+                                try {
+                                    RegisterModifiers.removeCategory(category);
+                                } catch (RemoveException e) {
+                                    e.printStackTrace();
+                                }
+                                updateList();
                             }
-                            updateList();
-                        }
-                );
+                    );
+                }
+
             }
         });
         taskNumberColumn.setCellValueFactory(cellData -> {
