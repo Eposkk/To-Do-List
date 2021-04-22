@@ -173,7 +173,6 @@ public class MainRegister implements Serializable {
      * Sets the taks category
      * @param taskId Id associated with the task you want to set a category for
      * @param newCategoryId The category id you want to set to the task
-     * @return Returns true if it changed, returns false if it failed
      */
 
     public void setMainTaskCategory(int taskId, int newCategoryId) throws IllegalArgumentException{
@@ -186,7 +185,6 @@ public class MainRegister implements Serializable {
     /**
      * Removes a category from the register
      * @param id Id associated with the category
-     * @return Returns true if category was removed, returns false if it failed
      */
 
     public void removeCategory(int id) throws RemoveException{
