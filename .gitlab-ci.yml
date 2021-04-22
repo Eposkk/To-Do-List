@@ -31,8 +31,9 @@ test:
 pages:
   stage: deploy
   script:
+  - mvn javadoc:javadoc
   - mkdir .public
-  - cp -r JavaDoc/* .public
+  - cp -r /target/site/* .public
   - mv .public public
   artifacts:
     paths:
