@@ -7,13 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import ntnu.team1.application.task.Category;
 
@@ -54,19 +55,31 @@ public class MainApplicationController {
             });
             categoryButtonList.getChildren().add(noCategory);
         }
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
+        gridPane.setPadding(new Insets(0, 5, 5, 5));
 
+        gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        int i = 0;
         for (Category c : list) {
-            Button button = new Button(c.getName());
+            i++;
+            Label button = new Label(c.getName());
             button.setId(c.getName());
-            button.setOnAction(actionEvent -> {
+            button.prefWidthProperty().bind(gridPane.widthProperty());
+            button.setCursor(Cursor.HAND);
+            button.setOnMousePressed(actionEvent -> {
                 try {
                     showByCategory(c.getID());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            categoryButtonList.getChildren().add(button);
+            Circle colorCircle = new Circle(5, c.getColor());
+            gridPane.add(button, 1, 1+i);
+            gridPane.add(colorCircle, 2,1+i);
         }
+        categoryButtonList.getChildren().add(gridPane);
     }
 
     public void showByCategory(int id) throws IOException {

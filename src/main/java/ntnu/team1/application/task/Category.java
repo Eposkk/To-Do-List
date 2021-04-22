@@ -1,8 +1,10 @@
 package ntnu.team1.application.task;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -48,8 +50,7 @@ public class Category implements Serializable {
      */
 
     public Color getColor() {
-        Color color = new Color(0,r,g,b);
-        return color;
+        return Color.color(r,g,b);
     }
 
     /**
@@ -67,7 +68,7 @@ public class Category implements Serializable {
 
     public void setColor(Color color) {
         this.r = color.getRed();
-        this.g= color.getGreen();
+        this.g = color.getGreen();
         this.b = color.getBlue();
     }
 
