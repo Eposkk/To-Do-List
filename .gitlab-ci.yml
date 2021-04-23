@@ -1,4 +1,5 @@
 generatepdf:
+  image: ubuntu
    # vi kjører dette i en docker container, som kjører Ubuntu Linux
   stage: deploy
    # vi kjører den parallelt med å publisere javadoc til Pages
