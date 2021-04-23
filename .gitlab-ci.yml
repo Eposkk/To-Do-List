@@ -29,6 +29,7 @@ test:
 
 
 pages:
+  needs: ["build"]
   stage: deploy
   script:
     - mvn javadoc:javadoc
