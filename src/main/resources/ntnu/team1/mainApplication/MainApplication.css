@@ -34,7 +34,7 @@
     -fx-background-insets: 5px;
 }
 .sideMenuButton{
-    -fx-background-color: dimgrey;
+    -fx-background-color: #0B0C10;
     -fx-text-fill: linear-gradient(white, #d0d0d0);
     -fx-font-size: 15px;
 
@@ -45,7 +45,7 @@
 }
 
 .sideMenuCategoryButton{
-    -fx-background-color: dimgrey;
+    -fx-background-color: #0B0C10;
     -fx-text-fill: linear-gradient(white, #d0d0d0);
     -fx-font-size: 12px;
 
