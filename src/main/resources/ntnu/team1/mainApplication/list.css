@@ -1,8 +1,13 @@
-
+.root {
+    -fx-background-color: black;
+    -fx-text-fill: #d8d8d8;
+    -fx-font-family: "Helvetica Neue";
+}
 
 #header{
     -fx-font-size: 30;
     -fx-alignment: center;
+    -fx-padding: 0 30 ;
 }
 
 .anchor-pane{
@@ -27,11 +32,13 @@
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
-    -fx-background-color: red;
-    -fx-font-family: "Pixer Regular";
+    -fx-background-color: black;
+    -fx-text-fill: #d8d8d8 ;
+    -fx-font-family: "Helvetica Neue";
 }
 .table-view.text{
-    -fx-font-family: "Pixer Regular";
+    -fx-text-fill: #d8d8d8 ;
+    -fx-font-family: "Helvetica Neue";
 }
 .table-view .table-column{
     -fx-text-alignment: center;

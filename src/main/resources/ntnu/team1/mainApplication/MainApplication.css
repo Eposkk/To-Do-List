@@ -4,34 +4,53 @@
 
 .root{
     -fx-font-family: "Helvetica Neue";
+    -fx-background-color: black;
 }
 
 .dialog{
     -fx-font-family: "Pixer Regular";
 }
 
-.button{
-    -fx-background-color:
-            #090a0c,
-            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
-            linear-gradient(#20262b, #191d22),
-            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
-    -fx-background-radius: 5,4,3,5;
-    -fx-background-insets: 0,1,2,0;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-font-family: "Arial";
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
-    -fx-padding: 10 20 10 20;
-}
-
 #menuBar{
     -fx-background-color: black;
 }
 
-
 #sideMenu{
     -fx-end-margin: 20 5 5 5;
+    -fx-background-color: #0B0C10;
+    -fx-text-fill: #d8d8d8;
+    -fx-alignment: top-center;
+}
+.sideMenuCategoryHeader{
+    -fx-text-fill: #d8d8d8;
+}
 
+.separator{
+    -fx-background-color: dimgrey;
+    -fx-background-radius: 2;
+    -fx-max-width: 70;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+.sideMenuButton{
+    -fx-background-color: dimgrey;
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 15px;
+
+}
+.sideMenuButton:hover{
+    -fx-background-color: grey;
+    -fx-cursor: hand;
+}
+
+.sideMenuCategoryButton{
+    -fx-background-color: dimgrey;
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12px;
+
+}
+.sideMenuCategoryButton:hover{
+    -fx-background-color: grey;
+    -fx-cursor: hand;
 }

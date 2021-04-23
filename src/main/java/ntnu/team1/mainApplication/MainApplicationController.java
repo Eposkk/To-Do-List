@@ -72,8 +72,9 @@ public class MainApplicationController {
         int i = 0;
         for (Category c : list) {
             i++;
-            Label button = new Label(c.getName());
+            Button button = new Button(c.getName());
             button.setId(c.getName());
+            button.getStyleClass().add("sideMenuCategoryButton");
             button.prefWidthProperty().bind(gridPane.widthProperty());
             button.setOnMousePressed(actionEvent -> {
                 try {

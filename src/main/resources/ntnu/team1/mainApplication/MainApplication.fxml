@@ -29,25 +29,25 @@
         </MenuBar>
         <BorderPane fx:id="view" VBox.vgrow="ALWAYS">
             <left>
-                <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToTasks" text="Tasks">
+                <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToTasks" styleClass="sideMenuButton" text="Tasks">
                   <VBox.margin>
                      <Insets bottom="10.0" left="20.0" right="20.0" />
                   </VBox.margin>
                </Button>
-                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToCategory" text="Categories">
+                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToCategory" styleClass="sideMenuButton" text="Categories">
                   <VBox.margin>
                      <Insets bottom="10.0" left="20.0" right="20.0" />
                   </VBox.margin>
                </Button>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categories:" />
+                    <Text fill="#d8d8d8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sideMenuCategoryHeader" text="Categories:" />
                     <Separator prefWidth="200.0" />
                     <VBox fx:id="categoryButtonList" prefHeight="40.0" prefWidth="200.0" />
                <BorderPane.margin>
-                  <Insets left="10.0" right="5.0" />
+                  <Insets />
                </BorderPane.margin>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets left="10.0" right="10.0" top="10.0" />
                </padding>
                 </VBox>
             </left>
