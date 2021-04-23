@@ -1,4 +1,7 @@
-package ntnu.team1;
+/**
+ * Contains all project files
+ */
+package ntnu.team1.application;
 
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
@@ -36,7 +39,8 @@ public class MainRegisterTest {
                 }catch(RemoveException e){
                     assertNull(e);
                 }
-                assert(register.getCategories().size() == 0);
+                System.out.println(register.getCategories().size());
+                assert(register.getCategories().size() == 1);
             }
 
             @Test
@@ -49,14 +53,14 @@ public class MainRegisterTest {
         @Nested
         public class setCategoryColor{
 
-            /*@Test
+            @Test
             void setCategoryColorPositive(){
                 MainRegister register = new MainRegister();
                 assertTrue(register.addCategory("test", Color.PINK));
 
                 register.setCategoryColor(0,Color.GREEN);
                 assertEquals(register.getCategory(0).getColor(), Color.GREEN);
-            }*/
+            }
 
             @Test
             public void setCategoryColorNegative(){
@@ -74,9 +78,6 @@ public class MainRegisterTest {
 
         @Nested
         public class getMainTask{
-
-            //TODO
-            // Use better assert
             @Test
             public void getMainTaskPositive(){
                 MainRegister register = new MainRegister();

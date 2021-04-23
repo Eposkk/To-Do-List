@@ -1,0 +1,51 @@
+stages:
+  - build
+  - test
+  - deploy
+
+
+cache:
+  paths:
+    - /build
+
+build:
+  image: maven:latest
+  stage: build
+  only:
+    - master
+  script:
+    - echo "BUILDING PROJECT"
+    - mvn clean compile
+  only: 
+    - web 
+
+
+test:
+  image: maven:latest
+  stage: test
+  only:
+    - master
+  script:
+    - echo "RUNNING TESTS"
+    - mvn clean test -e
+  only: 
+    - web 
+
+
+
+pages:
+  image: maven:latest
+  needs: ["build"]
+  stage: deploy
+  script:
+    - mvn javadoc:javadoc
+    - mkdir .public
+    - cp -r /builds/eivisha/to-do-list/target/site/apidocs/* .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - web
+
+

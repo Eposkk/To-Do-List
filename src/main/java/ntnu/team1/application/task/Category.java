@@ -1,10 +1,8 @@
+
 package ntnu.team1.application.task;
 
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Objects;
 
 /**

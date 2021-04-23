@@ -33,7 +33,7 @@ git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
 ```
 
 - Open the project with your IDE, and import it as a maven project.
-- Run the project either by navigating to App.java and clicking the play button to the left side of the class declaration or,
+- Run the project either by navigating to Launcher.java and clicking the play button to the left side of the class declaration or,
 in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javafx -> javafx:run. This will compile and run the program for you
 
 # Documentation
