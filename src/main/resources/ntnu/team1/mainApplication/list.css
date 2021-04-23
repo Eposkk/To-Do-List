@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: black;
+    -fx-background-color: 31 31 31;
     -fx-text-fill: #d8d8d8;
     -fx-font-family: "Helvetica Neue";
 }
@@ -9,17 +9,48 @@
     -fx-alignment: center;
     -fx-padding: 0 30 ;
 }
+.tool-bar{
+    -fx-background-color: #1F2833;
+    -fx-background-radius: 5;
+    
+}
 
 .anchor-pane{
     -fx-background-color: blue;
+}
+
+
+.table-row-cell{
+    -fx-pref-height: 50;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 30;
+    -fx-border-width: 10;
 }
 .table-row-cell:hover{
     -fx-cursor: hand;
 }
 
+.table-row-cell:empty {
+    -fx-background-color: black;
+    -fx-border-style: hidden hidden hidden hidden;
+}
+
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
+
+
+
 .table-row-cell:filled:hover {
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
+
+}
+.table-view {
+    -fx-padding: 10 20 0 20;
+    -fx-spacing: 15;
 
 }
 .table-view:row-selection {
