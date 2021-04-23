@@ -55,7 +55,7 @@ generatepdf:
   script:
     - git clone "https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list.wiki.git"  
     # hver eneste gitlab-wiki ligger i et eget repo, og kan klones med git som man kloner andre prosjekter
-    - gwtc IDATT1002-K1T1 2021.wiki  
+    - gwtc to-do-list.wiki  
     # Dette er kommandoen for å generere en singel HTML-fil av hele wikien
     - wkhtmltopdf documentation.html wiki.pdf 
      # Dette konverterer fra HTML til PDF
