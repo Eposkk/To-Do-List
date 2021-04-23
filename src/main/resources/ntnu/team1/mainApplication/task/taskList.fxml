@@ -41,9 +41,9 @@
             <fx:define>
                 <ToggleGroup fx:id="choice" />
             </fx:define>
-            <RadioButton text="all" toggleGroup="$choice"/>
+            <RadioButton selected="true" text="all" toggleGroup="$choice"/>
             <RadioButton text="done" toggleGroup="$choice" />
-            <RadioButton selected="true" text="active" toggleGroup="$choice" />
+            <RadioButton text="active" toggleGroup="$choice" />
 
 
          <VBox.margin>
