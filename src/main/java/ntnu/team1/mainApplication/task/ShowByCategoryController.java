@@ -19,13 +19,11 @@ import javafx.scene.layout.AnchorPane;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
-import ntnu.team1.mainApplication.MainApplicationController;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -101,14 +99,11 @@ public class ShowByCategoryController {
      * @throws FileNotFoundException if file is not found
      */
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+    private void makeButtons() {
         addNewTool.setTooltip(new Tooltip("Add new task"));
 
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit task")));
 
-        addImageToButton("src/main/resources/Images/deleteALL.png", deleteAllTool);
         deleteAllTool.setTooltip(new Tooltip(("Delete all tasks in this category")));
     }
 

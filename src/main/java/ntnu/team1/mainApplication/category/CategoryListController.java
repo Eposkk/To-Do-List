@@ -49,7 +49,7 @@ public class CategoryListController {
      * @throws FileNotFoundException Throws if file is not found
      */
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         columFactory();
         updateList();
 
@@ -67,11 +67,8 @@ public class CategoryListController {
      * @throws FileNotFoundException Throws if file is not found
      */
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+    private void makeButtons() {
         addNewTool.setTooltip(new Tooltip("Add new category"));
-
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit category")));
     }
 
