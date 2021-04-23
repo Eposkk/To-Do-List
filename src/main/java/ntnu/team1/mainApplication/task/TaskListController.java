@@ -92,6 +92,30 @@ public class TaskListController {
         columFactory();
         updateList();
         makeButtons();
+        tableView.getColumns().forEach(this::addTooltipToColumnCells);
+    }
+
+    private <T> void addTooltipToColumnCells(TableColumn<MainTask, T> column) {
+
+        Callback<TableColumn<MainTask, T>, TableCell<MainTask, T>> existingCellFactory
+                = column.getCellFactory();
+
+        column.setCellFactory(c -> {
+            TableCell<MainTask, T> cell = existingCellFactory.call(c);
+
+            Tooltip tooltip = new Tooltip();
+            // can use arbitrary binding here to make text depend on cell
+            // in any way you need:
+            if (!cell.itemProperty().asString().equals("")) {
+                tooltip.textProperty().bind(cell.itemProperty().asString());
+            }
+            System.out.println(tooltip.getText());
+            if(!tooltip.getText().equals("null")){
+                cell.setTooltip(tooltip);
+            }
+
+            return cell ;
+        });
     }
 
     /**

@@ -15,16 +15,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
-import ntnu.team1.mainApplication.MainApplicationController;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -93,6 +92,25 @@ public class ShowByCategoryController {
         columFactory();
         makeButtons();
         updateList();
+        tableView.getColumns().forEach(this::addTooltipToColumnCells);
+    }
+
+    private <T> void addTooltipToColumnCells(TableColumn<MainTask, T> column) {
+
+        Callback<TableColumn<MainTask, T>, TableCell<MainTask, T>> existingCellFactory
+                = column.getCellFactory();
+
+        column.setCellFactory(c -> {
+            TableCell<MainTask, T> cell = existingCellFactory.call(c);
+
+            Tooltip tooltip = new Tooltip();
+            // can use arbitrary binding here to make text depend on cell
+            // in any way you need:
+            tooltip.textProperty().bind(cell.itemProperty().asString());
+
+            cell.setTooltip(tooltip);
+            return cell ;
+        });
     }
 
     /**
