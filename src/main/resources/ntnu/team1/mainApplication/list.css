@@ -47,6 +47,7 @@
 .check-box .box {
     -fx-background-color: #272B29;
     -fx-background-radius: 4;
+    -fx-font-size: 20;
     -fx-border-radius:3px;
 
 }
