@@ -18,6 +18,14 @@
     
 }
 
+.radio-button{
+    -fx-text-fill: #CED0CE;
+}
+
+.label{
+    -fx-text-fill: #CED0CE;
+}
+
 
 
 .anchor-pane{
@@ -42,6 +50,9 @@
     -fx-border-radius:3px;
 
 }
+.check-box .box:hover {
+    -fx-background-color: #9381FF;
+}
 
 .check-box:selected .mark {
     -fx-background-color: #1D201F;
@@ -57,13 +68,13 @@
     -fx-table-cell-border-color: transparent;
     -fx-pref-height: 60;
     -fx-background-color: #1D201F ;
-    -fx-text-background-color: white;
+    -fx-text-background-color: #CED0CE;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: #686468;
 }
 .table-row-cell:hover{
     -fx-cursor: hand;
-    -fx-background-color: #1F2833;
+    -fx-background-color: #34435E;
 }
 
 .table-row-cell:empty {
@@ -79,7 +90,7 @@
 }
 
 .table-row-cell:selected{
-    -fx-background-color: #1F2833;
+    -fx-background-color: #34435E;
 }
 
 .table-row-cell:filled:hover {
