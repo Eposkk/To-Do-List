@@ -15,7 +15,6 @@
     -fx-text-fill: #CED0CE;
     -fx-background-radius: 5;
     -fx-spacing: 20;
-    
 }
 
 .radio-button{
@@ -26,11 +25,6 @@
     -fx-text-fill: #CED0CE;
 }
 
-
-
-.anchor-pane{
-
-}
 .radio-button:hover{
     -fx-cursor: hand;
 }
@@ -86,11 +80,11 @@
     -fx-cursor: default;
 }
 
-.table-row-cell:empty .table-cell {
-    -fx-border-width: 0px;
+.table-row-cell:selected{
+    -fx-background-color: #34435E;
 }
 
-.table-row-cell:selected{
+.table-row-cell:filled:selected:hover{
     -fx-background-color: #34435E;
 }
 
@@ -98,25 +92,18 @@
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
     -fx-background-color: #1F2833;
-
 }
-.table-view {
-    -fx-padding: 10 20 0 20;
-    -fx-spacing: 15;
-    -fx-text-fill: white;
 
-}
 .table-view:row-selection {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
-
 }
+
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
-    -fx-background-color: black;
+    -fx-background-color: #272B29;
     -fx-text-background-color: #d8d8d8 ;
     -fx-font-family: "Helvetica Neue";
 }
@@ -127,5 +114,4 @@
 .table-view .table-column{
     -fx-text-alignment: center;
     -fx-alignment: CENTER
-
 }
