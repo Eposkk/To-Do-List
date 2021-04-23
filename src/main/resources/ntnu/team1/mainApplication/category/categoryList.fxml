@@ -30,5 +30,8 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
+      <padding>
+         <Insets left="30.0" right="30.0" top="30.0" />
+      </padding>
     </VBox>
 </AnchorPane>

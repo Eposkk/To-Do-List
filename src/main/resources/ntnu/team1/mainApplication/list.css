@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: 31 31 31;
+    -fx-background-color: #1D201F;
     -fx-text-fill: #d8d8d8;
     -fx-font-family: "Helvetica Neue";
 }
@@ -10,30 +10,47 @@
     -fx-padding: 0 30 ;
 }
 .tool-bar{
-    -fx-background-color: #1F2833;
+    -fx-background-color: #1D201F;
     -fx-background-radius: 5;
     
 }
 
 .anchor-pane{
-    -fx-background-color: blue;
+
+}
+
+.check-box .box {
+    -fx-background-color: #CED0CE;
+    -fx-background-radius: 4;
+    -fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+    -fx-background-color: #9381FF;
 }
 
 
 .table-row-cell{
-    -fx-pref-height: 50;
+    -fx-padding: 0 0 5 0;
+    -fx-table-cell-border-color: transparent;
+    -fx-pref-height: 60;
+    -fx-background-color: #1D201F ;
+    -fx-text-background-color: white;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: transparent;
-    -fx-background-radius: 10;
-    -fx-border-radius: 30;
-    -fx-border-width: 10;
+    -fx-border-color: #686468;
 }
 .table-row-cell:hover{
     -fx-cursor: hand;
+    -fx-background-color: #1F2833;
 }
 
 .table-row-cell:empty {
-    -fx-background-color: black;
     -fx-border-style: hidden hidden hidden hidden;
 }
 
@@ -51,6 +68,7 @@
 .table-view {
     -fx-padding: 10 20 0 20;
     -fx-spacing: 15;
+    -fx-text-fill: white;
 
 }
 .table-view:row-selection {
@@ -64,7 +82,7 @@
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
     -fx-background-color: black;
-    -fx-text-fill: #d8d8d8 ;
+    -fx-text-background-color: #d8d8d8 ;
     -fx-font-family: "Helvetica Neue";
 }
 .table-view.text{

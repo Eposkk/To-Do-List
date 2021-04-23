@@ -187,7 +187,10 @@ public class TaskListController {
                 return new ReadOnlyStringWrapper(App.getRegister().getCategory(cellData.getValue().getCategoryId()).getName());
             }
         });
-        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>(){
+
+
+        });
         doneColumn.setCellValueFactory(cellData -> {
             MainTask task = cellData.getValue();
             BooleanProperty property = new SimpleBooleanProperty(task.isDone());
