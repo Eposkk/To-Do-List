@@ -102,6 +102,7 @@ public class MainApplicationController {
     @FXML
     public void switchToTasks() throws IOException {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+        App.setChosenCategory(-1);
         view.setCenter(newLoadedPane);
     }
 
