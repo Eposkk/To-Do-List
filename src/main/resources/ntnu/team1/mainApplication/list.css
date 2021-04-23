@@ -53,6 +53,10 @@
 .table-row-cell:empty {
     -fx-border-style: hidden hidden hidden hidden;
 }
+.table-row-cell:empty:hover {
+    -fx-background-color: #1D201F ;
+    -fx-cursor: default;
+}
 
 .table-row-cell:empty .table-cell {
     -fx-border-width: 0px;
