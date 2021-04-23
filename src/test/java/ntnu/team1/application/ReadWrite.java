@@ -1,4 +1,4 @@
-package ntnu.team1;
+package ntnu.team1.application;
 
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.fileHandling.Read;
