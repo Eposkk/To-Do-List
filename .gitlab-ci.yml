@@ -17,6 +17,8 @@ build:
   script:
     - echo "BUILDING PROJECT"
     - mvn clean compile
+  only: 
+    - web 
 
 
 test:
@@ -26,6 +28,8 @@ test:
   script:
     - echo "RUNNING TESTS"
     - mvn clean test -e
+  only: 
+    - web 
 
 
 
@@ -41,7 +45,7 @@ pages:
     paths:
       - public
   only:
-    - master
+    - web
 
 
 generatepdf:
