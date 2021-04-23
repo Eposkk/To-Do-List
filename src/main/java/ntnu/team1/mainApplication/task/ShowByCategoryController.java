@@ -118,8 +118,8 @@ public class ShowByCategoryController {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
         ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
+        addPatientIcon.setFitWidth(20);
+        addPatientIcon.setFitHeight(20);
         button.setGraphic(addPatientIcon);
     }
 
@@ -182,7 +182,7 @@ public class ShowByCategoryController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
+            private final Button deleteButton = new Button();
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
@@ -197,7 +197,7 @@ public class ShowByCategoryController {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
+                deleteButton.setTooltip(new Tooltip("Delete"));
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(
                         event -> {

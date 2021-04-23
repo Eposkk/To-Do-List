@@ -99,11 +99,9 @@ public class TaskListController {
      * @throws FileNotFoundException if path doesnt lead to a file
      */
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+    private void makeButtons() {
         addNewTool.setTooltip(new Tooltip("Add new task"));
 
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit task")));
     }
 
@@ -118,8 +116,8 @@ public class TaskListController {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
         ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
+        addPatientIcon.setFitWidth(20);
+        addPatientIcon.setFitHeight(20);
         button.setGraphic(addPatientIcon);
     }
 
@@ -152,7 +150,7 @@ public class TaskListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("");
+            private final Button deleteButton = new Button();
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
@@ -167,6 +165,7 @@ public class TaskListController {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+                deleteButton.setTooltip(new Tooltip("Delete"));
 
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(

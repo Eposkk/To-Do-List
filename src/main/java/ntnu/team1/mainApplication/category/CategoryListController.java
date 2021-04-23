@@ -83,8 +83,8 @@ public class CategoryListController {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
         ImageView icon = new ImageView(imageAdd);
-        icon.setFitWidth(30);
-        icon.setFitHeight(30);
+        icon.setFitWidth(20);
+        icon.setFitHeight(20);
         button.setGraphic(icon);
     }
 
@@ -133,6 +133,7 @@ public class CategoryListController {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
+                    deleteButton.setTooltip(new Tooltip("Delete"));
                     setGraphic(deleteButton);
                     deleteButton.setOnAction(
                             event -> {
