@@ -5,30 +5,46 @@
 }
 
 #header{
+    -fx-text-fill: #CED0CE;
     -fx-font-size: 30;
     -fx-alignment: center;
     -fx-padding: 0 30 ;
 }
 .tool-bar{
     -fx-background-color: #1D201F;
+    -fx-text-fill: #CED0CE;
     -fx-background-radius: 5;
+    -fx-spacing: 20;
     
 }
+
+
 
 .anchor-pane{
 
 }
+.radio-button:hover{
+    -fx-cursor: hand;
+}
+
+.button{
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #9381FF;
+}
 
 .check-box .box {
-    -fx-background-color: #CED0CE;
+    -fx-background-color: #272B29;
     -fx-background-radius: 4;
     -fx-border-radius:3px;
 
 }
 
 .check-box:selected .mark {
-    -fx-background-color: white;
-
+    -fx-background-color: #1D201F;
 }
 
 .check-box:selected .box {
@@ -62,11 +78,14 @@
     -fx-border-width: 0px;
 }
 
-
+.table-row-cell:selected{
+    -fx-background-color: #1F2833;
+}
 
 .table-row-cell:filled:hover {
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
+    -fx-background-color: #1F2833;
 
 }
 .table-view {

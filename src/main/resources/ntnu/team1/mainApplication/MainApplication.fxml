@@ -29,14 +29,14 @@
                          <MenuItem fx:id="menuHelpAbout" mnemonicParsing="false" text="About" />
                      </Menu>
                  </MenuBar>
-                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToTasks" styleClass="sideMenuButton" text="Tasks">
+                     <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToTasks" styleClass="sideMenuButton" text="Tasks">
                   <VBox.margin>
-                     <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                     <Insets bottom="10.0" top="20.0" />
                   </VBox.margin>
                </Button>
-                     <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToCategory" styleClass="sideMenuButton" text="Categories">
+                     <Button alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchToCategory" styleClass="sideMenuButton" text="Categories">
                   <VBox.margin>
-                     <Insets bottom="10.0" left="20.0" right="20.0" />
+                     <Insets bottom="10.0" />
                   </VBox.margin>
                </Button>
                     <Separator prefWidth="200.0" />

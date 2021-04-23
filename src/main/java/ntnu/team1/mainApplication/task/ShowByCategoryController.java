@@ -4,6 +4,7 @@
 package ntnu.team1.mainApplication.task;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -67,7 +68,7 @@ public class ShowByCategoryController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, Button> deleteButtonColumn;
+    private TableColumn<MainTask, MainTask> deleteButtonColumn;
 
     @FXML
     private Label header;
@@ -181,7 +182,36 @@ public class ShowByCategoryController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("Delete");
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                try {
+                    addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                setGraphic(deleteButton);
+                deleteButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.removeTask(task);
+                            updateList();
+                        }
+                );
+            }
+        });
     }
 
 

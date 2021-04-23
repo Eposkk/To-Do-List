@@ -152,7 +152,7 @@ public class TaskListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
+            private final Button deleteButton = new Button("");
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
@@ -161,6 +161,11 @@ public class TaskListController {
                 if (task == null) {
                     setGraphic(null);
                     return;
+                }
+                try {
+                    addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
 
                 setGraphic(deleteButton);

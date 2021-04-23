@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
+import javafx.scene.shape.Circle;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
@@ -35,7 +36,7 @@ public class CategoryListController {
     @FXML
     public TableColumn<Category, String> nameColumn;
     @FXML
-    public TableColumn<Color, Color> colorColumn;
+    public TableColumn<Category, Category> colorColumn;
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
     @FXML
@@ -84,10 +85,10 @@ public class CategoryListController {
     private void addImageToButton(String path, Button button) throws FileNotFoundException {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
-        ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
-        button.setGraphic(addPatientIcon);
+        ImageView icon = new ImageView(imageAdd);
+        icon.setFitWidth(30);
+        icon.setFitHeight(30);
+        button.setGraphic(icon);
     }
 
     /**
@@ -96,12 +97,31 @@ public class CategoryListController {
 
     private void columFactory(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
+        colorColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        colorColumn.setCellFactory(param -> new TableCell<>() {
+            private final Circle colorCircle = new Circle();
+            @Override
+            protected void updateItem(Category category, boolean empty) {
+                super.updateItem(category, empty);
+                if (category == null) {
+                    setGraphic(null);
+                    return;
+                }
+                colorCircle.setFill(category.getColor());
+                colorCircle.setRadius(10);
+                setGraphic(colorCircle);
+
+            }
+        });
+
+
         deleteButtonColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
+            private final Button deleteButton = new Button("");
 
             @Override
             protected void updateItem(Category category, boolean empty) {
@@ -111,6 +131,11 @@ public class CategoryListController {
                     return;
                 }
                 if(category.getID()>-1){
+                    try {
+                        addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     setGraphic(deleteButton);
                     deleteButton.setOnAction(
                             event -> {
@@ -126,6 +151,8 @@ public class CategoryListController {
 
             }
         });
+
+
         taskNumberColumn.setCellValueFactory(cellData -> {
             int number =  App.getRegister().getAllTasks().stream()
                     .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID())

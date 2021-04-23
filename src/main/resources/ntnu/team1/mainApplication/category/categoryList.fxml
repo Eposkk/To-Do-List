@@ -11,12 +11,15 @@
 
 <AnchorPane stylesheets="@../list.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.category.CategoryListController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Label fx:id="header" text="Viewing categories" />
+      <Label fx:id="header" text="Viewing categories">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin></Label>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <Button fx:id="addNewTool" mnemonicParsing="false" onAction="#addNewCategory" />
             <Button fx:id="editTool" mnemonicParsing="false" onAction="#editCategory" />
          <VBox.margin>
-            <Insets left="20.0" right="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" />
          </VBox.margin>
         </ToolBar>
         <TableView fx:id="tableView" editable="true" prefHeight="277.0" prefWidth="380.0">
