@@ -109,7 +109,6 @@ public class TaskListController {
             if (!cell.itemProperty().asString().equals("")) {
                 tooltip.textProperty().bind(cell.itemProperty().asString());
             }
-            System.out.println(tooltip.getText());
             if(!tooltip.getText().equals("null")){
                 cell.setTooltip(tooltip);
             }

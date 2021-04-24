@@ -26,6 +26,7 @@ import ntnu.team1.application.task.Category;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,6 +46,8 @@ public class MainApplicationController {
     @FXML
     private VBox categoryButtonList;
 
+    private HashMap<Integer, Category> currentCategories = new HashMap();
+
     /**
      * Method that gets called on load of class
      * Sets up necessary layout and configures it
@@ -57,13 +60,13 @@ public class MainApplicationController {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.setCenter(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
+        currentCategories = App.getRegister().getCategories();
         generateCategoryList();
 
         Timeline updateCategory = new Timeline(
-            new KeyFrame(Duration.millis(100),
-                    new EventHandler<>() {
-                        @Override
-                        public void handle(ActionEvent event) {
+            new KeyFrame(Duration.millis(10),
+                    event -> {
+                        if(App.getRegister().getCategories() != currentCategories){
                             generateCategoryList();
                         }
                     }));
