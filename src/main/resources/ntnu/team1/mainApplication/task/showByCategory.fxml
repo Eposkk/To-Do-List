@@ -49,8 +49,7 @@
             <fx:define>
                 <ToggleGroup fx:id="choice" />
             </fx:define>
-
-            <RadioButton selected="true" text="all" toggleGroup="$choice" />
+            <RadioButton selected="true" text="all" toggleGroup="$choice"/>
             <RadioButton text="done" toggleGroup="$choice" />
             <RadioButton text="active" toggleGroup="$choice" />
 
@@ -74,6 +73,7 @@
                 <TableColumn fx:id="startDateColumn" minWidth="-1.0" prefWidth="-1.0" text="Start Date" />
                 <TableColumn fx:id="endDateColumn" minWidth="-1.0" prefWidth="-1.0" text="End date" />
                 <TableColumn fx:id="priorityColumn" minWidth="-1.0" prefWidth="-1.0" text="Priority" />
+            <TableColumn fx:id="infoButtonColumn" minWidth="-1.0" prefWidth="-1.0" text="Info" />
                 <TableColumn fx:id="deleteButtonColumn" minWidth="-1.0" prefWidth="-1.0" text="Delete" />
             </columns>
             <columnResizePolicy>

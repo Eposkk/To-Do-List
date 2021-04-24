@@ -15,6 +15,7 @@ import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
+import ntnu.team1.mainApplication.task.staticMethods;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -79,14 +80,7 @@ public class CategoryListController {
      * @throws FileNotFoundException Throws if file is not found
      */
 
-    private void addImageToButton(String path, Button button) throws FileNotFoundException {
-        FileInputStream inputAdd = new FileInputStream(path);
-        Image imageAdd = new Image(inputAdd);
-        ImageView icon = new ImageView(imageAdd);
-        icon.setFitWidth(20);
-        icon.setFitHeight(20);
-        button.setGraphic(icon);
-    }
+
 
     /**
      * Factory for creating the tableview and adding information
@@ -129,7 +123,7 @@ public class CategoryListController {
                 }
                 if(category.getID()>-1){
                     try {
-                        addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
+                        staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

@@ -71,6 +71,9 @@ public class TaskListController {
     private TableColumn<MainTask, String> categoryColumn;
 
     @FXML
+    private TableColumn<MainTask, MainTask> infoButtonColumn;
+
+    @FXML
     private TableColumn<MainTask, MainTask> deleteButtonColumn;
 
     @FXML
@@ -128,21 +131,6 @@ public class TaskListController {
         editTool.setTooltip(new Tooltip(("Edit task")));
     }
 
-    /**
-     * Adds the images to buttons
-     * @param path Path of the images
-     * @param button The button to add the images to
-     * @throws FileNotFoundException Throws if file is not found
-     */
-
-    private void addImageToButton(String path, Button button) throws FileNotFoundException {
-        FileInputStream inputAdd = new FileInputStream(path);
-        Image imageAdd = new Image(inputAdd);
-        ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(20);
-        addPatientIcon.setFitHeight(20);
-        button.setGraphic(addPatientIcon);
-    }
 
     /**
      * Method for adding a new task
@@ -169,35 +157,19 @@ public class TaskListController {
      */
 
     private void columFactory(){
-        deleteButtonColumn.setCellValueFactory(
-                param -> new ReadOnlyObjectWrapper<>(param.getValue())
-        );
-        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button();
+        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>(){
+        });
+        doneColumn.setCellValueFactory(cellData -> {
+            MainTask task = cellData.getValue();
+            BooleanProperty property = new SimpleBooleanProperty(task.isDone());
 
-            @Override
-            protected void updateItem(MainTask task, boolean empty) {
-                super.updateItem(task, empty);
-
-                if (task == null) {
-                    setGraphic(null);
-                    return;
-                }
-                try {
-                    addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                deleteButton.setTooltip(new Tooltip("Delete"));
-
-                setGraphic(deleteButton);
-                deleteButton.setOnAction(
-                        event -> {
-                            RegisterModifiers.removeTask(task);
-                            updateList();
-                        }
-                );
-            }
+            property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
+                MainRegister register = App.getRegister();
+                register.getMainTask(task.getID()).setDone(newValue);
+                App.setRegister(register);
+                updateList();
+            });
+            return property;
         });
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -214,21 +186,61 @@ public class TaskListController {
                 return new ReadOnlyStringWrapper(App.getRegister().getCategory(cellData.getValue().getCategoryId()).getName());
             }
         });
-        doneColumn.setCellFactory(column -> new CheckBoxTableCell<>(){
+        infoButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        infoButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button infoButton = new Button("i");
 
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
 
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                infoButton.setTooltip(new Tooltip("Info/Delete"));
+                setGraphic(infoButton);
+                infoButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.editTask(task);
+                            updateList();
+                        }
+                );
+            }
         });
-        doneColumn.setCellValueFactory(cellData -> {
-            MainTask task = cellData.getValue();
-            BooleanProperty property = new SimpleBooleanProperty(task.isDone());
 
-            property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
-                MainRegister register = App.getRegister();
-                register.getMainTask(task.getID()).setDone(newValue);
-                App.setRegister(register);
-                updateList();
-            });
-            return property;
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button();
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                try {
+                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                deleteButton.setTooltip(new Tooltip("Delete"));
+
+                setGraphic(deleteButton);
+                deleteButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.removeTask(task);
+                            updateList();
+                        }
+                );
+            }
         });
     }
 
