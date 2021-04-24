@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.Properties;
 
 /**
  * JavaFX App, this is the main class of the application.
@@ -53,7 +52,7 @@ public class App extends Application {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("To-Do-List 1.0");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/ntnu/team1/mainApplication/Logo256px.png")));
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Logo256px.png")));
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

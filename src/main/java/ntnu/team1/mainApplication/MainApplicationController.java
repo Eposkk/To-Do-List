@@ -61,12 +61,12 @@ public class MainApplicationController {
 
         Timeline updateCategory = new Timeline(
             new KeyFrame(Duration.millis(100),
-            new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    generateCategoryList();
-                }
-            }));
+                    new EventHandler<>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            generateCategoryList();
+                        }
+                    }));
         updateCategory.setCycleCount(Timeline.INDEFINITE);
         updateCategory.play();
     }
@@ -157,6 +157,11 @@ public class MainApplicationController {
     private EventHandler<ActionEvent> showAbout() {
         return event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("MainApplication.css").toExternalForm());
+            dialogPane.getStyleClass().add("alertBox");
+            alert.setDialogPane(dialogPane);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle("About");
             alert.setHeaderText("To-Do-List Application");
