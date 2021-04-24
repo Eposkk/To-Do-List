@@ -52,7 +52,7 @@ public class App extends Application {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("To-Do-List 1.0");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Logo256px.png")));
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Logo256pxv2.png")));
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
