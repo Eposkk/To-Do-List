@@ -12,6 +12,9 @@
 
     -fx-text-fill: #CED0CE;
 }
+#view.center{
+    -fx-fit-to-height: true;
+}
 
 .menu:hover {
     /* The File menu item */

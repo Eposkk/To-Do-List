@@ -49,9 +49,10 @@
             <fx:define>
                 <ToggleGroup fx:id="choice" />
             </fx:define>
-            <RadioButton selected="true" text="all" toggleGroup="$choice"/>
+
+            <RadioButton selected="true" text="all" toggleGroup="$choice" />
             <RadioButton text="done" toggleGroup="$choice" />
-            <RadioButton  text="active" toggleGroup="$choice" />
+            <RadioButton text="active" toggleGroup="$choice" />
 
             <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" />
@@ -60,7 +61,7 @@
 
         </ToolBar>
 
-        <TableView fx:id="tableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TableView fx:id="tableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="doneColumn" minWidth="-1.0" prefWidth="-1.0" text="Done" />
                 <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="-1.0" text="Name" />
