@@ -21,8 +21,6 @@
                      </Menu>
                      <Menu mnemonicParsing="false" text="Edit">
                          <MenuItem fx:id="menuEditAdd" mnemonicParsing="false" onAction="#addNewTask" text="Add new task" />
-                         <MenuItem fx:id="menuEditEdit" mnemonicParsing="false" text="Edit selected" />
-                         <MenuItem fx:id="menuEditDelete" mnemonicParsing="false" text="Delete selected" />
                          <MenuItem fx:id="menuEditCategory" mnemonicParsing="false" onAction="#addNewCategory" text="Add new category" />
                      </Menu>
                      <Menu mnemonicParsing="false" text="Help">
