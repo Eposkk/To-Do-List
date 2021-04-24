@@ -52,4 +52,4 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 - Eivind Strand Harboe
 
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![](https://media.giphy.com/media/3oEdv9R4D62GPrVY4g/source.gif)
