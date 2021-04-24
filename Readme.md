@@ -2,7 +2,7 @@
  
  To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
  
- ![](build/Logo_25.png)
+ ![](src/main/resources/ntnu/team1/mainApplication/Logo256pxwithtext.png)
 
 # Table of content
 [[_TOC_]]
