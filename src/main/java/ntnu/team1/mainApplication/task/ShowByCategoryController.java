@@ -4,6 +4,7 @@
 package ntnu.team1.mainApplication.task;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -66,7 +67,7 @@ public class ShowByCategoryController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, Button> deleteButtonColumn;
+    private TableColumn<MainTask, MainTask> deleteButtonColumn;
 
     @FXML
     private Label header;
@@ -118,14 +119,11 @@ public class ShowByCategoryController {
      * @throws FileNotFoundException if file is not found
      */
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+    private void makeButtons() {
         addNewTool.setTooltip(new Tooltip("Add new task"));
 
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit task")));
 
-        addImageToButton("src/main/resources/Images/deleteALL.png", deleteAllTool);
         deleteAllTool.setTooltip(new Tooltip(("Delete all tasks in this category")));
     }
 
@@ -140,8 +138,8 @@ public class ShowByCategoryController {
         FileInputStream inputAdd = new FileInputStream(path);
         Image imageAdd = new Image(inputAdd);
         ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
+        addPatientIcon.setFitWidth(20);
+        addPatientIcon.setFitHeight(20);
         button.setGraphic(addPatientIcon);
     }
 
@@ -199,7 +197,36 @@ public class ShowByCategoryController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button();
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                try {
+                    addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                deleteButton.setTooltip(new Tooltip("Delete"));
+                setGraphic(deleteButton);
+                deleteButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.removeTask(task);
+                            updateList();
+                        }
+                );
+            }
+        });
     }
 
 

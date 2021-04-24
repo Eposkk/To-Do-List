@@ -6,17 +6,38 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane stylesheets="@../list.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.category.CategoryListController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Label fx:id="header" text="Viewing categories" />
-        <ToolBar prefHeight="40.0" prefWidth="200.0">
-            <Button fx:id="addNewTool" mnemonicParsing="false" onAction="#addNewCategory" />
-            <Button fx:id="editTool" mnemonicParsing="false" onAction="#editCategory" />
+      <Label fx:id="header" text="Viewing categories">
          <VBox.margin>
-            <Insets left="20.0" right="20.0" />
+            <Insets bottom="30.0" />
+         </VBox.margin></Label>
+        <ToolBar prefHeight="40.0" prefWidth="200.0">
+         <Button fx:id="addNewTool" mnemonicParsing="false" onAction="#addNewCategory">
+            <graphic>
+               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../Images/addNew.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button fx:id="editTool" mnemonicParsing="false" onAction="#editCategory">
+            <graphic>
+               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../Images/edit.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
          </VBox.margin>
         </ToolBar>
         <TableView fx:id="tableView" editable="true" prefHeight="277.0" prefWidth="380.0">
@@ -30,5 +51,8 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
+      <padding>
+         <Insets left="30.0" right="30.0" top="30.0" />
+      </padding>
     </VBox>
 </AnchorPane>

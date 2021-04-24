@@ -1,70 +1,110 @@
 .root {
-    -fx-background-color: 31 31 31;
+    -fx-background-color: #1D201F;
     -fx-text-fill: #d8d8d8;
     -fx-font-family: "Helvetica Neue";
 }
 
 #header{
+    -fx-text-fill: #CED0CE;
     -fx-font-size: 30;
     -fx-alignment: center;
     -fx-padding: 0 30 ;
 }
 .tool-bar{
-    -fx-background-color: #1F2833;
+    -fx-background-color: #1D201F;
+    -fx-text-fill: #CED0CE;
     -fx-background-radius: 5;
-    
+    -fx-spacing: 20;
 }
 
-.anchor-pane{
-    -fx-background-color: blue;
+.radio-button{
+    -fx-text-fill: #CED0CE;
+}
+
+.label{
+    -fx-text-fill: #CED0CE;
+}
+
+.radio-button:hover{
+    -fx-cursor: hand;
+}
+
+.button{
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.button:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #9381FF;
+}
+
+.check-box .box {
+    -fx-background-color: #272B29;
+    -fx-background-radius: 10;
+    -fx-font-size: 20;
+    -fx-border-radius:3px;
+
+}
+.check-box .box:hover {
+    -fx-background-color: #9381FF;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #1D201F;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #9381FF;
 }
 
 
 .table-row-cell{
-    -fx-pref-height: 50;
+    -fx-padding: 0 0 5 0;
+    -fx-table-cell-border-color: transparent;
+    -fx-pref-height: 60;
+    -fx-background-color: #1D201F ;
+    -fx-text-background-color: #CED0CE;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: transparent;
-    -fx-background-radius: 10;
-    -fx-border-radius: 30;
-    -fx-border-width: 10;
+    -fx-border-color: #686468;
 }
 .table-row-cell:hover{
     -fx-cursor: hand;
+    -fx-background-color: #34435E;
 }
 
 .table-row-cell:empty {
-    -fx-background-color: black;
     -fx-border-style: hidden hidden hidden hidden;
 }
-
-.table-row-cell:empty .table-cell {
-    -fx-border-width: 0px;
+.table-row-cell:empty:hover {
+    -fx-background-color: #1D201F ;
+    -fx-cursor: default;
 }
 
+.table-row-cell:selected{
+    -fx-background-color: #34435E;
+}
 
+.table-row-cell:filled:selected:hover{
+    -fx-background-color: #34435E;
+}
 
 .table-row-cell:filled:hover {
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
-
+    -fx-background-color: #1F2833;
 }
-.table-view {
-    -fx-padding: 10 20 0 20;
-    -fx-spacing: 15;
 
-}
 .table-view:row-selection {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
     -fx-alignment: CENTER;
     -fx-text-alignment: center;
-
 }
+
 .table-view .column-header,
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
-    -fx-background-color: black;
-    -fx-text-fill: #d8d8d8 ;
+    -fx-background-color: #272B29;
+    -fx-text-background-color: #d8d8d8 ;
     -fx-font-family: "Helvetica Neue";
 }
 .table-view.text{
@@ -74,5 +114,4 @@
 .table-view .table-column{
     -fx-text-alignment: center;
     -fx-alignment: CENTER
-
 }

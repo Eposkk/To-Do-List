@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import ntnu.team1.application.task.Category;
@@ -78,19 +80,13 @@ public class MainApplicationController {
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));
         categoryButtonList.getChildren().clear();
 
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
-        gridPane.setPadding(new Insets(0, 5, 5, 5));
-
-        gridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        int i = 0;
+        categoryButtonList.setSpacing(5);
         for (Category c : list) {
-            i++;
-            Button button = new Button(c.getName());
-            button.setId(c.getName());
+            Circle colorCircle = new Circle(5, c.getColor());
+            Button button = new Button(c.getName(), colorCircle);
+            button.setGraphicTextGap(10);
+            button.setPrefWidth(categoryButtonList.getWidth());
             button.getStyleClass().add("sideMenuCategoryButton");
-            button.prefWidthProperty().bind(gridPane.widthProperty());
             button.setOnMousePressed(actionEvent -> {
                 try {
                     showByCategory(c.getID());
@@ -98,11 +94,8 @@ public class MainApplicationController {
                     e.printStackTrace();
                 }
             });
-            Circle colorCircle = new Circle(5, c.getColor());
-            gridPane.add(button, 1, 1+i);
-            gridPane.add(colorCircle, 2,1+i);
+            categoryButtonList.getChildren().add(button);
         }
-        categoryButtonList.getChildren().add(gridPane);
     }
 
     /**
@@ -124,6 +117,7 @@ public class MainApplicationController {
     @FXML
     public void switchToTasks() throws IOException {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
+        App.setChosenCategory(-1);
         view.setCenter(newLoadedPane);
     }
 

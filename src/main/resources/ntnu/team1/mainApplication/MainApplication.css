@@ -1,42 +1,61 @@
-@font-face {
-    src: url('/font/Pixer-Regular.ttf');
-}
 
 .root{
     -fx-font-family: "Helvetica Neue";
-    -fx-background-color: black;
+    -fx-background-color: #1D201F;
 }
 
-.dialog{
-    -fx-font-family: "Pixer Regular";
+/* The menu bar itself */
+.menu-bar {
+    -fx-background-color: #1D201F;
+}
+.menu {
+
+    -fx-text-fill: #CED0CE;
 }
 
-#menuBar{
-    -fx-background-color: black;
+.menu:hover {
+    /* The File menu item */
+    -fx-cursor: hand;
+    -fx-background-color: #CED0CE;
+    -fx-background-radius: 5;
 }
+.menu:showing {
+    /* menu when it's being shown (activated) */
+    -fx-background-color: #CED0CE;
+    -fx-background-radius: 5;
+}
+.menu-item:hover {
+    /* Styles the text on a menu item */
+    -fx-cursor: hand;
+    -fx-background-color: #9381FF;
+}
+.menu:showing .label { /* Styles the text on a menu item when activated */ }
+
 
 #sideMenu{
     -fx-end-margin: 20 5 5 5;
-    -fx-background-color: #0B0C10;
+    -fx-background-color: #272B29;
     -fx-text-fill: #d8d8d8;
     -fx-alignment: top-center;
 }
 .sideMenuCategoryHeader{
     -fx-text-fill: #d8d8d8;
+    -fx-alignment: left;
 }
 
+
 .separator{
-    -fx-background-color: dimgrey;
+    -fx-background-color: #CED0CE;
     -fx-background-radius: 2;
     -fx-max-width: 70;
-    -fx-padding: 5px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
+    -fx-padding: 10px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
 }
 .sideMenuButton{
-    -fx-background-color: #0B0C10;
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-background-color: #272B29;
     -fx-font-size: 15px;
+    -fx-text-fill: #CED0CE;
 
 }
 .sideMenuButton:hover{
@@ -45,11 +64,19 @@
 }
 
 .sideMenuCategoryButton{
-    -fx-background-color: #0B0C10;
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
-
+    -fx-background-color: #272B29;
+    -fx-font-size: 15px;
+    -fx-text-fill: #CED0CE;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-text-background-color: #CED0CE;
 }
+.categoryButtonText{
+    -fx-font-size: 15px;
+    -fx-text-background-color: #CED0CE;
+    -fx-text-fill:#CED0CE ;
+    -fx-background-color: #CED0CE ;
+}
+
 .sideMenuCategoryButton:hover{
     -fx-background-color: grey;
     -fx-cursor: hand;
