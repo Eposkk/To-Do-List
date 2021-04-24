@@ -10,6 +10,9 @@
     -fx-alignment: center;
     -fx-padding: 0 30 ;
 }
+.sortByHeader{
+    -fx-font-size: 15;
+}
 .tool-bar{
     -fx-background-color: #1D201F;
     -fx-text-fill: #CED0CE;
@@ -104,7 +107,17 @@
 .table-view .column-header .filler,
 .table-view .column-header-background .filler {
     -fx-background-color: #272B29;
-    -fx-text-background-color: #d8d8d8 ;
+    -fx-font-family: "Helvetica Neue";
+}
+
+.table-view .column-header:hover,
+.table-view .column-header .filler:hover,
+.table-view .column-header-background .filler:hover {
+    -fx-background-color: #e6e8e6;
+    -fx-background-radius: 5;
+    -fx-cursor: hand ;
+    -fx-text-background-color:#1d201f ;
+    -fx-text-fill: #1d201f  ;
     -fx-font-family: "Helvetica Neue";
 }
 .table-view.text{

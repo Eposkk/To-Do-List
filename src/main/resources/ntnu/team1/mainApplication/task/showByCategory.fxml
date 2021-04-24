@@ -60,6 +60,11 @@
 
 
         </ToolBar>
+      <Label fx:id="header1" styleClass="sortByHeader" text="Sort by:">
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+      </Label>
 
         <TableView fx:id="tableView" editable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
             <columns>
