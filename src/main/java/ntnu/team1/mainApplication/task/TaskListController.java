@@ -17,6 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.Category;
@@ -68,7 +70,7 @@ public class TaskListController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, String> categoryColumn;
+    private TableColumn<MainTask, MainTask> categoryColumn;
 
     @FXML
     private TableColumn<MainTask, MainTask> infoButtonColumn;
@@ -177,15 +179,32 @@ public class TaskListController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-        categoryColumn.setCellValueFactory(cellData -> {
-            if(cellData.getValue().getCategoryId() < 0){
-                return new ReadOnlyStringWrapper("No category");
-            }
-            else{
-                return new ReadOnlyStringWrapper(App.getRegister().getCategory(cellData.getValue().getCategoryId()).getName());
+        categoryColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        categoryColumn.setCellFactory(param -> new TableCell<>() {
+            private final GridPane box = new GridPane();
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                box.getChildren().clear();
+                super.updateItem(task, empty);
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                Circle colorCircle = new Circle();
+                colorCircle.setFill(App.getRegister().getCategory(task.getCategoryId()).getColor());
+                colorCircle.setRadius(5);
+
+                Label categoryName = new Label(App.getRegister().getCategory(task.getCategoryId()).getName());
+
+                box.add(colorCircle, 1, 1);
+                box.add(categoryName, 2,1);
+                box.setHgap(5);
+                setGraphic(box);
             }
         });
+
         infoButtonColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
