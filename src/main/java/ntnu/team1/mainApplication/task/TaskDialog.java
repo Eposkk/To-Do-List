@@ -99,6 +99,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         TextField name = new TextField();
         name.setPromptText("Add task name");
         TextArea description = new TextArea();
+        description.setWrapText(true);
         description.setPromptText("Description");
         description.setMaxWidth(200);
 
