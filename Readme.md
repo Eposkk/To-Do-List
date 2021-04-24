@@ -1,6 +1,6 @@
  # To-Do-List
 
-![](src/main/resources/ntnu/team1/mainApplication/Logo256pxwithtext.png)
+<img src="src/main/resources/ntnu/team1/mainApplication/Logo256pxwithtext.png" alt="drawing" width="200"/>
  
 To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
  
@@ -51,5 +51,5 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 - Marius Klemp Petersen
 - Eivind Strand Harboe
 
-<img src="https://media.giphy.com/media/3oEdv9R4D62GPrVY4g/source.gif" alt="drawing" style="width:20px;"/>
+<img src="https://media.giphy.com/media/yYSSBtDgbbRzq/source.gif" alt="drawing" width="80"/>
 
