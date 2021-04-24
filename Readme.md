@@ -51,5 +51,5 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 - Marius Klemp Petersen
 - Eivind Strand Harboe
 
-<img src="https://media.giphy.com/media/3oEdv9R4D62GPrVY4g/source.gif" alt="drawing" style="width:200px;"/>
+<img src="https://media.giphy.com/media/3oEdv9R4D62GPrVY4g/source.gif" alt="drawing" style="width:20px;"/>
 
