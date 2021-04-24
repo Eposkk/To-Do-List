@@ -143,11 +143,6 @@ public class TaskDialog extends Dialog<MainRegister> {
             startDate.setValue(existingTask.getStartDate());
             endDate.setValue(existingTask.getEndDate());
 
-
-
-            if (mode == Mode.INFO) {
-
-            }
         }
         vBox1.getChildren().add(name);
         vBox1.getChildren().add(description);
