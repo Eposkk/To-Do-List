@@ -48,6 +48,8 @@ public class MainApplicationController {
 
     private HashMap<Integer, Category> currentCategories = new HashMap();
 
+    private int numberOfCategories;
+
     /**
      * Method that gets called on load of class
      * Sets up necessary layout and configures it
@@ -56,6 +58,7 @@ public class MainApplicationController {
      */
 
     public void initialize() throws IOException {
+        numberOfCategories = App.getRegister().getCategories().size();
         pane.setOnMouseMoved(e-> generateCategoryList());
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.setCenter(newLoadedPane);
@@ -64,10 +67,11 @@ public class MainApplicationController {
         generateCategoryList();
 
         Timeline updateCategory = new Timeline(
-            new KeyFrame(Duration.millis(10),
+            new KeyFrame(Duration.millis(50),
                     event -> {
-                        if(App.getRegister().getCategories() != currentCategories){
+                        if(App.getRegister().getCategories().size() != numberOfCategories){
                             generateCategoryList();
+                            numberOfCategories=App.getRegister().getCategories().size();
                         }
                     }));
         updateCategory.setCycleCount(Timeline.INDEFINITE);
