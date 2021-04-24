@@ -41,7 +41,7 @@ public class MainApplicationController {
     @FXML
     private MenuItem menuHelpAbout;
     @FXML
-    BorderPane view;
+    private BorderPane view;
     @FXML
     private VBox categoryButtonList;
 
