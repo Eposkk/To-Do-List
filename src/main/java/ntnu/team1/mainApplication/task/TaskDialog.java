@@ -11,6 +11,7 @@ import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -79,15 +80,14 @@ public class TaskDialog extends Dialog<MainRegister> {
                 break;
 
             default:
-                setTitle("Patient Details - UNKNOWN MODE...");
+                setTitle("Task Details - UNKNOWN MODE...");
                 break;
 
         }
 
         // Set the button types.
         getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        getDialogPane().getStylesheets().add(
-                getClass().getResource("dialog.css").toExternalForm());
+        getDialogPane().getStylesheets().add(Objects.requireNonNull(getClass().getResource("dialog.css")).toExternalForm());
         getDialogPane().getStyleClass().add("dialog");
 
         HBox mainBox = new HBox();
@@ -118,6 +118,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         ArrayList<String> namesOfCategories = (ArrayList<String>) App.getRegister().getCategories().values().stream().map(Category::getName).collect(Collectors.toList());
         category.setItems(FXCollections.observableArrayList(namesOfCategories));
         category.setValue(App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+        category.setPrefWidth(175);
 
         DatePicker startDate = new DatePicker();
         DatePicker endDate = new DatePicker();
