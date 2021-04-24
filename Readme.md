@@ -50,3 +50,6 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 - Simen Klemp Petersen
 - Marius Klemp Petersen
 - Eivind Strand Harboe
+
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
