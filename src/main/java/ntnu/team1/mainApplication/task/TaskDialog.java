@@ -25,7 +25,7 @@ public class TaskDialog extends Dialog<MainRegister> {
      */
 
     public enum Mode {
-        NEW, EDIT, INFO
+        NEW, EDIT
     }
 
     private final Mode mode;
@@ -50,11 +50,8 @@ public class TaskDialog extends Dialog<MainRegister> {
 
     public TaskDialog(MainTask task, boolean editable) {
         super();
-        if (editable) {
-            this.mode = Mode.EDIT;
-        } else {
-            this.mode = Mode.INFO;
-        }
+        this.mode = Mode.EDIT;
+
         this.existingTask = task;
         // Create the content of the dialog
         createTask();
@@ -75,10 +72,6 @@ public class TaskDialog extends Dialog<MainRegister> {
                 setTitle("Task Details - Add");
                 break;
 
-            case INFO:
-                setTitle("Task Details");
-                break;
-
             default:
                 setTitle("Task Details - UNKNOWN MODE...");
                 break;
@@ -93,8 +86,6 @@ public class TaskDialog extends Dialog<MainRegister> {
         HBox mainBox = new HBox();
         VBox vBox1 = new VBox();
         VBox vBox2 = new VBox();
-        VBox vBox3 = new VBox();
-
 
         TextField name = new TextField();
         name.setPromptText("Add task name");
@@ -126,7 +117,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         DatePicker endDate = new DatePicker();
 
 
-        if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
+        if (mode == Mode.EDIT) {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
             switch (existingTask.getPriority()){

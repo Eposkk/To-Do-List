@@ -223,8 +223,7 @@ public class TaskListController {
                 setGraphic(infoButton);
                 infoButton.setOnAction(
                         event -> {
-                            RegisterModifiers.editTask(task);
-                            updateList();
+                            new TaskInfoDialog(task).showAndWait();
                         }
                 );
             }
