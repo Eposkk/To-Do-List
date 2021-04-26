@@ -194,11 +194,6 @@ public class MainApplicationController {
         };
     }
 
-    public EventHandler<ActionEvent> updateCategoryList() {
-        return event -> generateCategoryList();
-    }
-
-
     /**
      * Gets called on exit.
      */

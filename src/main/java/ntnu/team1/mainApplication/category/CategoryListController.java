@@ -28,18 +28,39 @@ import java.util.stream.Collectors;
 
 public class CategoryListController {
 
+    /**
+     * Add new button
+     */
     @FXML
     private Button addNewTool;
+    /**
+     * Edit button
+     */
     @FXML
     private Button editTool;
+    /**
+     * Table view for showing all categories
+     */
     @FXML
     private TableView<Category> tableView;
+    /**
+     * Column for name
+     */
     @FXML
     public TableColumn<Category, String> nameColumn;
+    /**
+     * Column for color
+     */
     @FXML
     public TableColumn<Category, Category> colorColumn;
+    /**
+     * Column for number of tasks in category
+     */
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
+    /**
+     * Column for delete button
+     */
     @FXML
     public TableColumn<Category, Category> deleteButtonColumn;
 
@@ -47,7 +68,6 @@ public class CategoryListController {
      * Initalize method that is run when the class is loaded.
      * Creates the table view and updates it.
      * Also creates buttons that are needed
-     * @throws FileNotFoundException Throws if file is not found
      */
 
     public void initialize() {

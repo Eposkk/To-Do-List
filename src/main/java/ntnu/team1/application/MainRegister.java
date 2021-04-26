@@ -171,6 +171,13 @@ public class MainRegister implements Serializable {
         getMainTask(mainTaskId).setPriority(newPriority);
     }
 
+    /**
+     * Changes description
+     * @param mainTaskId Task
+     * @param newDescription New description
+     * @throws IllegalArgumentException gets thrown if it is illegal
+     */
+
     public void changeDescriptionMainTask(int mainTaskId, String newDescription) throws IllegalArgumentException{
         getMainTask(mainTaskId).setDescription(newDescription);
     }
@@ -190,6 +197,11 @@ public class MainRegister implements Serializable {
             return true;
         }
     }
+
+    /**
+     * Gets the categories
+     * @return Catgories
+     */
 
     public HashMap<Integer, Category> getCategories() {
         return categories;
@@ -223,8 +235,9 @@ public class MainRegister implements Serializable {
     }
 
     /**
-     * Removes a category from the register
-     * @param id Id associated with the category
+     * Removes a category
+     * @param id Id of category
+     * @throws RemoveException Thrown if it cant remove
      */
 
     public void removeCategory(int id) throws RemoveException{
