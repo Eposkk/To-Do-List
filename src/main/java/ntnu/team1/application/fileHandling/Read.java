@@ -3,18 +3,27 @@ package ntnu.team1.application.fileHandling;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import ntnu.team1.application.MainRegister;
-import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 
+/**
+ * Class used to read the register from a file
+ */
 public class Read {
     String pathRegister;
+
+    /**
+     * Constructor for class, sets the path for the register
+     * @param pathRegister Path to the serialized register file
+     */
     public Read(String pathRegister){
         this.pathRegister=pathRegister;
     }
+
+    /**
+     * Method for reading register from a file
+     * @return Returns a MainRegister
+     */
 
     public MainRegister readRegister(){
         MainRegister register = null;

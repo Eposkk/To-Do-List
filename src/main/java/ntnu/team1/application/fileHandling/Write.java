@@ -1,21 +1,26 @@
 package ntnu.team1.application.fileHandling;
 
-
 import ntnu.team1.application.MainRegister;
-import ntnu.team1.application.task.MainTask;
-import ntnu.team1.application.task.Category;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+/**
+ * Class for writing the register to a file
+ */
 
 public class Write {
     private final MainRegister register;
 
+    /**
+     * Constructor for class, sets the register
+     * @param register Register that is written
+     */
     public Write(MainRegister register){
         this.register=register;
     }
 
+    /**
+     * Method for writing the register to a file
+     */
     public void writeRegister(){
         FileOutputStream fileOutRegister = null;
         ObjectOutputStream out = null;
@@ -34,8 +39,6 @@ public class Write {
                 System.out.println(i.getMessage());
             }
         }
-
     }
-
 }
 

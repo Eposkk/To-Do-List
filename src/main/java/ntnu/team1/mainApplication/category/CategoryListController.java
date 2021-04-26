@@ -1,93 +1,173 @@
 package ntnu.team1.mainApplication.category;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import ntnu.team1.application.MainRegister;
+
+import javafx.scene.shape.Circle;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
+import ntnu.team1.mainApplication.RegisterModifiers;
+import ntnu.team1.mainApplication.task.staticMethods;
 
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Class that is used for displaying the categories
+ */
+
 public class CategoryListController {
 
-
+    @FXML
+    private Button addNewTool;
+    @FXML
+    private Button editTool;
     @FXML
     private TableView<Category> tableView;
-
     @FXML
     public TableColumn<Category, String> nameColumn;
     @FXML
-    public TableColumn<Color, Color> colorColumn;
+    public TableColumn<Category, Category> colorColumn;
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
+    @FXML
+    public TableColumn<Category, Category> deleteButtonColumn;
 
-    public void initialize(){
+    /**
+     * Initalize method that is run when the class is loaded.
+     * Creates the table view and updates it.
+     * Also creates buttons that are needed
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
+    public void initialize() {
         columFactory();
         updateList();
+
+        tableView.setOnMousePressed(mouseEvent -> {
+            if (mouseEvent.isPrimaryButtonDown() && (mouseEvent.getClickCount() == 2)) {
+                App.setChosenCategory(tableView.getSelectionModel().getSelectedItem().getID());
+
+            }
+        });
+        makeButtons();
     }
+
+    /**
+     * Loads pictures used for creating buttons and sets tooltips
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
+    private void makeButtons() {
+        addNewTool.setTooltip(new Tooltip("Add new category"));
+        editTool.setTooltip(new Tooltip(("Edit category")));
+    }
+
+    /**
+     * Factory for creating the tableview and adding information
+     */
 
     private void columFactory(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
+        colorColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        colorColumn.setCellFactory(param -> new TableCell<>() {
+            private final Circle colorCircle = new Circle();
+            @Override
+            protected void updateItem(Category category, boolean empty) {
+                super.updateItem(category, empty);
+                if (category == null) {
+                    setGraphic(null);
+                    return;
+                }
+                colorCircle.setFill(category.getColor());
+                colorCircle.setRadius(10);
+                setGraphic(colorCircle);
+
+            }
+        });
+
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("");
+
+            @Override
+            protected void updateItem(Category category, boolean empty) {
+                super.updateItem(category, empty);
+                if (category == null) {
+                    setGraphic(null);
+                    return;
+                }
+                if(category.getID()>-1){
+                    try {
+                        staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    deleteButton.setTooltip(new Tooltip("Delete"));
+                    setGraphic(deleteButton);
+                    deleteButton.setOnAction(
+                            event -> {
+                                try {
+                                    RegisterModifiers.removeCategory(category);
+                                } catch (RemoveException e) {
+                                    e.printStackTrace();
+                                }
+                                updateList();
+                            }
+                    );
+                }
+
+            }
+        });
+
+
+        taskNumberColumn.setCellValueFactory(cellData -> {
+            int number =  App.getRegister().getAllTasks().stream()
+                    .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID())
+                    .collect(Collectors.toList()).size();
+            return  new ReadOnlyObjectWrapper<>(number);
+
+        });
+
     }
 
+    /**
+     * Method called for adding new category
+     */
 
     @FXML
-    public void addNewCategory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( "category/newCategory.fxml"));
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent, 364, 393);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setTitle("Add new category");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Plus.png")));
-        stage.showAndWait();
+    public void addNewCategory(){
+        RegisterModifiers.addNewCategory();
         updateList();
     }
+    /**
+     * Method called for editing new category
+     */
 
     @FXML
-    private void removeCategory() throws RemoveException {
-        MainRegister result = App.getRegister();
-        result.removeCategory(tableView.getSelectionModel().getSelectedItem().getID());
-        App.setRegister(result);
-        updateList();
+    public void editCategory(){
+        RegisterModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
+       updateList();
     }
 
-    @FXML
-    public void editCategory() throws IOException {
-        App.getRegister().setSelectedCategory(tableView.getSelectionModel().getSelectedItem());
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("category/editCategory.fxml"));
-        Parent parent = fxmlLoader.load();
-
-        Scene scene = new Scene(parent, 364, 393);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setTitle("Edit task");
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/edit.png")));
-        stage.showAndWait();
-        tableView.getItems().clear();
-        initialize();
-    }
+    /**
+     * Method for updating the list used by tableview
+     */
 
     private void updateList(){
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));

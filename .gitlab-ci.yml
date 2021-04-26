@@ -1,42 +1,51 @@
-image: maven:latest
-
 stages:
   - build
   - test
   - deploy
+
 
 cache:
   paths:
     - /build
 
 build:
+  image: maven:latest
   stage: build
   only:
-    - testing
+    - master
   script:
     - echo "BUILDING PROJECT"
     - mvn clean compile
+  only: 
+    - web 
 
 
 test:
+  image: maven:latest
   stage: test
   only:
-    - testing
+    - master
   script:
     - echo "RUNNING TESTS"
     - mvn clean test -e
+  only: 
+    - web 
 
 
 
 pages:
+  image: maven:latest
+  needs: ["build"]
   stage: deploy
   script:
-  - mkdir .public
-  - cp -r JavaDoc/* .public
-  - mv .public public
+    - mvn javadoc:javadoc
+    - mkdir .public
+    - cp -r /builds/eivisha/to-do-list/target/site/apidocs/* .public
+    - mv .public public
   artifacts:
     paths:
-    - public
+      - public
   only:
-  - testing
+    - web
+
 

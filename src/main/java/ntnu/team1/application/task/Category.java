@@ -1,7 +1,7 @@
+
 package ntnu.team1.application.task;
 
 import javafx.scene.paint.Color;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ public class Category implements Serializable {
     }
 
     /**
-     *
+     * Gets the category id
      * @return returns the ID of the category
      */
 
@@ -43,17 +43,16 @@ public class Category implements Serializable {
     }
 
     /**
-     *
+     * Gets the category color
      * @return returns the color of the category
      */
 
     public Color getColor() {
-        Color color = new Color(0,r,g,b);
-        return color;
+        return Color.color(r,g,b);
     }
 
     /**
-     *
+     * Gets the name
      * @return returns the name of the category.
      */
     public String getName() {
@@ -61,19 +60,19 @@ public class Category implements Serializable {
     }
 
     /**
-     * update the color of the category
-     * @param color
+     * Update the color of the category, sets it to int values. This gives us the ability to serialize the object
+     * @param color Color
      */
 
     public void setColor(Color color) {
         this.r = color.getRed();
-        this.g= color.getGreen();
+        this.g = color.getGreen();
         this.b = color.getBlue();
     }
 
     /**
      * updates the name of the category
-     * @param name
+     * @param name Name as a string
      */
 
     public void setName(String name) {
@@ -84,7 +83,7 @@ public class Category implements Serializable {
      * The method checks similarity: two Category objects are equal if their name and color are identical
      * Identical similarity - two references to the same object
      * Content similarity - the content of two objects is compared by category name and color
-     * @param o
+     * @param o Object that is comparing to
      * @return returns true if similarity, false if inequality.
      */
 
@@ -97,10 +96,10 @@ public class Category implements Serializable {
                 Objects.equals(name, category.name);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, r,g,b, name);
-    }
+    /**
+     * To string for object
+     * @return All relevant information for the object
+     */
 
     @Override
     public String toString() {
