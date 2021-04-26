@@ -248,11 +248,10 @@ public class TaskListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private Button deleteButton = new Button();
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
-                deleteButton = new Button();
+                Button deleteButton = new Button();
                 super.updateItem(task, empty);
 
                 if (task == null) {
