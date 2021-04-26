@@ -103,16 +103,17 @@ public class CategoryListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("");
+
 
             @Override
             protected void updateItem(Category category, boolean empty) {
+                Button deleteButton = new Button("");
                 super.updateItem(category, empty);
-                if (category == null) {
+                if (category == null || category.getID() == -1) {
                     setGraphic(null);
                     return;
                 }
-                if(category.getID()>-1){
+                if(category.getID()> -1){
                     try {
                         staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                     } catch (FileNotFoundException e) {
