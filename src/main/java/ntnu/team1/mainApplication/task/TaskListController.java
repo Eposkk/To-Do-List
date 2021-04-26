@@ -253,7 +253,11 @@ public class TaskListController {
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(
                         event -> {
-                            RegisterModifiers.removeTask(task);
+                            try {
+                                RegisterModifiers.removeTask(task);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             updateList();
                         }
                 );

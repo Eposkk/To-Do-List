@@ -2,6 +2,8 @@ package ntnu.team1.mainApplication;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
@@ -9,6 +11,8 @@ import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.category.CategoryDialog;
 import ntnu.team1.mainApplication.task.TaskDialog;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Optional;
 
 /**
@@ -57,11 +61,14 @@ public class RegisterModifiers {
      * @param task Task to be removed
      */
 
-    public static void removeTask(MainTask task){
+    public static void removeTask(MainTask task) throws FileNotFoundException {
+        Image image = new Image(new FileInputStream("src/main/resources/Images/redDelete.png"));
+        ImageView imageView = new ImageView(image);
         MainRegister register = App.getRegister();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog - Delete Item");
         alert.setContentText("Are you sure you want to delete this task?");
+        alert.setGraphic(imageView);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
