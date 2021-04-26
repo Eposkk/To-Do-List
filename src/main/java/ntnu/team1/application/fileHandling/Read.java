@@ -14,7 +14,7 @@ public class Read {
 
     /**
      * Constructor for class, sets the path for the register
-     * @param pathRegister
+     * @param pathRegister Path to the serialized register file
      */
     public Read(String pathRegister){
         this.pathRegister=pathRegister;

@@ -1,6 +1,11 @@
+/**
+ * Contains all files used for creating, editing, removing and viewing tasks
+ */
 package ntnu.team1.mainApplication.task;
 
+import com.sun.tools.javac.Main;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,17 +17,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
-import ntnu.team1.mainApplication.MainApplicationController;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+/**
+ * Class used for displaying tasks by catgeory
+ */
 
 public class ShowByCategoryController {
 
@@ -35,7 +43,7 @@ public class ShowByCategoryController {
     @FXML
     private Button deleteAllTool;
 
-
+    @FXML
     public AnchorPane Pane;
 
     @FXML
@@ -60,13 +68,22 @@ public class ShowByCategoryController {
     private TableColumn<MainTask, Integer> priorityColumn;
 
     @FXML
-    private TableColumn<MainTask, Button> deleteButtonColumn;
+    private TableColumn<MainTask, MainTask> infoButtonColumn;
+
+    @FXML
+    private TableColumn<MainTask, MainTask> deleteButtonColumn;
 
     @FXML
     private Label header;
 
     @FXML
     private ToggleGroup choice;
+
+    /**
+     * Initial method that is called at class loading
+     * Sets and creates tableview, creates buttons and configures all other elements
+     * @throws FileNotFoundException if file is not found
+     */
 
 
     public void initialize() throws FileNotFoundException {
@@ -78,30 +95,46 @@ public class ShowByCategoryController {
             header.setText("Viewing all tasks without a given category");
         }
         columFactory();
-
         makeButtons();
         updateList();
+        tableView.getColumns().forEach(this::addTooltipToColumnCells);
     }
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
+    private <T> void addTooltipToColumnCells(TableColumn<MainTask, T> column) {
+
+        Callback<TableColumn<MainTask, T>, TableCell<MainTask, T>> existingCellFactory
+                = column.getCellFactory();
+
+        column.setCellFactory(c -> {
+            TableCell<MainTask, T> cell = existingCellFactory.call(c);
+
+            Tooltip tooltip = new Tooltip();
+            // can use arbitrary binding here to make text depend on cell
+            // in any way you need:
+            tooltip.textProperty().bind(cell.itemProperty().asString());
+
+            cell.setTooltip(tooltip);
+            return cell ;
+        });
+    }
+
+    /**
+     * Method for making buttons
+     * @throws FileNotFoundException if file is not found
+     */
+
+    private void makeButtons() {
         addNewTool.setTooltip(new Tooltip("Add new task"));
 
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
         editTool.setTooltip(new Tooltip(("Edit task")));
 
-        addImageToButton("src/main/resources/Images/deleteALL.png", deleteAllTool);
         deleteAllTool.setTooltip(new Tooltip(("Delete all tasks in this category")));
     }
 
-    private void addImageToButton(String path, Button button) throws FileNotFoundException {
-        FileInputStream inputAdd = new FileInputStream(path);
-        Image imageAdd = new Image(inputAdd);
-        ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
-        button.setGraphic(addPatientIcon);
-    }
+
+    /**
+     * Method for adding tasks
+     */
 
     @FXML
     private void addNewTask(){
@@ -109,21 +142,29 @@ public class ShowByCategoryController {
         updateList();
     }
 
+    /**
+     * Method for editing tasks
+     */
+
     @FXML
     private void editTask(){
         RegisterModifiers.editTask(tableView.getSelectionModel().getSelectedItem());
         updateList();
     }
 
+    /**
+     * Method for removing tasks
+     */
+
     @FXML
     private void removeAllTasks(){
-        MainRegister result = App.getRegister();
-        for(MainTask task : tableView.getItems()){
-            result.removeMainTask(task.getID());
-        }
-        App.setRegister(result);
+        RegisterModifiers.removeAllTasksInCategory(App.getChosenCategory());
         updateList();
     }
+
+    /**
+     * Factory for creating the tableview and adding information
+     */
 
     private void columFactory(){
         doneColumn.setCellFactory(column -> new CheckBoxTableCell<>());
@@ -145,9 +186,67 @@ public class ShowByCategoryController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        deleteButtonColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        infoButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        infoButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button infoButton = new Button("i");
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                infoButton.setTooltip(new Tooltip("Info/Delete"));
+                setGraphic(infoButton);
+                infoButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.editTask(task);
+                            updateList();
+                        }
+                );
+            }
+        });
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button();
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                try {
+                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton,20,20);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                deleteButton.setTooltip(new Tooltip("Delete"));
+                setGraphic(deleteButton);
+                deleteButton.setOnAction(
+                        event -> {
+                            RegisterModifiers.removeTask(task);
+                            updateList();
+                        }
+                );
+            }
+        });
     }
 
+
+    /**
+     * Updates the list
+     */
 
     private void updateList(){
         RadioButton r = (RadioButton) choice.getSelectedToggle();

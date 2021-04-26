@@ -9,107 +9,174 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import ntnu.team1.application.MainRegister;
+
+import javafx.scene.shape.Circle;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
-import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
+import ntnu.team1.mainApplication.task.staticMethods;
 
-import java.io.CharArrayReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+/**
+ * Class that is used for displaying the categories
+ */
 
 public class CategoryListController {
 
-
     @FXML
     private Button addNewTool;
-
     @FXML
     private Button editTool;
-
     @FXML
     private TableView<Category> tableView;
-
     @FXML
     public TableColumn<Category, String> nameColumn;
     @FXML
-    public TableColumn<Color, Color> colorColumn;
+    public TableColumn<Category, Category> colorColumn;
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
     @FXML
     public TableColumn<Category, Category> deleteButtonColumn;
 
-    public void initialize() throws FileNotFoundException {
+    /**
+     * Initalize method that is run when the class is loaded.
+     * Creates the table view and updates it.
+     * Also creates buttons that are needed
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
+    public void initialize() {
         columFactory();
         updateList();
+
+        tableView.setOnMousePressed(mouseEvent -> {
+            if (mouseEvent.isPrimaryButtonDown() && (mouseEvent.getClickCount() == 2)) {
+                App.setChosenCategory(tableView.getSelectionModel().getSelectedItem().getID());
+
+            }
+        });
         makeButtons();
     }
 
-    private void makeButtons() throws FileNotFoundException {
-        addImageToButton("src/main/resources/Images/addNew.png", addNewTool);
-        addNewTool.setTooltip(new Tooltip("Add new task"));
+    /**
+     * Loads pictures used for creating buttons and sets tooltips
+     * @throws FileNotFoundException Throws if file is not found
+     */
 
-        addImageToButton("src/main/resources/Images/edit.png", editTool);
-        editTool.setTooltip(new Tooltip(("Edit task")));
+    private void makeButtons() {
+        addNewTool.setTooltip(new Tooltip("Add new category"));
+        editTool.setTooltip(new Tooltip(("Edit category")));
     }
 
-    private void addImageToButton(String path, Button button) throws FileNotFoundException {
-        FileInputStream inputAdd = new FileInputStream(path);
-        Image imageAdd = new Image(inputAdd);
-        ImageView addPatientIcon = new ImageView(imageAdd);
-        addPatientIcon.setFitWidth(30);
-        addPatientIcon.setFitHeight(30);
-        button.setGraphic(addPatientIcon);
-    }
+    /**
+     * Adds the images to buttons
+     * @param path Path of the images
+     * @param button The button to add the images to
+     * @throws FileNotFoundException Throws if file is not found
+     */
+
+
+
+    /**
+     * Factory for creating the tableview and adding information
+     */
 
     private void columFactory(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
-        deleteButtonColumn.setCellValueFactory(
+        colorColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
-        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
-
+        colorColumn.setCellFactory(param -> new TableCell<>() {
+            private final Circle colorCircle = new Circle();
             @Override
             protected void updateItem(Category category, boolean empty) {
                 super.updateItem(category, empty);
-
                 if (category == null) {
                     setGraphic(null);
                     return;
                 }
+                colorCircle.setFill(category.getColor());
+                colorCircle.setRadius(10);
+                setGraphic(colorCircle);
 
-                setGraphic(deleteButton);
-                deleteButton.setOnAction(
-                        event -> {
-                            try {
-                                RegisterModifiers.removeCategory(category);
-                            } catch (RemoveException e) {
-                                e.printStackTrace();
-                            }
-                            updateList();
-                        }
-                );
             }
         });
+
+
+        deleteButtonColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("");
+
+            @Override
+            protected void updateItem(Category category, boolean empty) {
+                super.updateItem(category, empty);
+                if (category == null) {
+                    setGraphic(null);
+                    return;
+                }
+                if(category.getID()>-1){
+                    try {
+                        staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    deleteButton.setTooltip(new Tooltip("Delete"));
+                    setGraphic(deleteButton);
+                    deleteButton.setOnAction(
+                            event -> {
+                                try {
+                                    RegisterModifiers.removeCategory(category);
+                                } catch (RemoveException e) {
+                                    e.printStackTrace();
+                                }
+                                updateList();
+                            }
+                    );
+                }
+
+            }
+        });
+
+
+        taskNumberColumn.setCellValueFactory(cellData -> {
+            int number =  App.getRegister().getAllTasks().stream()
+                    .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID())
+                    .collect(Collectors.toList()).size();
+            return  new ReadOnlyObjectWrapper<>(number);
+
+        });
+
     }
 
+    /**
+     * Method called for adding new category
+     */
 
     @FXML
     public void addNewCategory(){
         RegisterModifiers.addNewCategory();
         updateList();
     }
+    /**
+     * Method called for editing new category
+     */
 
     @FXML
     public void editCategory(){
         RegisterModifiers.editCategory(tableView.getSelectionModel().getSelectedItem());
        updateList();
     }
+
+    /**
+     * Method for updating the list used by tableview
+     */
 
     private void updateList(){
         ObservableList<Category> list = FXCollections.observableList(new ArrayList<>(App.getRegister().getCategories().values()));

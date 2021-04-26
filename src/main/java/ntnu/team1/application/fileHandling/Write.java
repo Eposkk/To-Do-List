@@ -12,7 +12,7 @@ public class Write {
 
     /**
      * Constructor for class, sets the register
-     * @param register
+     * @param register Register that is written
      */
     public Write(MainRegister register){
         this.register=register;
