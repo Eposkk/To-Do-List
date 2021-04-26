@@ -3,7 +3,6 @@
  */
 package ntnu.team1.mainApplication.task;
 
-import com.sun.tools.javac.Main;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -14,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
@@ -23,7 +20,6 @@ import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -85,8 +81,7 @@ public class ShowByCategoryController {
      * @throws FileNotFoundException if file is not found
      */
 
-
-    public void initialize() throws FileNotFoundException {
+    public void initialize(){
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         if(App.getChosenCategory() > -1){
             header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
@@ -119,8 +114,7 @@ public class ShowByCategoryController {
     }
 
     /**
-     * Method for making buttons
-     * @throws FileNotFoundException if file is not found
+     * Method for setting button attributes
      */
 
     private void makeButtons() {
@@ -245,7 +239,7 @@ public class ShowByCategoryController {
 
 
     /**
-     * Updates the list
+     * Updates the list based on the users choice
      */
 
     private void updateList(){

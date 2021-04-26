@@ -32,9 +32,8 @@ public class RegisterModifiers {
         }else{
             TaskDialog patientDialog = new TaskDialog(existingTask, true);
             Optional<MainRegister> result = patientDialog.showAndWait();
-            if(result.isPresent()){
-                MainRegister updatedRegister = result.get();
-                App.setRegister(updatedRegister);
+            if(result.isPresent() && result.get() != App.getRegister()){
+                App.setRegister(result.get());
             }
         }
     }

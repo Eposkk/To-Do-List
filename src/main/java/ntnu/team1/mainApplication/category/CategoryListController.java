@@ -74,15 +74,6 @@ public class CategoryListController {
     }
 
     /**
-     * Adds the images to buttons
-     * @param path Path of the images
-     * @param button The button to add the images to
-     * @throws FileNotFoundException Throws if file is not found
-     */
-
-
-
-    /**
      * Factory for creating the tableview and adding information
      */
 
