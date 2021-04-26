@@ -126,5 +126,16 @@
 }
 .table-view .table-column{
     -fx-text-alignment: center;
-    -fx-alignment: CENTER
+    -fx-tile-alignment: center;
+    -fx-alignment: center;
+}
+
+.table-view .table-column.tableCell{
+    -fx-text-alignment: center;
+    -fx-tile-alignment: center;
+    -fx-alignment: center;
+}
+
+.table-cell{
+    -fx-alignment: center;
 }

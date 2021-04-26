@@ -122,10 +122,10 @@ public class TaskDialog extends Dialog<MainRegister> {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
             switch (existingTask.getPriority()){
-                case "Medium":
+                case 2:
                     pri2.setSelected(true);
                     break;
-                case "Low":
+                case 3:
                     pri3.setSelected(true);
                     break;
             }

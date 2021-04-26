@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
 import ntnu.team1.application.task.MainTask;
@@ -89,19 +90,13 @@ public class ShowByCategoryController {
      * Column for the task priority
      */
     @FXML
-    private TableColumn<MainTask, Integer> priorityColumn;
-
-    /**
-     * Column for info button for each task
-     */
-    @FXML
-    private TableColumn<MainTask, MainTask> infoButtonColumn;
+    private TableColumn<MainTask, MainTask> priorityColumn;
 
     /**
      * Column for the delete button
      */
     @FXML
-    private TableColumn<MainTask, MainTask> deleteButtonColumn;
+    private TableColumn<MainTask, MainTask> buttonColumn;
 
     /**
      * Toggle group for which tasks you want to show
@@ -222,52 +217,37 @@ public class ShowByCategoryController {
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
 
-        infoButtonColumn.setCellValueFactory(
+        buttonColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
-        infoButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button infoButton = new Button("i");
+        buttonColumn.setCellFactory(param -> new TableCell<>() {
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
+
                 super.updateItem(task, empty);
 
                 if (task == null) {
                     setGraphic(null);
                     return;
                 }
-                infoButton.setTooltip(new Tooltip("Info/Delete"));
-                setGraphic(infoButton);
-                infoButton.setOnAction(
-                        event -> {
-                            RegisterModifiers.editTask(task);
-                            updateList();
-                        }
-                );
-            }
-        });
 
-        deleteButtonColumn.setCellValueFactory(
-                param -> new ReadOnlyObjectWrapper<>(param.getValue())
-        );
-        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button();
+                Button infoButton = new Button("i");
+                infoButton.setTooltip(new Tooltip("Info/Edit"));;
+                infoButton.setPrefHeight(30);
+                infoButton.setPrefWidth(30);
+                infoButton.setOnAction(event -> {
+                    RegisterModifiers.editTask(task);
+                    updateList();
+                });
 
-            @Override
-            protected void updateItem(MainTask task, boolean empty) {
-                super.updateItem(task, empty);
-
-                if (task == null) {
-                    setGraphic(null);
-                    return;
-                }
+                Button deleteButton = new Button();
                 try {
-                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton,20,20);
+                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 deleteButton.setTooltip(new Tooltip("Delete"));
-                setGraphic(deleteButton);
                 deleteButton.setOnAction(
                         event -> {
                             try {
@@ -278,9 +258,19 @@ public class ShowByCategoryController {
                             updateList();
                         }
                 );
+
+                HBox container = new HBox();
+                container.getChildren().add(infoButton);
+                container.getChildren().add(deleteButton);
+
+                container.setSpacing(10);
+
+                setGraphic(container);
+
             }
         });
     }
+
 
 
     /**

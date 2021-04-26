@@ -2,6 +2,7 @@ package ntnu.team1.application.task;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -194,17 +195,8 @@ public class MainTask implements Serializable {
      * @return Priority as an int
      */
 
-    public String getPriority() {
-        switch (priority){
-            case 1:
-                return "High";
-            case 2:
-                return "Medium";
-            case 3:
-                return "Low";
-            default:
-                return "none";
-        }
+    public int getPriority() {
+        return priority;
     }
 
     /**
