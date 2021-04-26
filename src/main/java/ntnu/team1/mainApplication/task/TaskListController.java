@@ -40,47 +40,91 @@ import java.util.stream.Collectors;
 
 public class TaskListController {
 
+    /**
+     * Pane used as the upper element
+     */
     public AnchorPane Pane;
 
+    /**
+     * Button that launches the add new task dialog
+     */
     @FXML
     private Button addNewTool;
 
+    /**
+     * Button that launches the edit task dialog
+     */
     @FXML
     private Button editTool;
+    /**
+     * Table view used for showing all tasks
+     */
 
     @FXML
     private javafx.scene.control.TableView<MainTask> tableView;
 
+    /**
+     * Column where you can mark tasks as done
+     */
+
     @FXML
     private TableColumn<MainTask, Boolean> doneColumn;
+
+    /**
+     * Column for the task name
+     */
 
     @FXML
     private TableColumn<MainTask, String> nameColumn;
 
+    /**
+     * Column for the task description
+     */
     @FXML
     private TableColumn<MainTask, String> descriptionColumn;
-
+    /**
+     * Column for the task startDate
+     */
     @FXML
     private TableColumn<MainTask, LocalDate> startDateColumn;
-
+    /**
+     * Column for the task endDate
+     */
     @FXML
     private TableColumn<MainTask, LocalDate> endDateColumn;
-
+    /**
+     * Column for the task priority
+     */
     @FXML
     private TableColumn<MainTask, MainTask> priorityColumn;
 
+    /**
+     * Column for the task category
+     */
     @FXML
     private TableColumn<MainTask, MainTask> categoryColumn;
 
+    /**
+     * Column for info button for each task
+     */
     @FXML
     private TableColumn<MainTask, MainTask> infoButtonColumn;
 
+    /**
+     * Column for the delete button
+     */
     @FXML
     private TableColumn<MainTask, MainTask> deleteButtonColumn;
 
+    /**
+     * Toggle group for which tasks you want to show
+     */
     @FXML
     private ToggleGroup choice;
 
+    /**
+     * Header to indicate which
+     */
     @FXML
     private Label header;
 

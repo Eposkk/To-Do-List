@@ -22,9 +22,21 @@ import ntnu.team1.application.task.MainTask;
  */
 
 public class MainRegister implements Serializable {
+    /**
+     * HashMap used for storing categories, ID used as key
+     */
     private HashMap<Integer, Category> categories;
+    /**
+     * ArrayList used for storing tasks
+     */
     private ArrayList<MainTask> tasks;
+    /**
+     * Count of tasks in ArrayList
+     */
     private int taskIdCount = 0;
+    /**
+     * Count of categories in HashMap
+     */
     private int categoryIdCount = 0;
 
     /**

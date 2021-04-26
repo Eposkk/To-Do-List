@@ -1,8 +1,9 @@
  # To-Do-List
+
+<img src="src/main/resources/ntnu/team1/mainApplication/Logo256pxwithtext.png" alt="drawing" width="200"/>
  
- To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
+To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
  
- ![](build/Logo_25.png)
 
 # Table of content
 [[_TOC_]]
@@ -49,3 +50,6 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 - Simen Klemp Petersen
 - Marius Klemp Petersen
 - Eivind Strand Harboe
+
+<img src="https://media.giphy.com/media/yYSSBtDgbbRzq/source.gif" alt="drawing" width="80"/>
+

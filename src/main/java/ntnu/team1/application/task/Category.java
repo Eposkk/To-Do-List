@@ -11,11 +11,29 @@ import java.util.Objects;
  */
 
 public class Category implements Serializable {
+    /**
+     * Id for the category
+     */
     private final int ID;
+    /**
+     * Red value
+     */
     private double r;
+    /**
+     * Green value
+     */
     private double g;
+    /**
+     * Blue value
+     */
     private double b;
+    /**
+     * Name of the category
+     */
     private String name;
+    /**
+     * Id used for storing
+     */
     private long serialVersionUID;
 
     /**

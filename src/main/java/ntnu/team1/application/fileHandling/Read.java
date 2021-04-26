@@ -10,6 +10,10 @@ import ntnu.team1.application.MainRegister;
  * Class used to read the register from a file
  */
 public class Read {
+
+    /**
+     * Path to the register
+     */
     String pathRegister;
 
     /**
