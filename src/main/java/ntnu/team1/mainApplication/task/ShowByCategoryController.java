@@ -81,7 +81,7 @@ public class ShowByCategoryController {
      * @throws FileNotFoundException if file is not found
      */
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize(){
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         if(App.getChosenCategory() > -1){
             header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
@@ -114,8 +114,7 @@ public class ShowByCategoryController {
     }
 
     /**
-     * Method for making buttons
-     * @throws FileNotFoundException if file is not found
+     * Method for setting button attributes
      */
 
     private void makeButtons() {
@@ -244,7 +243,7 @@ public class ShowByCategoryController {
 
 
     /**
-     * Updates the list
+     * Updates the list based on the users choice
      */
 
     private void updateList(){

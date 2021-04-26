@@ -93,6 +93,7 @@ public class TaskDialog extends Dialog<MainRegister> {
         description.setWrapText(true);
         description.setPromptText("Description");
         description.setMaxWidth(200);
+        description.setWrapText(true);
 
         HBox priorityBox = new HBox();
         final ToggleGroup priority = new ToggleGroup();
