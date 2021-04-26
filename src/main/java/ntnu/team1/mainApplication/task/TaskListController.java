@@ -7,12 +7,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
@@ -87,7 +89,7 @@ public class TaskListController {
      * Column for the task priority
      */
     @FXML
-    private TableColumn<MainTask, Integer> priorityColumn;
+    private TableColumn<MainTask, MainTask> priorityColumn;
 
     /**
      * Column for the task category
@@ -96,16 +98,10 @@ public class TaskListController {
     private TableColumn<MainTask, MainTask> categoryColumn;
 
     /**
-     * Column for info button for each task
-     */
-    @FXML
-    private TableColumn<MainTask, MainTask> infoButtonColumn;
-
-    /**
      * Column for the delete button
      */
     @FXML
-    private TableColumn<MainTask, MainTask> deleteButtonColumn;
+    private TableColumn<MainTask, MainTask> buttonColumn;
 
     /**
      * Toggle group for which tasks you want to show
@@ -123,10 +119,9 @@ public class TaskListController {
      * Initalize method that is run when the class is loaded.
      * Creates the table view and updates it.
      * Also creates buttons that are needed
-     * @throws FileNotFoundException Throws if file is not found
      */
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize(){
         choice.selectedToggleProperty().addListener((observableValue, toggle, t1) -> updateList());
         header.setText("Viewing all tasks");
         columFactory();
@@ -208,7 +203,6 @@ public class TaskListController {
             });
             return property;
         });
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
@@ -218,10 +212,9 @@ public class TaskListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         categoryColumn.setCellFactory(param -> new TableCell<>() {
-            private final GridPane box = new GridPane();
             @Override
             protected void updateItem(MainTask task, boolean empty) {
-                box.getChildren().clear();
+                HBox box = new HBox();
                 super.updateItem(task, empty);
                 if (task == null) {
                     setGraphic(null);
@@ -233,57 +226,45 @@ public class TaskListController {
 
                 Label categoryName = new Label(App.getRegister().getCategory(task.getCategoryId()).getName());
 
-                box.add(colorCircle, 1, 1);
-                box.add(categoryName, 2,1);
-                box.setHgap(5);
+                box.getChildren().add(colorCircle);
+                box.getChildren().add(categoryName);
+                box.setSpacing(5);
                 setGraphic(box);
             }
+
         });
 
-        infoButtonColumn.setCellValueFactory(
+        buttonColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
-        infoButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button infoButton = new Button("i");
+        buttonColumn.setCellFactory(param -> new TableCell<>() {
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
+
                 super.updateItem(task, empty);
 
                 if (task == null) {
                     setGraphic(null);
                     return;
                 }
-                infoButton.setTooltip(new Tooltip("Info/Edit"));
-                setGraphic(infoButton);
-                infoButton.setOnAction(event -> RegisterModifiers.editTask(task));
-            }
-        });
 
+                Button infoButton = new Button("i");
+                infoButton.setTooltip(new Tooltip("Info/Edit"));;
+                infoButton.setPrefHeight(30);
+                infoButton.setPrefWidth(30);
+                infoButton.setOnAction(event -> {
+                    RegisterModifiers.editTask(task);
+                    updateList();
+                });
 
-        deleteButtonColumn.setCellValueFactory(
-                param -> new ReadOnlyObjectWrapper<>(param.getValue())
-        );
-        deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private Button deleteButton = new Button();
-
-            @Override
-            protected void updateItem(MainTask task, boolean empty) {
-                deleteButton = new Button();
-                super.updateItem(task, empty);
-
-                if (task == null) {
-                    setGraphic(null);
-                    return;
-                }
+                Button deleteButton = new Button();
                 try {
                     StaticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
                 deleteButton.setTooltip(new Tooltip("Delete"));
-
-                setGraphic(deleteButton);
                 deleteButton.setOnAction(
                         event -> {
                             try {
@@ -294,6 +275,19 @@ public class TaskListController {
                             updateList();
                         }
                 );
+
+                HBox container = new HBox();
+                BorderPane borderPane = new BorderPane();
+                container.setAlignment(Pos.CENTER);
+                container.getChildren().add(infoButton);
+                container.getChildren().add(deleteButton);
+                container.setSpacing(10);
+                borderPane.setCenter(container);
+
+
+
+                setGraphic(borderPane);
+
             }
         });
     }
@@ -322,5 +316,6 @@ public class TaskListController {
                 break;
         }
         tableView.setItems(list);
+        tableView.refresh();
     }
 }

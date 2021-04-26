@@ -2,6 +2,7 @@ package ntnu.team1.application.task;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
