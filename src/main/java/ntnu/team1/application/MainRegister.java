@@ -231,22 +231,6 @@ public class MainRegister implements Serializable {
     }
 
     /**
-     * Sorts by priority
-     */
-
-    public void sortByPriority(){
-        tasks.sort(Comparator.comparingInt(MainTask::getPriority));
-    }
-
-    /**
-     * Sorts by category
-     */
-
-    public void sortByCategory(){
-        tasks.sort(Comparator.comparingInt(MainTask::getCategoryId));
-    }
-
-    /**
      * Sets the category list
      * @param categories Category List we want to set
      */
