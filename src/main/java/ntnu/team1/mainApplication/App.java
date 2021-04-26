@@ -25,13 +25,19 @@ import java.util.Optional;
  */
 public class App extends Application {
 
+    /**
+     * Main register used for the app
+     */
     private static MainRegister register = new MainRegister();
+    /**
+     * Indicates what category is chosen
+     */
     private static int chosenCategory = -1;
 
     /**
      * Main method
      *
-     * @param args
+     * @param args launch arguments
      */
 
     public static void main(String[] args) {
@@ -40,9 +46,8 @@ public class App extends Application {
 
     /**
      * Runs on the start of the application. Loads the scene and configures it
-     *
-     * @param stage
-     * @throws IOException
+     * @param stage main stage
+     * @throws IOException gets thrown if something fails with loading external files
      */
 
     @Override

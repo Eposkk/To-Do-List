@@ -13,6 +13,9 @@ import java.util.Objects;
 
 public class TaskInfoDialog extends Dialog<MainRegister> {
 
+    /**
+     * Task used for showing info in the dialog
+     */
     private MainTask task;
 
     public TaskInfoDialog(MainTask task) {

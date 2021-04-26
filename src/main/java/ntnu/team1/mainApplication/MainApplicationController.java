@@ -36,18 +36,34 @@ import java.util.TimerTask;
 
 public class MainApplicationController {
 
+    /**
+     * Menu item for adding tasks
+     */
     @FXML
     public MenuItem menuEditAdd;
-    public AnchorPane pane;
+    /**
+     * Menu item for showing help
+     */
     @FXML
     private MenuItem menuHelpAbout;
+    /**
+     * Upper element of the GUI
+     */
     @FXML
     private BorderPane view;
+    /**
+     * VBox that shows all categories
+     */
     @FXML
     private VBox categoryButtonList;
-
-    private HashMap<Integer, Category> currentCategories = new HashMap();
-
+    /**
+     * Main anchor pane of the windows
+     */
+    @FXML
+    public AnchorPane pane;
+    /**
+     * Int for keeping track of number of categories. Used for deciding when to update the category button list
+     */
     private int numberOfCategories;
 
     /**
@@ -63,7 +79,6 @@ public class MainApplicationController {
         Pane newLoadedPane = FXMLLoader.load(getClass().getResource("task/taskList.fxml"));
         view.setCenter(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
-        currentCategories = App.getRegister().getCategories();
         generateCategoryList();
 
         Timeline updateCategory = new Timeline(
