@@ -25,7 +25,14 @@ public class TaskDialog extends Dialog<MainRegister> {
      */
 
     public enum Mode {
-        NEW, EDIT
+        /**
+         * Indicates it is a new category
+         */
+        NEW,
+        /**
+         * Indicates it should be edited
+         */
+        EDIT
     }
 
     private final Mode mode;

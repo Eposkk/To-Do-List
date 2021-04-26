@@ -9,5 +9,10 @@ public class RemoveException extends Exception {
      * Id
      */
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Gets thrown if it cant be removed
+     * @param e String
+     */
     public RemoveException(String e){super(e);}
 }

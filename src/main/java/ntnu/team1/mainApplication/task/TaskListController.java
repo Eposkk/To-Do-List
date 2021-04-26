@@ -260,7 +260,7 @@ public class TaskListController {
 
                 Button deleteButton = new Button();
                 try {
-                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                    StaticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

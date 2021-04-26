@@ -6,18 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 import javafx.scene.shape.Circle;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
-import ntnu.team1.mainApplication.task.staticMethods;
+import ntnu.team1.mainApplication.task.StaticMethods;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -28,18 +24,39 @@ import java.util.stream.Collectors;
 
 public class CategoryListController {
 
+    /**
+     * Add new button
+     */
     @FXML
     private Button addNewTool;
+    /**
+     * Edit button
+     */
     @FXML
     private Button editTool;
+    /**
+     * Table view for showing all categories
+     */
     @FXML
     private TableView<Category> tableView;
+    /**
+     * Column for name
+     */
     @FXML
     public TableColumn<Category, String> nameColumn;
+    /**
+     * Column for color
+     */
     @FXML
     public TableColumn<Category, Category> colorColumn;
+    /**
+     * Column for number of tasks in category
+     */
     @FXML
     public TableColumn<Category, Integer> taskNumberColumn;
+    /**
+     * Column for delete button
+     */
     @FXML
     public TableColumn<Category, Category> deleteButtonColumn;
 
@@ -47,7 +64,6 @@ public class CategoryListController {
      * Initalize method that is run when the class is loaded.
      * Creates the table view and updates it.
      * Also creates buttons that are needed
-     * @throws FileNotFoundException Throws if file is not found
      */
 
     public void initialize() {
@@ -115,7 +131,7 @@ public class CategoryListController {
                 }
                 if(category.getID()> -1){
                     try {
-                        staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                        StaticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

@@ -103,7 +103,7 @@ public class MainTask implements Serializable {
 
     /**
      * Updates the category ID
-     * @param categoryId
+     * @param categoryId Id of the category
      */
 
     public void setCategoryId(int categoryId) {
