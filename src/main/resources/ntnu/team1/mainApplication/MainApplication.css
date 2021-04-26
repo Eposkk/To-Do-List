@@ -35,6 +35,13 @@
 .menu:showing .label { /* Styles the text on a menu item when activated */ }
 
 
+.alertBox{
+    -fx-background-color: #1D201F;
+    -fx-text-fill: #d8d8d8 ;
+}
+
+
+
 #sideMenu{
     -fx-end-margin: 20 5 5 5;
     -fx-background-color: #272B29;
