@@ -67,7 +67,7 @@ public class TaskListController {
     private TableColumn<MainTask, LocalDate> endDateColumn;
 
     @FXML
-    private TableColumn<MainTask, Integer> priorityColumn;
+    private TableColumn<MainTask, MainTask> priorityColumn;
 
     @FXML
     private TableColumn<MainTask, MainTask> categoryColumn;
@@ -173,12 +173,27 @@ public class TaskListController {
             });
             return property;
         });
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        priorityColumn.setCellValueFactory(
+                param -> new ReadOnlyObjectWrapper<>(param.getValue())
+        );
+        priorityColumn.setCellFactory(param -> new TableCell<>() {
+
+            @Override
+            protected void updateItem(MainTask task, boolean empty) {
+                super.updateItem(task, empty);
+
+                if (task == null) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(new Label(String.valueOf(task.getPriority())));
+            }
+        });
         categoryColumn.setCellValueFactory(
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
@@ -221,7 +236,10 @@ public class TaskListController {
                 }
                 infoButton.setTooltip(new Tooltip("Info/Edit"));
                 setGraphic(infoButton);
-                infoButton.setOnAction(event -> RegisterModifiers.editTask(task));
+                infoButton.setOnAction(event -> {
+                    RegisterModifiers.editTask(task);
+                    updateList();
+                });
             }
         });
 
@@ -283,5 +301,6 @@ public class TaskListController {
                 break;
         }
         tableView.setItems(list);
+        tableView.refresh();
     }
 }
