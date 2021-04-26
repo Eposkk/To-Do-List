@@ -11,12 +11,21 @@ import org.w3c.dom.Text;
 
 import java.util.Objects;
 
+/**
+ * Dialog used for showing info of the task
+ */
+
 public class TaskInfoDialog extends Dialog<MainRegister> {
 
     /**
      * Task used for showing info in the dialog
      */
     private MainTask task;
+
+    /**
+     * Constructor for the class
+     * @param task Task you want to show
+     */
 
     public TaskInfoDialog(MainTask task) {
         super();

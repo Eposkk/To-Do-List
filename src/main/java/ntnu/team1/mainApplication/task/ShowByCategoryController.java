@@ -3,7 +3,6 @@
  */
 package ntnu.team1.mainApplication.task;
 
-import com.sun.tools.javac.Main;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -14,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
@@ -23,7 +20,6 @@ import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -268,7 +264,7 @@ public class ShowByCategoryController {
                     return;
                 }
                 try {
-                    staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton,20,20);
+                    StaticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton,20,20);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

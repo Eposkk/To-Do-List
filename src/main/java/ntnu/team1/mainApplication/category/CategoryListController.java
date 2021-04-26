@@ -6,18 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 import javafx.scene.shape.Circle;
 import ntnu.team1.application.exceptions.RemoveException;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.App;
 import ntnu.team1.mainApplication.RegisterModifiers;
-import ntnu.team1.mainApplication.task.staticMethods;
+import ntnu.team1.mainApplication.task.StaticMethods;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -143,7 +139,7 @@ public class CategoryListController {
                 }
                 if(category.getID()>-1){
                     try {
-                        staticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
+                        StaticMethods.addImageToButton("src/main/resources/Images/deleteAll.png", deleteButton, 20, 20);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

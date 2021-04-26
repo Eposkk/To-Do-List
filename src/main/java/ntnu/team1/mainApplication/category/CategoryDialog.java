@@ -18,7 +18,18 @@ public class CategoryDialog extends Dialog<MainRegister> {
      */
 
     public enum Mode {
-        NEW, EDIT, INFO
+        /**
+         * Indicates it is a new category
+         */
+        NEW,
+        /**
+         * Indicates it should be edited
+         */
+        EDIT,
+        /**
+         * Indicates just show info
+         */
+        INFO
     }
 
     private final Mode mode;
