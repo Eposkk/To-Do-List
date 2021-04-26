@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ntnu.team1</groupId>
     <artifactId>ToDoList</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
         <javafx.version>13</javafx.version>
     </properties>
     <dependencies>
@@ -70,7 +70,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M1</version>
             </plugin>
-            <!-- JavaDoc maven plugin -->
+            <!-- JavaDoc maven plugin used for generating JavaDoc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
