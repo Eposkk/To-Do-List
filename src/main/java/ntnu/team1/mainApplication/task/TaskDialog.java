@@ -11,6 +11,7 @@ import ntnu.team1.application.task.MainTask;
 import ntnu.team1.mainApplication.App;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -24,7 +25,7 @@ public class TaskDialog extends Dialog<MainRegister> {
      */
 
     public enum Mode {
-        NEW, EDIT, INFO
+        NEW, EDIT
     }
 
     private final Mode mode;
@@ -49,11 +50,8 @@ public class TaskDialog extends Dialog<MainRegister> {
 
     public TaskDialog(MainTask task, boolean editable) {
         super();
-        if (editable) {
-            this.mode = Mode.EDIT;
-        } else {
-            this.mode = Mode.INFO;
-        }
+        this.mode = Mode.EDIT;
+
         this.existingTask = task;
         // Create the content of the dialog
         createTask();
@@ -74,31 +72,25 @@ public class TaskDialog extends Dialog<MainRegister> {
                 setTitle("Task Details - Add");
                 break;
 
-            case INFO:
-                setTitle("Task Details");
-                break;
-
             default:
-                setTitle("Patient Details - UNKNOWN MODE...");
+                setTitle("Task Details - UNKNOWN MODE...");
                 break;
 
         }
 
         // Set the button types.
         getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-        getDialogPane().getStylesheets().add(
-                getClass().getResource("dialog.css").toExternalForm());
+        getDialogPane().getStylesheets().add(Objects.requireNonNull(getClass().getResource("dialog.css")).toExternalForm());
         getDialogPane().getStyleClass().add("dialog");
 
         HBox mainBox = new HBox();
         VBox vBox1 = new VBox();
         VBox vBox2 = new VBox();
-        VBox vBox3 = new VBox();
-
 
         TextField name = new TextField();
         name.setPromptText("Add task name");
         TextArea description = new TextArea();
+        description.setWrapText(true);
         description.setPromptText("Description");
         description.setMaxWidth(200);
 
@@ -114,16 +106,18 @@ public class TaskDialog extends Dialog<MainRegister> {
         RadioButton pri3 = new RadioButton("3");
         pri3.setToggleGroup(priority);
         priorityBox.getChildren().add(pri3);
+        priorityBox.setSpacing(5);
         ChoiceBox<String> category = new ChoiceBox();
         ArrayList<String> namesOfCategories = (ArrayList<String>) App.getRegister().getCategories().values().stream().map(Category::getName).collect(Collectors.toList());
         category.setItems(FXCollections.observableArrayList(namesOfCategories));
-        category.setValue("No category");
+        category.setValue(App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+        category.setPrefWidth(175);
 
         DatePicker startDate = new DatePicker();
         DatePicker endDate = new DatePicker();
 
 
-        if ((mode == Mode.EDIT) || (mode == Mode.INFO)) {
+        if (mode == Mode.EDIT) {
             name.setText(existingTask.getName());
             description.setText(existingTask.getDescription());
             switch (existingTask.getPriority()){
@@ -140,24 +134,20 @@ public class TaskDialog extends Dialog<MainRegister> {
             startDate.setValue(existingTask.getStartDate());
             endDate.setValue(existingTask.getEndDate());
 
-
-
-            if (mode == Mode.INFO) {
-
-            }
         }
         vBox1.getChildren().add(name);
-        vBox1.getChildren().add(new Label("Priority:"));
-        vBox1.getChildren().add(priorityBox);
+        vBox1.getChildren().add(description);
         mainBox.getChildren().add(vBox1);
-        vBox2.getChildren().add(description);
+        vBox2.getChildren().add(new Label("Priority:"));
+        vBox2.getChildren().add(priorityBox);
+        vBox2.getChildren().add(category);
+        vBox2.getChildren().add(new Label("Start date"));
+        vBox2.getChildren().add(startDate);
+        vBox2.getChildren().add(new Label("End date"));
+        vBox2.getChildren().add(endDate);
+        vBox2.setSpacing(5);
         mainBox.getChildren().add(vBox2);
-        vBox3.getChildren().add(category);
-        vBox3.getChildren().add(new Label("Start date"));
-        vBox3.getChildren().add(startDate);
-        vBox3.getChildren().add(new Label("End date"));
-        vBox3.getChildren().add(endDate);
-        mainBox.getChildren().add(vBox3);
+        mainBox.setSpacing(15);
 
         getDialogPane().setContent(mainBox);
         setResultConverter((ButtonType button) -> {
