@@ -10,7 +10,7 @@ public class Launcher {
 
     /**
      * Main method for the Launcher class
-     * @param args Arguments
+     * @param args Launch arguments
      */
     public static void main(String [] args){
         App.main(args);

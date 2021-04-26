@@ -11,15 +11,45 @@ import java.util.Objects;
  */
 
 public class MainTask implements Serializable {
+    /**
+     * Id for the task
+     */
     private final int ID;
+    /**
+     * Indicates if the task has category
+     */
     private boolean hasCategory=false;
+    /**
+     * Name of the task
+     */
     private String name;
+    /**
+     * Description of the task
+     */
     private String description;
+    /**
+     * Start date of the task
+     */
     private LocalDate startDate;
+    /**
+     * End date of the task
+     */
     private LocalDate endDate;
+    /**
+     * Priority of the task
+     */
     private int priority;
+    /**
+     * Category id ascoiacted with the task
+     */
     private int categoryId;
+    /**
+     * Indicates if the task is done
+     */
     private boolean isDone;
+    /**
+     * Id for storing the task
+     */
     private final long serialVersionUID;
 
     /**

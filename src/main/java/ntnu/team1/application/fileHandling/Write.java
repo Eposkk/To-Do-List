@@ -8,6 +8,10 @@ import java.io.*;
  */
 
 public class Write {
+
+    /**
+     * Main register to write
+     */
     private final MainRegister register;
 
     /**
