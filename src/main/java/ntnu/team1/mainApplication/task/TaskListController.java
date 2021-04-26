@@ -219,11 +219,9 @@ public class TaskListController {
                     setGraphic(null);
                     return;
                 }
-                infoButton.setTooltip(new Tooltip("Info"));
+                infoButton.setTooltip(new Tooltip("Info/Edit"));
                 setGraphic(infoButton);
-                infoButton.setOnAction(
-                        event -> new TaskInfoDialog(task).showAndWait()
-                );
+                infoButton.setOnAction(event -> RegisterModifiers.editTask(task));
             }
         });
 
