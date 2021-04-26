@@ -14,9 +14,10 @@ import ntnu.team1.application.task.Category;
 import ntnu.team1.application.task.MainTask;
 
 /**
- * This is is the main register of the whole app
- * It keeps track of all categories and tasks by storing them in a HashMap and an ArrayList
- * The Mainregister also allows for adding tasks and adding categories to the registers
+ * This is is the main register of the application
+ * It keeps track of all categories in a HashMap
+ * and tasks in an ArrayList
+ * The Mainregister also allows for adding tasks and adding categories to the register
  * It also handles saving and reading from file, it also sorts the registers
  */
 

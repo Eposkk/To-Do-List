@@ -219,12 +219,10 @@ public class TaskListController {
                     setGraphic(null);
                     return;
                 }
-                infoButton.setTooltip(new Tooltip("Info/Delete"));
+                infoButton.setTooltip(new Tooltip("Info"));
                 setGraphic(infoButton);
                 infoButton.setOnAction(
-                        event -> {
-                            new TaskInfoDialog(task).showAndWait();
-                        }
+                        event -> new TaskInfoDialog(task).showAndWait()
                 );
             }
         });
@@ -234,10 +232,11 @@ public class TaskListController {
                 param -> new ReadOnlyObjectWrapper<>(param.getValue())
         );
         deleteButtonColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button();
+            private Button deleteButton = new Button();
 
             @Override
             protected void updateItem(MainTask task, boolean empty) {
+                deleteButton = new Button();
                 super.updateItem(task, empty);
 
                 if (task == null) {
