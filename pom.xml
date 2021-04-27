@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ntnu.team1</groupId>
     <artifactId>ToDoList</artifactId>
+
     <version>1.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -61,7 +62,7 @@
                     <release>13</release>
                     <jlinkImageName>to-do-list</jlinkImageName>
                     <launcher>launcher</launcher>
-                    <mainClass>ntnu.team1.mainApplication.App</mainClass>
+                    <mainClass>ntnu.team1.application.main.App</mainClass>
                 </configuration>
             </plugin>
             <!-- Used for testing -->

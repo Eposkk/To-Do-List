@@ -1,6 +1,6 @@
 package ntnu.team1;
 
-import ntnu.team1.mainApplication.App;
+import ntnu.team1.application.main.App;
 
 /**
  * Launcher class, its purpose is to launch the entire program

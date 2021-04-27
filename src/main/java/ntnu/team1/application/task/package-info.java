@@ -1,4 +1,4 @@
 /**
- * Contains the objects task and category
+ * Contains all files used for creating, editing, removing and viewing tasks
  */
 package ntnu.team1.application.task;
