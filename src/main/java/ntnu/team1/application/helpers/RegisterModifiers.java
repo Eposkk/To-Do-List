@@ -131,6 +131,7 @@ public class RegisterModifiers {
         alert.setTitle("Confirmation Dialog - Delete Item");
         alert.setContentText("Are you sure you want to delete this category?");
         alert.setContentText("Deleting this category will delete: \n ALL TASKS IN THIS CATEGORY");
+        alert.setGraphic(new ImageView("Images/redDelete.png"));
 
         MainRegister register = App.getRegister();
         Optional<ButtonType> result = alert.showAndWait();
