@@ -114,7 +114,6 @@ public class ShowByCategoryController {
     /**
      * Initial method that is called at class loading
      * Sets and creates tableview, creates buttons and configures all other elements
-     * @throws FileNotFoundException if file is not found
      */
 
     public void initialize(){
