@@ -10,10 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="pane" prefHeight="250.0" prefWidth="170.0" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
-    <VBox prefHeight="182.0" prefWidth="170.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane fx:id="pane" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
+    <VBox prefHeight="171.0" prefWidth="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <BorderPane fx:id="view" VBox.vgrow="ALWAYS">
             <left>
                 <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="170.0" BorderPane.alignment="CENTER">
@@ -41,6 +42,13 @@
                </Button>
                     <Separator prefWidth="200.0" />
                     <VBox fx:id="categoryButtonList" prefHeight="40.0" prefWidth="200.0" />
+               <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../Images/Logo256pxv2.png" />
+                  </image>
+               </ImageView>
+               <Separator opacity="0.0" prefWidth="200.0" />
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
@@ -51,9 +59,4 @@
             </left>
         </BorderPane>
     </VBox>
-   <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="21.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../../../Images/Logo256pxv2.png" />
-      </image>
-   </ImageView>
 </AnchorPane>
