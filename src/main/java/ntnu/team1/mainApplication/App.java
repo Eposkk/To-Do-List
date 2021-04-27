@@ -132,7 +132,6 @@ public class App extends Application {
         MainRegister registerLocal = new MainRegister();
         File register = new File("data/mainRegister.ser");
         if (register.exists()) {
-            System.out.println("Register exists");
             Read reader = new Read("data/mainRegister.ser");
             registerLocal = reader.readRegister();
         }
@@ -151,8 +150,6 @@ public class App extends Application {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            System.out.println("Program is closing");
-            System.out.println("This was run in App.java");
             Write writer = new Write(register);
             writer.writeRegister();
             System.exit(1);

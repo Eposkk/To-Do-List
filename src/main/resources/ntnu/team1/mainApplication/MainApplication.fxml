@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="pane" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
+<AnchorPane fx:id="pane" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <BorderPane fx:id="view" prefHeight="291.0" prefWidth="165.0" VBox.vgrow="ALWAYS">
             <left>
