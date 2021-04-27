@@ -2,33 +2,24 @@ package ntnu.team1.mainApplication;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import ntnu.team1.application.task.Category;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Class that handles the main view of the application
@@ -41,6 +32,11 @@ public class MainApplicationController {
      */
     @FXML
     public MenuItem menuEditAdd;
+    /**
+     * Image for showing the product logo
+     */
+    @FXML
+    public Button logoImage;
     /**
      * Menu item for showing help
      */
@@ -80,7 +76,12 @@ public class MainApplicationController {
         view.setCenter(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
+        ImageView image= new ImageView(new Image("Images/Logo256pxv2.png"));
+        image.setFitHeight(80);
+        image.setFitWidth(80);
+        logoImage.setOnAction(showAbout());
 
+        logoImage.setGraphic(image);
         Timeline updateCategory = new Timeline(
             new KeyFrame(Duration.millis(50),
                     event -> {
@@ -175,8 +176,8 @@ public class MainApplicationController {
      * Makes about page display if the button is clicked on
      * @return An eventHandler
      */
-    @FXML
-    private EventHandler<ActionEvent> showAbout() {
+
+    private EventHandler<ActionEvent> showAbout(){
         return event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             DialogPane dialogPane = alert.getDialogPane();

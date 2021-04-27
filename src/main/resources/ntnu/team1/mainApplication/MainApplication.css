@@ -30,7 +30,6 @@
 .menu-item:hover {
     /* Styles the text on a menu item */
     -fx-cursor: hand;
-    -fx-background-color: #z;
 }
 .menu:showing .label { /* Styles the text on a menu item when activated */ }
 
