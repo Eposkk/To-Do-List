@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -232,8 +233,8 @@ public class ShowByCategoryController {
                     return;
                 }
 
-                Button infoButton = new Button("i");
-                infoButton.setTooltip(new Tooltip("Info/Edit"));;
+                Button infoButton = new Button("?");
+                infoButton.setTooltip(new Tooltip("Info/Edit"));
                 infoButton.setPrefHeight(30);
                 infoButton.setPrefWidth(30);
                 infoButton.setOnAction(event -> {
@@ -260,10 +261,15 @@ public class ShowByCategoryController {
                 );
 
                 HBox container = new HBox();
+                container.setAlignment(Pos.CENTER);
                 container.getChildren().add(infoButton);
                 container.getChildren().add(deleteButton);
-
                 container.setSpacing(10);
+
+                Label label = new Label();
+
+                label.setGraphic(container);
+                setGraphic(label);
 
                 setGraphic(container);
 

@@ -154,9 +154,8 @@ public class CategoryListController {
 
 
         taskNumberColumn.setCellValueFactory(cellData -> {
-            int number =  App.getRegister().getAllTasks().stream()
-                    .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID())
-                    .collect(Collectors.toList()).size();
+            int number = (int) App.getRegister().getAllTasks().stream()
+                    .filter(MainTask -> MainTask.getCategoryId() == cellData.getValue().getID()).count();
             return  new ReadOnlyObjectWrapper<>(number);
 
         });

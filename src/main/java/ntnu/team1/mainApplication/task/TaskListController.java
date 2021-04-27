@@ -7,14 +7,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 import ntnu.team1.application.MainRegister;
@@ -214,22 +217,22 @@ public class TaskListController {
         categoryColumn.setCellFactory(param -> new TableCell<>() {
             @Override
             protected void updateItem(MainTask task, boolean empty) {
-                HBox box = new HBox();
+
                 super.updateItem(task, empty);
                 if (task == null) {
                     setGraphic(null);
                     return;
                 }
+
+                Label container = new Label();
                 Circle colorCircle = new Circle();
                 colorCircle.setFill(App.getRegister().getCategory(task.getCategoryId()).getColor());
                 colorCircle.setRadius(5);
 
-                Label categoryName = new Label(App.getRegister().getCategory(task.getCategoryId()).getName());
-
-                box.getChildren().add(colorCircle);
-                box.getChildren().add(categoryName);
-                box.setSpacing(5);
-                setGraphic(box);
+                container.setText(App.getRegister().getCategory(task.getCategoryId()).getName());
+                container.setGraphic(colorCircle);
+                container.setGraphicTextGap(5);
+                setGraphic(container);
             }
 
         });
@@ -249,7 +252,7 @@ public class TaskListController {
                     return;
                 }
 
-                Button infoButton = new Button("i");
+                Button infoButton = new Button("?");
                 infoButton.setTooltip(new Tooltip("Info/Edit"));;
                 infoButton.setPrefHeight(30);
                 infoButton.setPrefWidth(30);
@@ -277,16 +280,15 @@ public class TaskListController {
                 );
 
                 HBox container = new HBox();
-                BorderPane borderPane = new BorderPane();
                 container.setAlignment(Pos.CENTER);
                 container.getChildren().add(infoButton);
                 container.getChildren().add(deleteButton);
                 container.setSpacing(10);
-                borderPane.setCenter(container);
 
+                Label label = new Label();
 
-
-                setGraphic(borderPane);
+                label.setGraphic(container);
+                setGraphic(label);
 
             }
         });
