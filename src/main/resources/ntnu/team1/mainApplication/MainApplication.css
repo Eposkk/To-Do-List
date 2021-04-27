@@ -13,8 +13,8 @@
 .menu-bar .label{
     -fx-text-fill: #CED0CE;
 }
-.menu-bar:showing{
-    -fx-text-fill: #CED0CE;
+.menu-bar .label:hover{
+    -fx-text-fill: #9381FF;
 }
 
 
@@ -26,7 +26,9 @@
     /* The File menu item */
     -fx-cursor: hand;
     -fx-background-color: #CED0CE;
+    -fx-text-fill: #9381FF;
     -fx-background-radius: 5;
+    -fx-text-background-color: #9381FF;
 }
 .menu:showing {
     /* menu when it's being shown (activated) */
@@ -37,6 +39,11 @@
 .menu-item:hover {
     /* Styles the text on a menu item */
     -fx-cursor: hand;
+    -fx-background-color: #9381FF;
+}
+.menu-item:selected {
+    /* Styles the text on a menu item */
+    -fx-background-color: #9381FF;
 }
 
 .menu-item .label{
