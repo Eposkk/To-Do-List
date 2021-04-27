@@ -279,11 +279,10 @@ public class MainRegister implements Serializable {
 
     @Override
     public String toString() {
-        return "MainRegister{" +
-                "categories=" + categories +
-                ", tasks=" + tasks +
-                ", taskIdCount=" + taskIdCount +
-                ", categoryIdCount=" + categoryIdCount +
-                '}';
+        return "MainRegister" +
+                "\ncategories=" + categories +
+                "\ntasks=" + tasks +
+                "\ntaskIdCount=" + taskIdCount +
+                "\ncategoryIdCount=" + categoryIdCount;
     }
 }

@@ -1,6 +1,3 @@
-/**
- * Contains all project files
- */
 package ntnu.team1.backend;
 
 import ntnu.team1.backend.exceptions.RemoveException;

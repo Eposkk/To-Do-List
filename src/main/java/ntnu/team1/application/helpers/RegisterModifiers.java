@@ -60,8 +60,8 @@ public class RegisterModifiers {
      */
 
     public static void removeTask(Task task) throws FileNotFoundException {
-        Image image = new Image(new FileInputStream("src/main/resources/Images/redDelete.png"));
-        ImageView imageView = new ImageView(image);
+        ImageView imageView = new ImageView("Images/deleteAll.png");
+        imageView.setFitWidth(70); imageView.setFitHeight(70);
         MainRegister register = App.getRegister();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog - Delete Item");
@@ -131,7 +131,8 @@ public class RegisterModifiers {
         alert.setTitle("Confirmation Dialog - Delete Item");
         alert.setContentText("Are you sure you want to delete this category?");
         alert.setContentText("Deleting this category will delete: \n ALL TASKS IN THIS CATEGORY");
-        alert.setGraphic(new ImageView("Images/redDelete.png"));
+        ImageView image = new ImageView("Images/deleteAll.png"); image.setFitHeight(70); image.setFitWidth(70);
+        alert.setGraphic(image);
 
         MainRegister register = App.getRegister();
         Optional<ButtonType> result = alert.showAndWait();
