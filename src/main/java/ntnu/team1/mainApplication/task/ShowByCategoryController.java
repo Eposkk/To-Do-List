@@ -286,18 +286,39 @@ public class ShowByCategoryController {
                 list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
                         .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
                         .collect(Collectors.toList()));
+                if(App.getChosenCategory() > -1){
+                    header.setText("Viewing all tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+
+                }else{
+                    header.setText("Viewing all tasks without a given category");
+                }
+
+
                 break;
             case "done":
                 list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
                         .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
                         .filter(MainTask::isDone)
                         .collect(Collectors.toList()));
+                if(App.getChosenCategory() > -1){
+                    header.setText("Viewing done tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+
+                }else{
+                    header.setText("Viewing done tasks without a given category");
+                }
+
                 break;
             case "active":
                 list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
                         .filter(MainTask -> MainTask.getCategoryId() == App.getChosenCategory())
                         .filter(MainTask -> !MainTask.isDone())
                         .collect(Collectors.toList()));
+                if(App.getChosenCategory() > -1){
+                    header.setText("Viewing active tasks in category " + App.getRegister().getCategories().get(App.getChosenCategory()).getName());
+
+                }else{
+                    header.setText("Viewing active tasks without a given category");
+                }
                 break;
         }
         tableView.setItems(list);

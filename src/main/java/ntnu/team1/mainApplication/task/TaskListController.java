@@ -303,19 +303,21 @@ public class TaskListController {
         switch (selected) {
             case "all":
                 list = FXCollections.observableList(new ArrayList<>(App.getRegister().getAllTasks()));
+                header.setText("Viewing all tasks");
                 break;
             case "done":
                 list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
                         .filter(MainTask::isDone)
                         .collect(Collectors.toList()));
+                header.setText("Viewing all done tasks");
                 break;
             case "active":
                 list = FXCollections.observableList(App.getRegister().getAllTasks().stream()
                         .filter(MainTask -> !MainTask.isDone())
                         .collect(Collectors.toList()));
+                header.setText("Viewing all active tasks");
                 break;
         }
         tableView.setItems(list);
-        tableView.refresh();
     }
 }
