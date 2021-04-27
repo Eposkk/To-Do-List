@@ -7,6 +7,10 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * Class for a lot of static methods used multiple times
+ */
+
 public class StaticMethods {
 
     /**

@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import ntnu.team1.application.task.Category;
+import ntnu.team1.mainApplication.task.StaticMethods;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,12 +77,8 @@ public class MainApplicationController {
         view.setCenter(newLoadedPane);
         menuHelpAbout.setOnAction(showAbout());
         generateCategoryList();
-        ImageView image= new ImageView(new Image("Images/Logo256pxv2.png"));
-        image.setFitHeight(80);
-        image.setFitWidth(80);
+        StaticMethods.addImageToButton("src/main/resources/Images/Logo256pxv2.png",logoImage,80,80);
         logoImage.setOnAction(showAbout());
-
-        logoImage.setGraphic(image);
         Timeline updateCategory = new Timeline(
             new KeyFrame(Duration.millis(50),
                     event -> {
