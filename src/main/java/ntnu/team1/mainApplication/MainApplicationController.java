@@ -180,9 +180,9 @@ public class MainApplicationController {
         return event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.getStylesheets().add(
-                    getClass().getResource("MainApplication.css").toExternalForm());
-            dialogPane.getStyleClass().add("alertBox");
+            ImageView image = new ImageView(new Image("Images/Logo256pxv2.png"));
+            image.setFitWidth(80); image.setFitHeight(80);
+            alert.setGraphic(image);
             alert.setDialogPane(dialogPane);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle("About");

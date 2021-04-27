@@ -35,10 +35,10 @@
 .menu:showing .label { /* Styles the text on a menu item when activated */ }
 
 
-.alertBox{
+/*.alertBox{
     -fx-background-color: #1D201F;
     -fx-text-fill: #d8d8d8 ;
-}
+}*/
 
 
 
