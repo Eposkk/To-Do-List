@@ -327,5 +327,6 @@ public class ShowByCategoryController {
                 break;
         }
         tableView.setItems(list);
+        tableView.refresh();
     }
 }
