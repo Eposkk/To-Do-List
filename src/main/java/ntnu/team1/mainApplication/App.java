@@ -59,12 +59,9 @@ public class App extends Application {
         stage.setTitle("To-Do-List 1.0");
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/Images/Logo256pxv2.png")));
         stage.show();
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                alertOnExit();
-                event.consume();
-            }
+        stage.setOnCloseRequest(event -> {
+            alertOnExit();
+            event.consume();
         });
     }
 

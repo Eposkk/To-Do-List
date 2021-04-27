@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.util.Duration;
 import ntnu.team1.application.task.Category;
 import ntnu.team1.mainApplication.task.StaticMethods;
@@ -182,13 +183,17 @@ public class MainApplicationController {
             image.setFitWidth(80); image.setFitHeight(80);
             alert.setGraphic(image);
             alert.setDialogPane(dialogPane);
+            alert.getDialogPane().setExpanded(false);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle("About");
             alert.setHeaderText("To-Do-List Application");
             alert.setContentText("Version 1.0\n" +
                     "Made by Team 1.1" +
                     "\n2021 \u00A9");
+
+
             alert.showAndWait();
+
         };
     }
 

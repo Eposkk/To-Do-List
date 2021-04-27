@@ -321,5 +321,6 @@ public class TaskListController {
                 break;
         }
         tableView.setItems(list);
+        tableView.refresh();
     }
 }
