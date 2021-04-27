@@ -1,6 +1,6 @@
  # To-Do-List
 
-<img src="src/main/resources/Images/Logo_Full_res.jpg" alt="drawing" width="200"/>
+<img src="src/main/resources/Images/Logo_Full_res.png" alt="drawing" width="200"/>
  
 To-Do-List is an application that helps you keep track of all your tasks. Programmed in Java and compatible with MacOs, Linux, and Windows!
  
