@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="pane" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
-    <VBox prefHeight="171.0" prefWidth="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <BorderPane fx:id="view" VBox.vgrow="ALWAYS">
+<AnchorPane fx:id="pane" stylesheets="@MainApplication.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ntnu.team1.mainApplication.MainApplicationController">
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane fx:id="view" prefHeight="291.0" prefWidth="165.0" VBox.vgrow="ALWAYS">
             <left>
-                <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="170.0" BorderPane.alignment="CENTER">
-                 <MenuBar fx:id="menuBar" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                <VBox fx:id="sideMenu" prefHeight="291.0" prefWidth="176.0" BorderPane.alignment="CENTER">
+                 <MenuBar fx:id="menuBar" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="164.0" VBox.vgrow="ALWAYS">
                      <Menu mnemonicParsing="false" text="File">
                          <MenuItem fx:id="menuFileClose" mnemonicParsing="false" onAction="#exit" text="Close" />
                      </Menu>

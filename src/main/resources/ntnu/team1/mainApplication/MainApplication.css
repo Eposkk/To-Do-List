@@ -7,11 +7,17 @@
 /* The menu bar itself */
 .menu-bar {
     -fx-background-color: black;
-}
-.menu {
 
+}
+
+.menu-bar .label{
     -fx-text-fill: #CED0CE;
 }
+.menu-bar:showing{
+    -fx-text-fill: #CED0CE;
+}
+
+
 #view.center{
     -fx-fit-to-height: true;
 }
@@ -24,13 +30,19 @@
 }
 .menu:showing {
     /* menu when it's being shown (activated) */
-    -fx-background-color: #CED0CE;
+    -fx-background-color: #000000;
     -fx-background-radius: 5;
+    -fx-text-fill: #CED0CE;
 }
 .menu-item:hover {
     /* Styles the text on a menu item */
     -fx-cursor: hand;
 }
+
+.menu-item .label{
+    -fx-text-fill:  black;
+}
+
 .menu:showing .label { /* Styles the text on a menu item when activated */ }
 
 
