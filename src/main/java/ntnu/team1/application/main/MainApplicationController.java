@@ -153,20 +153,24 @@ public class MainApplicationController {
 
     /**
      * Adds new task
+     * @throws IOException if fxml file not found
      */
 
     @FXML
-    public void addNewTask(){
+    public void addNewTask() throws IOException {
         RegisterModifiers.addNewTask();
+        switchToTasks();
     }
 
     /**
      * Adds new category
+     * @throws IOException if fxml file not found
      */
 
     @FXML
-    public void addNewCategory() {
+    public void addNewCategory() throws IOException {
         RegisterModifiers.addNewCategory();
+        switchToCategory();
     }
 
     /**
