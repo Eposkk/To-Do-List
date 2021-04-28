@@ -46,27 +46,6 @@ public class MainRegisterTest {
             }
         }
 
-        @Nested
-        public class setCategoryColor{
-
-            @Test
-            void setCategoryColorPositive(){
-                MainRegister register = new MainRegister();
-                assertTrue(register.addCategory("test", Color.PINK));
-
-                register.setCategoryColor(0,Color.GREEN);
-                assertEquals(register.getCategory(0).getColor(), Color.GREEN);
-            }
-
-            @Test
-            public void setCategoryColorNegative(){
-                MainRegister register = new MainRegister();
-                assertTrue(register.addCategory("test", Color.PINK));
-
-                assertThrows(IllegalArgumentException.class, () -> register.setCategoryColor(1,Color.GREEN));
-            }
-        }
-
     }
 
     @Nested
@@ -145,19 +124,6 @@ public class MainRegisterTest {
         }
 
         @Nested
-        public class changePriority{
-            @Test
-            public void changePriorityPositive(){
-                MainRegister register = new MainRegister();
-                register.addMainTask(null, null, "test", "description", 1, -1);
-
-                assertEquals(1, register.getMainTask(0).getPriority());
-                register.changePriorityMainTask(0,2);
-                assertEquals(2, register.getMainTask(0).getPriority());
-            }
-        }
-
-        @Nested
         public class getAllTasksFromCategory{
 
             @Test
@@ -186,68 +152,5 @@ public class MainRegisterTest {
             }
         }
 
-        @Nested
-        public class setTaskCategory {
-            @Test
-            public void setMainTaskCategoryPositive(){
-
-                try{
-                    MainRegister register = new MainRegister();
-                    register.addMainTask(null, null, "test", "description", 1, -1);
-                    register.addCategory("Name", Color.PINK);
-
-                    register.setMainTaskCategory(0, 0);
-
-                    assert(register.getMainTask(0).getCategoryId() == 0);
-
-                }catch(IllegalArgumentException e){
-                    assertNull(e.getMessage());
-
-                }
-            }
-
-            @Test
-            public void setMainTaskCategoryNegative(){
-
-                try{
-                    MainRegister register = new MainRegister();
-                    register.addMainTask(null, null, "test", "description", 1, -1);
-
-                    register.setMainTaskCategory(0, 1);
-
-                }catch(IllegalArgumentException e){
-                    assertEquals(e.getMessage(), "Category does not exist");
-                }
-            }
-        }
-
-        @Nested
-        public class changeDescriptionTask {
-
-            @Test
-            public void changeDescriptionMainTaskPositive() {
-                try {
-
-                    MainRegister register = new MainRegister();
-                    register.addMainTask(null, null, "test", "description", 1, -1);
-                    register.changeDescriptionMainTask(0, "New description");
-                    assertEquals(register.getMainTask(0).getDescription(), "New description");
-
-                } catch (IllegalArgumentException e) {
-                    assertNull(e.getMessage());
-                }
-            }
-
-            @Test
-            public void changeDescriptionMainTaskNegative() {
-                try {
-                    MainRegister register = new MainRegister();
-                    register.addMainTask(null, null, "test", "description", 1, -1);
-                    register.changeDescriptionMainTask(1, "New description");
-                } catch (IllegalArgumentException e) {
-                    assertEquals(e.getMessage(), "No task found with the suggested Id.");
-                }
-            }
-        }
     }
 }
