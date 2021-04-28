@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReadWrite {
+public class ReadWriteTest {
     private HashMap<Integer, Category> addCategoryData(){
         HashMap<Integer,Category> test=new HashMap<>();
         Category cat1 = new Category(1, Color.BLUE,"Skole");
@@ -40,7 +40,7 @@ public class ReadWrite {
     }
 
    @Test
-    void writeAndReadPositive() {
+    void writeAndReadTestPositive() {
         MainRegister register = addRegister();
         Write write = new Write(register);
         write.writeRegister();
@@ -56,7 +56,7 @@ public class ReadWrite {
     }
 
     @Test
-    public void writeAndReadNullPointerException() {
+    public void writeAndReadNullPointerExceptionTest() {
         Read read = new Read("data/eqw");
         assertThrows(NullPointerException.class, read::readRegister);
     }
