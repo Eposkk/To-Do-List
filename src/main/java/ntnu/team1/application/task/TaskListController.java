@@ -197,7 +197,7 @@ public class TaskListController {
 
             property.addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->{
                 MainRegister register = App.getRegister();
-                register.getMainTask(task.getID()).setDone(newValue);
+                register.getTask(task.getID()).setDone(newValue);
                 App.setRegister(register);
                 updateList();
             });

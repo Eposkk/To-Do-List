@@ -106,6 +106,11 @@ public class Task implements Serializable {
      */
 
     public void setCategoryId(int categoryId) {
+        if(categoryId > -1){
+            hasCategory = true;
+        }else{
+            hasCategory = false;
+        }
         this.categoryId = categoryId;
     }
 

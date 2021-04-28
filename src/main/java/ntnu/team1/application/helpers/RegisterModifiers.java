@@ -2,7 +2,6 @@ package ntnu.team1.application.helpers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ntnu.team1.application.main.App;
 import ntnu.team1.backend.MainRegister;
@@ -12,7 +11,6 @@ import ntnu.team1.backend.objects.Task;
 import ntnu.team1.application.category.CategoryDialog;
 import ntnu.team1.application.task.TaskDialog;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
@@ -70,7 +68,7 @@ public class RegisterModifiers {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            register.removeMainTask(task.getID());
+            register.removeTask(task.getID());
             App.setRegister(register);
         }
     }
@@ -89,7 +87,7 @@ public class RegisterModifiers {
         if (result.get() == ButtonType.OK) {
             App.getRegister().getAllTasks().stream()
                     .filter(MainTask -> MainTask.getCategoryId() == categoryId)
-                    .forEach(MainTask -> register.removeMainTask(MainTask.getID()));
+                    .forEach(MainTask -> register.removeTask(MainTask.getID()));
         }
     }
 
@@ -139,7 +137,7 @@ public class RegisterModifiers {
         if (result.get() == ButtonType.OK) {
             App.getRegister().getAllTasks().stream()
                     .filter(MainTask -> MainTask.getCategoryId() == selectedCategory.getID())
-                    .forEach(MainTask -> register.removeMainTask(MainTask.getID()));
+                    .forEach(MainTask -> register.removeTask(MainTask.getID()));
             register.removeCategory(selectedCategory.getID());
             App.setRegister(register);
         }

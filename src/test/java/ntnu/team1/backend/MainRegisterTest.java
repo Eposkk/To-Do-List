@@ -96,15 +96,15 @@ public class MainRegisterTest {
             @Test
             public void getTaskTestPositive(){
                 MainRegister register = new MainRegister();
-                register.addMainTask(null, null, "test", "description", 1, -1);
-                assertNotNull(register.getMainTask(0));
+                register.addTask(null, null, "test", "description", 1, -1);
+                assertNotNull(register.getTask(0));
             }
 
             @Test
             public void getTaskTestNegative(){
                 MainRegister register = new MainRegister();
-                register.addMainTask(null, null, "test", "description", 1, -1);
-                assertThrows(IllegalArgumentException.class, () -> register.getMainTask(1));
+                register.addTask(null, null, "test", "description", 1, -1);
+                assertThrows(IllegalArgumentException.class, () -> register.getTask(1));
             }
         }
 
@@ -113,16 +113,16 @@ public class MainRegisterTest {
             @Test
             public void addTaskTestPositive() {
                 MainRegister register = new MainRegister();
-                register.addMainTask(LocalDate.now(), LocalDate.now(),"Task_1",
+                register.addTask(LocalDate.now(), LocalDate.now(),"Task_1",
                         "Lorem Ipsum", 0,0);
 
-                assertNotNull(register.getMainTask(0));
+                assertNotNull(register.getTask(0));
             }
 
             @Test
             public void addTaskTestNegative() {
                 MainRegister register = new MainRegister();
-                assertThrows(NullPointerException.class, ()-> register.addMainTask(null, null,
+                assertThrows(NullPointerException.class, ()-> register.addTask(null, null,
                         null, "Lorem Ipsum",1 ,1));
             }
         }
@@ -143,23 +143,23 @@ public class MainRegisterTest {
                     String name = "task " + i;
                     String description = "Lorem Ipsum";
                     Random random = new Random();
-                    register.addMainTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
+                    register.addTask(null, null, name, description, random.nextInt(3), random.nextInt(3));
                 }
-                assertNotNull(register.getMainTask(1));
+                assertNotNull(register.getTask(1));
 
                 try{
-                    register.removeMainTask(1);
+                    register.removeTask(1);
                 }catch (IllegalArgumentException e){
                     assertNull(e);
                 }
 
-                assertThrows(IllegalArgumentException.class, () -> register.getMainTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.getTask(1));
             }
             @Test
             public void removeTaskTestNegative(){
                 MainRegister register = new MainRegister();
 
-                assertThrows(IllegalArgumentException.class, () -> register.removeMainTask(1));
+                assertThrows(IllegalArgumentException.class, () -> register.removeTask(1));
             }
         }
     }

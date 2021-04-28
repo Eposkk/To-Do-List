@@ -62,7 +62,7 @@ public class MainRegister implements Serializable {
      * @return the task associated with the id
      */
 
-    public Task getMainTask(int id) throws IllegalArgumentException{
+    public Task getTask(int id) throws IllegalArgumentException{
         for (Task task : tasks) {
             if (task.getID() == id) {
                 return task;
@@ -83,8 +83,8 @@ public class MainRegister implements Serializable {
      */
 
 
-    public void addMainTask(LocalDate startDate, LocalDate endDate, String name, String description,
-                               int priority, int categoryId) throws NullPointerException{
+    public void addTask(LocalDate startDate, LocalDate endDate, String name, String description,
+                        int priority, int categoryId) throws NullPointerException{
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }
@@ -104,17 +104,17 @@ public class MainRegister implements Serializable {
      * @param priority An integer representing the priority of the Task
      * @param categoryId An Integer representing the ID of a category
      */
-    public void editMainTask(int id, LocalDate startDate, LocalDate endDate, String name, String description,
-                             int priority, int categoryId){
+    public void editTask(int id, LocalDate startDate, LocalDate endDate, String name, String description,
+                         int priority, int categoryId) throws NullPointerException{
         if(name.equals("")){
             throw new NullPointerException("Name cannot be null");
         }else{
-            getMainTask(id).setName(name);
-            getMainTask(id).setDescription(description);
-            getMainTask(id).setPriority(priority);
-            getMainTask(id).setStartDate(startDate);
-            getMainTask(id).setEndDate(endDate);
-            getMainTask(id).setCategoryId(categoryId);
+            getTask(id).setName(name);
+            getTask(id).setDescription(description);
+            getTask(id).setPriority(priority);
+            getTask(id).setStartDate(startDate);
+            getTask(id).setEndDate(endDate);
+            getTask(id).setCategoryId(categoryId);
         }
     }
 
@@ -130,11 +130,11 @@ public class MainRegister implements Serializable {
 
     /**
      * Removes a task from the register
-     * @param mainTaskId Id associated with the task
+     * @param taskId Id associated with the task
      */
 
-    public void removeMainTask(int mainTaskId) throws IllegalArgumentException{
-        tasks.remove(getMainTask(mainTaskId));
+    public void removeTask(int taskId) throws IllegalArgumentException{
+        tasks.remove(getTask(taskId));
     }
 
     /**

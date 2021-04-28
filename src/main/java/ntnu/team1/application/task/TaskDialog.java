@@ -11,7 +11,6 @@ import ntnu.team1.backend.objects.Task;
 import ntnu.team1.application.main.App;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -168,12 +167,12 @@ public class TaskDialog extends Dialog<MainRegister> {
             MainRegister result = App.getRegister();
             if (button == ButtonType.OK) {
                 if (mode == Mode.NEW) {
-                    result.addMainTask(startDate.getValue(), endDate.getValue(),
+                    result.addTask(startDate.getValue(), endDate.getValue(),
                             name.getText(), description.getText(),
                             Integer.parseInt(selectedPriority.getText()),
                             category1);
                 } else if (mode == Mode.EDIT) {
-                    result.editMainTask(existingTask.getID(), startDate.getValue(), endDate.getValue(),
+                    result.editTask(existingTask.getID(), startDate.getValue(), endDate.getValue(),
                             name.getText(), description.getText(),
                             Integer.parseInt(selectedPriority.getText()),
                             category1);
