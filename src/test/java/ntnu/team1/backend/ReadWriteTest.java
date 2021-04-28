@@ -13,11 +13,11 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReadWrite {
+public class ReadWriteTest {
     private HashMap<Integer, Category> addCategoryData(){
         HashMap<Integer,Category> test=new HashMap<>();
-        Category cat1 = new Category(1, Color.BLUE,"Skole");
-        Category cat2 = new Category(2, Color.GREEN,"Arbeid");
+        Category cat1 = new Category(1, Color.BLUE,"School");
+        Category cat2 = new Category(2, Color.GREEN,"Work");
         test.put(cat1.getID(), cat1);
         test.put(cat2.getID(), cat2);
         return test;
@@ -25,8 +25,8 @@ public class ReadWrite {
 
     private ArrayList<Task> addTaskData(){
         ArrayList<Task> test=new ArrayList<>();
-        Task task1= new Task(1, "Grave","Grave i hagen", LocalDate.now(),LocalDate.now(),2,1);
-        Task task2= new Task(2,"ikk","Ikke Grave i hagen", LocalDate.now(),LocalDate.now(),2,2);
+        Task task1= new Task(1, "Clean","Clean room", LocalDate.now(),LocalDate.now(),2,1);
+        Task task2= new Task(2,"Don't clean","Don't clean room", LocalDate.now(),LocalDate.now(),2,2);
         test.add(task1);
         test.add(task2);
         return test;
@@ -40,7 +40,7 @@ public class ReadWrite {
     }
 
    @Test
-    void writeAndReadPositive() {
+    void writeAndReadTestPositive() {
         MainRegister register = addRegister();
         Write write = new Write(register);
         write.writeRegister();
@@ -56,7 +56,7 @@ public class ReadWrite {
     }
 
     @Test
-    public void writeAndReadNullPointerException() {
+    public void writeAndReadNullPointerExceptionTest() {
         Read read = new Read("data/eqw");
         assertThrows(NullPointerException.class, read::readRegister);
     }
