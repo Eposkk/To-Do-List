@@ -6,8 +6,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
-
 import ntnu.team1.backend.exceptions.RemoveException;
 import ntnu.team1.backend.objects.Category;
 import ntnu.team1.backend.objects.Task;
@@ -137,19 +135,6 @@ public class MainRegister implements Serializable {
 
     public void removeMainTask(int mainTaskId) throws IllegalArgumentException{
         tasks.remove(getMainTask(mainTaskId));
-    }
-
-    /**
-     * Gets all task from a given category
-     * @param categoryId Id Associated with category
-     * @return Returns an Arraylist with all the tasks
-     */
-
-    public ArrayList<Task> getAllTasksFromCategory(int categoryId) throws IllegalArgumentException{
-        if(!categories.containsKey(categoryId)){
-            throw new IllegalArgumentException("No task found with the suggested Id.");
-        }
-        return (ArrayList<Task>)tasks.stream().filter(task -> task.getCategoryId() == categoryId).collect(Collectors.toList());
     }
 
     /**
