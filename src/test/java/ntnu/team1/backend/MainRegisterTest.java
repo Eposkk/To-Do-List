@@ -70,7 +70,7 @@ public class MainRegisterTest {
     }
 
     @Nested
-    public class TaskTest {
+    public class TaskMethodsTests {
 
         @Nested
         public class editTaskTest{
