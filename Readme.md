@@ -37,7 +37,7 @@ in the IntelliJ toolbar select View -> Tool windows -> Maven -> Plugins -> Javaf
 [JavaDoc](http://eivisha.pages.stud.idi.ntnu.no/to-do-list)
 
 
-[Wiki](https://gitlab.stud.iie.ntnu.no/eivisha/to-do-list/-/wikis/home)
+[Wiki](https://github.com/Eposkk/To-Do-List/wiki)
 
 # Made by
 - Adrian Wist Hakvåg
