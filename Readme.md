@@ -21,12 +21,7 @@ To-Do is an application that helps you keep track of all your tasks. Programmed 
 
 ***HTTPS:***
 ```
-git clone https://gitlab.stud.idi.ntnu.no/eivisha/to-do-list.git
-```
-
-***SSH:***
-```
-git clone git@gitlab.stud.idi.ntnu.no:eivisha/to-do-list.git
+git clone https://github.com/Eposkk/To-Do-List.git
 ```
 
 - Open the project with your IDE, and import it as a maven project.
